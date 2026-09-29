@@ -42,7 +42,7 @@ export default function StandingsPage() {
         </Card>
       </div>
 
-      <Tabs defaultValue={started ? "today" : "projected"}>
+      <Tabs defaultValue="today">
         <TabsList className="w-full">
           <TabsTrigger value="today">Aujourd&apos;hui</TabsTrigger>
           <TabsTrigger value="projected">Projection</TabsTrigger>
