@@ -4,12 +4,20 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { InfoDrawer } from "@/components/pool/info-drawer"
 import { TeamAvatar, TeamCode } from "@/components/pool/team-avatar"
 import { Trend } from "@/components/pool/trend"
-import { fmt, MANAGERS, ord, pct, type Manager } from "@/lib/pool"
+import { fmt, MANAGERS, ord, pct, POOL, type Manager } from "@/lib/pool"
 
 const VIEWS = {
   today: { label: "Points", value: (m: Manager) => fmt(m.points), sort: (m: Manager) => m.rank },
   projected: { label: "Pts projetés", value: (m: Manager) => fmt(m.expected_total), sort: (m: Manager) => -m.expected_total },
   odds: { label: "Odds", value: (m: Manager) => pct(m.win_pct), sort: (m: Manager) => -m.win_pct },
+}
+
+// Sous le nom, dans l'onglet Aujourd'hui : matchs restants cette semaine (lundi au dimanche) pour les 11 joueurs
+// qui comptent, sans les blessés. Ailleurs, le rang au draft.
+function subline(view: keyof typeof VIEWS, m: Manager) {
+  const w = view === "today" ? POOL.week?.managers[String(m.id)] : undefined
+  if (!w) return `${ord(m.slot)} pick`
+  return `${fmt(w.left)} match${w.left === 1 ? "" : "s"} cette sem.`
 }
 
 export function StandingsTable({ view }: { view: keyof typeof VIEWS }) {
@@ -38,7 +46,7 @@ export function StandingsTable({ view }: { view: keyof typeof VIEWS }) {
                 <TeamAvatar id={m.id} name={m.name} size="sm" />
                 <div className="flex min-w-0 flex-col">
                   <span className="truncate font-medium">{m.name}</span>
-                  <span className="text-xs text-muted-foreground"><TeamCode id={m.id} />{ord(m.slot)} pick</span>
+                  <span className="text-xs text-muted-foreground"><TeamCode id={m.id} />{subline(view, m)}</span>
                 </div>
               </Link>
             </TableCell>

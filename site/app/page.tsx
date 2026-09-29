@@ -1,4 +1,4 @@
-import { CalendarDaysIcon, NewspaperIcon, TrendingUpIcon, UsersIcon } from "lucide-react"
+import { NewspaperIcon, TrendingUpIcon, UsersIcon } from "lucide-react"
 
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
@@ -8,8 +8,7 @@ import { PageHeader, UpdatedLine } from "@/components/pool/page-header"
 import { PlayerRow } from "@/components/pool/player-row"
 import { RankChart } from "@/components/pool/rank-chart"
 import { StandingsTable } from "@/components/pool/standings-table"
-import { WeekGames } from "@/components/pool/week-games"
-import { dayLabel, fmt, MANAGERS, pct, PLAYERS, POOL } from "@/lib/pool"
+import { fmt, MANAGERS, pct, PLAYERS, POOL } from "@/lib/pool"
 
 export default function StandingsPage() {
   const favorite = [...MANAGERS].sort((a, b) => b.win_pct - a.win_pct)[0]
@@ -89,20 +88,6 @@ export default function StandingsPage() {
           )}
         </CardContent>
       </Card>
-
-      {POOL.week && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Cette semaine</CardTitle>
-            <CardDescription>
-              Matchs restants du {dayLabel(POOL.week.start)} au {dayLabel(POOL.week.end)} pour les 11 joueurs qui comptent
-              de chaque équipe, sans les blessés. Plus de matchs, plus de chances de remonter.
-            </CardDescription>
-            <CardAction><CalendarDaysIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
-          </CardHeader>
-          <CardContent><WeekGames /></CardContent>
-        </Card>
-      )}
 
       <Card>
         <CardHeader>
