@@ -51,7 +51,7 @@ const TOPICS = {
     summary: "Qui produit le plus par match, et qui a encore le plus de matchs à jouer.",
     points: [
       "Les deux chiffres portent sur les 11 joueurs qui comptent pour l'équipe (les badges « Compte » de sa page).",
-      "Pts/match : leurs vrais points divisés par les matchs qu'ils ont joués. Un match manqué à cause d'une blessure ne compte pas, donc c'est le rythme quand ils jouent.",
+      "Pts par match : leurs vrais points divisés par les matchs qu'ils ont joués. Un match manqué à cause d'une blessure ne compte pas, donc c'est le rythme quand ils jouent.",
       "Matchs à jouer : les matchs qui restent au calendrier de leurs équipes de la LNH d'ici la fin de la saison, blessés compris, puisqu'ils vont revenir. Entre parenthèses, l'écart avec la moyenne des 12 équipes.",
       "Une équipe en retard au classement, mais avec un bon rythme et plus de matchs à jouer que les autres, a de bonnes chances de remonter. Les odds en tiennent déjà compte.",
     ],
@@ -71,25 +71,44 @@ const TOPICS = {
   },
 } as const
 
-export function InfoDrawer({ topic }: { topic: keyof typeof TOPICS }) {
+// Le bouton "?" (icon, dans les cartes) ou un lien texte (link, sous les onglets du classement).
+export function InfoDrawer({ topic, variant = "icon" }: { topic: keyof typeof TOPICS; variant?: "icon" | "link" }) {
   const t = TOPICS[topic]
   return (
-    <Drawer>
-      <DrawerTrigger render={<Button variant="ghost" size="icon-sm" aria-label={t.button} />}>
-        <CircleHelpIcon />
-      </DrawerTrigger>
-      <DrawerContent>
-        {/* Titre et bouton fixes ; la liste défile entre les deux quand elle dépasse l'écran. */}
+    <Drawer showSwipeHandle>
+      {variant === "link" ? (
+        <DrawerTrigger render={<Button variant="link" size="sm" data-slot="info-link" className="h-auto gap-1 px-0 text-xs text-muted-foreground" />}>
+          <CircleHelpIcon aria-hidden className="size-3.5" />
+          {t.button}
+        </DrawerTrigger>
+      ) : (
+        <DrawerTrigger render={<Button variant="ghost" size="icon-sm" aria-label={t.button} />}>
+          <CircleHelpIcon />
+        </DrawerTrigger>
+      )}
+      <DrawerContent data-info-drawer="">
+        {/* Titre et bouton fixes ; les étapes défilent entre les deux quand elles dépassent l'écran. */}
         <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
-          <DrawerHeader>
-            <DrawerTitle>{t.title}</DrawerTitle>
-            <DrawerDescription>{t.summary}</DrawerDescription>
+          <DrawerHeader className="gap-2 px-6 pt-6 text-left group-data-[swipe-axis=y]/drawer-popup:text-left">
+            <span data-slot="info-kicker" className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              Comment ça marche
+            </span>
+            <DrawerTitle className="text-xl leading-tight font-semibold">{t.title}</DrawerTitle>
+            <DrawerDescription className="text-sm text-foreground">{t.summary}</DrawerDescription>
           </DrawerHeader>
-          <ul className="flex min-h-0 list-disc flex-col gap-2 overflow-y-auto overscroll-contain px-8 pb-2 text-sm text-muted-foreground">
-            {t.points.map((p) => <li key={p}>{p}</li>)}
-          </ul>
-          <DrawerFooter>
-            <DrawerClose render={<Button variant="outline" />}>Compris</DrawerClose>
+          <ol className="mt-4 flex min-h-0 flex-col overflow-y-auto overscroll-contain border-t px-6 text-sm">
+            {t.points.map((p, i) => (
+              <li key={p} data-slot="info-step" className="flex gap-3 border-b py-3 last:border-b-0">
+                <span data-slot="info-step-number" aria-hidden
+                  className="flex size-6 shrink-0 items-center justify-center rounded-full bg-foreground text-xs font-semibold text-background tabular-nums">
+                  {i + 1}
+                </span>
+                <span className="text-muted-foreground">{p}</span>
+              </li>
+            ))}
+          </ol>
+          <DrawerFooter className="border-t px-6 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+            <DrawerClose render={<Button size="lg" className="w-full" />}>Compris</DrawerClose>
           </DrawerFooter>
         </div>
       </DrawerContent>

@@ -1,7 +1,6 @@
 import Link from "next/link"
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { InfoDrawer } from "@/components/pool/info-drawer"
 import { TeamAvatar, TeamCode } from "@/components/pool/team-avatar"
 import { Trend } from "@/components/pool/trend"
 import { fmt, MANAGERS, ord, pct, POOL, signed, type Manager } from "@/lib/pool"
@@ -10,7 +9,7 @@ const VIEWS = {
   today: { label: "Points", value: (m: Manager) => fmt(m.points), sort: (m: Manager) => m.rank },
   projected: { label: "Pts projetés", value: (m: Manager) => fmt(m.expected_total), sort: (m: Manager) => -m.expected_total },
   odds: { label: "Odds", value: (m: Manager) => pct(m.win_pct), sort: (m: Manager) => -m.win_pct },
-  pace: { label: "Pts par match", value: (m: Manager) => fmt(paceOf(m)?.ppg, 2), sort: (m: Manager) => -(paceOf(m)?.ppg ?? 0) },
+  pace: { label: "Pts par match", value: (m: Manager) => fmt(paceOf(m)?.ppg, 2), sort: (m: Manager) => -(paceOf(m)?.ppg ?? 0) || m.rank },
 }
 
 function paceOf(m: Manager) {
@@ -38,10 +37,7 @@ export function StandingsTable({ view }: { view: keyof typeof VIEWS }) {
       <TableHeader>
         <TableRow>
           <TableHead className="w-8">#</TableHead>
-          {/* The "?" sits by "Équipe": next to the value label it made that column too wide for phones. */}
-          <TableHead>
-            <span className="inline-flex items-center gap-0.5">Équipe<InfoDrawer topic={view} /></span>
-          </TableHead>
+          <TableHead>Équipe</TableHead>
           <TableHead className="w-[4.5rem] text-right whitespace-normal leading-tight">{v.label}</TableHead>
         </TableRow>
       </TableHeader>

@@ -4,6 +4,7 @@ import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
 import { ItemGroup } from "@/components/ui/item"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { InfoDrawer } from "@/components/pool/info-drawer"
 import { PageHeader, UpdatedLine } from "@/components/pool/page-header"
 import { PlayerRow } from "@/components/pool/player-row"
 import { RankChart } from "@/components/pool/rank-chart"
@@ -63,12 +64,15 @@ export default function StandingsPage() {
           <TabsTrigger value="today">Aujourd&apos;hui</TabsTrigger>
           <TabsTrigger value="projected">Projection</TabsTrigger>
           <TabsTrigger value="odds">Odds</TabsTrigger>
-          {started && POOL.pace && <TabsTrigger value="pace">Rythme</TabsTrigger>}
+          {POOL.pace && <TabsTrigger value="pace">Rythme</TabsTrigger>}
         </TabsList>
-        <TabsContent value="today"><StandingsTable view="today" /></TabsContent>
-        <TabsContent value="projected"><StandingsTable view="projected" /></TabsContent>
-        <TabsContent value="odds"><StandingsTable view="odds" /></TabsContent>
-        {started && POOL.pace && <TabsContent value="pace"><StandingsTable view="pace" /></TabsContent>}
+        {(["today", "projected", "odds", "pace"] as const).filter((v) => v !== "pace" || POOL.pace).map((v) => (
+          <TabsContent key={v} value={v} className="flex flex-col gap-1">
+            {/* Entre les onglets et le tableau : comment se lit cet onglet. */}
+            <div className="flex justify-end"><InfoDrawer topic={v} variant="link" /></div>
+            <StandingsTable view={v} />
+          </TabsContent>
+        ))}
       </Tabs>
 
       <Card>
