@@ -1,0 +1,66 @@
+# Dress rehearsal (manual only): two weeks of seeded mornings through the real daily job, with
+# sources failing on purpose, then the site build and tests. Publishes nothing and commits nothing.
+# Actions tab -> "Rehearsal" -> "Run workflow". See scripts/rehearse.py.
+name: Rehearsal
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Mornings to rehearse, from Sept 30"
+        default: "14"
+
+permissions:
+  contents: read
+
+jobs:
+  rehearse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      # Same downloads cache as the daily job, read only.
+      - uses: actions/cache/restore@v4
+        with:
+          path: data/raw
+          key: raw-${{ github.run_id }}
+          restore-keys: raw-
+
+      - run: uv sync
+
+      - name: Rehearse the mornings
+        run: uv run python scripts/rehearse.py --out /tmp/rehearsal --days ${{ inputs.days }}
+
+      - name: Tests on the first seeded morning (tomorrow)
+        run: |
+          cp /tmp/rehearsal/pool_2026-09-30.json site/data/pool.json
+          uv run pytest -q tests/test_site_ids.py tests/test_scoring.py tests/test_daily.py tests/test_gate.py
+
+      - name: Build the site from it
+        working-directory: site
+        env:
+          BASE_PATH: /nhl-pool
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          npm ci
+          npm run build
+          for r in "" teams/ teams/1/ teams/12/ draft/ players/ awards/; do test -f "out/${r}index.html" || { echo "missing $r"; exit 1; }; done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rehearsal
+          path: |
+            /tmp/rehearsal/pool_*.json
+            /tmp/rehearsal/history

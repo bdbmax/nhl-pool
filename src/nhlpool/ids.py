@@ -82,3 +82,24 @@ def check(ids: pd.DataFrame) -> list[str]:
     if (ids.index <= 0).any() or ids.index.duplicated().any():
         problems.append("nhl_id not positive or not unique")
     return problems
+
+
+def pin(ids: pd.DataFrame, pinned: pd.DataFrame) -> pd.DataFrame:
+    """Use saved IDs (index nhl playerId; espn_id, df_id) for the drafted players.
+
+    Drafted players' IDs were verified once and saved in data/pool_2026/draft_ids.csv, so a player
+    who drops off a Daily Faceoff lineup (sent down, long-term injury) keeps his IDs. Injury status
+    is looked up by those IDs; a player missing from today's pages simply has no status."""
+    out = ids.copy()
+    idx = pinned.index
+    e = espn_players().drop_duplicates("espn_id").set_index("espn_id")
+    f = df_players().drop_duplicates("df_id").set_index("df_id")
+    out.loc[idx, "espn_id"] = pinned["espn_id"].to_numpy()
+    out.loc[idx, "df_id"] = pinned["df_id"].to_numpy()
+    for key in ("espn_id", "df_id"):
+        out.loc[idx, f"{key}_name"] = out.loc[idx, "name"]
+        out.loc[idx, f"{key}_pos_ok"] = True
+    out.loc[idx, "espn_injury"] = e["espn_injury"].reindex(pinned["espn_id"]).to_numpy()
+    out.loc[idx, "df_injury"] = f["df_injury"].reindex(pinned["df_id"]).to_numpy()
+    out.loc[idx, "df_ir"] = f["df_ir"].reindex(pinned["df_id"]).fillna(False).to_numpy()
+    return out

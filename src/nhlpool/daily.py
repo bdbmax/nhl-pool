@@ -67,7 +67,7 @@ def load_draft() -> pd.DataFrame:
     """The 192 picks with NHL ids (draft_ids.csv pins the ids, checked against NHL names)."""
     D = pd.read_csv(POOL / "draft_results.csv", dtype={"pick": str})
     I = pd.read_csv(POOL / "draft_ids.csv", dtype={"pick": str})
-    D = D.merge(I[["manager", "pick", "playerId"]], on=["manager", "pick"], how="left", validate="1:1")
+    D = D.merge(I[["manager", "pick", "playerId", "espn_id", "df_id"]], on=["manager", "pick"], how="left", validate="1:1")
     D["round"] = D["pick"].str.split(".").str[0].astype(int)
     D["pick_in_round"] = D["pick"].str.split(".").str[1].astype(int)
     D["overall"] = (D["round"] - 1) * TEAMS + D["pick_in_round"]
@@ -181,6 +181,27 @@ def project(P: pd.DataFrame, R: pd.DataFrame, real: pd.DataFrame, T: pd.DataFram
     return out
 
 
+def fill_missing(proj: pd.DataFrame, D: pd.DataFrame, people: pd.DataFrame, T: pd.DataFrame,
+                 previous: dict | None, cfg: dict) -> pd.DataFrame:
+    """A drafted player no source projects today (dropped from ESPN and CBS, say) keeps yesterday's
+    points per game instead of stopping the update."""
+    ids_ = D["playerId"]
+    miss = ids_[proj.loc[ids_, "ros"].isna().to_numpy()]
+    if not len(miss) or not previous:
+        return proj
+    proj = proj.copy()
+    for pid in miss:
+        ppg = (previous["players"].get(str(pid)) or [0, 0, None, 0.0, 0])[3]
+        if people.loc[pid, "pos"] == "G":
+            left = T["left"].get(people.loc[pid, "nhl_team"], 0)
+            games = max(0.0, left - cfg["absence_games"].get(people.loc[pid, "injury"], 0))
+        else:
+            games = proj.loc[pid, "games_left"]
+        proj.loc[pid, "ros"] = ppg * games
+        print(f"WARNING no source projects {people.loc[pid, 'name']} today; using yesterday's pace ({ppg:.2f}/game)")
+    return proj
+
+
 # --- Odds ---------------------------------------------------------------------------------
 
 def best_ball(D: pd.DataFrame, pts: pd.Series) -> pd.Series:
@@ -196,6 +217,9 @@ def simulate(D: pd.DataFrame, P: pd.DataFrame, proj: pd.DataFrame, real_fp: pd.S
     rng = np.random.default_rng(seed)
     ids_ = D["playerId"].to_numpy()
     V = proj.loc[ids_, [f"ros_{k}" for k in external.KEYS.values()]].to_numpy(dtype=float)
+    # A player no source covers today (see fill_missing) keeps his consensus in every draw.
+    none = np.isnan(V).all(axis=1)
+    V[none] = proj.loc[ids_, "ros"].to_numpy(dtype=float)[none][:, None]
     Wt = rng.dirichlet(np.ones(V.shape[1]), n_sims)
     den = (~np.isnan(V)).astype(float) @ Wt.T
     ros = np.where(den > 0, (np.nan_to_num(V) @ Wt.T) / np.where(den > 0, den, 1), 0.0)
@@ -382,11 +406,14 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
 
     shots = site_export.headshots(people.index, refresh)
     people["nhl_team"] = [shots.get(p, {}).get("nhl_team_now") or t for p, t in zip(people.index, people["team"])]
-    X = ids.build(people[["name", "team", "pos"]])
+    X = ids.pin(ids.build(people[["name", "team", "pos"]]), D.set_index("playerId")[["espn_id", "df_id"]])
     people["injury"] = [site_export.injury(*a) for a in zip(X["espn_injury"], X["df_injury"], X["df_ir"])]
     R = external.rates(people[["name", "team", "pos"]], data, hb_names=list(people.loc[people.pos != "G", "name"]),
                        hb_refresh=refresh)
     proj = project(people, R, real, T, cfg)
+    hist = [h for h in load_history(hist_dir) if h["date"] != today]
+    previous = hist[-1] if hist and hist[-1]["date"] < today else None
+    proj = fill_missing(proj, D, people, T, previous, cfg)
     team = T.reindex(people["nhl_team"].values)
     frac_left = pd.Series((team["left"] / team["total"]).fillna(1.0).to_numpy(), index=people.index)
     people["team_played"] = team["played"].fillna(0).to_numpy()
@@ -404,8 +431,6 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     M["rank"] = pd.Series(range(1, TEAMS + 1), index=order)
     M["proj_rank"] = pd.Series(range(1, TEAMS + 1), index=by_finish)
 
-    hist = [h for h in load_history(hist_dir) if h["date"] != today]
-    previous = hist[-1] if hist and hist[-1]["date"] < today else None
     problems = checks(D, X, real, proj, M, previous, league, cfg)
     if problems:
         raise SystemExit("safety checks failed, nothing written:\n  " + "\n  ".join(problems))

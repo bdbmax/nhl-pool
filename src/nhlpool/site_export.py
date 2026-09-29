@@ -35,6 +35,7 @@ SITE_DATA = ROOT / "site" / "data"
 COUNTED = {"F": 6, "D": 4, "G": 1}
 DRAFTED = {"F": 8, "D": 6, "G": 2}
 ESPN_PHOTO = "https://a.espncdn.com/i/headshots/nhl/players/full/{}.png"
+NHL_PHOTO = "https://assets.nhle.com/mugs/nhl/{season}/{team}/{id}.png"
 N_FORGOTTEN = 30
 
 
@@ -98,7 +99,9 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
             "nhl_id": int(pid), "espn_id": int(x["espn_id"]), "df_id": int(x["df_id"]),
             "slug": slug(row["name"]), "name": row["name"], "pos": row["pos"],
             "nhl_team": row["nhl_team"], "number": h.get("number"),
-            "photo": h.get("photo"), "photo_fallback": ESPN_PHOTO.format(int(x["espn_id"])),
+            # The NHL's headshot address follows a fixed pattern, used if the player page did not load.
+            "photo": h.get("photo") or NHL_PHOTO.format(season=season, team=row["nhl_team"], id=int(pid)),
+            "photo_fallback": ESPN_PHOTO.format(int(x["espn_id"])),
             "injury": row["injury"] if isinstance(row["injury"], str) else None,
             "points": pts, "gp": gp,
             "stats": {k: (0 if pd.isna(r[k]) else int(r[k])) for k in stats},

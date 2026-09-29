@@ -46,7 +46,14 @@ def cached_text(url: str, rel_path: str, refresh: bool = False, headers: dict | 
     path: Path = RAW / rel_path
     if path.exists() and not refresh:
         return path.read_text()
-    text = _get(url, headers=headers).text
+    try:
+        text = _get(url, headers=headers).text
+    except Exception as e:
+        # A re-download failed: keep going with the previous copy when there is one.
+        if path.exists():
+            print(f"WARNING download failed ({type(e).__name__}), using the cached copy: {rel_path}")
+            return path.read_text()
+        raise
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
     return text

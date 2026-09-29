@@ -52,7 +52,14 @@ The daily job uses external projections only (ESPN, NHL.com, CBS, HockeyBangers)
 - Safety checks (192 players with three IDs, 12 teams of 16, no negative stats, no team losing more than
   2 real points overnight, skater goals and goalie wins reconcile with the scoreboard). If one fails, nothing
   is published, the site keeps yesterday's version and GitHub emails the failure.
-- Draft ids are pinned in `data/pool_2026/draft_ids.csv`.
+- If the 5:30 update fails, it is retried at 6:30 and 7:30 (only if that morning's history file is not saved;
+  see `scripts/gate.py`). The history is committed only after the site is published.
+- A download that fails falls back to the previous copy (cached between runs). A drafted player whom no
+  source projects keeps yesterday's pace. Draft IDs (NHL, ESPN, Daily Faceoff) are pinned in
+  `data/pool_2026/draft_ids.csv`, so a player dropping off a lineup page keeps his IDs.
+- Dress rehearsal: `uv run python scripts/rehearse.py --out /tmp/rehearsal` runs 14 seeded mornings (last
+  season's opening fortnight shifted to this season's dates), with sites failing on purpose, and checks
+  every output. The same runs on GitHub from the Actions tab ("Rehearsal").
 
 ## Rerun everything from scratch
 

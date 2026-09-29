@@ -61,7 +61,11 @@ def _utf8(x: str) -> str:
 
 def hockeybangers(names: list[str], refresh: bool = False) -> pd.DataFrame:
     """Goals and assists per 82 games for the given skaters (one free page each, fetched politely)."""
-    index = cached_text(HB + "players/", "hockeybangers/players_index.html", refresh=refresh)
+    try:
+        index = cached_text(HB + "players/", "hockeybangers/players_index.html", refresh=refresh)
+    except Exception as e:  # site down and nothing cached: the other three sources carry on
+        print(f"WARNING hockeybangers unavailable ({type(e).__name__}); skipped")
+        return pd.DataFrame(columns=["name", "hb_G82", "hb_A82"])
     slug = {norm(_utf8(htmllib.unescape(n))): s for s, n in re.findall(r'<a[^>]*href="([a-z0-9-]+)"[^>]*>([^<]+)</a>', index)}
     rows, failures = [], 0
     for n in names:
