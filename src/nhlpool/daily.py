@@ -85,7 +85,12 @@ def team_games(season: int, as_of: str, refresh: bool = True) -> tuple[pd.DataFr
         done = [g for g in games if g["gameDate"] <= as_of and g.get("gameState") in ("OFF", "FINAL")]
         rows.append({"team": team, "played": len(done), "total": len(games),
                      "dates": sorted(g["gameDate"] for g in done),
-                     "all_dates": sorted(g["gameDate"] for g in games)})
+                     "all_dates": sorted(g["gameDate"] for g in games),
+                     # For "Ce soir": opponent, home or away, and start time of every game.
+                     "games": [{"date": g["gameDate"], "start": g.get("startTimeUTC"),
+                                "home": g["homeTeam"]["abbrev"] == team,
+                                "opp": g["awayTeam"]["abbrev"] if g["homeTeam"]["abbrev"] == team else g["homeTeam"]["abbrev"]}
+                               for g in games]})
         finished.update(g["id"] for g in done if g["gameDate"] == as_of)
         for g in done:
             so = (g.get("gameOutcome") or {}).get("lastPeriodType") == "SO"
@@ -344,8 +349,15 @@ def award_mondays(season_start: str, today: str) -> list[str]:
     return out
 
 
+def _top(values: dict, n: int = 3, low: bool = False, keep=lambda v: True, tie=lambda k: 0) -> list:
+    """The n best keys by value (or the n lowest), skipping values that `keep` rejects."""
+    ks = [k for k in values if keep(values[k])]
+    return sorted(ks, key=lambda k: ((values[k] if low else -values[k]), tie(k)))[:n]
+
+
 def weekly_awards(hist: list[dict], D: pd.DataFrame, season_start: str, today: str, cfg: dict) -> list[dict]:
-    """Pick de la semaine, Meilleure remontée, Malchance and Disette for every Monday so far (newest first)."""
+    """Pick de la semaine, Meilleure remontée, Malchance and Disette for every Monday so far (newest first),
+    each as a top 3."""
     if not hist:
         return []
     hist = sorted(hist, key=lambda h: h["date"])
@@ -361,31 +373,29 @@ def weekly_awards(hist: list[dict], D: pd.DataFrame, season_start: str, today: s
         if end["date"] <= start["date"]:
             continue
         week = [h for h in hist if start["date"] < h["date"] <= end["date"]]
+        cur, old = end["managers"], start["managers"]
 
         def gain(pid, i=0):
             e, s = end["players"].get(str(pid)), start["players"].get(str(pid))
             return (e[i] - s[i]) if e and s else 0
 
         late = D[D["round"] >= cfg["late_round"]].assign(g=lambda x: x["playerId"].map(gain))
-        pick = late.sort_values(["g", "overall"], ascending=[False, False]).iloc[0]
+        late = late[late["g"] > 0].sort_values(["g", "overall"], ascending=[False, False]).head(3)
         # Team points this week: best-ball total at the end minus at the start.
-        team_gain = {m: end["managers"][m]["points"] - start["managers"][m]["points"] for m in end["managers"]}
-        climb = {m: start["managers"][m]["rank"] - end["managers"][m]["rank"] for m in end["managers"]}
-        best = max(climb, key=lambda m: (climb[m], team_gain[m]))
-        worst = min(team_gain, key=lambda m: (team_gain[m], -end["managers"][m]["rank"]))
+        team_gain = {m: cur[m]["points"] - old[m]["points"] for m in cur}
+        climb = {m: old[m]["rank"] - cur[m]["rank"] for m in cur}
         # Points lost to injuries: games a player missed while listed as hurt, times his points per game.
         loss = injury_losses([start] + week, D)
-        lost = {m: v["points"] for m, v in loss.items()}
-        unlucky = max(lost, key=lambda m: lost[m])
         out.append({
             "week_end": monday, "from": start["date"], "to": end["date"],
-            "pick": {"nhl_id": int(pick["playerId"]), "manager_id": int(pick["manager_id"]), "value": int(pick["g"]),
-                     "round": int(pick["round"])} if pick["g"] > 0 else None,
-            "comeback": {"manager_id": int(best), "value": int(climb[best]), "from": start["managers"][best]["rank"],
-                         "to": end["managers"][best]["rank"]} if climb[best] > 0 else None,
-            "bad_luck": {"manager_id": int(unlucky), "value": round(lost[unlucky], 1),
-                         "games": int(loss[unlucky]["games"])} if lost[unlucky] > 0 else None,
-            "drought": {"manager_id": int(worst), "value": int(team_gain[worst])},
+            "pick": [{"nhl_id": int(r.playerId), "manager_id": int(r.manager_id), "value": int(r.g), "round": int(r["round"])}
+                     for _, r in late.iterrows()],
+            "comeback": [{"manager_id": int(m), "value": int(climb[m]), "from": old[m]["rank"], "to": cur[m]["rank"]}
+                         for m in _top(climb, keep=lambda v: v > 0, tie=lambda m: -team_gain[m])],
+            "bad_luck": [{"manager_id": int(m), "value": round(loss[m]["points"], 1), "games": int(loss[m]["games"])}
+                         for m in _top({m: v["points"] for m, v in loss.items()}, keep=lambda v: v > 0)],
+            "drought": [{"manager_id": int(m), "value": int(team_gain[m])}
+                        for m in _top(team_gain, low=True, tie=lambda m: -cur[m]["rank"])],
         })
     return out[::-1]
 
@@ -437,6 +447,93 @@ def pace(D: pd.DataFrame, people: pd.DataFrame, real: pd.DataFrame, T: pd.DataFr
     for v in out.values():
         v["left_vs_avg"] = round(v["left"] - avg)
     return out
+
+
+def tonight(D: pd.DataFrame, people: pd.DataFrame, T: pd.DataFrame, counts: set, today: str) -> dict:
+    """Each manager's drafted players with an NHL game today: opponent, home or away, start time (UTC)."""
+    out = {}
+    for mid, t in D.groupby("manager_id"):
+        rows = []
+        for pid in t["playerId"]:
+            team = people.loc[pid, "nhl_team"]
+            g = next((g for g in (T["games"].get(team) or []) if g["date"] == today), None)
+            if g:
+                rows.append({"nhl_id": int(pid), "team": team, "opp": g["opp"], "home": g["home"], "start": g["start"],
+                             "counts": pid in counts})
+        out[str(mid)] = sorted(rows, key=lambda r: (not r["counts"], r["start"] or "", r["nhl_id"]))
+    return {"date": today, "managers": out}
+
+
+def race(managers: pd.DataFrame, pace_: dict, T: pd.DataFrame, as_of: str) -> dict:
+    """For each manager, the team just ahead and just behind: gap in points and in games left, and when the
+    chaser catches up at today's pace (weeks), if it does before the season ends.
+    A team's pace per day = its points per game x its games left / days left in the season."""
+    last = max((d for ds in T["all_dates"] for d in ds), default=as_of)
+    days = max(1, (date.fromisoformat(last) - date.fromisoformat(as_of)).days)
+    rate = {m: ((v["ppg"] or 0) * v["left"] / days) for m, v in pace_.items()}
+    order = [str(m) for m in managers.sort_values("rank").index]
+    pts = {str(m): int(r["points"]) for m, r in managers.iterrows()}
+
+    def when(chaser, leader):
+        gap, faster = pts[leader] - pts[chaser], rate[chaser] - rate[leader]
+        if gap <= 0 or faster <= 0:
+            return None
+        d = gap / faster
+        return round(d / 7, 1) if d <= days else None
+
+    out = {}
+    for i, m in enumerate(order):
+        side = lambda o: {"manager_id": int(o), "gap": abs(pts[m] - pts[o]), "left_diff": pace_[m]["left"] - pace_[o]["left"],
+                          "ppg": pace_[o]["ppg"]}
+        ahead = order[i - 1] if i > 0 else None
+        behind = order[i + 1] if i + 1 < len(order) else None
+        out[m] = {"ahead": side(ahead) if ahead else None, "behind": side(behind) if behind else None,
+                  "catch_weeks": when(m, ahead) if ahead else None,      # I catch the team ahead
+                  "caught_weeks": when(behind, m) if behind else None}   # the team behind catches me
+    return out
+
+
+def hot_cold(hist: list[dict], D: pd.DataFrame, n: int = 5) -> dict | None:
+    """Drafted players over the last 7 days: real points against what their projection expected for the
+    games they played (skaters: games played x points per game; goalies: team games x points per team game)."""
+    snaps = sorted(hist, key=lambda h: h["date"])
+    if len(snaps) < 2:
+        return None
+    end = snaps[-1]
+    week_ago = (date.fromisoformat(end["date"]) - timedelta(days=7)).isoformat()
+    start = ([h for h in snaps if h["date"] <= week_ago] or snaps[:1])[-1]
+    pos = D.set_index("playerId")["pos"]
+    rows = []
+    for pid in D["playerId"]:
+        e, s_ = end["players"].get(str(pid)), start["players"].get(str(pid))
+        if not e or not s_:
+            continue
+        games = (e[4] - s_[4]) if pos[pid] == "G" else (e[1] - s_[1])
+        if games < 2:
+            continue
+        expected = games * e[3]
+        rows.append({"nhl_id": int(pid), "points": e[0] - s_[0], "games": int(e[1] - s_[1]),
+                     "expected": round(expected, 1), "diff": round(e[0] - s_[0] - expected, 1)})
+    if not rows:
+        return None
+    rows.sort(key=lambda r: -r["diff"])
+    return {"from": start["date"], "to": end["date"],
+            "hot": [r for r in rows if r["diff"] > 0][:n], "cold": [r for r in rows if r["diff"] < 0][::-1][:n]}
+
+
+def player_weeks(hist: list[dict], D: pd.DataFrame) -> dict:
+    """Each drafted player's season points at every Monday morning, and at the latest morning (for the charts
+    on player pages; small enough to ship with the site)."""
+    snaps = sorted(hist, key=lambda h: h["date"])
+    if not snaps:
+        return {"dates": [], "points": {}}
+    picked = [h for h in snaps if date.fromisoformat(h["date"]).weekday() == 0]
+    if not picked or picked[-1]["date"] != snaps[-1]["date"]:
+        picked.append(snaps[-1])
+    if picked[0]["date"] != snaps[0]["date"]:
+        picked.insert(0, snaps[0])
+    return {"dates": [h["date"] for h in picked],
+            "points": {str(pid): [(h["players"].get(str(pid)) or [0])[0] for h in picked] for pid in D["playerId"]}}
 
 
 def injury_losses(snaps: list[dict], D: pd.DataFrame) -> dict:
@@ -512,36 +609,47 @@ def _pct(x: float) -> str:
 
 
 def season_awards(hist: list[dict], D: pd.DataFrame, cfg: dict) -> list[dict]:
-    """The season so far, recomputed every morning from data/history (empty before the first game)."""
+    """The season so far, recomputed every morning from data/history (empty before the first game).
+    Each award is a top 3 ("podium")."""
     snaps = [h for h in sorted(hist, key=lambda h: h["date"])]
     live = [h for h in snaps if any(v["points"] > 0 for v in h["managers"].values())]
     if not live:
         return []
     end = live[-1]
     pts = D.assign(p=D["playerId"].map(lambda p: (end["players"].get(str(p)) or [0])[0]))
-    out = []
-    top = pts.sort_values(["p", "overall"], ascending=[False, True]).iloc[0]
-    out.append({"key": "player", "nhl_id": int(top.playerId), "manager_id": int(top.manager_id), "value": int(top.p)})
-    late = pts[pts["round"] >= cfg["late_round"]].sort_values(["p", "overall"], ascending=[False, False]).iloc[0]
-    out.append({"key": "pick", "nhl_id": int(late.playerId), "manager_id": int(late.manager_id), "value": int(late.p),
-                "round": int(late["round"])})
+    player = lambda r, **kw: {"nhl_id": int(r.playerId), "manager_id": int(r.manager_id), "value": int(r.p), **kw}
+    out = [{"key": "player", "podium": [player(r) for _, r in pts.sort_values(["p", "overall"], ascending=[False, True]).head(3).iterrows()]}]
+    late = pts[pts["round"] >= cfg["late_round"]].sort_values(["p", "overall"], ascending=[False, False]).head(3)
+    out.append({"key": "pick", "podium": [player(r, round=int(r["round"])) for _, r in late.iterrows()]})
     early = pts[pts["round"] <= 3].assign(gap=lambda x: x["p"] - x.groupby("round")["p"].transform("mean"))
-    flop = early.sort_values(["gap", "overall"]).iloc[0]
-    out.append({"key": "bust", "nhl_id": int(flop.playerId), "manager_id": int(flop.manager_id), "value": int(flop.p),
-                "gap": round(float(flop.gap), 1), "round": int(flop["round"])})
+    out.append({"key": "bust", "podium": [player(r, gap=round(float(r.gap), 1), round=int(r["round"]))
+                                          for _, r in early.sort_values(["gap", "overall"]).head(3).iterrows()]})
     loss = injury_losses(snaps, D)
-    m = max(loss, key=lambda k: (loss[k]["games"], loss[k]["points"]))
-    if loss[m]["games"] > 0:
-        out.append({"key": "bad_luck", "manager_id": int(m), "value": int(loss[m]["games"]),
-                    "points": round(loss[m]["points"], 1), "worst": loss[m]["worst"]})
+    bad = _top({m: v["games"] for m, v in loss.items()}, keep=lambda v: v > 0, tie=lambda m: -loss[m]["points"])
+    if bad:
+        out.append({"key": "bad_luck", "podium": [{"manager_id": int(m), "value": int(loss[m]["games"]),
+                                                   "points": round(loss[m]["points"], 1), "worst": loss[m]["worst"]} for m in bad]})
     ids_ = list(end["managers"])
+    rank_now = lambda k: end["managers"][k]["rank"]
     firsts = {k: sum(h["managers"][k]["rank"] == 1 for h in live) for k in ids_}
-    king = max(firsts, key=lambda k: (firsts[k], -end["managers"][k]["rank"]))
-    out.append({"key": "king", "manager_id": int(king), "value": int(firsts[king]), "mornings": len(live)})
+    out.append({"key": "king", "podium": [{"manager_id": int(k), "value": int(firsts[k]), "mornings": len(live)}
+                                          for k in _top(firsts, keep=lambda v: v > 0, tie=rank_now)]})
     swings = {k: sum(abs(a["managers"][k]["rank"] - b["managers"][k]["rank"]) for a, b in zip(live, live[1:])) for k in ids_}
-    wild = max(swings, key=lambda k: (swings[k], -end["managers"][k]["rank"]))
-    if swings[wild] > 0:
-        out.append({"key": "rollercoaster", "manager_id": int(wild), "value": int(swings[wild])})
+    wild = _top(swings, keep=lambda v: v > 0, tie=rank_now)
+    if wild:
+        out.append({"key": "rollercoaster", "podium": [{"manager_id": int(k), "value": int(swings[k])} for k in wild]})
+    # Banc en or: points by players who do not count today (all 16 minus the best 6 F, 4 D, 1 G).
+    bench, best_bench = {}, {}
+    for mid, t in pts.groupby("manager_id"):
+        counted = {pid for p, n in COUNTED.items() for pid in t[t.pos == p].sort_values("p", ascending=False)["playerId"].head(n)}
+        rest = t[~t["playerId"].isin(counted)].sort_values("p", ascending=False)
+        bench[str(mid)] = int(rest["p"].sum())
+        best_bench[str(mid)] = rest.iloc[0] if len(rest) else None
+    top_bench = _top(bench, keep=lambda v: v > 0, tie=rank_now)
+    if top_bench:
+        out.append({"key": "bench", "podium": [{"manager_id": int(m), "value": bench[m],
+                                                "best": {"nhl_id": int(best_bench[m].playerId), "points": int(best_bench[m].p)}}
+                                               for m in top_bench]})
     return out
 
 
@@ -692,8 +800,13 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
         "headline": headline(snap, previous, D, people, evening) if started else [],
         "week": week_games(D, people, T, counts, today, as_of),
         "pace": pace(D, people, real, T, counts),
+        "tonight": tonight(D, people, T, counts, today),
+        "hot_cold": hot_cold(hist, D),
+        "player_weeks": player_weeks(hist, D),
         "season_awards": season_awards(hist, D, cfg),
     }
+
+    stories["race"] = race(M, stories["pace"], T, as_of) if started else None
 
     payload = site_export.payload(
         D=D, people=people, X=X, shots=shots, real=real, proj=proj, managers=M, odds_=od,

@@ -48,19 +48,19 @@ export type Manager = {
   win_change: number // win odds change, in percentage points
 }
 
+// Trophées de la semaine : un top 3 par trophée (daily.weekly_awards).
 export type Award = {
   week_end: string
   from: string
   to: string
-  pick: { nhl_id: number; manager_id: number; value: number; round: number } | null
-  comeback: { manager_id: number; value: number; from: number; to: number } | null
-  bad_luck: { manager_id: number; value: number; games?: number } | null
-  drought: { manager_id: number; value: number }
+  pick: { nhl_id: number; manager_id: number; value: number; round: number }[]
+  comeback: { manager_id: number; value: number; from: number; to: number }[]
+  bad_luck: { manager_id: number; value: number; games: number }[]
+  drought: { manager_id: number; value: number }[]
 }
 
-// Trophées de la saison, recalculés chaque matin (daily.season_awards).
-export type SeasonAward = {
-  key: "player" | "pick" | "bust" | "bad_luck" | "king" | "rollercoaster"
+// Trophées de la saison, recalculés chaque matin (daily.season_awards) : un top 3 par trophée.
+export type SeasonEntry = {
   manager_id: number
   value: number
   nhl_id?: number
@@ -69,7 +69,16 @@ export type SeasonAward = {
   points?: number
   mornings?: number
   worst?: { nhl_id: number; games: number } | null
+  best?: { nhl_id: number; points: number }
 }
+export type SeasonAward = {
+  key: "player" | "pick" | "bust" | "bad_luck" | "king" | "rollercoaster" | "bench"
+  podium: SeasonEntry[]
+}
+
+export type TonightGame = { nhl_id: number; team: string; opp: string; home: boolean; start: string | null; counts: boolean }
+export type RaceSide = { manager_id: number; gap: number; left_diff: number; ppg: number | null }
+export type FormRow = { nhl_id: number; points: number; games: number; expected: number; diff: number }
 
 type Pool = {
   season: string
@@ -88,6 +97,10 @@ type Pool = {
   season_awards: SeasonAward[]
   // Per manager, for his 11 counted players: points per game played, games played, NHL games left this season.
   pace: Record<string, { gp: number; points: number; ppg: number | null; left: number; left_vs_avg: number }> | null
+  tonight: { date: string; managers: Record<string, TonightGame[]> } | null
+  race: Record<string, { ahead: RaceSide | null; behind: RaceSide | null; catch_weeks: number | null; caught_weeks: number | null }> | null
+  hot_cold: { from: string; to: string; hot: FormRow[]; cold: FormRow[] } | null
+  player_weeks: { dates: string[]; points: Record<string, number[]> }
   projection_sources: string[]
   generated: string
   season_started: boolean
@@ -141,7 +154,25 @@ export function rosterOf(id: number) {
 }
 
 export function playerById(id: number) {
-  return PLAYERS.find((p) => p.nhl_id === id)
+  return PLAYERS.find((p) => p.nhl_id === id) ?? POOL.forgotten.find((p) => p.nhl_id === id)
+}
+
+// Points du pool d'un joueur repêché, semaine par semaine (lundi à lundi), tirés de data/history.
+export function weeklyPoints(id: number) {
+  const { dates, points } = POOL.player_weeks
+  const cum = points[String(id)]
+  if (!cum || dates.length < 2) return []
+  return dates.slice(1).map((d, i) => ({ from: dates[i], date: d, pts: cum[i + 1] - cum[i] }))
+}
+
+// Page d'un joueur : /players/<id NHL>/.
+export const playerHref = (p: { nhl_id: number }) => `/players/${p.nhl_id}/`
+
+// Heure d'un match, à Toronto : « 19 h », « 22 h 30 ».
+export function gameTime(iso: string | null) {
+  if (!iso) return ""
+  return new Date(iso).toLocaleTimeString("fr-CA", { hour: "numeric", minute: "2-digit", timeZone: "America/Toronto" })
+    .replace(/ h 00$/, " h")
 }
 
 // Total compté : 6 meilleurs attaquants, 4 défenseurs et 1 gardien, selon la projection finale

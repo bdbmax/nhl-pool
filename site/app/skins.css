@@ -285,8 +285,10 @@ html[data-skin="retro"] [data-slot="item-title"]:has(> [data-slot="team-code"]) 
   overflow: visible;
 }
 
-/* Sous le nom d'un joueur, le DG qui l'a repêché : son code au lieu de son nom. */
-html[data-skin="retro"] [data-slot="manager-name"] {
+/* Le DG qui a repêché un joueur : en Rétro, son code à côté du nom du joueur (components/pool/player-row.tsx),
+   donc pas de répétition sous le nom. */
+html[data-skin="retro"] [data-slot="manager-name"],
+html[data-skin="retro"] [data-slot="manager-in-description"] {
   display: none;
 }
 html[data-skin="retro"] [data-slot="item-description"] > [data-slot="team-code"] {

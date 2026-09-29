@@ -110,10 +110,11 @@ def test_weekly_awards():
             snap("2026-10-03", {109: 1}, {}, 3, {105: "IR"}),
             snap("2026-10-05", {109: 4, 212: 2}, {109: 4}, 4)]
     [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
-    assert w["pick"]["nhl_id"] == 109 and w["pick"]["value"] == 4   # round 9 of team 1
-    assert w["comeback"]["manager_id"] == 12                          # from 12th to 1st
-    assert w["drought"]["manager_id"] == 1                            # fewest points gained
-    assert w["bad_luck"]["manager_id"] == 1                           # player 105 missed 4 games while hurt
+    # Only two late picks scored this week: 109 (round 9 of team 1, 4 points), then 212 (round 12 of team 2, 2).
+    assert [(x["nhl_id"], x["value"]) for x in w["pick"]] == [(109, 4), (212, 2)]
+    assert w["comeback"][0]["manager_id"] == 12 and len(w["comeback"]) == 3   # from 12th to 1st, then 11th, 10th
+    assert [x["manager_id"] for x in w["drought"]] == [1, 2, 3]               # fewest points gained first
+    assert w["bad_luck"][0]["manager_id"] == 1                               # player 105 missed games while hurt
 
 
 def test_simulate_with_a_player_no_source_covers():
@@ -174,11 +175,11 @@ def test_bad_luck_skips_a_player_traded_that_week():
     # counted, only the 2 Edmonton games missed after the trade (16 players x 2 games x 2 points).
     hist = [snap("2026-09-29", 0, "VAN", False), snap("2026-10-02", 2, "EDM", True), snap("2026-10-05", 4, "EDM", True)]
     [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
-    assert w["bad_luck"]["value"] == pytest.approx(16 * 2 * 2.0) and w["bad_luck"]["games"] == 32
+    assert w["bad_luck"][0]["value"] == pytest.approx(16 * 2 * 2.0) and w["bad_luck"][0]["games"] == 32
     # Same players, same team all week: 4 missed games x 2 points.
     hist = [snap("2026-09-29", 0, "EDM", False), snap("2026-10-02", 2, "EDM", True), snap("2026-10-05", 4, "EDM", True)]
     [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
-    assert w["bad_luck"]["value"] == pytest.approx(16 * 4 * 2.0)
+    assert w["bad_luck"][0]["value"] == pytest.approx(16 * 4 * 2.0)
 
 
 def test_week_games_counts_counted_healthy_players_left_this_week():
@@ -223,14 +224,17 @@ def test_season_awards():
     pre = _snap("2026-09-29", list(range(1, 13)), [0] * 12, [8.0] * 12, pl({}))
     d1 = _snap("2026-10-01", [1, 2] + list(range(3, 13)), [10, 8] + [5] * 10, [9.0] * 12, pl({112: 6, 201: 9, 101: 0}, "IR", 2))
     d2 = _snap("2026-10-02", [2, 1] + list(range(3, 13)), [12, 13] + [6] * 10, [9.0] * 12, pl({112: 7, 201: 12, 101: 0}, "IR", 4))
-    a = {x["key"]: x for x in daily.season_awards([pre, d1, d2], D, CFG)}
-    assert a["player"]["nhl_id"] == 201                        # most points
-    assert a["pick"]["nhl_id"] == 112 and a["pick"]["round"] == 12
-    assert a["bust"]["round"] <= 3
-    assert a["bad_luck"]["manager_id"] == 1 and a["bad_luck"]["value"] == 4   # player 102 missed 2 + 2 games
-    assert a["bad_luck"]["worst"] == {"nhl_id": 102, "games": 4}
-    assert a["king"]["manager_id"] in (1, 2) and a["king"]["value"] == 1 and a["king"]["mornings"] == 2
-    assert a["rollercoaster"]["value"] == 1                      # teams 1 and 2 swapped once
+    a = {x["key"]: x["podium"] for x in daily.season_awards([pre, d1, d2], D, CFG)}
+    assert [x["nhl_id"] for x in a["player"]][:2] == [201, 112]   # most points: 12, then 7
+    assert a["pick"][0]["nhl_id"] == 112 and a["pick"][0]["round"] == 12
+    assert all(x["round"] <= 3 for x in a["bust"]) and len(a["bust"]) == 3
+    assert a["bad_luck"][0]["manager_id"] == 1 and a["bad_luck"][0]["value"] == 4   # player 102 missed 2 + 2 games
+    assert a["bad_luck"][0]["worst"] == {"nhl_id": 102, "games": 4}
+    assert {x["manager_id"] for x in a["king"]} == {1, 2} and all(x["value"] == 1 and x["mornings"] == 2 for x in a["king"])
+    assert [x["value"] for x in a["rollercoaster"]] == [1, 1]  # teams 1 and 2 swapped once
+    # Banc en or: team 2's 12 points from player 201 count (best forward); team 1's 7 from player 112 (round 12, a D)
+    # count too; nobody else scored, so the bench is empty everywhere and there is no award.
+    assert "bench" not in a
     assert daily.season_awards([pre], D, CFG) == []            # nothing before the first game
 
 
@@ -256,3 +260,60 @@ def test_pace_counts_games_played_and_games_left_of_counted_players():
     assert t1["left"] == T.loc[people.loc[a, "nhl_team"], "left"] + T.loc[people.loc[b, "nhl_team"], "left"]
     assert out["2"]["ppg"] is None and out["2"]["left"] == 0   # nobody counted, no games yet
     assert sum(v["left_vs_avg"] for v in out.values()) in range(-12, 13)
+
+
+def test_bench_award_counts_points_left_on_the_bench():
+    D = _draft()
+    # Team 3: its 8 forwards (rounds 1-8) scored 10, 9, ..., 3; only the best 6 count, so 4 + 3 = 7 sit on the bench.
+    fwd = D[(D.manager_id == 3) & (D.pos == "F")].sort_values("round")["playerId"].tolist()
+    pts = {pid: 10 - i for i, pid in enumerate(fwd)}
+    players = {str(p): [pts.get(p, 0), 1, None, 1.0, 1, "EDM"] for p in D["playerId"]}
+    best_ball = 10 + 9 + 8 + 7 + 6 + 5
+    snap = _snap("2026-10-02", list(range(1, 13)), [best_ball if m == 3 else 0 for m in range(1, 13)], [8.0] * 12, players)
+    a = {x["key"]: x["podium"] for x in daily.season_awards([snap], D, CFG)}
+    assert a["bench"] == [{"manager_id": 3, "value": 7, "best": {"nhl_id": fwd[6], "points": 4}}]
+
+
+def test_tonight_lists_players_with_a_game_today_counted_first():
+    D = _draft()
+    people = D.set_index("playerId")[["pos"]].assign(nhl_team="MTL")
+    people.loc[D.loc[D.manager_id == 1, "playerId"].iloc[:2], "nhl_team"] = "EDM"
+    T = pd.DataFrame({"games": [[{"date": "2026-10-01", "opp": "TOR", "home": True, "start": "2026-10-01T23:00:00Z"}],
+                                [{"date": "2026-10-02", "opp": "BOS", "home": False, "start": "2026-10-02T23:00:00Z"}]]},
+                     index=["EDM", "MTL"])
+    a, b = D.loc[D.manager_id == 1, "playerId"].iloc[:2]
+    out = daily.tonight(D, people, T, counts={b}, today="2026-10-01")
+    assert [(r["nhl_id"], r["counts"], r["opp"], r["home"]) for r in out["managers"]["1"]] == [(b, True, "TOR", True), (a, False, "TOR", True)]
+    assert out["managers"]["2"] == []   # Montreal does not play that day
+
+
+def test_race_says_when_the_chaser_catches_up():
+    M = pd.DataFrame({"points": [100, 90, 50], "rank": [1, 2, 3]}, index=[1, 2, 3])
+    T = pd.DataFrame({"all_dates": [["2026-10-01", "2026-10-29"]]}, index=["EDM"])  # 28 days left after Oct 1
+    pace_ = {"1": {"ppg": 1.0, "left": 280}, "2": {"ppg": 1.5, "left": 280}, "3": {"ppg": 1.0, "left": 280}}
+    r = daily.race(M, pace_, T, as_of="2026-10-01")
+    # Team 2 scores 15/day vs 10/day for team 1: a 10-point gap closes in 2 days.
+    assert r["2"]["ahead"]["manager_id"] == 1 and r["2"]["ahead"]["gap"] == 10 and r["2"]["catch_weeks"] == round(2 / 7, 1)
+    assert r["1"]["ahead"] is None and r["1"]["caught_weeks"] == round(2 / 7, 1)
+    assert r["3"]["catch_weeks"] is None   # 40 behind team 2, and slower: not at this pace
+
+
+def test_hot_cold_compares_real_points_with_the_projection():
+    D = _draft()
+    def snap(day, pts, gp):
+        return {"date": day, "managers": {}, "players": {str(p): [pts.get(p, 0), gp.get(p, 0), None, 1.0, gp.get(p, 0), "EDM"]
+                                                         for p in D["playerId"]}}
+    hot, cold = D["playerId"].iloc[0], D["playerId"].iloc[1]
+    h = daily.hot_cold([snap("2026-10-01", {}, {}), snap("2026-10-08", {hot: 7, cold: 0}, {hot: 3, cold: 3})], D)
+    assert h["hot"][0] == {"nhl_id": int(hot), "points": 7, "games": 3, "expected": 3.0, "diff": 4.0}
+    assert h["cold"][0]["nhl_id"] == int(cold) and h["cold"][0]["diff"] == -3.0
+    assert daily.hot_cold([snap("2026-10-01", {}, {})], D) is None
+
+
+def test_player_weeks_keeps_mondays_and_the_latest_morning():
+    D = _draft()
+    snaps = [{"date": d, "managers": {}, "players": {str(p): [i, 0, None, 1, 0] for p in D["playerId"]}}
+             for i, d in enumerate(["2026-09-29", "2026-10-04", "2026-10-05", "2026-10-06"])]
+    w = daily.player_weeks(snaps, D)
+    assert w["dates"] == ["2026-09-29", "2026-10-05", "2026-10-06"]   # opening day, Monday Oct 5, latest
+    assert w["points"][str(D["playerId"].iloc[0])] == [0, 2, 3]

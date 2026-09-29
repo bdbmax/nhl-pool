@@ -181,7 +181,8 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
         # "morning" (5:30, official) or "evening" (10 pm, today's finished games added).
         "update": "evening" if evening else "morning",
         "compared_to": (previous or {}).get("date"),
-        **(stories or {"headline": [], "week": None, "season_awards": [], "pace": None}),
+        **(stories or {"headline": [], "week": None, "season_awards": [], "pace": None, "tonight": None,
+                       "hot_cold": None, "player_weeks": {"dates": [], "points": {}}, "race": None}),
     }
 
 

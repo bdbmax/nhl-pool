@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 import { Badge } from "@/components/ui/badge"
@@ -8,9 +9,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { InfoDrawer } from "@/components/pool/info-drawer"
 import { PlayerAvatar } from "@/components/pool/player-avatar"
 import { TeamOddsChart } from "@/components/pool/rank-chart"
+import { RaceCard, TonightCard } from "@/components/pool/team-extras"
 import { TeamAvatar, TeamCode } from "@/components/pool/team-avatar"
 import {
-  countedProjection, fmt, injuryLabel, managerById, MANAGERS, ord, pct, POOL, POSITIONS, rosterOf, signed, statLine,
+  countedProjection, fmt, injuryLabel, managerById, MANAGERS, ord, pct, playerHref, POOL, POSITIONS, rosterOf, signed,
+  statLine,
 } from "@/lib/pool"
 import { skaterStyle, standingsOrder } from "@/lib/jerseys"
 
@@ -31,7 +34,7 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
       <header className="flex items-center gap-4">
         <TeamAvatar id={m.id} name={m.name} size="lg" />
         <div className="flex min-w-0 flex-col gap-1">
-          <h1 className="truncate text-2xl font-semibold tracking-tight">{m.name}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight break-words">{m.name}</h1>
           <p className="flex items-center gap-2 text-sm text-muted-foreground"><TeamCode id={m.id} />{ord(m.slot)} pick au draft</p>
         </div>
       </header>
@@ -77,6 +80,9 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
         </p>
       )}
 
+      <TonightCard id={m.id} />
+      <RaceCard id={m.id} />
+
       <Tabs defaultValue="F">
         <TabsList className="w-full">
           {POSITIONS.map((c) => (
@@ -97,7 +103,7 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
                 {ps.map((p) => {
                   const injury = injuryLabel(p.injury)
                   return (
-                    <Item key={p.nhl_id} size="sm" variant={p.counts ? "outline" : "muted"}>
+                    <Item key={p.nhl_id} size="sm" variant={p.counts ? "outline" : "muted"} render={<Link href={playerHref(p)} />}>
                       <ItemMedia><PlayerAvatar player={p} /></ItemMedia>
                       <ItemContent className="min-w-0">
                         <ItemTitle className="truncate">{p.name}</ItemTitle>
@@ -146,7 +152,7 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
           <CardAction><InfoDrawer topic="odds" /></CardAction>
         </CardHeader>
         <CardContent>
-          <Table>
+          <Table className="max-[359px]:text-xs max-[359px]:[&_td]:px-1 max-[359px]:[&_th]:px-1">
             <TableHeader>
               <TableRow>
                 {m.finish_odds.slice(0, 6).map((_, i) => <TableHead key={i} className="text-right">{ord(i + 1)}</TableHead>)}

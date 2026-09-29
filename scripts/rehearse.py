@@ -48,6 +48,7 @@ def seed_patches(stack: ExitStack) -> None:
         # The week's schedule in this season's dates ("Cette semaine"); played dates stay in the seed's
         # dates, like the goalie game rows they are compared with.
         T["all_dates"] = [[(date.fromisoformat(x) - SHIFT).isoformat() for x in ds] for ds in T["all_dates"]]
+        T["games"] = [[{**g, "date": (date.fromisoformat(g["date"]) - SHIFT).isoformat()} for g in gs] for gs in T["games"]]
         return T, league
     stack.enter_context(mock.patch.object(daily, "team_games", shifted))
 
@@ -139,6 +140,17 @@ def check(day: str, out: Path, prev: dict | None, evening: bool = False) -> dict
     assert sum(w["total"] for w in d["week"]["managers"].values()) > 0, "no games this week for anyone"
     assert {a["key"] for a in d["season_awards"]} >= {"player", "pick", "bust", "king"}
     assert all("rank_change" in m and "win_change" in m for m in d["managers"])
+    # Trophies are top 3s; the new sections are there and consistent.
+    assert all(1 <= len(a["podium"]) <= 3 for a in d["season_awards"])
+    assert all(len(v) <= 3 for w in d["awards"] for k, v in w.items() if isinstance(v, list))
+    assert d["race"] and all((r["ahead"] is None) == (m["rank"] == 1) for m in d["managers"] for r in [d["race"][str(m["id"])]])
+    assert d["tonight"]["date"] == day and len(d["tonight"]["managers"]) == 12
+    ids_ = {p["nhl_id"] for p in d["players"]}
+    assert all(g["nhl_id"] in ids_ for gs in d["tonight"]["managers"].values() for g in gs)
+    assert d["player_weeks"]["dates"][-1] == d["history"][-1]["date"]
+    assert all(len(v) == len(d["player_weeks"]["dates"]) for v in d["player_weeks"]["points"].values())
+    if d["hot_cold"]:
+        assert all(r["diff"] > 0 for r in d["hot_cold"]["hot"]) and all(r["diff"] < 0 for r in d["hot_cold"]["cold"])
     nhl = set(nhl_api.current_team_abbrevs())
     assert all(p["nhl_team"] in nhl for p in d["players"]), [p["name"] for p in d["players"] if p["nhl_team"] not in nhl]
     # A healthy drafted player always has games left (a wrong team code once gave 0 and sank a manager's odds).
@@ -210,8 +222,9 @@ def main() -> None:
                                f"headline: {e['headline'][0] if e['headline'] else '-'}")
                 shutil.copy(out / "site" / "pool.json", out / f"pool_{day}_evening.json")
         lead = min(d["managers"], key=lambda m: m["rank"])
+        tonight_n = sum(len(v) for v in d["tonight"]["managers"].values())
         summary.append(f"{day}  {note:<45} games {d['games_played']:>4}  leader {lead['name']} {lead['points']} pts, "
-                       f"win {lead['win_pct']}%  awards {len(d['awards'])}")
+                       f"win {lead['win_pct']}%  awards {len(d['awards'])}  playing today {tonight_n}")
         shutil.copy(out / "site" / "pool.json", out / f"pool_{day}.json")
         prev = d
     print("\nREHEARSAL PASSED\n" + "\n".join(summary))
