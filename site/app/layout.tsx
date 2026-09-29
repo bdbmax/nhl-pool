@@ -16,9 +16,22 @@ const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
 // Police de l'habillage rétro (app/skins.css), l'habillage par défaut : préchargée.
 const pixelFont = Silkscreen({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-pixel" })
 
+const description = "Insert coin. 12 golfeurs, 1 jupe & 1 collant"
+
+// Aperçu des liens partagés (Messenger, iMessage…) : public/share.jpg, généré par scripts/make_share.py.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nhlpool.ca"),
   title: "Pool 2026-27",
-  description: "Classement, alignements et bilan du draft de notre pool de 12 équipes.",
+  description,
+  openGraph: {
+    type: "website",
+    locale: "fr_CA",
+    siteName: "Pool 2026-27",
+    title: "Pool 2026-27",
+    description,
+    images: [{ url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/share.jpg`, width: 1200, height: 630, alt: "Pool 2026-27 : les chandails des 12 équipes" }],
+  },
+  twitter: { card: "summary_large_image" },
 }
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" }
