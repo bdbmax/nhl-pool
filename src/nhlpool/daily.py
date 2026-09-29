@@ -81,7 +81,8 @@ def team_games(season: int, as_of: str, refresh: bool = True) -> tuple[pd.DataFr
     for team in nhl_api.current_team_abbrevs():
         games = nhl_api.schedule(team, season, refresh=refresh)
         done = [g for g in games if g["gameDate"] <= as_of and g.get("gameState") in ("OFF", "FINAL")]
-        rows.append({"team": team, "played": len(done), "total": len(games)})
+        rows.append({"team": team, "played": len(done), "total": len(games),
+                     "dates": sorted(g["gameDate"] for g in done)})
         for g in done:
             so = (g.get("gameOutcome") or {}).get("lastPeriodType") == "SO"
             # The shootout winner gets one goal on the scoreboard that no skater is credited with.
@@ -113,6 +114,27 @@ def real_stats(season: int, as_of: str) -> pd.DataFrame:
     R[num] = R[num].apply(pd.to_numeric, errors="coerce").fillna(0.0)
     R["FP"] = fantasy_points(R) if len(R) else pd.Series(dtype=float)
     return R
+
+
+def goalie_team_starts(G: pd.DataFrame, T: pd.DataFrame, games: pd.DataFrame) -> pd.DataFrame:
+    """Starts with his current team, and that team's games that count, per goalie (G: index playerId; nhl_team).
+
+    A goalie who played only for his current team: all his team's games. A goalie who also played
+    for another team this season (traded, claimed): only his new team's games since his first game
+    with them, so 20 starts elsewhere do not look like a starting job on his new team. Before his
+    first game with the new team the window is 0 games and his projected share stands alone."""
+    out = pd.DataFrame({"starts": 0.0, "team_games": 0.0}, index=G.index)
+    for pid, team in G["nhl_team"].items():
+        rows = games[games["playerId"] == pid] if len(games) else games
+        dates = T["dates"].get(team, [])
+        mine = rows[rows["teamAbbrev"] == team] if len(rows) else rows
+        out.loc[pid, "starts"] = float(mine["gamesStarted"].sum()) if len(mine) else 0.0
+        if len(rows) and set(rows["teamAbbrev"]) - {team}:
+            first = mine["gameDate"].min() if len(mine) else None
+            out.loc[pid, "team_games"] = float(sum(d >= first for d in dates)) if first else 0.0
+        else:
+            out.loc[pid, "team_games"] = float(len(dates))
+    return out
 
 
 def refresh_sources(refresh: bool) -> dict:
@@ -151,8 +173,10 @@ def games_left(pos: pd.Series, ext_gp: pd.Series, ext_starts: pd.Series, horizon
     return goalie.where(pos == "G", skater)
 
 
-def project(P: pd.DataFrame, R: pd.DataFrame, real: pd.DataFrame, T: pd.DataFrame, cfg: dict) -> pd.DataFrame:
+def project(P: pd.DataFrame, R: pd.DataFrame, real: pd.DataFrame, T: pd.DataFrame, cfg: dict,
+            goalie_games: pd.DataFrame | None = None) -> pd.DataFrame:
     """Rest-of-season points per source for the players in P (index playerId; pos, nhl_team, injury).
+    goalie_games: every goalie appearance so far (for start shares with the current team).
 
     Returns games_left, ppg (consensus points per team game), ros_{src} and ros (consensus)."""
     rules = load_league()["scoring"]
@@ -163,8 +187,13 @@ def project(P: pd.DataFrame, R: pd.DataFrame, real: pd.DataFrame, T: pd.DataFram
     left = pd.Series(team["left"].fillna(0).to_numpy(), index=P.index)
     played = pd.Series(team["played"].fillna(0).to_numpy(), index=P.index)
     horizon = R.attrs.get("horizon", 82.0)
-    gl = games_left(P["pos"], R["ext_gp"], R["ext_starts"], horizon, left, played, rl["GS"], P["injury"], cfg)
     goalie = P["pos"] == "G"
+    # Start share: his starts with his current team over that team's games (see goalie_team_starts).
+    share_gs, share_games = rl["GS"].copy(), played.copy()
+    if goalie.any():
+        w = goalie_team_starts(P[goalie], T, goalie_games if goalie_games is not None else pd.DataFrame())
+        share_gs[goalie], share_games[goalie] = w["starts"], w["team_games"]
+    gl = games_left(P["pos"], R["ext_gp"], R["ext_starts"], horizon, left, share_games, share_gs, P["injury"], cfg)
     n = rl["GS"].where(goalie, rl["GP"])
     out = pd.DataFrame({"games_left": gl}, index=P.index)
     per = {}
@@ -256,7 +285,8 @@ def snapshot(day: str, as_of: str, managers: pd.DataFrame, players: pd.DataFrame
                               "expected_total": round(float(odds_.loc[m, "expected_total"]), 1),
                               "win_pct": round(float(odds_.loc[m, 1]) * 100, 2)} for m, r in managers.iterrows()},
         "players": {str(pid): [int(r["FP"]), int(r["GP"]), r["injury"] if isinstance(r["injury"], str) else None,
-                               round(float(r["ppg"]), 3), int(r["team_played"])] for pid, r in players.iterrows()},
+                               round(float(r["ppg"]), 3), int(r["team_played"]), r["nhl_team"]]
+                    for pid, r in players.iterrows()},
     }
 
 
@@ -308,7 +338,9 @@ def weekly_awards(hist: list[dict], D: pd.DataFrame, season_start: str, today: s
                 k = str(pid)
                 hurt = any(h["players"].get(k, [0, 0, None])[2] in ("IR", "Out", "Day-to-day") for h in week)
                 e, s = end["players"].get(k), start["players"].get(k)
-                if hurt and e and s:
+                # A player who changed teams: his team's game count is not comparable, so skip him.
+                same_team = len(e or []) < 6 or len(s or []) < 6 or e[5] == s[5]
+                if hurt and e and s and same_team:
                     missed = max(0, (e[4] - s[4]) - (e[1] - s[1]))
                     v += missed * e[3]
             lost[str(m)] = v
@@ -378,6 +410,7 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     data = dataset.load()
     T, league = team_games(season, as_of, refresh=refresh or replay)
     real = real_stats(season, as_of)
+    goalie_games = nhl_api.goalie_games_to_date(season, as_of)
     started = bool(T["played"].sum() > 0)
     print(f"  {league['games']} games played, {len(real)} players with stats")
 
@@ -410,7 +443,7 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     people["injury"] = [site_export.injury(*a) for a in zip(X["espn_injury"], X["df_injury"], X["df_ir"])]
     R = external.rates(people[["name", "team", "pos"]], data, hb_names=list(people.loc[people.pos != "G", "name"]),
                        hb_refresh=refresh)
-    proj = project(people, R, real, T, cfg)
+    proj = project(people, R, real, T, cfg, goalie_games)
     hist = [h for h in load_history(hist_dir) if h["date"] != today]
     previous = hist[-1] if hist and hist[-1]["date"] < today else None
     proj = fill_missing(proj, D, people, T, previous, cfg)

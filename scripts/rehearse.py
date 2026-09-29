@@ -12,6 +12,7 @@ Some mornings also break things on purpose, to prove the update still goes throu
   day 2   ESPN, CBS, NHL.com, Daily Faceoff and HockeyBangers all fail to download (cached copies used)
   day 3   a drafted forward vanishes from Daily Faceoff, a drafted goalie from ESPN and CBS
   day 4   every player page fails (NHL photos come from the fixed address pattern)
+  day 5+  trade: a drafted forward and a drafted starting goalie change NHL teams and stay there
 After every morning the output is checked like the site and the workflow would check it.
 """
 import argparse
@@ -24,7 +25,7 @@ from unittest import mock
 
 import pandas as pd
 
-from nhlpool import daily, ids
+from nhlpool import daily, ids, site_export
 from nhlpool.fetch import espn, http, nhl_api, others
 
 SEED_SEASON = 20252026
@@ -37,7 +38,7 @@ def seeded(fn):
 
 
 def seed_patches(stack: ExitStack) -> None:
-    for name in ("skaters_to_date", "goalies_to_date", "hat_tricks_to_date"):
+    for name in ("skaters_to_date", "goalies_to_date", "hat_tricks_to_date", "goalie_games_to_date"):
         stack.enter_context(mock.patch.object(nhl_api, name, seeded(getattr(nhl_api, name))))
     team_games = daily.team_games
     stack.enter_context(mock.patch.object(
@@ -72,6 +73,44 @@ def no_player_pages(stack: ExitStack) -> None:
     def landing(pid, refresh=False):
         raise ConnectionError("rehearsal: player page down")
     stack.enter_context(mock.patch.object(nhl_api, "landing", landing))
+
+
+def traded(D: pd.DataFrame) -> dict:
+    """The traded players: a second-round forward and the first goalie drafted, to teams they are not on."""
+    fwd = D[(D.pos == "F") & (D["round"] == 2)].iloc[0]
+    gk = D[D.pos == "G"].sort_values("overall").iloc[0]
+    now = site_export.headshots([fwd["playerId"], gk["playerId"]], refresh=False)
+    pick = lambda pid, a, b: a if now[pid].get("nhl_team_now") != a else b
+    return {int(fwd["playerId"]): pick(fwd["playerId"], "SJS", "ANA"), int(gk["playerId"]): pick(gk["playerId"], "CHI", "CBJ")}
+
+
+def trade(stack: ExitStack, moves: dict) -> None:
+    real = site_export.headshots
+
+    def headshots(ids_, refresh):
+        out = real(ids_, refresh)
+        for pid, team in moves.items():
+            if pid in out:
+                out[pid] = {**out[pid], "nhl_team_now": team}
+        return out
+    stack.enter_context(mock.patch.object(site_export, "headshots", headshots))
+
+
+def check_trade(day: str, d: dict, prev: dict | None, moves: dict) -> str:
+    """The traded players show their new team, keep their points, and their games left follow the new team."""
+    as_of = (date.fromisoformat(day) - timedelta(days=1)).isoformat()
+    T, _ = daily.team_games(daily.SEASON, as_of)
+    notes = []
+    for pid, team in moves.items():
+        p = next(x for x in d["players"] if x["nhl_id"] == pid)
+        assert p["nhl_team"] == team, (p["name"], p["nhl_team"], team)
+        left = int(T.loc[team, "left"])
+        assert p["games_left"] <= left, (p["name"], p["games_left"], left)
+        if prev:
+            q = next(x for x in prev["players"] if x["nhl_id"] == pid)
+            assert p["points"] >= q["points"], (p["name"], q["points"], p["points"])
+        notes.append(f"{p['name']} -> {team}: {p['points']} pts, {p['games_left']:.0f} of {left} games left, proj {p['proj']}")
+    return "; ".join(notes)
 
 
 def check(day: str, out: Path, prev: dict | None) -> dict:
@@ -119,6 +158,7 @@ def main() -> None:
         if f.stem < FIRST_MORNING.isoformat():
             shutil.copy(f, out / "history" / f.name)
     D = daily.load_draft()
+    moves = traded(D)
     prev, summary = None, []
     for i in range(a.days):
         day = FIRST_MORNING + timedelta(days=i)
@@ -132,9 +172,13 @@ def main() -> None:
                 note = "vanished: " + ", ".join(vanish(stack, D))
             elif i == 3:
                 no_player_pages(stack); note = "every player page down"
+            if i >= 4:
+                trade(stack, moves); note = "trade in effect" if i > 4 else "trade: forward and goalie change teams"
             print(f"\n=== morning {day} ({note}) ===")
             daily.run(refresh=i in (0, 1, 2, 3), out_dir=out)
             d = check(day.isoformat(), out, prev)
+            if i >= 4:
+                print("  trade check:", check_trade(day.isoformat(), d, prev, moves))
         lead = min(d["managers"], key=lambda m: m["rank"])
         summary.append(f"{day}  {note:<45} games {d['games_played']:>4}  leader {lead['name']} {lead['points']} pts, "
                        f"win {lead['win_pct']}%  awards {len(d['awards'])}")

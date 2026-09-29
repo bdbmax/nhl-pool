@@ -133,3 +133,48 @@ def test_simulate_with_a_player_no_source_covers():
     assert MC.iloc[0].tolist() == pytest.approx([11 * 60.0] * 12)
     od = daily.odds(MC)
     assert abs(od[list(range(1, 13))].sum(axis=1) - 1).max() < 1e-9
+
+
+def _team_dates(n, start="2026-10-01"):
+    from datetime import date, timedelta
+    d0 = date.fromisoformat(start)
+    return [(d0 + timedelta(days=2 * i)).isoformat() for i in range(n)]
+
+
+def test_goalie_start_share_counts_only_his_current_team():
+    T = pd.DataFrame({"dates": [_team_dates(44), _team_dates(30)], "played": [44, 30], "left": [40, 54]},
+                     index=["VAN", "EDM"])
+    edm = T.loc["EDM", "dates"]
+    games = pd.DataFrame(
+        [{"playerId": 1, "teamAbbrev": "VAN", "gameDate": d, "gamesStarted": 1} for d in T.loc["VAN", "dates"][:11]]
+        # goalie 2: 20 starts in Vancouver, traded to Edmonton, started 2 of Edmonton's last 4 games
+        + [{"playerId": 2, "teamAbbrev": "VAN", "gameDate": d, "gamesStarted": 1} for d in T.loc["VAN", "dates"][:20]]
+        + [{"playerId": 2, "teamAbbrev": "EDM", "gameDate": d, "gamesStarted": s} for d, s in zip(edm[-4:], [1, 0, 1, 0])]
+        # goalie 3: 15 starts in Vancouver, just traded to Edmonton, no game there yet
+        + [{"playerId": 3, "teamAbbrev": "VAN", "gameDate": d, "gamesStarted": 1} for d in T.loc["VAN", "dates"][:15]])
+    G = pd.DataFrame({"nhl_team": ["VAN", "EDM", "EDM"]}, index=[1, 2, 3])
+    w = daily.goalie_team_starts(G, T, games)
+    assert w.loc[1].tolist() == [11, 44]   # never traded: all his team's games
+    assert w.loc[2].tolist() == [2, 4]     # traded: only Edmonton's games since his first one there
+    assert w.loc[3].tolist() == [0, 0]     # no game with his new team yet: nothing real to go on
+    # Games left for goalie 3 then rest on his projected share alone (0.5 here), not 15/30.
+    out = daily.games_left(pd.Series(["G"], index=[3]), pd.Series([60.0], index=[3]), pd.Series([42.0], index=[3]),
+                           84.0, pd.Series([54.0], index=[3]), w.loc[[3], "team_games"], w.loc[[3], "starts"],
+                           pd.Series([None], index=[3]), CFG)
+    assert out[3] == pytest.approx(54 * 0.5)
+
+
+def test_bad_luck_skips_a_player_traded_that_week():
+    D = _draft()
+    def snap(day, tgp, team, hurt):
+        players = {str(p): [0, 0, "IR" if hurt else None, 2.0, tgp, team] for p in D["playerId"]}
+        return {"date": day, "players": players,
+                "managers": {str(m): {"points": 0, "rank": m} for m in range(1, 13)}}
+    # Everyone hurt all week; their team went from 0 to 4 games, but they all changed teams.
+    hist = [snap("2026-09-29", 0, "VAN", False), snap("2026-10-02", 2, "EDM", True), snap("2026-10-05", 4, "EDM", True)]
+    [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
+    assert w["bad_luck"] is None
+    # Same players, same team all week: 4 missed games x 2 points.
+    hist = [snap("2026-09-29", 0, "EDM", False), snap("2026-10-02", 2, "EDM", True), snap("2026-10-05", 4, "EDM", True)]
+    [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
+    assert w["bad_luck"]["value"] == pytest.approx(16 * 4 * 2.0)

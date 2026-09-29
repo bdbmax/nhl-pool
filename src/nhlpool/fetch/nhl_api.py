@@ -141,3 +141,10 @@ def schedule(team: str, season: int, refresh: bool = True) -> list[dict]:
     """A team's regular-season games (gameType 2)."""
     d = cached_json(f"{WEB}/club-schedule-season/{team}/{season}", f"web/schedule_{team}_{season}.json", refresh=refresh)
     return [g for g in d.get("games", []) if g.get("gameType") == 2]
+
+
+def goalie_games_to_date(season: int, as_of: str) -> pd.DataFrame:
+    """Every goalie appearance up to `as_of`, with the team he played for (about 2,800 rows a season)."""
+    url = (f"{REST}/goalie/summary?isAggregate=false&isGame=true&limit=-1"
+           f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20gameDate%3C=%22{as_of}%22")
+    return pd.DataFrame(cached_json(url, f"nhl_rest/to_date/goalie_games_{season}_{as_of}.json", refresh=True)["data"])
