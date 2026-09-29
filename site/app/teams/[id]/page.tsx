@@ -59,6 +59,17 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
         ))}
       </div>
 
+      {started && POOL.pace?.[String(m.id)] && (() => {
+        const p = POOL.pace[String(m.id)]
+        return (
+          <p className="text-sm text-muted-foreground">
+            Rythme : {p.ppg == null ? "aucun match joué" : `${fmt(p.ppg, 2)} pt par match joué`} pour les 11 joueurs qui comptent,
+            {" "}et {fmt(p.left)} matchs à jouer d&apos;ici la fin de la saison
+            {p.left_vs_avg ? ` (${signed(p.left_vs_avg)} par rapport à la moyenne des équipes)` : ", comme la moyenne des équipes"}.
+          </p>
+        )
+      })()}
+
       {started && (
         <p className="text-sm text-muted-foreground">
           Projection finale : {fmt(m.expected_total)} points, {ord(m.proj_rank)} rang projeté. Pour chaque joueur :

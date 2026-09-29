@@ -58,14 +58,17 @@ export default function StandingsPage() {
       </div>
 
       <Tabs defaultValue="today">
-        <TabsList className="w-full">
+        {/* Quatre onglets : texte plus petit sur les écrans très étroits (320 px) pour qu'ils tiennent. */}
+        <TabsList className="w-full max-[359px]:[&_[data-slot=tabs-trigger]]:px-1 max-[359px]:[&_[data-slot=tabs-trigger]]:text-xs">
           <TabsTrigger value="today">Aujourd&apos;hui</TabsTrigger>
           <TabsTrigger value="projected">Projection</TabsTrigger>
           <TabsTrigger value="odds">Odds</TabsTrigger>
+          {started && POOL.pace && <TabsTrigger value="pace">Rythme</TabsTrigger>}
         </TabsList>
         <TabsContent value="today"><StandingsTable view="today" /></TabsContent>
         <TabsContent value="projected"><StandingsTable view="projected" /></TabsContent>
         <TabsContent value="odds"><StandingsTable view="odds" /></TabsContent>
+        {started && POOL.pace && <TabsContent value="pace"><StandingsTable view="pace" /></TabsContent>}
       </Tabs>
 
       <Card>

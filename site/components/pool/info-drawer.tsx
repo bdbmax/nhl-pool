@@ -45,6 +45,17 @@ const TOPICS = {
       "Une fois la saison commencée, les points déjà récoltés sont comptés tels quels, et seuls les matchs restants sont projetés. La variation d'une saison à l'autre rétrécit avec la part de la saison qui reste. Les odds deviennent donc plus précises au fil de la saison.",
     ],
   },
+  pace: {
+    button: "Comment fonctionne le rythme",
+    title: "Le rythme de chaque équipe",
+    summary: "Qui produit le plus par match, et qui a encore le plus de matchs à jouer.",
+    points: [
+      "Les deux chiffres portent sur les 11 joueurs qui comptent pour l'équipe (les badges « Compte » de sa page).",
+      "Pts/match : leurs vrais points divisés par les matchs qu'ils ont joués. Un match manqué à cause d'une blessure ne compte pas, donc c'est le rythme quand ils jouent.",
+      "Matchs à jouer : les matchs qui restent au calendrier de leurs équipes de la LNH d'ici la fin de la saison, blessés compris, puisqu'ils vont revenir. Entre parenthèses, l'écart avec la moyenne des 12 équipes.",
+      "Une équipe en retard au classement, mais avec un bon rythme et plus de matchs à jouer que les autres, a de bonnes chances de remonter. Les odds en tiennent déjà compte.",
+    ],
+  },
   today: {
     button: "Comment fonctionne le classement",
     title: "Le classement d'aujourd'hui",
@@ -52,7 +63,7 @@ const TOPICS = {
     points: [
       "Les statistiques viennent de la LNH. Le matin, elles comprennent tous les matchs joués jusqu'à la veille. Vers 22 h, les matchs de la soirée qui sont terminés s'ajoutent ; la mise à jour du matin reste la version officielle.",
       "Les petites flèches montrent les rangs gagnés ou perdus depuis la mise à jour précédente.",
-      "Sous chaque équipe : ses matchs restants cette semaine (du lundi au dimanche), additionnés pour les 11 joueurs qui comptent, sans les blessés et les absents. Plus de matchs, plus de chances de remonter.",
+      "Sous chaque équipe, par exemple « 17/24 à jouer cette sem. » : il reste 17 matchs à jouer sur les 24 de la semaine (du lundi au dimanche), additionnés pour les 11 joueurs qui comptent, sans les blessés et les absents. Plus de matchs, plus de chances de remonter.",
       "Attaquants : 1 point par but et par passe, 1 de plus par but gagnant et par tour du chapeau. Défenseurs : 2 points par but, 1 par passe, 1 de plus par but gagnant. Gardiens : 2 points par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage.",
       "Chaque équipe compte ses 6 meilleurs attaquants, ses 4 meilleurs défenseurs et son meilleur gardien à ce jour.",
       "En cas d'égalité, la meilleure projection finale passe devant.",

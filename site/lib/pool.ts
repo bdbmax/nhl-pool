@@ -86,6 +86,8 @@ type Pool = {
   headline: string[]
   week: { start: string; end: string; managers: Record<string, { left: number; total: number }> } | null
   season_awards: SeasonAward[]
+  // Per manager, for his 11 counted players: points per game played, games played, NHL games left this season.
+  pace: Record<string, { gp: number; points: number; ppg: number | null; left: number; left_vs_avg: number }> | null
   projection_sources: string[]
   generated: string
   season_started: boolean

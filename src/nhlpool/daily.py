@@ -422,6 +422,23 @@ def week_games(D: pd.DataFrame, people: pd.DataFrame, T: pd.DataFrame, counts: s
     return {"start": mon, "end": sun, "managers": out}
 
 
+def pace(D: pd.DataFrame, people: pd.DataFrame, real: pd.DataFrame, T: pd.DataFrame, counts: set) -> dict:
+    """Per manager, for his counted players: real points per game actually played (games missed through
+    injury are not in the count) and the NHL games left on their teams' schedules this season."""
+    rl = real.reindex(people.index)
+    out = {}
+    for mid, t in D.groupby("manager_id"):
+        mine = [p for p in t["playerId"] if p in counts]
+        gp = float(rl.loc[mine, "GP"].fillna(0).sum())
+        pts = float(rl.loc[mine, "FP"].fillna(0).sum())
+        left = int(sum(T["left"].get(people.loc[p, "nhl_team"], 0) for p in mine))
+        out[str(mid)] = {"gp": int(gp), "points": int(pts), "ppg": round(pts / gp, 3) if gp else None, "left": left}
+    avg = sum(v["left"] for v in out.values()) / len(out)
+    for v in out.values():
+        v["left_vs_avg"] = round(v["left"] - avg)
+    return out
+
+
 def injury_losses(snaps: list[dict], D: pd.DataFrame) -> dict:
     """Games drafted players missed while listed hurt, and the points that cost (games x his points per game),
     per manager, over consecutive mornings. A player who changed teams between two mornings is skipped
@@ -674,6 +691,7 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     stories = {
         "headline": headline(snap, previous, D, people, evening) if started else [],
         "week": week_games(D, people, T, counts, today, as_of),
+        "pace": pace(D, people, real, T, counts),
         "season_awards": season_awards(hist, D, cfg),
     }
 

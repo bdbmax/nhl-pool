@@ -241,3 +241,18 @@ def test_checks_catch_a_drafted_player_without_a_known_team():
     teams.iloc[3] = "TB"  # the draft file's short code: no schedule would match
     assert any("without a known NHL team" in p and "'TB'" in p for p in _checks(teams=teams, nhl={"EDM", "TBL"}))
     assert daily.TEAM_ALIAS["TB"] == "TBL" and set(daily.TEAM_ALIAS.values()) <= {"TBL", "NJD", "LAK", "SJS"}
+
+
+def test_pace_counts_games_played_and_games_left_of_counted_players():
+    D = _draft()
+    people = D.set_index("playerId")[["pos"]].assign(nhl_team=["EDM", "MTL"] * 96)
+    T = pd.DataFrame({"left": [70, 60]}, index=["EDM", "MTL"])
+    # Team 1: two counted players, one played 10 games for 12 pts, the other missed everything (hurt).
+    a, b, bench = D.loc[D.manager_id == 1, "playerId"].iloc[[0, 1, 2]]
+    real = pd.DataFrame({"GP": [10.0, 0.0, 10.0], "FP": [12.0, 0.0, 30.0]}, index=[a, b, bench])
+    out = daily.pace(D, people, real, T, counts={a, b})
+    t1 = out["1"]
+    assert (t1["gp"], t1["points"], t1["ppg"]) == (10, 12, 1.2)  # the bench player's 30 points don't count
+    assert t1["left"] == T.loc[people.loc[a, "nhl_team"], "left"] + T.loc[people.loc[b, "nhl_team"], "left"]
+    assert out["2"]["ppg"] is None and out["2"]["left"] == 0   # nobody counted, no games yet
+    assert sum(v["left_vs_avg"] for v in out.values()) in range(-12, 13)

@@ -4,14 +4,16 @@ import { useState } from "react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { countedProjection, fmt, MANAGERS, rosterOf } from "@/lib/pool"
+import { countedProjection, fmt, MANAGERS, POOL, rosterOf } from "@/lib/pool"
 
 const teams = [...MANAGERS].sort((a, b) => a.slot - b.slot)
 const items = teams.map((m) => ({ label: m.name, value: String(m.id) }))
 
-const ROWS: { label: string; value: (id: number) => number }[] = [
+const ROWS: { label: string; value: (id: number) => number; digits?: number; started?: boolean }[] = [
   { label: "Points", value: (id) => MANAGERS.find((m) => m.id === id)?.points ?? 0 },
   { label: "Projection", value: (id) => MANAGERS.find((m) => m.id === id)?.expected_total ?? 0 },
+  { label: "Pts par match", value: (id) => POOL.pace?.[String(id)]?.ppg ?? 0, digits: 2, started: true },
+  { label: "Matchs à jouer", value: (id) => POOL.pace?.[String(id)]?.left ?? 0, started: true },
   { label: "Attaquants", value: (id) => countedProjection(id, "F") },
   { label: "Défenseurs", value: (id) => countedProjection(id, "D") },
   { label: "Gardien", value: (id) => countedProjection(id, "G") },
@@ -47,13 +49,13 @@ export function HeadToHead() {
           <TeamSelect label="Deuxième équipe" value={b} onChange={setB} />
         </div>
         <dl className="flex flex-col gap-3 text-sm">
-          {ROWS.map((r) => {
+          {ROWS.filter((r) => !r.started || POOL.season_started).map((r) => {
             const va = r.value(Number(a)), vb = r.value(Number(b))
             return (
               <div key={r.label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 tabular-nums">
-                <dd className={va > vb ? "font-semibold" : "text-muted-foreground"}>{fmt(va)}</dd>
+                <dd className={va > vb ? "font-semibold" : "text-muted-foreground"}>{fmt(va, r.digits)}</dd>
                 <dt className="text-center text-muted-foreground">{r.label}</dt>
-                <dd className={vb > va ? "text-right font-semibold" : "text-right text-muted-foreground"}>{fmt(vb)}</dd>
+                <dd className={vb > va ? "text-right font-semibold" : "text-right text-muted-foreground"}>{fmt(vb, r.digits)}</dd>
               </div>
             )
           })}
