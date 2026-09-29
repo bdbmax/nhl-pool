@@ -1,0 +1,296 @@
+/*
+ * Habillage à l'essai, appliqué par-dessus le site avec <html data-skin="retro">.
+ * Sans data-skin (habillage "Moderne"), rien ici ne s'applique.
+ * L'habillage a son propre look fixe : le bouton clair/sombre n'a pas d'effet.
+ * Les crochets [data-slot=...] visent les composants shadcn sans toucher à leur code.
+ * Joueurs et chandails : "Hockey Players" de Taylor J Glidden, CC0 (public/skins/retro/CREDITS.txt).
+ */
+
+/* ───────────────────────── Rétro ───────────────────────── */
+
+html[data-skin="retro"] {
+  --ink: #1c1b19;
+  --paper: #f4efe4;
+  --nes-red: #d62b2b;
+  --nes-blue: #2440d8;
+  --highlight: #fbe7a1;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #fffdf7;
+  --card-foreground: var(--ink);
+  --popover: #fffdf7;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: #fffdf7;
+  --secondary: #ebe4d4;
+  --secondary-foreground: var(--ink);
+  --muted: #ebe4d4;
+  --muted-foreground: #6b655a;
+  --accent: #ebe4d4;
+  --accent-foreground: var(--ink);
+  --destructive: var(--nes-red);
+  --border: #d9d0bd;
+  --input: var(--ink);
+  --ring: var(--nes-blue);
+  --chart-1: var(--nes-red);
+  --chart-2: var(--nes-blue);
+  --chart-3: #2e9e44;
+  --chart-4: #f2b705;
+  --chart-5: #6b655a;
+  --radius: 0;
+  --font-sans: var(--font-mono);
+  color-scheme: light;
+}
+
+/* Fond : papier, grille de 8 px à peine visible. */
+html[data-skin="retro"] body {
+  background:
+    linear-gradient(90deg, rgb(28 27 25 / 0.035) 1px, transparent 1px) 0 0 / 8px 8px,
+    linear-gradient(0deg, rgb(28 27 25 / 0.035) 1px, transparent 1px) 0 0 / 8px 8px,
+    var(--paper);
+}
+
+/* ── Les deux joueurs ──
+   Chaque image contient deux poses de patin côte à côte, agrandies 3x au pixel près.
+   Ils portent les chandails des équipes (--skater-up et --skater-down, posés par app/layout.tsx
+   et les pages d'équipe). L'un remonte la glace pendant qu'on défile vers le bas, l'autre descend ;
+   leurs foulées suivent le défilement. Sur téléphone ils dépassent des bords et restent
+   pâles ; sur grand écran ils sont dans les marges, à côté du texte. */
+html[data-skin="retro"] body::before,
+html[data-skin="retro"] body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  width: var(--frame-w);
+  height: var(--frame-h);
+  pointer-events: none;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  background-size: calc(var(--frame-w) * 2) var(--frame-h);
+  opacity: 0.14;
+}
+html[data-skin="retro"] body::before,
+html[data-skin="retro"] body::after {
+  --frame-w: 162px;
+  --frame-h: 204px;
+}
+html[data-skin="retro"] body::before {
+  background-image: var(--skater-up);
+  left: -64px;
+  top: calc(100svh - 300px);
+}
+html[data-skin="retro"] body::after {
+  background-image: var(--skater-down);
+  right: -72px;
+  top: 88px;
+}
+@media (min-width: 1100px) {
+  html[data-skin="retro"] body::before,
+  html[data-skin="retro"] body::after {
+    opacity: 0.6;
+  }
+  html[data-skin="retro"] body::before {
+    left: calc(50% - 600px);
+  }
+  html[data-skin="retro"] body::after {
+    right: calc(50% - 600px);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    html[data-skin="retro"] body::before {
+      animation:
+        retro-stride 1s steps(2, jump-none) 24 both,
+        retro-skate-up 1s linear both;
+      animation-timeline: scroll(root), scroll(root);
+    }
+    html[data-skin="retro"] body::after {
+      animation:
+        retro-stride 1s steps(2, jump-none) 24 both,
+        retro-skate-down 1s linear both;
+      animation-timeline: scroll(root), scroll(root);
+    }
+  }
+}
+@keyframes retro-stride {
+  from { background-position-x: 0; }
+  to { background-position-x: calc(var(--frame-w) * -1); }
+}
+@keyframes retro-skate-up {
+  0% { translate: 0 0; }
+  25% { translate: 18px -18svh; }
+  50% { translate: -6px -36svh; }
+  75% { translate: 16px -54svh; }
+  100% { translate: 0 calc(-100svh + 420px); }
+}
+@keyframes retro-skate-down {
+  0% { translate: 0 0; }
+  25% { translate: -16px 18svh; }
+  50% { translate: 6px 36svh; }
+  75% { translate: -18px 54svh; }
+  100% { translate: 0 calc(100svh - 420px); }
+}
+
+/* Titres : police pixel Silkscreen (accents français corrects), tailles en multiples de 8 px pour qu'elle reste nette. */
+html[data-skin="retro"] main h1,
+html[data-skin="retro"] [data-slot="brand"] {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+html[data-skin="retro"] main h1 {
+  font-size: 32px;
+  line-height: 32px;
+}
+html[data-skin="retro"] main h1::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 12px;
+  background: var(--nes-red);
+  box-shadow: 56px 0 0 var(--nes-blue);
+}
+html[data-skin="retro"] [data-slot="brand"] {
+  font-size: 16px;
+}
+html[data-skin="retro"] [data-slot="card-title"],
+html[data-skin="retro"] [data-slot="table-head"],
+html[data-skin="retro"] [data-slot="tabs-trigger"] {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+html[data-skin="retro"] [data-slot="table-head"] {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #6b655a;
+}
+
+/* En-tête et barre du bas */
+html[data-skin="retro"] [data-slot="site-header"] {
+  background: var(--ink);
+  color: #fffdf7;
+  border-bottom: 4px solid var(--nes-red);
+}
+html[data-skin="retro"] [data-slot="site-header"] [data-slot="button"] {
+  color: #fffdf7;
+}
+html[data-skin="retro"] [data-slot="site-header"] [data-slot="button"]:hover,
+html[data-skin="retro"] [data-slot="site-header"] [data-slot="button"][class*="bg-secondary"] {
+  background: #3a3834;
+  color: #fffdf7;
+}
+html[data-skin="retro"] [data-slot="bottom-nav"] {
+  background: #fffdf7;
+  border-top: 2px solid var(--ink);
+}
+html[data-skin="retro"] [data-slot="bottom-nav"] a[aria-current="page"] {
+  color: var(--nes-red);
+}
+
+/* Cartes : contour d'encre, ombre pleine décalée. */
+html[data-skin="retro"] [data-slot="card"] {
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  --tw-ring-shadow: 0 0 #0000;
+}
+html[data-skin="retro"] [data-slot="card-footer"] {
+  border-top: 2px dashed var(--border);
+  background: var(--paper);
+}
+
+/* Onglets */
+html[data-skin="retro"] [data-slot="tabs-list"] {
+  padding: 2px;
+  border: 2px solid var(--ink);
+  background: #fffdf7;
+}
+html[data-skin="retro"] [data-slot="tabs-trigger"][data-active] {
+  background: var(--ink);
+  color: #fffdf7;
+  box-shadow: none;
+}
+html[data-skin="retro"] [data-slot="tabs-trigger"][data-active]::before {
+  content: "▶";
+  font-size: 0.6em;
+  color: var(--nes-red);
+}
+
+/* Tableaux et listes */
+html[data-skin="retro"] [data-slot="table-row"] {
+  border-color: var(--border);
+}
+html[data-skin="retro"] [data-slot="table-body"] [data-slot="table-row"]:hover {
+  background: var(--highlight);
+}
+
+/* Petits éléments : tout carré. */
+html[data-skin="retro"] [data-slot="avatar"],
+html[data-skin="retro"] [data-slot="avatar"]::after,
+html[data-skin="retro"] [data-slot="avatar-image"],
+html[data-skin="retro"] [data-slot="avatar-fallback"] {
+  border-radius: 0;
+}
+html[data-skin="retro"] [data-slot="badge"] {
+  border-radius: 0;
+  border: 2px solid var(--ink);
+  font-weight: 700;
+}
+
+/* Équipes : chandail pixel au lieu de l'emblème, et code de 3 lettres (lib/jerseys.json). */
+html[data-skin="retro"] [data-slot="team-jersey"] {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: var(--jersey) center / 86% auto no-repeat, #fffdf7;
+  image-rendering: pixelated;
+}
+html[data-skin="retro"] [data-slot="team-mark"] {
+  background: transparent;
+}
+html[data-skin="retro"] [data-slot="team-mark"] > svg,
+html[data-skin="retro"] [data-slot="avatar-fallback"]:has(+ [data-slot="team-jersey"]) {
+  visibility: hidden;
+}
+html[data-skin="retro"] [data-slot="team-mark"] [data-slot="team-jersey"] {
+  background-color: transparent;
+  background-size: contain;
+}
+html[data-skin="retro"] [data-slot="avatar"]:has([data-slot="team-jersey"])::after {
+  border: 2px solid var(--ink);
+  mix-blend-mode: normal;
+}
+html[data-skin="retro"] [data-slot="team-code"] {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-left: 0.5em;
+  padding: 5px 4px 4px;
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+html[data-skin="retro"] :is(p, span) > [data-slot="team-code"]:first-child {
+  margin-left: 0;
+  margin-right: 0.5em;
+}
+/* Les accents (TMÉ) dépassent le haut de la police : la ligne de titre ne doit pas les couper. */
+html[data-skin="retro"] [data-slot="item-title"]:has(> [data-slot="team-code"]) {
+  overflow: visible;
+}
+
+/* Sous le nom d'un joueur, le DG qui l'a repêché : son code au lieu de son nom. */
+html[data-skin="retro"] [data-slot="manager-name"] {
+  display: none;
+}
+html[data-skin="retro"] [data-slot="item-description"] > [data-slot="team-code"] {
+  margin-left: 0;
+  box-shadow: none;
+}
+

@@ -1,0 +1,15 @@
+{
+  "_doc": "Rétro skin: one pixel jersey and a 3-letter scoreboard code per team, keyed by manager id (= draft slot). main is the jersey, trim the stripes, stripe the white details. After editing, run: python3 scripts/make_jerseys.py",
+  "1": { "code": "DOM", "main": "#d62b2b", "trim": "#1c1b19", "stripe": "#ffffff" },
+  "2": { "code": "BDB", "main": "#8c1d2e", "trim": "#e8c872", "stripe": "#ffffff" },
+  "3": { "code": "PHL", "main": "#2440d8", "trim": "#ffffff", "stripe": "#d62b2b" },
+  "4": { "code": "PAF", "main": "#1f8a3b", "trim": "#f2b705", "stripe": "#ffffff" },
+  "5": { "code": "LUI", "main": "#f2b705", "trim": "#1c1b19", "stripe": "#ffffff" },
+  "6": { "code": "GOB", "main": "#7a2bd6", "trim": "#f2b705", "stripe": "#ffffff" },
+  "7": { "code": "FUS", "main": "#f07b16", "trim": "#1c1b19", "stripe": "#ffffff" },
+  "8": { "code": "TMÉ", "main": "#14a3b8", "trim": "#1c1b19", "stripe": "#ffffff" },
+  "9": { "code": "BIL", "main": "#ffffff", "trim": "#2440d8", "stripe": "#d62b2b" },
+  "10": { "code": "COR", "main": "#1c1b19", "trim": "#f2b705", "stripe": "#ffffff" },
+  "11": { "code": "MRC", "main": "#e0559b", "trim": "#1c1b19", "stripe": "#ffffff" },
+  "12": { "code": "DAV", "main": "#6b6b6b", "trim": "#d62b2b", "stripe": "#ffffff" }
+}

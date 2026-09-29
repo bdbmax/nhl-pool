@@ -1,0 +1,73 @@
+{
+  "w": [
+    2,
+    1,
+    1
+  ],
+  "K": {
+    "G": 10.0,
+    "A": 10.0,
+    "GWG": 640.0
+  },
+  "age_peak": 27.0,
+  "age_young": 0.06,
+  "age_old": 0.03,
+  "gp_w": [
+    1,
+    0,
+    0
+  ],
+  "gp_K": 2.0,
+  "gp_rate": 0.1,
+  "gp_mu": {
+    "F": 0.8,
+    "D": 0.8
+  },
+  "gp_age": 0.005,
+  "ht_mult": 1.16,
+  "g_w": [
+    1,
+    0,
+    0
+  ],
+  "gr_w": [
+    1,
+    0,
+    0
+  ],
+  "gs_K": 0.25,
+  "gs_mu": 0.6,
+  "g_K": {
+    "W": 10.0,
+    "OTL": 60.0,
+    "SO": 160.0
+  },
+  "g_team_norm": true,
+  "g_age": 0.04,
+  "xg_weight": 0.25,
+  "a1_weight": 1.0,
+  "gwg_team": true,
+  "g_team_wins": false,
+  "team_regress": 0.3,
+  "gs_late_w": 0.25,
+  "so_model": true,
+  "so_c": 0.85,
+  "sv_K": 1000.0,
+  "w_team_mix": 0.5,
+  "w_gsax": 0.1,
+  "gf_bottom_up": true,
+  "rookie_K": 20.0,
+  "rookie_prior": 1.0,
+  "evpp": true,
+  "K_ev": 600.0,
+  "K_pp": 50.0,
+  "min_late_w": 0.2,
+  "min_w1": 0.85,
+  "age_slopes": {
+    "s1": 0.08,
+    "s2": 0.06,
+    "s3": 0.01,
+    "s4": 0.02,
+    "s5": 0.05
+  }
+}

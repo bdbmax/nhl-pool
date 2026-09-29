@@ -1,0 +1,172 @@
+import pool from "@/data/pool.json"
+
+// Data written every morning by `uv run python -m nhlpool.daily` (site/data/pool.json).
+// Every player has three positive IDs: nhl_id (NHL APIs, MoneyPuck), espn_id (ESPN), df_id (Daily Faceoff).
+export type Pos = "F" | "D" | "G"
+
+export type Player = {
+  nhl_id: number
+  espn_id: number
+  df_id: number
+  slug: string
+  name: string
+  pos: Pos
+  nhl_team: string
+  number: number | null
+  photo: string | null
+  photo_fallback: string
+  injury: string | null
+  points: number
+  gp: number
+  stats: Partial<Record<string, number>>
+  proj: number | null
+  proj_left: number | null
+  games_left: number | null
+  proj_gp: number | null
+  age: number | null
+  sources: Record<string, number | null>
+  manager_id?: number
+  round?: number
+  overall?: number
+  counts?: boolean
+  vs_round?: number | null
+}
+
+export type Manager = {
+  id: number
+  name: string
+  slot: number
+  rank: number
+  proj_rank: number
+  points: number
+  proj_consensus: number
+  expected_total: number
+  expected_finish: number
+  win_pct: number
+  finish_odds: number[]
+}
+
+export type Award = {
+  week_end: string
+  from: string
+  to: string
+  pick: { nhl_id: number; manager_id: number; value: number; round: number } | null
+  comeback: { manager_id: number; value: number; from: number; to: number } | null
+  bad_luck: { manager_id: number; value: number } | null
+  drought: { manager_id: number; value: number }
+}
+
+type Pool = {
+  season: string
+  season_start: string
+  as_of: string
+  games_played: number
+  season_games: number
+  real_weight_games: number
+  history: { date: string; ranks: Record<string, number>; points: Record<string, number> }[]
+  awards: Award[]
+  projection_sources: string[]
+  generated: string
+  season_started: boolean
+  rules: { counted: Record<Pos, number>; drafted: Record<Pos, number>; teams: number; rounds: number }
+  managers: Manager[]
+  players: Player[]
+  forgotten: Player[]
+  nhl_teams: { team: string; count: number }[]
+}
+
+export const POOL = pool as Pool
+export const MANAGERS = POOL.managers
+export const PLAYERS = POOL.players
+export const ROUNDS = POOL.rules.rounds
+
+export const POSITIONS = [
+  { pos: "F", label: "Attaquants" },
+  { pos: "D", label: "Défenseurs" },
+  { pos: "G", label: "Gardiens" },
+] as const
+
+export const NAV = [
+  { href: "/", label: "Classement", icon: "trophy" },
+  { href: "/teams", label: "Équipes", icon: "users" },
+  { href: "/draft", label: "Draft", icon: "list" },
+  { href: "/players", label: "Players", icon: "star" },
+  { href: "/awards", label: "Trophées", icon: "award" },
+] as const
+
+// Position abrégée à la québécoise : A (attaquant), D (défenseur), G (gardien).
+export const POS_SHORT: Record<Pos, string> = { F: "A", D: "D", G: "G" }
+
+const INJURY: Record<string, string> = {
+  IR: "Blessé",
+  Out: "Absent",
+  "Day-to-day": "Incertain",
+  Suspended: "Suspendu",
+}
+export const injuryLabel = (s: string | null) => (s ? INJURY[s] ?? s : null)
+
+export function initials(name: string) {
+  return name.replace(/[^A-Za-zÀ-ÿ .-]/g, "").split(/[ .-]+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join("").toUpperCase()
+}
+
+export function managerById(id: number) {
+  return MANAGERS.find((m) => m.id === id)
+}
+
+export function rosterOf(id: number) {
+  return PLAYERS.filter((p) => p.manager_id === id).sort((a, b) => (a.overall ?? 0) - (b.overall ?? 0))
+}
+
+export function playerById(id: number) {
+  return PLAYERS.find((p) => p.nhl_id === id)
+}
+
+// Total compté : 6 meilleurs attaquants, 4 défenseurs et 1 gardien, selon la projection finale
+// (vrais points jusqu'ici + projection des matchs restants).
+export function countedProjection(id: number, pos?: Pos) {
+  return rosterOf(id).filter((p) => p.counts && (!pos || p.pos === pos)).reduce((s, p) => s + (p.proj ?? 0), 0)
+}
+
+// Nombres à la québécoise : virgule décimale, espace avant le %.
+export const fmt = (x: number | null | undefined, d = 0) =>
+  x == null ? "—" : x.toLocaleString("fr-CA", { minimumFractionDigits: d, maximumFractionDigits: d })
+export const pct = (x: number | null | undefined, d = 1) => (x == null ? "—" : `${fmt(x, d)}\u00a0%`)
+export const signed = (x: number | null | undefined, d = 0) => (x == null ? "—" : `${x > 0 ? "+" : ""}${fmt(x, d)}`)
+
+export function updatedLabel() {
+  return new Date(POOL.generated).toLocaleString("fr-CA", {
+    day: "numeric", month: "long", hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto",
+  })
+}
+
+export function listJoin(items: readonly string[]) {
+  return items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} et ${items[items.length - 1]}`
+}
+
+// Ordinaux : 1er choix, 2e choix ; 1re ronde, 2e ronde.
+export const ord = (n: number, feminine = false) => (n === 1 ? (feminine ? "1re" : "1er") : `${n}e`)
+
+const FR_DAY = { day: "numeric", month: "long", timeZone: "UTC" } as const
+
+export function dayLabel(iso: string) {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("fr-CA", FR_DAY)
+}
+
+// Fiche du joueur : 12 B, 20 P ou 8 V, 2 BL.
+export function statLine(p: Player) {
+  const s = p.stats ?? {}
+  return p.pos === "G" ? `${s.W ?? 0} V, ${s.OTL ?? 0} DP, ${s.SO ?? 0} BL` : `${s.G ?? 0} B, ${s.A ?? 0} P`
+}
+
+// Date du premier match de la saison, lue dans le calendrier de la LNH.
+export function seasonStartLabel() {
+  return new Date(`${POOL.season_start}T12:00:00Z`).toLocaleDateString("fr-CA", FR_DAY)
+}
+
+// Premier lundi au moins six jours après le début de la saison : remise des premiers trophées.
+export function firstAwardsLabel() {
+  const d = new Date(`${POOL.season_start}T12:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + 6)
+  while (d.getUTCDay() !== 1) d.setUTCDate(d.getUTCDate() + 1)
+  return d.toLocaleDateString("fr-CA", { weekday: "long", ...FR_DAY })
+}

@@ -1,0 +1,59 @@
+# League settings. Values marked TODO are placeholders so the pipeline runs.
+# After editing, rerun:  uv run python run.py project && uv run python run.py board
+
+teams: 13                 # 13 teams (confirmed 2026-09-26)
+my_pick: 6                # TODO your draft slot (1 = first pick)
+draft_format: snake       # TODO snake | linear
+
+# Best-ball roster (confirmed 2026-09-26): draft 8 F / 6 D / 2 G,
+# only the best 6 F, best 4 D and best 1 G (season totals) count.
+drafted:
+  F: 8
+  D: 6
+  G: 2
+counted:
+  F: 6
+  D: 4
+  G: 1
+
+# Replacement level for VORP, in players per team: the first undrafted player.
+# Alternatives (counted 6/4/1, 8/5/1, 8/4/1, mixes) were backtested. With 12
+# teams 8/5/1 did slightly better; with 13 teams no variant beat this default
+# against both naive and savvy opponents, so the standard definition is kept.
+replacement_slots:
+  F: 8
+  D: 6
+  G: 2
+
+# Board-only preferences (also editable on the board's Settings tab).
+favorite_team: MTL        # gets a value bonus so close calls go to your team
+favorite_bonus: 10        # points of value added for sorting; projections are unchanged
+watch:                    # players with automatic "take him now" warnings on the board
+  - Jakub Dobes
+opponent_noise: 0.3
+second_goalie_last: 2     # take your second goalie only in your last N picks (backtest winner; 0 = off)       # how far other managers stray from public rankings (0.15 predictable, 0.5 chaotic)
+
+# Scoring (from the brief).
+scoring:
+  F: {goal: 1, assist: 1, gwg: 1, hat_trick: 1}
+  D: {goal: 2, assist: 1, gwg: 1, hat_trick: 0}
+  G: {win: 2, otl: 1, shutout: 3}
+
+season: 20262027
+
+# Judgment calls that cannot be backtested (no historical archive):
+public_blend_weight: 0.25   # weight of the ESPN + NHL.com average in per-game rates
+rookie_public_weight: 0.5   # same, for rookies/imports (our translation is cruder)
+market_weight: 0.75         # weight of betting point totals vs. prior goal differential for team strength
+ir_games_lost: 10           # games removed for players on injured reserve at camp (Daily Faceoff)
+monte_carlo_sims: 5000
+
+# Daily website update (src/nhlpool/daily.py). External projections only; our model is not used.
+daily:
+  real_weight_games: 40       # a source's per-game rate is updated with the player's real rate:
+                              #   (40 x source + GP x real) / (40 + GP)
+  goalie_share_weight: 20     # same for a goalie's share of his team's starts, in team games
+  absence_games: {IR: 10, Out: 3, Day-to-day: 1, Suspended: 3}   # games removed for injury status
+  sims: 20000
+  late_round: 9               # "Pick de la semaine" looks at rounds 9 to 16
+  drop_tolerance: 2           # a team's real points may drop this much overnight (stat corrections)

@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eef3f6">
+<title>Draft board 2026-27</title>
+<style>
+:root {
+  --ice: #eef3f6;
+  --ice-2: #dfe8ee;
+  --line: #c9d6df;
+  --ink: #14213d;
+  --ink-2: #4a5873;
+  --blue: #1f4fa3;
+  --red: #c8102e;
+  --kick: #f2c230;
+  --mine: #fff4cf;
+  --taken: #9aa7b8;
+  --cond: "Avenir Next Condensed", "Roboto Condensed", "Arial Narrow", "Helvetica Neue", system-ui, sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ice); color: var(--ink); font-family: var(--body); font-size: 15px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* Header: the rink center line is the pick tracker */
+header { position: sticky; top: 0; z-index: 5; background: var(--ice); padding: 10px 14px 8px;
+  padding-top: max(10px, env(safe-area-inset-top)); border-bottom: 1px solid var(--line); }
+.status { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.status h1 { font-family: var(--cond); font-weight: 700; font-size: 26px; line-height: 1; margin: 0; letter-spacing: 0; }
+.status .sub { color: var(--ink-2); font-size: 13px; }
+.undo { border: 1px solid var(--line); background: white; border-radius: 6px; padding: 7px 12px; font-size: 14px; }
+.undo:disabled { opacity: .4; }
+.rink { position: relative; height: 30px; margin: 6px 2px 0; }
+.rink .redline { position: absolute; left: 0; right: 0; top: 14px; height: 3px; background: var(--red);
+  background-image: repeating-linear-gradient(90deg, var(--red) 0 10px, transparent 10px 13px); }
+.rink .dot { position: absolute; top: 9px; width: 13px; height: 13px; margin-left: -6.5px; border-radius: 50%;
+  background: var(--ice); border: 2px solid var(--red); }
+.rink .dot.me { background: var(--kick); border-color: var(--ink); }
+.rink .dot.done { background: var(--red); }
+.rink .dot.me.done { background: var(--ink); }
+.rink .now { position: absolute; top: 0; width: 2px; height: 30px; margin-left: -1px; background: var(--blue); }
+.rink .lbl { position: absolute; top: 0; font-size: 11px; color: var(--ink-2); }
+
+.needs { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.need { flex: 1 1 0; min-width: 92px; background: white; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+.need b { font-family: var(--cond); font-size: 18px; }
+.need .d { font-size: 12px; color: var(--ink-2); }
+.need.full { opacity: .5; }
+
+.controls { display: flex; gap: 6px; padding: 8px 14px; position: sticky; top: var(--hdr, 150px); z-index: 4; background: var(--ice); }
+.controls input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: white; }
+.seg { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: white; }
+.seg button { border: 0; background: none; padding: 8px 10px; font-family: var(--cond); font-weight: 600; font-size: 15px; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: white; }
+
+main { padding: 0 8px 96px; }
+#view-board main #list { padding: 0; }
+.row { display: grid; grid-template-columns: 30px 1fr auto 74px; gap: 2px 10px; align-items: center; background: white;
+  border-radius: 8px; padding: 8px 8px 8px 10px; margin: 5px 0; border-left: 4px solid transparent; }
+.row.likely-gone { border-left-color: var(--red); }
+.pos { font-family: var(--cond); font-weight: 700; font-size: 15px; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; color: white; }
+.pos.F { background: var(--blue); } .pos.D { background: var(--red); } .pos.G { background: var(--ink); }
+.who { min-width: 0; }
+.name { font-family: var(--cond); font-weight: 700; font-size: 18px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.meta { font-size: 12px; color: var(--ink-2); }
+.tags { font-size: 11.5px; color: var(--ink-2); margin-top: 2px; }
+.tags span { display: inline-block; margin-right: 6px; }
+.tags .warn { color: var(--red); }
+.meta .espn, .meta .age { white-space: nowrap; }
+@media (max-width: 520px) { .meta .espn { display: block; } .meta .espn .dot { display: none; } }
+.meta .espn.later { color: #1d6b3a; font-weight: 700; }
+.meta .espn.earlier { color: #9a5200; font-weight: 700; }
+.nums { text-align: right; font-variant-numeric: tabular-nums; }
+.fp { font-family: var(--cond); font-weight: 700; font-size: 22px; line-height: 1; }
+.vorp { font-size: 11.5px; line-height: 1.2; color: var(--ink-2); margin-top: 2px; }
+.vorp b { font-size: 14px; color: var(--ink); }
+.range { grid-column: 2 / 4; grid-row: 2; height: 10px; position: relative; }
+.range .bar { position: absolute; top: 4px; height: 2px; background: var(--ice-2); left: 0; right: 0; }
+.range .iv { position: absolute; top: 3px; height: 4px; background: var(--blue); opacity: .45; border-radius: 2px; }
+.range .pt { position: absolute; top: 1px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ink); }
+.acts { grid-column: 4; grid-row: 1 / 3; display: flex; flex-direction: column; gap: 6px; }
+.acts button { min-height: 38px; border-radius: 6px; font-weight: 600; font-size: 14px; border: 1px solid var(--line); background: var(--ice); }
+.acts .draft { background: var(--kick); border-color: #d9a91b; }
+.detail { grid-column: 1 / 5; font-size: 13px; color: var(--ink-2); display: none; line-height: 1.5; }
+.row.open .detail { display: block; }
+.more { display: block; width: 100%; margin: 10px 0; padding: 12px; border: 1px dashed var(--line); background: none; border-radius: 8px; }
+.empty { padding: 30px 10px; text-align: center; color: var(--ink-2); }
+
+.team h2, .settings h2 { font-family: var(--cond); font-size: 22px; margin: 16px 6px 6px; }
+.team .row { grid-template-columns: 30px 1fr auto; }
+.team .detail { grid-column: 1 / 4; }
+.row.counts { background: var(--mine); }
+.tags .fav { color: #7a1020; font-weight: 700; }
+.saveline { font-size: 12px; color: var(--ink-2); }
+.draftbar { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.draftbar button { border: 1px solid var(--line); background: white; border-radius: 6px; padding: 6px 10px; font-size: 14px; }
+#new-draft { font-weight: 700; }
+dialog#drafts { border: 0; border-radius: 12px; padding: 16px 18px; width: min(560px, 94vw); max-height: 86vh; overflow: auto; color: var(--ink); background: var(--ice); }
+dialog#drafts::backdrop { background: rgba(20, 33, 61, .45); }
+.dhead { display: flex; align-items: center; justify-content: space-between; }
+.dhead h2, dialog#drafts h3 { font-family: var(--cond); margin: 0; }
+dialog#drafts h3 { font-size: 19px; margin-top: 16px; }
+.dclose { border: 0; background: none; font-size: 28px; line-height: 1; padding: 4px 8px; }
+.dname { display: flex; flex-direction: column; gap: 4px; font-size: 14px; margin: 8px 0; }
+.dname input { border: 1px solid var(--line); border-radius: 6px; padding: 8px; font-size: 16px; background: white; }
+.slist li.current { outline: 2px solid var(--blue); }
+.btns .primary, .slist .primary { background: var(--kick); border-color: #d9a91b; font-weight: 700; }
+.saveline.warn { color: var(--red); font-weight: 600; }
+.flash { margin-top: 6px; background: var(--ink); color: white; border-radius: 6px; padding: 8px 10px; font-size: 14px; }
+.alert { display: flex; align-items: center; gap: 10px; margin-top: 8px; border-radius: 8px; padding: 10px 12px; font-size: 15px; line-height: 1.3; font-weight: 600; }
+.alert.now { background: var(--red); color: white; }
+.alert.risk { background: var(--kick); color: var(--ink); }
+.alert.next { background: white; color: var(--ink); border: 2px solid var(--blue); }
+.alert button { margin-left: auto; flex: none; border: 0; border-radius: 6px; padding: 8px 12px; font-weight: 700; background: white; color: var(--ink); }
+.alert.next button { background: var(--blue); color: white; }
+.slist { list-style: none; padding: 0; margin: 6px 0; }
+.slist li { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: white; border-radius: 8px; margin: 6px 0; padding: 10px 12px; font-size: 14px; }
+.slist small { color: var(--ink-2); }
+.slist .sbtns { display: flex; gap: 6px; flex: none; }
+.slist button, .filebtn { border: 1px solid var(--line); background: var(--ice); border-radius: 6px; padding: 8px 10px; font-weight: 600; }
+.filebtn { display: inline-flex; background: white; cursor: pointer; }
+.filebtn input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.when { margin: 6px 0; color: var(--ink); }
+.watch { margin-top: 4px; border: 1px solid var(--line); background: var(--ice); border-radius: 6px; padding: 8px 12px; font-weight: 600; }
+.watching { background: white; border-radius: 8px; border: 1px solid var(--line); padding: 10px 12px; margin: 6px 0 10px; font-size: 14px; }
+.watching h2 { font-family: var(--cond); font-size: 18px; margin: 0 0 4px; }
+.watching li { margin: 4px 0; }
+.watching .gone { color: var(--taken); text-decoration: line-through; }
+.total { margin: 8px 6px; font-size: 14px; color: var(--ink-2); }
+.total b { font-family: var(--cond); font-size: 30px; color: var(--ink); }
+.log li { margin: 4px 0; font-size: 14px; }
+.settings label { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: white;
+  border-radius: 8px; margin: 6px 0; padding: 10px 12px; }
+.settings input[type=number] { width: 70px; border: 1px solid var(--line); border-radius: 6px; padding: 6px; text-align: right; }
+.settings textarea { width: 100%; height: 120px; border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 12px; }
+.settings .btns { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.settings .btns button { border: 1px solid var(--line); background: white; border-radius: 6px; padding: 9px 12px; }
+.settings .danger { color: var(--red); }
+.note { font-size: 13px; color: var(--ink-2); margin: 6px; line-height: 1.5; max-width: 70ch; }
+
+nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: white; border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom); z-index: 6; }
+nav button { flex: 1; border: 0; background: none; padding: 13px 0; font-family: var(--cond); font-weight: 600; font-size: 17px; color: var(--ink-2); }
+nav button[aria-current="page"] { color: var(--ink); box-shadow: inset 0 3px 0 var(--blue); }
+[hidden] { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.logo { width: 24px; height: 16px; vertical-align: -3px; margin-right: 4px; }
+.fp .unit { font-size: 13px; font-weight: 600; margin-left: 2px; color: var(--ink-2); }
+.help { border: 1px solid var(--line); background: white; border-radius: 50%; width: 34px; height: 34px; font-weight: 700; margin-right: 6px; }
+.status .tools { display: flex; align-items: center; }
+.guide { background: white; border-radius: 8px; margin: 6px 0 10px; padding: 12px 14px; border: 1px solid var(--line); font-size: 14px; line-height: 1.45; }
+.guide h2 { font-family: var(--cond); font-size: 20px; margin: 0 0 6px; }
+.guide dl { margin: 0; display: grid; grid-template-columns: 88px 1fr; gap: 8px 12px; align-items: start; }
+.guide dt { text-align: right; }
+.guide dd { margin: 0; color: var(--ink-2); max-width: 60ch; }
+.guide .k-fp { font-family: var(--cond); font-weight: 700; font-size: 22px; line-height: 1; }
+.guide .k-v { font-size: 13px; color: var(--ink-2); }
+.guide .k-bar { display: inline-block; position: relative; width: 70px; height: 10px; }
+.guide .k-edge { display: inline-block; width: 6px; height: 22px; background: var(--red); border-radius: 2px; }
+.guide h3 { font-family: var(--cond); font-size: 17px; margin: 12px 0 4px; }
+.guide ul { margin: 0; padding-left: 18px; color: var(--ink-2); }
+.guide li { margin: 2px 0; }
+.guide .close { margin-top: 10px; border: 1px solid var(--line); background: var(--ice); border-radius: 6px; padding: 8px 14px; font-weight: 600; }
+@media (min-width: 760px) { main, .controls, header { max-width: 760px; margin-left: auto; margin-right: auto; } }
+@media (prefers-reduced-motion: no-preference) { .row { transition: background-color .15s; } }
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div class="status">
+    <div>
+      <h1 id="pickline">Pick 1</h1>
+      <div class="sub" id="nextline"></div>
+    </div>
+    <div class="tools"><button class="help" id="help" type="button" aria-label="How to read the board" aria-expanded="false" aria-controls="guide">?</button>
+    <button class="undo" id="undo" type="button">Undo</button></div>
+  </div>
+  <div class="draftbar">
+    <button type="button" id="drafts-open" aria-haspopup="dialog">Draft: <b id="draftname">Draft 1</b><span aria-hidden="true"> &#9662;</span></button>
+    <button type="button" id="new-draft">+ New</button>
+    <span class="saveline" id="saveline"></span>
+  </div>
+  <div class="flash" id="flash" role="status" hidden></div>
+  <div id="alerts"></div>
+  <div class="rink" id="rink" aria-hidden="true"></div>
+  <div class="needs" id="needs"></div>
+</header>
+
+<section id="view-board">
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search player or team" autocomplete="off" aria-label="Search player or team">
+    <div class="seg" role="group" aria-label="Position filter" id="posf">
+      <button type="button" data-p="NEED" aria-pressed="true">Need</button>
+      <button type="button" data-p="ALL" aria-pressed="false">All</button>
+      <button type="button" data-p="F" aria-pressed="false">F</button>
+      <button type="button" data-p="D" aria-pressed="false">D</button>
+      <button type="button" data-p="G" aria-pressed="false">G</button>
+    </div>
+  </div>
+  <main>
+    <section class="guide" id="guide" aria-labelledby="guide-h" hidden>
+      <h2 id="guide-h">How to read a player</h2>
+      <dl>
+        <dt><span class="k-fp">132</span><span class="unit"> pts</span></dt>
+        <dd>Projected fantasy points for the whole season under your scoring, counting the games he is expected to miss.</dd>
+        <dt><span class="k-v"><b style="font-size:14px;color:var(--ink)">+78</b><br>over repl.</span></dt>
+        <dd>How many more points he should score than the best player at his position who will still be there late in the draft. The list is sorted by this, and it updates after every pick.</dd>
+        <dt><span class="k-bar"><span class="bar" style="position:absolute;top:4px;left:0;right:0;height:2px;background:var(--ice-2)"></span><span style="position:absolute;top:3px;left:20%;width:55%;height:4px;background:var(--blue);opacity:.45;border-radius:2px"></span><span style="position:absolute;top:1px;left:48%;width:8px;height:8px;border-radius:50%;background:var(--ink)"></span></span></dt>
+        <dd>The shaded bar is his likely range. In past seasons, 8 players out of 10 finished inside it. The dot is the projection. A long bar means a riskier pick.</dd>
+        <dt><span class="meta"><span class="espn later">ESPN #132 · model #15</span></span></dt>
+        <dd>Where ESPN ranks him (the order its draft room lists and its autodraft follows) and where the model ranks him. Green: ESPN has him at least two rounds later, so he can probably wait. Orange: ESPN has him at least two rounds earlier, so expect him to go sooner than the model suggests.</dd>
+        <dt><span class="k-edge" aria-hidden="true"></span></dt>
+        <dd>A red left edge means he is gone before your next pick in more than half of simulated drafts. The simulation has the other managers pick in ESPN's rank order (what the ESPN draft room lists and its autodraft follows) with some randomness, while filling their rosters.</dd>
+      </dl>
+      <h3>When to take someone</h3>
+      <p style="margin:0;color:var(--ink-2)">Tap a player to see his chance of still being there at each of your picks, and the last pick where he is still there 8 times out of 10. Tap "Watch this player" to keep that at the top of the list.</p>
+      <h3>Warnings for watched players</h3>
+      <p style="margin:0;color:var(--ink-2)">A banner at the top warns you about watched players. Blue means plan to take him at your next pick. Yellow means he could go before your next pick. Red means take him now, because he probably will not last until your following pick. Dobeš is watched from the start.</p>
+      <h3>Second goalie</h3>
+      <p style="margin:0;color:var(--ink-2)">Only your best goalie counts, so a second goalie rarely adds points. Past seasons showed it is better to spend middle picks on skaters and take your second goalie in your last two picks. Once you have one goalie, the Need view hides goalies until then. Watched goalies still get warnings.</p>
+      <h3>Habs bonus</h3>
+      <p style="margin:0;color:var(--ink-2)">Montreal players get 10 extra points of value for sorting only, so they win close calls. Their projected points are not changed. Change the team or the bonus in Settings.</p>
+      <h3>Saving</h3>
+      <p style="margin:0;color:var(--ink-2)">Every pick is saved right away. If the browser crashes, open the board again and it continues where you were. Click the draft name at the top to switch drafts or go back in time, and "+ New" to start another draft.</p>
+      <h3>The boxes at the top</h3>
+      <p style="margin:0;color:var(--ink-2)">Each box shows how many players you have at that position out of how many you must draft. "Falls 12 by your next pick" means the best player left there is expected to be 12 points worse by your next turn. A big fall means take that position now.</p>
+      <h3>Tags</h3>
+      <ul>
+        <li>PP1: plays on his team's first power-play unit.</li>
+        <li>Injury-prone: played under 80% of games in 2 of the last 3 seasons.</li>
+        <li>IR at camp: on injured reserve now, so 10 games are already removed.</li>
+        <li>Age 33+: higher risk of decline and missed games.</li>
+        <li>Tandem or backup: goalie expected to start under 55% or 35% of games.</li>
+        <li>New team, rookie/import, not in lineup: less history to go on, so less certain.</li>
+        <li>Volatile: his likely range is unusually wide.</li>
+      </ul>
+      <button type="button" class="close" id="guide-close">Got it, hide this</button>
+    </section>
+    <section class="watching" id="watching" aria-labelledby="watch-h" hidden><h2 id="watch-h">Watching</h2><ul id="watchlist" style="margin:0;padding-left:18px"></ul></section>
+    <div id="list" role="list" aria-label="Available players, best value first"></div>
+  </main>
+</section>
+
+<section id="view-team" class="team" hidden>
+  <main>
+    <div class="total" id="teamtotal"></div>
+    <div id="teamlist"></div>
+    <h2>Draft log</h2>
+    <ol class="log" id="log"></ol>
+  </main>
+</section>
+
+<section id="view-settings" class="settings" hidden>
+  <main>
+    <h2>League</h2>
+    <div id="setform"></div>
+    <p class="note">Changing the league size or roster slots updates replacement level and every player's value right away. Projections themselves come from the model run on <span id="built"></span>.</p>
+    <h2>Drafts</h2>
+    <p class="note">Every pick is saved right away. If the browser or the computer crashes, open the board again and it picks up where you were.</p>
+    <div class="btns"><button type="button" data-open-drafts>See all drafts and go back in time</button></div>
+    <h2>Backup</h2>
+    <p class="note">Download a file with every session, and keep it somewhere safe during the draft. Load it in any browser to continue.</p>
+    <div class="btns">
+      <button type="button" id="download">Download backup file</button>
+      <label class="filebtn">Load backup file<input type="file" id="upload" accept="application/json,.json"></label>
+    </div>
+    <p class="note">Or copy this session as text and paste it on another device.</p>
+    <textarea id="io" aria-label="Draft session as text"></textarea>
+    <div class="btns">
+      <button type="button" id="exp">Copy session as text</button>
+      <button type="button" id="imp">Load pasted text</button>
+    </div>
+    <h2>How values work</h2>
+    <p class="note">Points are the model's expected season total under your scoring. The plus number is points above replacement: the best player at the same position still likely to be available late in the draft. It is recomputed after every pick. The shaded bar is the 80% range, and the dot is the projection. A red edge means the player is gone before your next pick in more than half of simulated drafts.</p>
+  </main>
+</section>
+
+<dialog id="drafts" aria-labelledby="drafts-h">
+  <div class="dhead"><h2 id="drafts-h">Your drafts</h2><button type="button" class="dclose" id="drafts-close" aria-label="Close">&times;</button></div>
+  <p class="note" id="serverline"></p>
+  <label class="dname">Name of the open draft<input type="text" id="sessname"></label>
+  <ul class="slist" id="sessions"></ul>
+  <div class="btns"><button type="button" id="reset" class="primary">+ New draft</button></div>
+  <h3>Go back in this draft</h3>
+  <p class="note">Return the open draft to an earlier moment, for example after a wrong click.</p>
+  <ul class="slist" id="restore"></ul>
+</dialog>
+
+<nav>
+  <button type="button" data-v="board" aria-current="page">Board</button>
+  <button type="button" data-v="team">My team</button>
+  <button type="button" data-v="settings">Settings</button>
+</nav>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const P = DATA.players;
+  const byId = new Map(P.map(p => [p.id, p]));
+  const KEY = 'nhlpool-board-v2-' + DATA.season;
+  const LOGO = {};
+  Object.entries(DATA.logos || {}).forEach(([t, svg]) => { LOGO[t] = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' })); });
+  const TEAM = DATA.teamNames || {};
+  const POSNAME = { F: 'Forward', D: 'Defenseman', G: 'Goalie' };
+  const POS = ['F', 'D', 'G'];
+  const $ = s => document.querySelector(s);
+
+  let posFilter = 'NEED', query = '', shown = 60, openId = null;
+
+  // ---------- Saving: draft sessions ----------
+  // 1. The browser database (IndexedDB) keeps every session plus a restore point per save.
+  // 2. A local mirror of the open session lets the board show instantly on reload.
+  // 3. When opened through `run.py serve`, every save also goes to data/drafts.sqlite.
+  const MIRROR = 'nhlpool-mirror-v3-' + DATA.season;
+  function blank() { return { picks: [], watch: [...(DATA.defaultWatch || [])], custom: {} }; }
+  function newMeta(name) { const now = Date.now(); return { id: 'd' + now.toString(36) + Math.random().toString(36).slice(2, 6), name, created: now, updated: now }; }
+  let META, S, LC = null, FRESH = false;
+  (function boot() {
+    try { const m = JSON.parse(localStorage.getItem(MIRROR)); if (m && m.meta && m.state) { META = m.meta; S = { ...blank(), ...m.state }; return; } } catch (e) {}
+    META = newMeta('Draft 1'); META.updated = 0; S = blank();
+    FRESH = true;  // no draft saved in this browser yet
+  })();
+  function L() {
+    if (LC) return LC;
+    const l = { ...DATA.league };
+    Object.entries(S.custom || {}).forEach(([k, v]) => { l[k] = (v && typeof v === 'object') ? { ...DATA.league[k], ...v } : v; });
+    return (LC = l);
+  }
+  const saved = { local: 0, server: 0, serverOn: false, serverFailed: false, localFailed: false };
+  let dbp = null;
+  function idb() {
+    if (dbp) return dbp;
+    dbp = new Promise((res, rej) => {
+      if (!window.indexedDB) return rej(new Error('no database'));
+      const r = indexedDB.open('nhlpool-v3', 1);
+      r.onupgradeneeded = () => {
+        const db = r.result;
+        db.createObjectStore('sessions', { keyPath: 'id' });
+        db.createObjectStore('snapshots', { keyPath: 'n', autoIncrement: true }).createIndex('session', 'sessionId');
+      };
+      r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+    });
+    return dbp;
+  }
+  const req = r => new Promise((res, rej) => { r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+  async function dbSave(rec) {
+    const db = await idb(), t = db.transaction(['sessions', 'snapshots'], 'readwrite');
+    t.objectStore('sessions').put(rec);
+    t.objectStore('snapshots').add({ sessionId: rec.id, saved: rec.updated, picks: rec.state.picks.length, state: rec.state });
+    await new Promise((res, rej) => { t.oncomplete = res; t.onerror = () => rej(t.error); });
+  }
+  async function dbGet(id) { return req((await idb()).transaction('sessions').objectStore('sessions').get(id)); }
+  async function dbAll() { return req((await idb()).transaction('sessions').objectStore('sessions').getAll()); }
+  async function dbDelete(id) { return req((await idb()).transaction('sessions', 'readwrite').objectStore('sessions').delete(id)); }
+  async function dbSnapshots(id) {
+    const all = await req((await idb()).transaction('snapshots').objectStore('snapshots').index('session').getAll(id));
+    return all.sort((a, b) => b.saved - a.saved);
+  }
+  async function serverPut(rec) {
+    if (!saved.serverOn) return;
+    try {
+      const r = await fetch('api/sessions/' + rec.id, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rec) });
+      if (!r.ok) throw new Error(r.status);
+      saved.server = rec.updated; saved.serverFailed = false;
+    } catch (e) { saved.serverFailed = true; }
+    showSaved();
+  }
+  function record() { return JSON.parse(JSON.stringify({ ...META, state: S })); }
+  function save() {
+    LC = null;
+    META.updated = Date.now();
+    try { localStorage.setItem(MIRROR, JSON.stringify({ meta: META, state: S })); } catch (e) {}
+    const rec = record();
+    dbSave(rec).then(() => { saved.local = rec.updated; saved.localFailed = false; showSaved(); })
+      .catch(() => { saved.localFailed = true; showSaved(); });
+    serverPut(rec);
+  }
+  function openSession(rec) {
+    META = { id: rec.id, name: rec.name, created: rec.created, updated: rec.updated };
+    S = { ...blank(), ...rec.state }; LC = null; simCache.key = null; openId = null;
+    try { localStorage.setItem(MIRROR, JSON.stringify({ meta: META, state: S })); } catch (e) {}
+    render(); if (!$('#view-settings').hidden) renderSettings();
+    $('#draftname').textContent = META.name;
+  }
+  function clock(t) { return t ? new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''; }
+  function showSaved() {
+    const el = $('#saveline'); if (!el) return;
+    let t;
+    if (saved.localFailed && !saved.server) t = 'Not saved. Download a backup in Settings.';
+    else if (!saved.local && !saved.server) t = S.picks.length ? 'Saving...' : 'Saves automatically after every pick';
+    else t = `Saved at ${clock(Math.max(saved.local, saved.server))}` + (saved.serverOn ? (saved.serverFailed ? ' in this browser. Drafts file not reachable, retrying.' : ' in this browser and the drafts file') : ' in this browser');
+    el.textContent = t;
+    el.classList.toggle('warn', saved.localFailed || saved.serverFailed);
+  }
+  setInterval(() => { if (saved.serverOn && saved.serverFailed) serverPut(record()); }, 10000);
+  async function startup() {
+    try { if (navigator.storage && navigator.storage.persist) await navigator.storage.persist(); } catch (e) {}
+    try { const r = await fetch('api/ping', { cache: 'no-store' }); saved.serverOn = r.ok; } catch (e) { saved.serverOn = false; }
+    let best = record(), note = '';
+    try { const i = await dbGet(META.id); if (i && i.updated > best.updated) best = i; } catch (e) {}
+    if (saved.serverOn) {
+      try { const r = await fetch('api/sessions/' + META.id, { cache: 'no-store' }); if (r.ok) { const x = await r.json(); if (x.updated > best.updated) { best = x; note = 'drafts file'; } } } catch (e) {}
+    }
+    if (FRESH) {  // nothing saved in this browser: recover the most recent draft from anywhere
+      let cands = [];
+      try { cands = (await dbAll()).map(x => ({ ...x, src: 'browser' })); } catch (e) {}
+      if (saved.serverOn) { try { const r = await fetch('api/sessions', { cache: 'no-store' }); if (r.ok) cands = cands.concat((await r.json()).map(x => ({ ...x, src: 'drafts file' }))); } catch (e) {} }
+      cands = cands.filter(x => (x.picks ?? (x.state ? x.state.picks.length : 0)) > 0).sort((a, b) => b.updated - a.updated);
+      if (cands.length) {
+        let c0 = cands[0];
+        if (!c0.state) { const r = await fetch('api/sessions/' + c0.id, { cache: 'no-store' }); c0 = { ...(await r.json()), src: 'drafts file' }; }
+        best = c0; note = c0.src;
+      }
+    }
+    if (best.id !== META.id || best.updated > META.updated) openSession(best);
+    if (note) flash(`Restored "${best.name}" from the ${note}, ${best.state.picks.length} picks.`);
+    if (META.updated) save(); else showSaved();
+  }
+  function flash(msg) { const el = $('#flash'); el.textContent = msg; el.hidden = false; setTimeout(() => { el.hidden = true; }, 6000); }
+  const rounds = () => POS.reduce((a, p) => a + L().drafted[p], 0);
+  function pickOwner(n) { // 1-based overall pick -> team slot (1-based)
+    const T = L().teams, r = Math.floor((n - 1) / T), i = (n - 1) % T;
+    return (L().draft_format === 'snake' && r % 2 === 1) ? T - i : i + 1;
+  }
+  function myPickNumbers() {
+    const out = [], total = rounds() * L().teams;
+    for (let n = 1; n <= total; n++) if (pickOwner(n) === L().my_pick) out.push(n);
+    return out;
+  }
+
+  function stateCalc() {
+    const taken = new Set(S.picks.map(x => x.id));
+    const mine = S.picks.filter(x => x.who === 'me').map(x => byId.get(x.id)).filter(Boolean);
+    const takenPos = { F: 0, D: 0, G: 0 };
+    S.picks.forEach(x => { const p = byId.get(x.id); if (p) takenPos[p.pos]++; });
+    const avail = P.filter(p => !taken.has(p.id));
+    const repl = {};
+    POS.forEach(pos => {
+      const pool = avail.filter(p => p.pos === pos).sort((a, b) => b.fp - a.fp);
+      const open = Math.max(0, Math.round(L().teams * L().replacement_slots[pos]) - takenPos[pos]);
+      repl[pos] = pool.length ? pool[Math.min(open, pool.length - 1)].fp : 0;
+    });
+    const have = { F: 0, D: 0, G: 0 }; mine.forEach(p => have[p.pos]++);
+    const current = S.picks.length + 1;
+    const mp = myPickNumbers();
+    const nextMine = mp.find(n => n >= current);
+    const after = mp.find(n => n > (nextMine || 0));
+    // picks by others before my next turn (if it is my turn now, until the one after)
+    const gap = nextMine === current ? (after ? after - current - 1 : 0) : (nextMine ? nextMine - current : 0);
+    const c = { taken, mine, avail, repl, have, current, nextMine, after, gap, takenPos, mp };
+    c.sim = availability(c);
+    c.likelyGone = new Set();
+    c.sim.chance.forEach((arr, id) => { if (arr[c.sim.k] != null && arr[c.sim.k] < 0.5) c.likelyGone.add(id); });
+    return c;
+  }
+
+  // ---- Draft simulation: when will each player be gone? ----
+  // The draft is on ESPN, so the other managers are simulated as drafting in ESPN's
+  // rank order (what its draft room lists and its autodraft follows) with random
+  // disagreement, while filling their 8 F / 6 D / 2 G. On my turns the simulation
+  // takes my top value pick.
+  function rng32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function gauss(r) { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function bonus(p) { return p.team === L().favorite_team ? Number(L().favorite_bonus || 0) : 0; }
+  // Backtest winner: with one goalie in hand, wait for your last N picks to take the second.
+  function goalieWait(have, myPicksLeft) { const k = Number(L().second_goalie_last || 0); return k > 0 && have.G === 1 && myPicksLeft > k; }
+  function sortValue(p, repl) { return p.fp - repl[p.pos] + bonus(p); }
+  let simCache = { key: null, val: null };
+  function availability(c) {
+    const key = JSON.stringify([S.picks, L()]);
+    if (simCache.key === key) return simCache.val;
+    const T = L().teams;
+    const mine = c.mp.filter(n => n >= c.current);
+    const out = { picks: mine, chance: new Map(), k: 0, nextBest: { F: 0, D: 0, G: 0 } };
+    if (!mine.length) { simCache = { key, val: out }; return out; }
+    out.k = mine[0] === c.current ? 1 : 0;
+    const need0 = Array.from({ length: T }, () => ({ ...L().drafted }));
+    S.picks.forEach((x, i) => {
+      const p = byId.get(x.id); if (!p) return;
+      const t = x.who === 'me' ? L().my_pick - 1 : pickOwner(i + 1) - 1;
+      need0[t][p.pos]--;
+    });
+    const pool = c.avail.slice().sort((a, b) => a.oo - b.oo).slice(0, 300);
+    const logr = pool.map((_, i) => Math.log(i + 1));
+    const myOrder = pool.map((_, i) => i).sort((a, b) => sortValue(pool[b], c.repl) - sortValue(pool[a], c.repl));
+    const counts = pool.map(() => new Float32Array(mine.length));
+    const N = 200, sigma = Number(L().opponent_noise ?? 0.3), r = rng32(20262027 + S.picks.length);
+    const last = mine[mine.length - 1];
+    for (let s = 0; s < N; s++) {
+      const av = new Uint8Array(pool.length).fill(1);
+      const need = need0.map(o => ({ ...o }));
+      const score = logr.map(l => l + sigma * gauss(r));
+      let j = 0;
+      for (let n = c.current; n <= last; n++) {
+        const t = pickOwner(n) - 1;
+        if (n === mine[j]) {
+          for (let i = 0; i < pool.length; i++) if (av[i]) counts[i][j]++;
+          if (j === out.k) POS.forEach(pos => {
+            let b = 0; for (let i = 0; i < pool.length; i++) if (av[i] && pool[i].pos === pos && pool[i].fp > b) b = pool[i].fp;
+            out.nextBest[pos] += b / N;
+          });
+          const haveG = { G: L().drafted.G - need[t].G };
+          const wait = goalieWait(haveG, mine.length - j);
+          for (const i of myOrder) if (av[i] && need[t][pool[i].pos] > 0 && !(wait && pool[i].pos === 'G')) { av[i] = 0; need[t][pool[i].pos]--; break; }
+          j++;
+        } else {
+          let bi = -1, bs = Infinity;
+          for (let i = 0; i < pool.length; i++) if (av[i] && need[t][pool[i].pos] > 0 && score[i] < bs) { bs = score[i]; bi = i; }
+          if (bi >= 0) { av[bi] = 0; need[t][pool[bi].pos]--; }
+        }
+      }
+    }
+    pool.forEach((p, i) => out.chance.set(p.id, Array.from(counts[i], x => x / N)));
+    simCache = { key, val: out };
+    return out;
+  }
+  function chanceOf(c, id) { return c.sim.chance.get(id) || c.sim.picks.map(() => 1); }
+  function roundOf(n) { return Math.floor((n - 1) / L().teams) + 1; }
+  function safeUntil(c, id) {
+    // Last of my picks at which he is still there in at least 80% of simulated drafts.
+    const ch = chanceOf(c, id), picks = c.sim.picks, k = c.sim.k;
+    if (!picks.length || k >= picks.length) return null;
+    if (ch[k] < 0.8) return { now: true, coin: picks.find((n, j) => j >= k && ch[j] < 0.5) };
+    let j = k; while (j + 1 < picks.length && ch[j + 1] >= 0.8) j++;
+    return { pick: picks[j], end: j === picks.length - 1, coin: picks.find((n, jj) => jj > j && ch[jj] < 0.5) };
+  }
+  function safeText(c, id) {
+    const s = safeUntil(c, id); if (!s) return '';
+    if (s.now) return `Take him now to be safe${s.coin ? `. By pick ${s.coin} he is more likely gone than not` : ''}.`;
+    if (s.end) return 'Should still be there at your last pick.';
+    return `Safe until your pick ${s.pick} (round ${roundOf(s.pick)})${s.coin ? `. By pick ${s.coin} he is more likely gone than not` : ''}.`;
+  }
+
+  function counted(mine) {
+    let tot = 0; const ids = new Set();
+    POS.forEach(pos => {
+      mine.filter(p => p.pos === pos).sort((a, b) => b.fp - a.fp).slice(0, L().counted[pos]).forEach(p => { tot += p.fp; ids.add(p.id); });
+    });
+    return { tot, ids };
+  }
+
+  function fmt(x, d = 0) { return (x == null || isNaN(x)) ? '' : Number(x).toFixed(d); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+  function renderHeader(c) {
+    const total = rounds() * L().teams;
+    const done = c.current > total;
+    $('#pickline').textContent = done ? 'Draft complete' : `Pick ${c.current} of ${total}`;
+    let nl = '';
+    const rd = `Round ${Math.floor((c.current - 1) / L().teams) + 1}. `;
+    if (!done && c.nextMine === c.current) nl = rd + 'You are on the clock';
+    else if (!done && c.nextMine) nl = rd + `Your next pick is ${c.nextMine}, ${c.nextMine - c.current} away`;
+    else if (!done) nl = rd + 'No picks left for you';
+    $('#nextline').textContent = nl;
+    $('#undo').disabled = S.picks.length === 0;
+
+    // Rink line: the current round's picks as faceoff dots
+    const T = L().teams, r = Math.floor((Math.min(c.current, total) - 1) / T);
+    const start = r * T + 1;
+    let html = '<div class="redline"></div>';
+    for (let k = 0; k < T; k++) {
+      const n = start + k, x = (k + 0.5) / T * 100;
+      const me = pickOwner(n) === L().my_pick;
+      html += `<div class="dot${me ? ' me' : ''}${n < c.current ? ' done' : ''}" style="left:${x}%" title="Pick ${n}"></div>`;
+      if (n === c.current) html += `<div class="now" style="left:${x}%"></div>`;
+    }
+    $('#rink').innerHTML = html;
+    renderAlerts(c);
+
+    // Needs, with the expected drop at each position before my next pick
+    const needs = POS.map(pos => {
+      const need = L().drafted[pos] - c.have[pos];
+      const pool = c.avail.filter(p => p.pos === pos).sort((a, b) => b.fp - a.fp);
+      const now = pool[0] ? pool[0].fp : 0;
+      const drop = Math.max(0, now - (c.sim.nextBest[pos] || now));
+      return `<div class="need${need <= 0 ? ' full' : ''}" aria-label="${POSNAME[pos]}s: ${c.have[pos]} of ${L().drafted[pos]} drafted"><b>${pos} ${c.have[pos]} of ${L().drafted[pos]}</b>
+        <div class="d">${need <= 0 ? 'Full' : (pos === 'G' && goalieWait(c.have, c.mp.filter(n => n >= c.current).length) ? `Wait: take him in your last ${L().second_goalie_last} picks` : (c.gap > 0 ? `Falls ${fmt(drop)} by your next pick` : `Best left ${fmt(now)}`))}</div></div>`;
+    });
+    $('#needs').innerHTML = needs.join('');
+    document.documentElement.style.setProperty('--hdr', $('#hdr').offsetHeight + 'px');
+  }
+
+  function rowHTML(p, c, opts = {}) {
+    const v = p.fp - c.repl[p.pos];
+    const lo = Math.max(0, p.p10), hi = p.p90, scale = DATA.maxfp;
+    const tags = (p.flags || '').split(', ').filter(Boolean).map(t => {
+      const warn = /injury|IR|age|backup|not in/.test(t);
+      return `<span class="${warn ? 'warn' : ''}">${esc(t)}</span>`;
+    });
+    if (c.likelyGone.has(p.id) && !opts.team) tags.unshift('<span class="warn">Likely gone by your next pick</span>');
+    if (bonus(p)) tags.unshift(`<span class="fav">${L().favorite_team === 'MTL' ? 'Habs' : esc(L().favorite_team)} bonus +${fmt(bonus(p))}</span>`);
+    const det = p.pos === 'G'
+      ? `${fmt(p.gp)} starts (${fmt(p.share * 100)}% share), ${fmt(p.w, 1)} W, ${fmt(p.otl, 1)} OTL, ${fmt(p.so, 1)} SO.`
+      : `${fmt(p.gp)} GP, ${fmt(p.g, 1)} G, ${fmt(p.a, 1)} A, ${fmt(p.gwg, 1)} GWG, ${fmt(p.ht, 1)} HT.`;
+    const pub = [p.espn != null ? `ESPN ${fmt(p.espn)}` : '', p.nhl != null ? `NHL.com ${fmt(p.nhl)} pts` : ''].filter(Boolean).join(', ');
+    const acts = opts.team ? '' : `<div class="acts"><button type="button" class="draft" data-a="me" data-id="${p.id}" aria-label="Draft ${esc(p.name)} to my team">Mine</button>
+      <button type="button" data-a="other" data-id="${p.id}" aria-label="Mark ${esc(p.name)} taken by another team">Taken</button></div>`;
+    // ESPN's rank (its draft room order and autodraft) next to the model's, colored when two rounds apart.
+    const gap = p.er != null ? p.er - p.rank : null, far = 2 * L().teams;
+    const espnCls = gap == null ? '' : gap >= far ? ' later' : gap <= -far ? ' earlier' : '';
+    const espnTip = gap == null ? 'ESPN does not rank him, so autodraft takes him late if at all'
+      : gap >= far ? `ESPN ranks him ${gap} spots later than the model: he can probably wait`
+      : gap <= -far ? `ESPN ranks him ${-gap} spots earlier than the model: expect him to go early` : 'ESPN and the model rank him about the same';
+    const espnTag = `<span class="espn${espnCls}" title="${espnTip}"><span class="dot"> · </span>ESPN ${p.er != null ? '#' + p.er : 'unranked'} · model #${p.rank}</span>`;
+    const logo = LOGO[p.team] ? `<img class="logo" src="${LOGO[p.team]}" alt="" width="24" height="16">` : '';
+    return `<div class="row${opts.cls || ''}${openId === p.id ? ' open' : ''}${c.likelyGone.has(p.id) && !opts.team ? ' likely-gone' : ''}" data-row="${p.id}" role="listitem">
+      <div class="pos ${p.pos}" title="${POSNAME[p.pos]}"><span aria-hidden="true">${p.pos}</span><span class="sr">${POSNAME[p.pos]}</span></div>
+      <div class="who"><div class="name">${esc(p.name)}</div>
+        <div class="meta">${logo}<span aria-hidden="true">${esc(p.team)}</span><span class="sr">${esc(TEAM[p.team] || p.team)}</span>, <span class="age">age ${fmt(p.age)}</span>${espnTag}<span class="sr">. ${espnTip}</span></div>
+        ${tags.length ? `<div class="tags">${tags.join('')}</div>` : ''}</div>
+      <div class="nums"><div class="fp" aria-hidden="true">${fmt(p.fp)}<span class="unit">pts</span></div>
+        <div class="vorp" aria-hidden="true"><b>${v >= 0 ? '+' : ''}${fmt(v)}</b><br>over repl.</div>
+        <span class="sr">${fmt(p.fp)} projected points, ${fmt(Math.abs(v))} ${v >= 0 ? 'above' : 'below'} replacement, likely range ${fmt(lo)} to ${fmt(hi)}</span></div>
+      <div class="range" title="Likely range ${fmt(lo)} to ${fmt(hi)} points" aria-hidden="true"><div class="bar"></div>
+        <div class="iv" style="left:${lo / scale * 100}%;width:${Math.max(1, (hi - lo) / scale * 100)}%"></div>
+        <div class="pt" style="left:${p.fp / scale * 100}%"></div></div>
+      <div class="detail">Model rank ${p.rank}, ${p.er != null ? `ESPN rank ${p.er}` : 'not ranked by ESPN'}. ${det} Likely range ${fmt(lo)} to ${fmt(hi)} points, median ${fmt(p.med)}.${pub ? ' Other projections: ' + pub + '.' : ''}
+        ${opts.team ? '' : `<div class="when"><b>${safeText(c, p.id)}</b><br>${chanceLine(c, p.id)}</div>
+        <button type="button" class="watch" data-watch="${p.id}">${(S.watch || []).includes(p.id) ? 'Stop watching' : 'Watch this player'}</button>`}</div>
+      ${acts}</div>`;
+  }
+
+  let lastNow = '';
+  function watchAlerts(c) {
+    const picks = c.sim.picks, out = [];
+    if (!picks.length) return out;
+    const onClock = picks[0] === c.current, pct = x => Math.round(x * 100) + '%';
+    (S.watch || []).forEach(id => {
+      const p = byId.get(id); if (!p || c.taken.has(id) || c.have[p.pos] >= L().drafted[p.pos]) return;
+      const ch = chanceOf(c, id);
+      if (onClock) {
+        if (picks.length < 2) out.push({ id, level: 'now', text: `Take ${p.name} now. This is your last pick.` });
+        else if (ch[1] < 0.05) out.push({ id, level: 'now', text: `Take ${p.name} now. He will almost certainly be gone by your next pick (${picks[1]}).` });
+        else if (ch[1] < 0.8) out.push({ id, level: 'now', text: `Take ${p.name} now. Only ${pct(ch[1])} chance he is still there at your next pick (${picks[1]}).` });
+      } else if (ch[0] < 0.8) {
+        out.push({ id, level: 'risk', text: `${p.name} could go before your pick ${picks[0]}. ${pct(ch[0])} chance he is still there.` });
+      } else if (picks.length < 2 || ch[1] < 0.8) {
+        out.push({ id, level: 'next', text: `Plan to take ${p.name} at your pick ${picks[0]}. After that he is likely gone.` });
+      }
+    });
+    return out;
+  }
+  function renderAlerts(c) {
+    const a = watchAlerts(c);
+    $('#alerts').innerHTML = a.map(x => `<div class="alert ${x.level}" role="${x.level === 'now' ? 'alert' : 'status'}"><span>${esc(x.text)}</span>
+      <button type="button" data-find="${x.id}">Show</button></div>`).join('');
+    const nowKey = a.filter(x => x.level === 'now').map(x => x.id).join(',');
+    if (nowKey && nowKey !== lastNow && navigator.vibrate) navigator.vibrate([200, 100, 200]);
+    lastNow = nowKey;
+  }
+  function chanceLine(c, id) {
+    const ch = chanceOf(c, id), picks = c.sim.picks;
+    // Show the picks where the answer changes: from the last near-certain one to the first near-zero one.
+    let lo = c.sim.k; while (lo + 1 < picks.length && ch[lo + 1] >= 0.95) lo++;
+    let hi = lo; while (hi + 1 < picks.length && ch[hi] >= 0.15) hi++;
+    const parts = picks.slice(lo, hi + 1).map((n, j) => `pick ${n}: ${Math.round(ch[lo + j] * 100)}%`).slice(0, 6);
+    return parts.length ? 'Chance he is still there at ' + parts.join(', ') : '';
+  }
+  function renderWatch(c) {
+    const w = (S.watch || []).map(id => byId.get(id)).filter(Boolean);
+    $('#watching').hidden = !w.length;
+    $('#watchlist').innerHTML = w.map(p => c.taken.has(p.id)
+      ? `<li class="gone">${esc(p.name)}: drafted</li>`
+      : `<li><b>${esc(p.name)}</b>: ${safeText(c, p.id)}</li>`).join('');
+  }
+  function renderList(c) {
+    renderWatch(c);
+    let pool = c.avail;
+    if (query) {
+      const fold = x => x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();  // Dobeš finds Dobes
+      const q = fold(query);
+      pool = pool.filter(p => fold(p.name).includes(q) || p.team.toLowerCase() === q);
+    } else if (posFilter === 'NEED' && POS.some(pos => c.have[pos] < L().drafted[pos])) {
+      const wait = goalieWait(c.have, c.mp.filter(n => n >= c.current).length);
+      pool = pool.filter(p => c.have[p.pos] < L().drafted[p.pos] && !(wait && p.pos === 'G'));
+    } else if (POS.includes(posFilter)) {
+      pool = pool.filter(p => p.pos === posFilter);
+    }
+    pool = pool.slice().sort((a, b) => sortValue(b, c.repl) - sortValue(a, c.repl));
+    if (!pool.length) {
+      $('#list').innerHTML = `<div class="empty">${query ? 'No available player matches that search.' : 'No players left at this position.'}</div>`;
+      return;
+    }
+    const html = pool.slice(0, shown).map(p => rowHTML(p, c)).join('');
+    $('#list').innerHTML = html + (pool.length > shown ? `<button type="button" class="more" id="more">Show more players</button>` : '');
+  }
+
+  function renderTeam(c) {
+    const cc = counted(c.mine);
+    $('#teamtotal').innerHTML = `Projected counted total <b>${fmt(cc.tot)}</b><br>Best ${L().counted.F} F, ${L().counted.D} D and ${L().counted.G} G count. Highlighted players count right now.`;
+    $('#teamlist').innerHTML = POS.map(pos => {
+      const ps = c.mine.filter(p => p.pos === pos).sort((a, b) => b.fp - a.fp);
+      return `<h2>${{ F: 'Forwards', D: 'Defense', G: 'Goalies' }[pos]} ${ps.length}/${L().drafted[pos]}</h2>` +
+        (ps.length ? ps.map(p => rowHTML(p, c, { team: true, cls: cc.ids.has(p.id) ? ' counts' : '' })).join('') : `<div class="empty">No ${pos === 'F' ? 'forwards' : pos === 'D' ? 'defensemen' : 'goalies'} yet.</div>`);
+    }).join('');
+    $('#log').innerHTML = S.picks.map((x, i) => {
+      const p = byId.get(x.id);
+      return `<li>Pick ${i + 1}: ${p ? esc(p.name) : x.id}${x.who === 'me' ? ' (you)' : ''}</li>`;
+    }).join('') || '<li>No picks yet.</li>';
+  }
+
+  function renderSettings() {
+    const l = L();
+    const f = (label, path, val, min, max, step = 1) => `<label>${label}<input type="number" data-k="${path}" value="${val}" min="${min}" max="${max}" step="${step}"></label>`;
+    $('#setform').innerHTML =
+      f('Teams', 'teams', l.teams, 2, 24) + f('Your draft slot', 'my_pick', l.my_pick, 1, 24) +
+      `<label>Draft order<select data-k="draft_format"><option value="snake"${l.draft_format === 'snake' ? ' selected' : ''}>Snake</option><option value="linear"${l.draft_format !== 'snake' ? ' selected' : ''}>Same order every round</option></select></label>` +
+      POS.map(p => f(`${p} drafted`, `drafted.${p}`, l.drafted[p], 0, 20)).join('') +
+      POS.map(p => f(`${p} counted`, `counted.${p}`, l.counted[p], 0, 20)).join('') +
+      POS.map(p => f(`${p} replacement slots per team`, `replacement_slots.${p}`, l.replacement_slots[p], 0, 20, 0.5)).join('') +
+      `<label>Favorite team<select data-k="favorite_team"><option value="">None</option>${Object.entries(DATA.teamNames).sort((a, b) => a[1].localeCompare(b[1])).map(([t, n]) => `<option value="${t}"${l.favorite_team === t ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></label>` +
+      f('Favorite team bonus (points of value)', 'favorite_bonus', l.favorite_bonus, 0, 30) +
+      f('Take your second goalie in your last N picks (0 = off)', 'second_goalie_last', l.second_goalie_last ?? 0, 0, 16) +
+      `<label>How closely your league follows ESPN's rankings<select data-k="opponent_noise">${[[0.15, 'Closely'], [0.3, 'Somewhat'], [0.5, 'Loosely']].map(([v, t]) => `<option value="${v}"${Number(l.opponent_noise) === v ? ' selected' : ''}>${t}</option>`).join('')}</select></label>`;
+    $('#built').textContent = DATA.built;
+  }
+
+  function render() {
+    const c = stateCalc();
+    renderHeader(c);
+    if (!$('#view-board').hidden) renderList(c);
+    if (!$('#view-team').hidden) renderTeam(c);
+  }
+
+  // Events
+  document.addEventListener('click', e => {
+    const a = e.target.closest('button[data-a]');
+    if (a) {
+      const id = Number(a.dataset.id);
+      if (S.picks.length >= rounds() * L().teams) return;
+      if (!S.picks.some(x => x.id === id)) { S.picks.push({ id, who: a.dataset.a }); save(); openId = null; render(); }
+      return;
+    }
+    if (e.target.id === 'more') { shown += 60; render(); return; }
+    const fnd = e.target.closest('button[data-find]');
+    if (fnd) {
+      const p = byId.get(Number(fnd.dataset.find)); if (!p) return;
+      document.querySelector('nav button[data-v="board"]').click();
+      $('#q').value = p.name; query = p.name; openId = p.id; render(); return;
+    }
+    const w = e.target.closest('button[data-watch]');
+    if (w) {
+      const id = Number(w.dataset.watch); S.watch = S.watch || [];
+      S.watch = S.watch.includes(id) ? S.watch.filter(x => x !== id) : [...S.watch, id];
+      save(); render(); return;
+    }
+    const row = e.target.closest('.row[data-row]');
+    if (row && !e.target.closest('button')) { const id = Number(row.dataset.row); openId = openId === id ? null : id; render(); }
+  });
+  $('#undo').addEventListener('click', () => { S.picks.pop(); save(); render(); });
+  const GKEY = KEY + '-guide-hidden';
+  function showGuide(on) {
+    $('#guide').hidden = !on; $('#help').setAttribute('aria-expanded', String(on));
+    if (on) localStorage.removeItem(GKEY); else localStorage.setItem(GKEY, '1');
+  }
+  showGuide(!localStorage.getItem(GKEY));
+  $('#help').addEventListener('click', () => {
+    const on = $('#guide').hidden;
+    if (on) document.querySelector('nav button[data-v="board"]').click();
+    showGuide(on); if (on) $('#guide').scrollIntoView({ block: 'start' });
+  });
+  $('#guide-close').addEventListener('click', () => showGuide(false));
+  $('#q').addEventListener('input', e => { query = e.target.value.trim(); shown = 60; render(); });
+  $('#posf').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    posFilter = b.dataset.p; shown = 60;
+    document.querySelectorAll('#posf button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    render();
+  });
+  document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => {
+    ['board', 'team', 'settings'].forEach(v => { $('#view-' + v).hidden = v !== b.dataset.v; });
+    document.querySelectorAll('nav button').forEach(x => x.toggleAttribute('aria-current', x === b));
+    if (b.hasAttribute('aria-current')) b.setAttribute('aria-current', 'page');
+    if (b.dataset.v === 'settings') renderSettings();
+    render(); window.scrollTo(0, 0);
+  }));
+  $('#setform').addEventListener('change', e => {
+    const k = e.target.dataset.k; if (!k) return;
+    const val = e.target.tagName === 'SELECT' && k !== 'opponent_noise' ? e.target.value : Number(e.target.value);
+    const parts = k.split('.');
+    S.custom = S.custom || {};
+    if (parts.length === 2) S.custom[parts[0]] = { ...(S.custom[parts[0]] || {}), [parts[1]]: val }; else S.custom[k] = val;
+    save(); render();
+  });
+  $('#exp').addEventListener('click', async () => {
+    $('#io').value = JSON.stringify(record());
+    try { await navigator.clipboard.writeText($('#io').value); $('#exp').textContent = 'Copied'; } catch (err) { $('#io').select(); $('#exp').textContent = 'Selected, copy it now'; }
+    setTimeout(() => { $('#exp').textContent = 'Copy session as text'; }, 2000);
+  });
+  $('#imp').addEventListener('click', () => {
+    try {
+      const s = JSON.parse($('#io').value);
+      const st = s.state || s; if (!Array.isArray(st.picks)) throw 0;
+      const m = newMeta((s.name || 'Pasted draft')); openSession({ ...m, state: st }); save(); $('#imp').textContent = 'Loaded as a new session';
+    }
+    catch (err) { $('#imp').textContent = 'That text is not a saved draft'; }
+    setTimeout(() => { $('#imp').textContent = 'Load pasted text'; }, 2500);
+  });
+  async function newDraft() {
+    save();  // store the current draft first
+    let names = []; try { names = (await dbAll()).map(x => x.name); } catch (e) {}
+    let n = names.length + 1; while (names.includes(`Draft ${n}`)) n++;
+    openSession({ ...newMeta(`Draft ${n}`), state: { ...blank(), custom: S.custom } }); save();
+    if ($('#drafts').open) $('#drafts').close();
+    flash(`Started "Draft ${n}". Your earlier drafts are under the draft name at the top.`);
+  }
+  $('#new-draft').addEventListener('click', newDraft);
+  $('#reset').addEventListener('click', newDraft);
+  function openDrafts() { renderSessions(); if (!$('#drafts').open) $('#drafts').showModal(); }
+  $('#drafts-open').addEventListener('click', openDrafts);
+  document.querySelectorAll('[data-open-drafts]').forEach(b => b.addEventListener('click', openDrafts));
+  $('#drafts-close').addEventListener('click', () => $('#drafts').close());
+  $('#sessname').addEventListener('change', e => { META.name = e.target.value.trim() || META.name; $('#draftname').textContent = META.name; save(); renderSessions(); });
+  $('#drafts').addEventListener('click', async e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const id = b.dataset.id;
+    if (b.dataset.act === 'open') {
+      save();
+      let rec = null; try { rec = await dbGet(id); } catch (err) {}
+      if (!rec && saved.serverOn) { const r = await fetch('api/sessions/' + id, { cache: 'no-store' }); if (r.ok) rec = await r.json(); }
+      if (rec) { openSession(rec); save(); $('#drafts').close(); flash(`Opened "${rec.name}", ${rec.state.picks.length} picks.`); }
+    } else if (b.dataset.act === 'delete' && confirm('Delete this draft? Its history stays in the drafts file.')) {
+      try { await dbDelete(id); } catch (err) {}
+      if (saved.serverOn) { try { await fetch('api/sessions/' + id, { method: 'DELETE' }); } catch (err) {} }
+      renderSessions();
+    } else if (b.dataset.act === 'restore') {
+      let sn = null;
+      if (b.dataset.n.startsWith('f')) { const r = await fetch('api/snapshots/' + b.dataset.n.slice(1), { cache: 'no-store' }); if (r.ok) sn = await r.json(); }
+      else { const snaps = await dbSnapshots(META.id); sn = snaps.find(x => String(x.n) === b.dataset.n); }
+      if (sn && confirm(`Go back to how this draft was at ${clock(sn.saved)} (${sn.picks} picks)?`)) { S = { ...blank(), ...sn.state }; LC = null; simCache.key = null; save(); render(); $('#drafts').close(); flash(`"${META.name}" is back to ${sn.picks} picks.`); }
+    }
+  });
+  $('#download').addEventListener('click', async () => {
+    let all = []; try { all = await dbAll(); } catch (e) {}
+    if (!all.some(x => x.id === META.id)) all.push(record());
+    const blob = new Blob([JSON.stringify({ app: 'nhlpool', season: DATA.season, sessions: all }, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `nhlpool-drafts-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.json`; a.click();
+  });
+  $('#upload').addEventListener('change', async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try {
+      const d = JSON.parse(await f.text()); const list = d.sessions || [d];
+      for (const rec of list) { if (rec && rec.state && Array.isArray(rec.state.picks)) await dbSave(rec); }
+      renderSessions(); flash(`Loaded ${list.length} session(s) from the backup file. Open one below.`);
+    } catch (err) { flash('That file is not a draft backup.'); }
+    e.target.value = '';
+  });
+  async function renderSessions() {
+    $('#sessname').value = META.name;
+    let all = [];
+    try { all = (await dbAll()).map(x => ({ id: x.id, name: x.name, updated: x.updated, picks: x.state.picks.length, where: 'this browser' })); } catch (e) {}
+    if (saved.serverOn) {
+      try { const r = await fetch('api/sessions', { cache: 'no-store' }); if (r.ok) (await r.json()).forEach(x => { const m = all.find(y => y.id === x.id); if (m) m.where = 'this browser and the drafts file'; else all.push({ ...x, where: 'the drafts file' }); }); } catch (e) {}
+    }
+    all.sort((a, b) => b.updated - a.updated);
+    $('#sessions').innerHTML = all.map(x => `<li${x.id === META.id ? ' class="current"' : ''}><span><b>${esc(x.name)}</b>${x.id === META.id ? ' (open now)' : ''}<br><small>${x.picks} picks, saved ${new Date(x.updated).toLocaleString()} in ${x.where}</small></span>
+      ${x.id === META.id ? '' : `<span class="sbtns"><button type="button" class="primary" data-act="open" data-id="${x.id}">Open</button><button type="button" class="danger" data-act="delete" data-id="${x.id}">Delete</button></span>`}</li>`).join('') || '<li>No saved drafts yet. Your first pick creates one.</li>';
+    let snaps = []; try { snaps = await dbSnapshots(META.id); } catch (e) {}
+    if (saved.serverOn) {  // after a crash the browser may have lost its restore points; the drafts file keeps them
+      try { const r = await fetch(`api/sessions/${META.id}/snapshots`, { cache: 'no-store' }); if (r.ok) { const srv = (await r.json()).map(x => ({ ...x, n: 'f' + x.n })); if (srv.length > snaps.length) snaps = srv; } } catch (e) {}
+    }
+    const seen = new Set(); const pts = snaps.filter(x => { if (seen.has(x.picks)) return false; seen.add(x.picks); return true; }).slice(1, 16);
+    $('#restore').innerHTML = pts.map(x => `<li><span>${x.picks} picks, at ${clock(x.saved)}</span><button type="button" data-act="restore" data-n="${x.n}">Go back here</button></li>`).join('') || '<li>Earlier moments appear here as you draft.</li>';
+    $('#serverline').textContent = saved.serverOn
+      ? 'Each save also goes to the drafts file on this computer (data/drafts.sqlite), so nothing is lost if the browser crashes.'
+      : 'Drafts are saved in this browser only. Start the board with "uv run python run.py serve" to also keep them in a drafts file.';
+  }
+  window.addEventListener('resize', () => document.documentElement.style.setProperty('--hdr', $('#hdr').offsetHeight + 'px'));
+  window.addEventListener('pagehide', () => { try { localStorage.setItem(MIRROR, JSON.stringify({ meta: META, state: S })); } catch (e) {} });
+  $('#draftname').textContent = META.name;
+  render(); showSaved(); startup();
+})();
+</script>
+</body>
+</html>

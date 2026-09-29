@@ -1,0 +1,105 @@
+# Daily pool update: real points, updated projections and odds, then publish the site to GitHub Pages.
+# Runs at 5:30 in Toronto year-round. GitHub cron has no time zones, so it is scheduled at both
+# 9:30 UTC (5:30 EDT) and 10:30 UTC (5:30 EST), and the gate job keeps only the right one.
+# Scheduled runs can start 5 to 30 minutes late on busy mornings.
+name: Daily update
+
+on:
+  schedule:
+    - cron: "30 9 * * *"
+    - cron: "30 10 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.gate.outputs.run }}
+    steps:
+      - id: gate
+        run: |
+          run=true
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            offset=$(TZ=America/Toronto date +%z)   # -0400 in summer (EDT), -0500 in winter (EST)
+            if [ "${{ github.event.schedule }}" = "30 9 * * *" ] && [ "$offset" != "-0400" ]; then run=false; fi
+            if [ "${{ github.event.schedule }}" = "30 10 * * *" ] && [ "$offset" != "-0500" ]; then run=false; fi
+          fi
+          echo "Toronto time: $(TZ=America/Toronto date), run=$run"
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
+  update:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      # Yesterday's downloads: a fallback if a source is down this morning (every source is re-fetched).
+      - uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: raw-${{ github.run_id }}
+          restore-keys: raw-
+
+      - run: uv sync
+
+      - name: Real points, projections, odds, history
+        run: uv run python -m nhlpool.daily
+
+      - name: Tests
+        run: uv run pytest -q tests/test_site_ids.py tests/test_scoring.py tests/test_daily.py
+
+      - name: Build the site
+        working-directory: site
+        env:
+          BASE_PATH: /nhl-pool
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          npm ci
+          npm run build
+          touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/out
+
+      - name: Save history and site data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/history site/data/pool.json
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "Daily update $(TZ=America/Toronto date +%F)"
+          git pull --rebase
+          git push
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
