@@ -8,6 +8,10 @@ data/history). Games are seeded with the real opening fortnight of 2025-26, shif
 (2025-26 opened Oct 7, 2025; 2026-27 opens Sept 29, 2026), through the same NHL API calls. Everything
 else is live: ESPN, CBS, NHL.com, HockeyBangers, Daily Faceoff, rosters and player pages.
 
+Before the first morning: the evening of opening night (Sept 29), like tonight's first 10 pm run. Of the
+seeded day's 3 games, one is over, one is over on the scoreboard but its stats are not published yet,
+and one is still being played: only the first may count, and the next morning counts all three.
+
 Some mornings also break things on purpose, to prove the update still goes through:
   day 2   ESPN, CBS, NHL.com, Daily Faceoff and HockeyBangers all fail to download (cached copies used)
   day 3   a drafted forward vanishes from Daily Faceoff, a drafted goalie from ESPN and CBS
@@ -43,8 +47,8 @@ def seed_patches(stack: ExitStack) -> None:
         stack.enter_context(mock.patch.object(nhl_api, name, seeded(getattr(nhl_api, name))))
     team_games = daily.team_games
 
-    def shifted(season, as_of, refresh=True):
-        T, league = seeded(lambda s, a: team_games(s, a, refresh=False))(season, as_of)
+    def shifted(season, as_of, refresh=True, skip=None):
+        T, league = seeded(lambda s, a: team_games(s, a, refresh=False, skip=skip))(season, as_of)
         # The week's schedule in this season's dates ("Cette semaine"); played dates stay in the seed's
         # dates, like the goalie game rows they are compared with.
         T["all_dates"] = [[(date.fromisoformat(x) - SHIFT).isoformat() for x in ds] for ds in T["all_dates"]]
@@ -121,6 +125,33 @@ def check_trade(day: str, d: dict, prev: dict | None, moves: dict) -> str:
     return "; ".join(notes)
 
 
+def opening_evening(out: Path) -> dict:
+    """Sept 29 at 10 pm: the first evening update, with no stats before today."""
+    seed_day = (FIRST_MORNING - timedelta(days=1) + SHIFT).isoformat()      # 2025-10-07
+    games = sorted({g["id"] for t in nhl_api.current_team_abbrevs()
+                    for g in nhl_api.schedule(t, SEED_SEASON, refresh=False) if g["gameDate"] == seed_day})
+    assert len(games) >= 3, games
+    counted, lagging, live = games[0], games[1], games[2]
+    schedule, skaters = nhl_api.schedule, nhl_api.skater_games_on
+    with ExitStack() as stack:
+        day = FIRST_MORNING - timedelta(days=1)
+        stack.enter_context(mock.patch.object(daily, "toronto_today", lambda: day))
+        stack.enter_context(mock.patch.object(daily, "evening_day", lambda: day))
+        # One game still in progress on the scoreboard...
+        stack.enter_context(mock.patch.object(nhl_api, "schedule", lambda t, season, refresh=True: [
+            {**g, "gameState": "LIVE"} if g["id"] == live else g for g in schedule(t, season, refresh=refresh)]))
+        # ...and one over, but its lines not in the NHL stats yet. seed_patches() comes last so it wraps these.
+        stack.enter_context(mock.patch.object(nhl_api, "skater_games_on", lambda season, d: (
+            lambda x: x[x["gameId"] != lagging] if len(x) else x)(skaters(season, d))))
+        seed_patches(stack)
+        print(f"\n=== evening {day} (opening night: game {counted} over, {lagging} over without stats, {live} live) ===")
+        daily.run(refresh=True, out_dir=out, evening=True)
+    d = check(day.isoformat(), out, None, evening=True)
+    assert d["season_started"] and d["games_played"] == round(2 / 32, 1), d["games_played"]  # 1 game, 2 teams
+    assert sorted(p.name for p in (out / "history").glob("*.json")) == ["2026-09-29.json"], "evening touched history"
+    return d
+
+
 def check(day: str, out: Path, prev: dict | None, evening: bool = False) -> dict:
     """What the workflow tests and the site rely on."""
     d = json.loads((out / "site" / "pool.json").read_text())  # strict JSON (no NaN)
@@ -138,7 +169,9 @@ def check(day: str, out: Path, prev: dict | None, evening: bool = False) -> dict
     assert d["week"]["start"] <= day <= d["week"]["end"] and len(d["week"]["managers"]) == 12
     assert all(0 <= w["left"] <= w["total"] for w in d["week"]["managers"].values())
     assert sum(w["total"] for w in d["week"]["managers"].values()) > 0, "no games this week for anyone"
-    assert {a["key"] for a in d["season_awards"]} >= {"player", "pick", "bust", "king"}
+    # Season awards come from morning records; before the first morning with points (tonight) there are none.
+    morning_points = any(v > 0 for h in d["history"] for v in h["points"].values())
+    assert ({a["key"] for a in d["season_awards"]} >= {"player", "pick", "bust", "king"}) if morning_points else not d["season_awards"]
     assert all("rank_change" in m and "win_change" in m for m in d["managers"])
     # Trophies are top 3s; the new sections are there and consistent.
     assert all(1 <= len(a["podium"]) <= 3 for a in d["season_awards"])
@@ -190,7 +223,9 @@ def main() -> None:
             shutil.copy(f, out / "history" / f.name)
     D = daily.load_draft()
     moves = traded(D)
-    prev, summary = None, []
+    prev = opening_evening(out)
+    summary = [f"2026-09-29  {'opening-night evening: 1 of 3 games counted':<45} "
+               f"points {sum(m['points'] for m in prev['managers'])}, headline: {prev['headline'][0] if prev['headline'] else '-'}"]
     for i in range(a.days):
         day = FIRST_MORNING + timedelta(days=i)
         with ExitStack() as stack:

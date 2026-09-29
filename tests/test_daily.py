@@ -317,3 +317,62 @@ def test_player_weeks_keeps_mondays_and_the_latest_morning():
     w = daily.player_weeks(snaps, D)
     assert w["dates"] == ["2026-09-29", "2026-10-05", "2026-10-06"]   # opening day, Monday Oct 5, latest
     assert w["points"][str(D["playerId"].iloc[0])] == [0, 2, 3]
+
+
+def test_evening_waits_for_games_whose_stats_are_not_published(monkeypatch):
+    from nhlpool.fetch import nhl_api
+    # Game 1 is over and in the stats; game 2 is over on the scoreboard but its lines are not published yet.
+    monkeypatch.setattr(nhl_api, "skater_games_on", lambda s, d: pd.DataFrame({"gameId": [1, 1, 3]}))
+    monkeypatch.setattr(nhl_api, "goalie_games_to_date", lambda s, d: pd.DataFrame({"gameId": [1, 1, 7]}))
+    assert daily.stats_ready(20262027, "2026-09-29", {1, 2}) == {1}
+    monkeypatch.setattr(nhl_api, "skater_games_on", lambda s, d: pd.DataFrame())
+    assert daily.stats_ready(20262027, "2026-09-29", {1}) == set()
+
+
+def test_team_games_can_skip_games(monkeypatch):
+    from nhlpool.fetch import nhl_api
+    g = lambda i, state, a="EDM", h="TOR", sa=2, sh=3: {"id": i, "gameDate": "2026-09-29", "gameState": state,
+                                                       "awayTeam": {"abbrev": a, "score": sa}, "homeTeam": {"abbrev": h, "score": sh}}
+    games = {"EDM": [g(1, "OFF"), g(2, "OFF", "EDM", "MTL")], "TOR": [g(1, "OFF")], "MTL": [g(2, "OFF", "EDM", "MTL")]}
+    monkeypatch.setattr(nhl_api, "current_team_abbrevs", lambda: list(games))
+    monkeypatch.setattr(nhl_api, "schedule", lambda t, s, refresh=True: games[t])
+    T, league = daily.team_games(20262027, "2026-09-29", skip={2})
+    assert T.loc["EDM", "played"] == 1 and T.loc["MTL", "played"] == 0 and league["games"] == 1 and league["goals"] == 5
+    assert league["finished_on_as_of"] == {1}
+
+
+def test_evening_day_after_midnight(monkeypatch):
+    from datetime import datetime as real_dt
+    class Late(real_dt):
+        @classmethod
+        def now(cls, tz=None):
+            return real_dt(2026, 9, 30, 0, 40, tzinfo=tz)
+    monkeypatch.setattr(daily, "datetime", Late)
+    assert str(daily.evening_day()) == "2026-09-29"   # a 22:00 run that started at 0:40 is still about the 29th
+    class OnTime(real_dt):
+        @classmethod
+        def now(cls, tz=None):
+            return real_dt(2026, 9, 29, 22, 10, tzinfo=tz)
+    monkeypatch.setattr(daily, "datetime", OnTime)
+    assert str(daily.evening_day()) == "2026-09-29"
+
+
+def test_evening_stats_on_opening_night_with_no_earlier_games(monkeypatch):
+    # Tonight's case: nothing played before today, so the season totals up to yesterday are empty.
+    from nhlpool.fetch import nhl_api
+    empty = lambda *a: pd.DataFrame()
+    for f in ("skaters_to_date", "goalies_to_date", "hat_tricks_to_date"):
+        monkeypatch.setattr(nhl_api, f, empty)
+    sk = pd.DataFrame([
+        {"gameId": 1, "playerId": 10, "skaterFullName": "A", "positionCode": "C", "gamesPlayed": 1, "goals": 3, "assists": 1, "gameWinningGoals": 1},
+        {"gameId": 1, "playerId": 11, "skaterFullName": "B", "positionCode": "D", "gamesPlayed": 1, "goals": 1, "assists": 0, "gameWinningGoals": 0},
+        {"gameId": 2, "playerId": 12, "skaterFullName": "C", "positionCode": "L", "gamesPlayed": 1, "goals": 2, "assists": 0, "gameWinningGoals": 0}])
+    gl = pd.DataFrame([{"gameId": 1, "gameDate": "2026-09-29", "playerId": 20, "goalieFullName": "G", "gamesPlayed": 1,
+                        "gamesStarted": 1, "wins": 1, "otLosses": 0, "shutouts": 0}])
+    monkeypatch.setattr(nhl_api, "skater_games_on", lambda s, d: sk)
+    monkeypatch.setattr(nhl_api, "goalie_games_to_date", lambda s, d: gl)
+    R = daily.real_stats(20262027, "2026-09-29", finished_today={1})   # game 2 still being played
+    assert R["GP"].dtype == float and R["FP"].dtype == float
+    assert R.loc[10, "FP"] == 3 + 1 + 1 + 1   # hat trick bonus
+    assert R.loc[11, "FP"] == 2               # a defenseman's goal counts double
+    assert R.loc[20, "FP"] == 2 and 12 not in R.index

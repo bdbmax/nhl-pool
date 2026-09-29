@@ -63,6 +63,13 @@ def toronto_today() -> date:
     return datetime.now(ZoneInfo("America/Toronto")).date()
 
 
+def evening_day() -> date:
+    """The day an evening update is about: today, or yesterday if the run started after midnight (GitHub
+    sometimes starts scheduled runs late)."""
+    now = datetime.now(ZoneInfo("America/Toronto"))
+    return toronto_today() - timedelta(days=1) if now.hour < 12 else toronto_today()
+
+
 # --- Inputs -------------------------------------------------------------------------------
 
 def load_draft() -> pd.DataFrame:
@@ -77,12 +84,14 @@ def load_draft() -> pd.DataFrame:
     return D
 
 
-def team_games(season: int, as_of: str, refresh: bool = True) -> tuple[pd.DataFrame, dict]:
-    """Games played, total and left per NHL team, and league totals for the reconciliation check."""
+def team_games(season: int, as_of: str, refresh: bool = True, skip: set | None = None) -> tuple[pd.DataFrame, dict]:
+    """Games played, total and left per NHL team, and league totals for the reconciliation check.
+    skip: game ids to treat as not played yet (over, but their stats are not published yet)."""
+    skip = skip or set()
     rows, seen, finished = [], {}, set()
     for team in nhl_api.current_team_abbrevs():
         games = nhl_api.schedule(team, season, refresh=refresh)
-        done = [g for g in games if g["gameDate"] <= as_of and g.get("gameState") in ("OFF", "FINAL")]
+        done = [g for g in games if g["gameDate"] <= as_of and g.get("gameState") in ("OFF", "FINAL") and g["id"] not in skip]
         rows.append({"team": team, "played": len(done), "total": len(games),
                      "dates": sorted(g["gameDate"] for g in done),
                      "all_dates": sorted(g["gameDate"] for g in games),
@@ -119,7 +128,9 @@ def _stat_frame(sk: pd.DataFrame, gl: pd.DataFrame, ht: pd.Series) -> pd.DataFra
                                    "OTL": gl["otLosses"], "SO": gl["shutouts"]}))
     R = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["playerId"] + STAT_COLS)
     R = R.drop_duplicates("playerId").set_index("playerId").reindex(columns=STAT_COLS)
-    R[STAT_COLS[2:]] = R[STAT_COLS[2:]].apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    # Always numbers, even for an empty table (a day with no games): an empty frame's columns are "object",
+    # and adding tonight's games to them would keep that type and break the points.
+    R[STAT_COLS[2:]] = R[STAT_COLS[2:]].apply(pd.to_numeric, errors="coerce").fillna(0.0).astype(float)
     return R
 
 
@@ -155,9 +166,19 @@ def real_stats(season: int, as_of: str, finished_today: set | None = None) -> pd
         for c in ("name", "pos"):
             R[c] = R[c].fillna(tonight[c].reindex(R.index))
         num = STAT_COLS[2:]
-        R[num] = R[num].fillna(0.0).add(tonight[num].reindex(R.index).fillna(0.0))
+        R[num] = R[num].astype(float).fillna(0.0).add(tonight[num].reindex(R.index).astype(float).fillna(0.0))
     R["FP"] = fantasy_points(R) if len(R) else pd.Series(dtype=float)
     return R
+
+
+def stats_ready(season: int, day: str, finished: set) -> set:
+    """Games of `day` that are over and whose skater and goalie lines are published in the NHL stats.
+    Right after the final horn the scoreboard can be ahead of the stats; such a game waits for the next update."""
+    sk = nhl_api.skater_games_on(season, day)
+    gl = nhl_api.goalie_games_to_date(season, day)
+    have = set(sk["gameId"]) if len(sk) else set()
+    have &= set(gl["gameId"]) if len(gl) else set()
+    return {g for g in finished if g in have}
 
 
 def goalie_team_starts(G: pd.DataFrame, T: pd.DataFrame, games: pd.DataFrame) -> pd.DataFrame:
@@ -705,7 +726,7 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     cfg = settings()
     replay = as_of is not None
     if evening:
-        today = as_of or toronto_today().isoformat()
+        today = as_of or evening_day().isoformat()
         as_of = today
     else:
         today = (date.fromisoformat(as_of) + timedelta(days=1)).isoformat() if replay else toronto_today().isoformat()
@@ -719,6 +740,12 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     data = dataset.load()
     T, league = team_games(season, as_of, refresh=refresh or replay)
     finished = league["finished_on_as_of"] if evening else None
+    if evening and finished:
+        ready = stats_ready(season, as_of, finished)
+        if ready != finished:
+            print(f"  {len(finished - ready)} game(s) over but not in the NHL stats yet; counted at the next update")
+            T, league = team_games(season, as_of, refresh=False, skip=finished - ready)
+            finished = ready
     real = real_stats(season, as_of, finished)
     goalie_games = nhl_api.goalie_games_to_date(season, as_of)
     if evening and len(goalie_games):

@@ -129,7 +129,9 @@ function SeasonAwards() {
         <p className="text-sm text-muted-foreground">
           {POOL.season_awards.length
             ? "Le top 3 de chaque trophée jusqu'ici, mis à jour chaque matin. Remis pour de vrai à la fin de la saison."
-            : "Dès le premier match, un top 3 par trophée, mis à jour chaque matin jusqu'à la fin de la saison."}
+            : POOL.season_started
+              ? "Les premiers classements arrivent demain matin, avec la mise à jour de 5 h 30. Ensuite, un top 3 par trophée, mis à jour chaque matin."
+              : "Dès le premier match, un top 3 par trophée, mis à jour chaque matin jusqu'à la fin de la saison."}
         </p>
       </header>
       <div className="grid gap-3 sm:grid-cols-2">
