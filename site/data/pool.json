@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-09-29T19:24+00:00",
- "as_of": "2026-09-28",
+ "generated": "2026-09-29T19:28+00:00",
+ "as_of": "2026-09-29",
  "season_start": "2026-09-29",
  "season_started": false,
  "games_played": 0.0,
@@ -54,7 +54,7 @@
     2.3
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": -0.0
   },
   {
    "id": 6,
@@ -82,7 +82,7 @@
     3.1
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 1,
@@ -110,7 +110,7 @@
     3.9
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": -0.0
   },
   {
    "id": 4,
@@ -138,7 +138,7 @@
     4.3
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 2,
@@ -166,7 +166,7 @@
     5.0
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 10,
@@ -194,7 +194,7 @@
     5.2
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 3,
@@ -222,7 +222,7 @@
     6.9
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 11,
@@ -250,7 +250,7 @@
     7.1
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": -0.0
   },
   {
    "id": 9,
@@ -278,7 +278,7 @@
     10.6
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": -0.0
   },
   {
    "id": 5,
@@ -306,7 +306,7 @@
     10.8
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 8,
@@ -334,7 +334,7 @@
     13.8
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": 0.0
   },
   {
    "id": 12,
@@ -362,7 +362,7 @@
     27.1
    ],
    "rank_change": 0,
-   "win_change": 0
+   "win_change": -0.0
   }
  ],
  "players": [
@@ -8597,59 +8597,59 @@
   }
  ],
  "awards": [],
- "update": "morning",
- "compared_to": null,
+ "update": "evening",
+ "compared_to": "2026-09-29",
  "headline": [],
  "week": {
   "start": "2026-09-28",
   "end": "2026-10-04",
   "managers": {
    "1": {
-    "left": 28,
+    "left": 22,
     "total": 28
    },
    "2": {
-    "left": 24,
+    "left": 21,
     "total": 24
    },
    "3": {
-    "left": 25,
+    "left": 23,
     "total": 25
    },
    "4": {
-    "left": 24,
+    "left": 21,
     "total": 24
    },
    "5": {
-    "left": 25,
+    "left": 22,
     "total": 25
    },
    "6": {
-    "left": 28,
+    "left": 23,
     "total": 28
    },
    "7": {
-    "left": 26,
+    "left": 23,
     "total": 26
    },
    "8": {
-    "left": 29,
+    "left": 20,
     "total": 29
    },
    "9": {
-    "left": 24,
+    "left": 22,
     "total": 24
    },
    "10": {
-    "left": 25,
+    "left": 22,
     "total": 25
    },
    "11": {
-    "left": 28,
+    "left": 24,
     "total": 28
    },
    "12": {
-    "left": 27,
+    "left": 22,
     "total": 27
    }
   }
