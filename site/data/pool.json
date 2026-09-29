@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-09-29T14:45+00:00",
+ "generated": "2026-09-29T15:08+00:00",
  "as_of": "2026-09-28",
  "season_start": "2026-09-29",
  "season_started": false,
@@ -4160,9 +4160,9 @@
    "slug": "kirill-marchenko",
    "name": "Kirill Marchenko",
    "pos": "F",
-   "nhl_team": "CBJ",
+   "nhl_team": "TOR",
    "number": 86,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8480893.png",
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/TOR/8480893.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4587996.png",
    "injury": "IR",
    "points": 0,
@@ -8423,11 +8423,11 @@
    "count": 9
   },
   {
-   "team": "DAL",
-   "count": 8
+   "team": "TOR",
+   "count": 9
   },
   {
-   "team": "TOR",
+   "team": "DAL",
    "count": 8
   },
   {
@@ -8475,10 +8475,6 @@
    "count": 6
   },
   {
-   "team": "CBJ",
-   "count": 6
-  },
-  {
    "team": "STL",
    "count": 6
   },
@@ -8496,6 +8492,10 @@
   },
   {
    "team": "NSH",
+   "count": 5
+  },
+  {
+   "team": "CBJ",
    "count": 5
   },
   {
