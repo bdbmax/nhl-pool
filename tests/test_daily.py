@@ -114,3 +114,22 @@ def test_weekly_awards():
     assert w["comeback"]["manager_id"] == 12                          # from 12th to 1st
     assert w["drought"]["manager_id"] == 1                            # fewest points gained
     assert w["bad_luck"]["manager_id"] == 1                           # player 105 missed 4 games while hurt
+
+
+def test_simulate_with_a_player_no_source_covers():
+    # Frames built the way run() builds them; one drafted goalie has no source today (fill_missing gave him "ros").
+    D = _draft()
+    idx = D["playerId"]
+    proj = pd.DataFrame({f"ros_{k}": 50.0 for k in ("espn", "nhl", "cbs", "hb")}, index=idx)
+    proj["ros"] = 50.0
+    gk = D.loc[D.pos == "G", "playerId"].iloc[0]
+    proj.loc[gk, ["ros_espn", "ros_nhl", "ros_cbs", "ros_hb"]] = float("nan")
+    proj.loc[gk, "ros"] = 30.0
+    people = D.set_index("playerId")[["pos"]]
+    ratios = {"F": [1.0], "D": [1.0], "G": [1.0]}
+    MC = daily.simulate(D, people, proj, pd.Series(10.0, index=idx), pd.Series(1.0, index=idx), ratios, 50)
+    assert MC.shape == (50, 12) and MC.notna().all().all()
+    # 6 F + 4 D + 1 G, each 10 real + 50 left; the uncovered goalie is the team's backup.
+    assert MC.iloc[0].tolist() == pytest.approx([11 * 60.0] * 12)
+    od = daily.odds(MC)
+    assert abs(od[list(range(1, 13))].sum(axis=1) - 1).max() < 1e-9

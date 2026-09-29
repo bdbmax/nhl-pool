@@ -216,10 +216,10 @@ def simulate(D: pd.DataFrame, P: pd.DataFrame, proj: pd.DataFrame, real_fp: pd.S
     """Final best-ball totals, managers x sims. The same seed every day keeps day-to-day moves real."""
     rng = np.random.default_rng(seed)
     ids_ = D["playerId"].to_numpy()
-    V = proj.loc[ids_, [f"ros_{k}" for k in external.KEYS.values()]].to_numpy(dtype=float)
+    V = np.array(proj.loc[ids_, [f"ros_{k}" for k in external.KEYS.values()]], dtype=float)  # a writable copy
     # A player no source covers today (see fill_missing) keeps his consensus in every draw.
     none = np.isnan(V).all(axis=1)
-    V[none] = proj.loc[ids_, "ros"].to_numpy(dtype=float)[none][:, None]
+    V[none] = np.array(proj.loc[ids_, "ros"], dtype=float)[none][:, None]
     Wt = rng.dirichlet(np.ones(V.shape[1]), n_sims)
     den = (~np.isnan(V)).astype(float) @ Wt.T
     ros = np.where(den > 0, (np.nan_to_num(V) @ Wt.T) / np.where(den > 0, den, 1), 0.0)
