@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils"
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
-// Police de l'habillage rétro (app/skins.css). Pas de préchargement : téléchargée seulement si l'habillage est actif.
-const pixelFont = Silkscreen({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-pixel", preload: false })
+// Police de l'habillage rétro (app/skins.css), l'habillage par défaut : préchargée.
+const pixelFont = Silkscreen({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-pixel" })
 
 export const metadata: Metadata = {
   title: "Pool 2026-27",
@@ -27,6 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="fr-CA"
+      data-skin="retro"
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", geist.variable, pixelFont.variable)}
     >

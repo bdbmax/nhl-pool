@@ -1,6 +1,6 @@
 /*
- * Habillage à l'essai, appliqué par-dessus le site avec <html data-skin="retro">.
- * Sans data-skin (habillage "Moderne"), rien ici ne s'applique.
+ * Habillage par défaut, appliqué par-dessus le site avec <html data-skin="retro">.
+ * Sans data-skin (habillage "Moderne", choisi avec le bouton), rien ici ne s'applique.
  * L'habillage a son propre look fixe : le bouton clair/sombre n'a pas d'effet.
  * Les crochets [data-slot=...] visent les composants shadcn sans toucher à leur code.
  * Joueurs et chandails : "Hockey Players" de Taylor J Glidden, CC0 (public/skins/retro/CREDITS.txt).

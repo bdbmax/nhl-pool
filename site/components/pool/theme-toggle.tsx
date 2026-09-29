@@ -4,11 +4,11 @@ import * as React from "react"
 import { Gamepad2Icon, SunIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { applySkin, currentSkin, type SkinId } from "@/lib/skins"
+import { applySkin, currentSkin, DEFAULT_SKIN, type SkinId } from "@/lib/skins"
 
-// Bascule entre l'habillage Moderne (par défaut) et Rétro ; le choix reste en mémoire sur l'appareil.
+// Bascule entre l'habillage Rétro (par défaut) et Moderne ; le choix reste en mémoire (témoin d'un an).
 export function ThemeToggle() {
-  const [skin, setSkin] = React.useState<SkinId>("default")
+  const [skin, setSkin] = React.useState<SkinId>(DEFAULT_SKIN)
   React.useEffect(() => {
     const sync = () => setSkin(currentSkin())
     sync()
