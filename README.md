@@ -27,7 +27,8 @@ Do this again the day before the draft, since Daily Faceoff lines and injuries c
 
 ## Pool website: daily update
 
-The site (`site/`, Next.js static export) is published to GitHub Pages at https://bdbmax.github.io/nhl-pool/.
+The site (`site/`, Next.js static export) is published to GitHub Pages at https://nhlpool.ca (domain on Cloudflare, DNS only; the old
+https://bdbmax.github.io/nhl-pool/ redirects there).
 `.github/workflows/daily.yml` runs every morning at 5:30 (Toronto) and can be started by hand
 (Actions tab, "Daily update", "Run workflow"):
 

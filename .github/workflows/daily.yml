@@ -75,7 +75,7 @@ jobs:
       - name: Build the site
         working-directory: site
         env:
-          BASE_PATH: /nhl-pool
+          BASE_PATH: ""  # served at the root of https://nhlpool.ca
           NEXT_TELEMETRY_DISABLED: 1
         run: |
           npm ci

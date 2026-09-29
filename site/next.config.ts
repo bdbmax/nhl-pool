@@ -1,7 +1,8 @@
 import type { NextConfig } from "next"
 
-// Static export: the site is plain files, hosted free on GitHub Pages (bdbmax.github.io/nhl-pool).
-// BASE_PATH is "/nhl-pool" in the GitHub build (.github/workflows/daily.yml) and empty locally.
+// Static export: the site is plain files, hosted free on GitHub Pages at https://nhlpool.ca (the domain's
+// DNS is on Cloudflare, "DNS only"). Served at the domain root, so BASE_PATH is empty; set it only to host
+// the site under a sub-path (it was "/nhl-pool" on bdbmax.github.io/nhl-pool).
 const basePath = process.env.BASE_PATH ?? ""
 
 const nextConfig: NextConfig = {

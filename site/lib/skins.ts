@@ -11,7 +11,7 @@ export type SkinId = (typeof SKINS)[number]["id"]
 export const SKIN_KEY = "pool-skin"
 export const DEFAULT_SKIN: SkinId = "retro"
 
-// The choice is kept in a cookie for a year, scoped to the site's path (bdbmax.github.io hosts other sites).
+// The choice is kept in a cookie for a year, scoped to the site's path.
 const COOKIE_PATH = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/`
 const COOKIE_ATTRS = `; path=${COOKIE_PATH}; max-age=31536000; SameSite=Lax`
 
