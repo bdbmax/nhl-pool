@@ -13,6 +13,7 @@ export function UpdatedLine() {
   return (
     <p className="text-xs text-muted-foreground">
       Mis à jour le {updatedLabel()}.{" "}
+      {POOL.update === "evening" && "Matchs terminés ce soir inclus ; la mise à jour officielle suit à 5 h 30. "}
       {!POOL.season_started &&
         `La saison commence le ${seasonStartLabel()}. Tant que les vrais points ne sont pas entrés, le classement est basé sur les projections.`}
     </p>

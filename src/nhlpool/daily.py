@@ -51,6 +51,8 @@ DEFAULTS = {
     "drop_tolerance": 2,            # stat corrections can take a point or two back; more than that fails
 }
 N_CANDIDATES = 60                   # undrafted players looked at for "the forgotten"
+# The draft file uses ESPN's short codes for four teams; the NHL's own codes are used everywhere else.
+TEAM_ALIAS = {"TB": "TBL", "NJ": "NJD", "LA": "LAK", "SJ": "SJS"}
 
 
 def settings() -> dict:
@@ -77,41 +79,78 @@ def load_draft() -> pd.DataFrame:
 
 def team_games(season: int, as_of: str, refresh: bool = True) -> tuple[pd.DataFrame, dict]:
     """Games played, total and left per NHL team, and league totals for the reconciliation check."""
-    rows, seen = [], {}
+    rows, seen, finished = [], {}, set()
     for team in nhl_api.current_team_abbrevs():
         games = nhl_api.schedule(team, season, refresh=refresh)
         done = [g for g in games if g["gameDate"] <= as_of and g.get("gameState") in ("OFF", "FINAL")]
         rows.append({"team": team, "played": len(done), "total": len(games),
-                     "dates": sorted(g["gameDate"] for g in done)})
+                     "dates": sorted(g["gameDate"] for g in done),
+                     "all_dates": sorted(g["gameDate"] for g in games)})
+        finished.update(g["id"] for g in done if g["gameDate"] == as_of)
         for g in done:
             so = (g.get("gameOutcome") or {}).get("lastPeriodType") == "SO"
             # The shootout winner gets one goal on the scoreboard that no skater is credited with.
             seen[g["id"]] = g["awayTeam"].get("score", 0) + g["homeTeam"].get("score", 0) - int(so)
     T = pd.DataFrame(rows).set_index("team")
     T["left"] = T["total"] - T["played"]
-    return T, {"games": len(seen), "goals": int(sum(seen.values()))}
+    # finished_on_as_of: games of the as_of day that are over (the evening update counts only those).
+    return T, {"games": len(seen), "goals": int(sum(seen.values())), "finished_on_as_of": finished}
 
 
-def real_stats(season: int, as_of: str) -> pd.DataFrame:
-    """Season-to-date counting stats and league points, one row per player (index playerId)."""
-    sk = nhl_api.skaters_to_date(season, as_of)
-    gl = nhl_api.goalies_to_date(season, as_of)
-    ht = nhl_api.hat_tricks_to_date(season, as_of)
-    cols = ["name", "pos", "GP", "G", "A", "GWG", "HT", "GS", "W", "OTL", "SO"]
+STAT_COLS = ["name", "pos", "GP", "G", "A", "GWG", "HT", "GS", "W", "OTL", "SO"]
+
+
+def _stat_frame(sk: pd.DataFrame, gl: pd.DataFrame, ht: pd.Series) -> pd.DataFrame:
+    """NHL skater and goalie summary rows (one per player) -> our columns. ht: hat tricks per playerId."""
     parts = []
     if len(sk):
         s = pd.DataFrame({"playerId": sk["playerId"], "name": sk["skaterFullName"], "pos": pos_group(sk["positionCode"]),
                           "GP": sk["gamesPlayed"], "G": sk["goals"], "A": sk["assists"], "GWG": sk["gameWinningGoals"]})
-        s["HT"] = s["playerId"].map(ht.groupby("playerId").size() if len(ht) else {}).fillna(0)
+        s["HT"] = s["playerId"].map(ht).fillna(0)
         parts.append(s)
     if len(gl):
         parts.append(pd.DataFrame({"playerId": gl["playerId"], "name": gl["goalieFullName"], "pos": "G",
                                    "GP": gl["gamesPlayed"], "GS": gl["gamesStarted"], "W": gl["wins"],
                                    "OTL": gl["otLosses"], "SO": gl["shutouts"]}))
-    R = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["playerId"] + cols)
-    R = R.drop_duplicates("playerId").set_index("playerId").reindex(columns=cols)
-    num = cols[2:]
-    R[num] = R[num].apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    R = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["playerId"] + STAT_COLS)
+    R = R.drop_duplicates("playerId").set_index("playerId").reindex(columns=STAT_COLS)
+    R[STAT_COLS[2:]] = R[STAT_COLS[2:]].apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    return R
+
+
+def _per_player(rows: pd.DataFrame, name_col: str) -> pd.DataFrame:
+    """Per-game rows -> one summed row per player (keeps name and position)."""
+    if not len(rows):
+        return rows
+    keep = [c for c in (name_col, "positionCode") if c in rows]
+    num = [c for c in rows.columns if c not in keep + ["playerId"] and pd.api.types.is_numeric_dtype(rows[c])]
+    return rows.groupby("playerId").agg({**{c: "first" for c in keep}, **{c: "sum" for c in num}}).reset_index()
+
+
+def real_stats(season: int, as_of: str, finished_today: set | None = None) -> pd.DataFrame:
+    """Season-to-date counting stats and league points, one row per player (index playerId).
+
+    finished_today: the evening update. as_of is today; games up to yesterday come from the season
+    totals and today's games count only if they are over (game ids from the schedule), so a game
+    still in progress never half-counts."""
+    if finished_today is None:
+        ht = nhl_api.hat_tricks_to_date(season, as_of)
+        R = _stat_frame(nhl_api.skaters_to_date(season, as_of), nhl_api.goalies_to_date(season, as_of),
+                        ht.groupby("playerId").size() if len(ht) else pd.Series(dtype=float))
+    else:
+        yesterday = (date.fromisoformat(as_of) - timedelta(days=1)).isoformat()
+        base = real_stats(season, yesterday)
+        sk = nhl_api.skater_games_on(season, as_of)
+        sk = sk[sk["gameId"].isin(finished_today)] if len(sk) else sk
+        gl = nhl_api.goalie_games_to_date(season, as_of)
+        gl = gl[gl["gameId"].isin(finished_today)] if len(gl) else gl
+        ht = sk.loc[sk["goals"] >= 3].groupby("playerId").size() if len(sk) else pd.Series(dtype=float)
+        tonight = _stat_frame(_per_player(sk, "skaterFullName"), _per_player(gl, "goalieFullName"), ht)
+        R = base.reindex(base.index.union(tonight.index))
+        for c in ("name", "pos"):
+            R[c] = R[c].fillna(tonight[c].reindex(R.index))
+        num = STAT_COLS[2:]
+        R[num] = R[num].fillna(0.0).add(tonight[num].reindex(R.index).fillna(0.0))
     R["FP"] = fantasy_points(R) if len(R) else pd.Series(dtype=float)
     return R
 
@@ -220,10 +259,13 @@ def fill_missing(proj: pd.DataFrame, D: pd.DataFrame, people: pd.DataFrame, T: p
         return proj
     proj = proj.copy()
     for pid in miss:
-        ppg = (previous["players"].get(str(pid)) or [0, 0, None, 0.0, 0])[3]
+        entry = previous["players"].get(str(pid)) or [0, 0, None, 0.0, 0]
+        ppg = entry[3]
         if people.loc[pid, "pos"] == "G":
             left = T["left"].get(people.loc[pid, "nhl_team"], 0)
             games = max(0.0, left - cfg["absence_games"].get(people.loc[pid, "injury"], 0))
+            if len(entry) >= 7:  # yesterday's share of his team's games: his starts left
+                proj.loc[pid, "games_left"] = entry[6] * games
         else:
             games = proj.loc[pid, "games_left"]
         proj.loc[pid, "ros"] = ppg * games
@@ -285,7 +327,8 @@ def snapshot(day: str, as_of: str, managers: pd.DataFrame, players: pd.DataFrame
                               "expected_total": round(float(odds_.loc[m, "expected_total"]), 1),
                               "win_pct": round(float(odds_.loc[m, 1]) * 100, 2)} for m, r in managers.iterrows()},
         "players": {str(pid): [int(r["FP"]), int(r["GP"]), r["injury"] if isinstance(r["injury"], str) else None,
-                               round(float(r["ppg"]), 3), int(r["team_played"]), r["nhl_team"]]
+                               round(float(r["ppg"]), 3), int(r["team_played"]), r["nhl_team"],
+                               round(float(r["games_left"]) / max(float(r["team_left"]), 1.0), 3)]
                     for pid, r in players.iterrows()},
     }
 
@@ -331,19 +374,8 @@ def weekly_awards(hist: list[dict], D: pd.DataFrame, season_start: str, today: s
         best = max(climb, key=lambda m: (climb[m], team_gain[m]))
         worst = min(team_gain, key=lambda m: (team_gain[m], -end["managers"][m]["rank"]))
         # Points lost to injuries: games a player missed while listed as hurt, times his points per game.
-        lost = {}
-        for m, t in D.groupby("manager_id"):
-            v = 0.0
-            for pid in t["playerId"]:
-                k = str(pid)
-                hurt = any(h["players"].get(k, [0, 0, None])[2] in ("IR", "Out", "Day-to-day") for h in week)
-                e, s = end["players"].get(k), start["players"].get(k)
-                # A player who changed teams: his team's game count is not comparable, so skip him.
-                same_team = len(e or []) < 6 or len(s or []) < 6 or e[5] == s[5]
-                if hurt and e and s and same_team:
-                    missed = max(0, (e[4] - s[4]) - (e[1] - s[1]))
-                    v += missed * e[3]
-            lost[str(m)] = v
+        loss = injury_losses([start] + week, D)
+        lost = {m: v["points"] for m, v in loss.items()}
         unlucky = max(lost, key=lambda m: lost[m])
         out.append({
             "week_end": monday, "from": start["date"], "to": end["date"],
@@ -351,16 +383,161 @@ def weekly_awards(hist: list[dict], D: pd.DataFrame, season_start: str, today: s
                      "round": int(pick["round"])} if pick["g"] > 0 else None,
             "comeback": {"manager_id": int(best), "value": int(climb[best]), "from": start["managers"][best]["rank"],
                          "to": end["managers"][best]["rank"]} if climb[best] > 0 else None,
-            "bad_luck": {"manager_id": int(unlucky), "value": round(lost[unlucky], 1)} if lost[unlucky] > 0 else None,
+            "bad_luck": {"manager_id": int(unlucky), "value": round(lost[unlucky], 1),
+                         "games": int(loss[unlucky]["games"])} if lost[unlucky] > 0 else None,
             "drought": {"manager_id": int(worst), "value": int(team_gain[worst])},
         })
     return out[::-1]
 
 
+# --- Stories: headline, this week's games, season awards ------------------------------
+
+HURT = ("IR", "Out", "Day-to-day")
+
+
+def counted_players(D: pd.DataFrame, final: pd.Series) -> set:
+    """Who counts: best 6 F, 4 D, 1 G per manager by projected final total (as on the site)."""
+    x = D.assign(v=D["playerId"].map(final).fillna(0.0))
+    return {pid for _, t in x.groupby("manager_id") for p, n in COUNTED.items()
+            for pid in t[t.pos == p].sort_values("v", ascending=False)["playerId"].head(n)}
+
+
+def week_games(D: pd.DataFrame, people: pd.DataFrame, T: pd.DataFrame, counts: set, today: str, as_of: str) -> dict:
+    """Games this week (Monday to Sunday) for each manager's counted players, skipping players listed hurt.
+    left: games still to play (after as_of); total: the whole week."""
+    d = date.fromisoformat(today)
+    monday = d - timedelta(days=d.weekday())
+    sunday = monday + timedelta(days=6)
+    mon, sun = monday.isoformat(), sunday.isoformat()
+    out = {}
+    for mid, t in D.groupby("manager_id"):
+        left = total = 0
+        for pid in t["playerId"]:
+            if pid not in counts or people.loc[pid, "injury"] in ("IR", "Out"):
+                continue
+            dates = T["all_dates"].get(people.loc[pid, "nhl_team"], [])
+            total += sum(mon <= x <= sun for x in dates)
+            left += sum(as_of < x <= sun for x in dates)
+        out[str(mid)] = {"left": left, "total": total}
+    return {"start": mon, "end": sun, "managers": out}
+
+
+def injury_losses(snaps: list[dict], D: pd.DataFrame) -> dict:
+    """Games drafted players missed while listed hurt, and the points that cost (games x his points per game),
+    per manager, over consecutive mornings. A player who changed teams between two mornings is skipped
+    for that pair (his team's game count is not comparable)."""
+    out = {str(m): {"games": 0, "points": 0.0, "worst": None} for m in D["manager_id"].unique()}
+    by_player = {}
+    for s, e in zip(snaps, snaps[1:]):
+        for pid in D["playerId"]:
+            a, b = s["players"].get(str(pid)), e["players"].get(str(pid))
+            if not a or not b or b[2] not in HURT:
+                continue
+            if len(a) >= 6 and len(b) >= 6 and a[5] != b[5]:
+                continue
+            missed = max(0, (b[4] - a[4]) - (b[1] - a[1]))
+            if missed:
+                by_player[pid] = by_player.get(pid, 0) + missed
+                o = out[str(D.loc[D.playerId == pid, "manager_id"].iloc[0])]
+                o["games"] += missed
+                o["points"] += missed * b[3]
+    for m, o in out.items():
+        mine = {p: g for p, g in by_player.items() if str(D.loc[D.playerId == p, "manager_id"].iloc[0]) == m}
+        if mine:
+            p = max(mine, key=mine.get)
+            o["worst"] = {"nhl_id": int(p), "games": int(mine[p])}
+    return out
+
+
+def headline(snap: dict, previous: dict | None, D: pd.DataFrame, people: pd.DataFrame, evening: bool) -> list[str]:
+    """Up to four short lines on what changed since the previous update (French, for the site)."""
+    if not previous:
+        return []
+    name = D.drop_duplicates("manager_id").set_index("manager_id")["manager"]
+    nm = lambda m: name[int(m)]
+    cur, old = snap["managers"], previous["managers"]
+    when = "ce soir" if evening else "hier soir"
+    lines = []
+    order = sorted(cur, key=lambda m: cur[m]["rank"])
+    lead, second = order[0], order[1]
+    gap = cur[lead]["points"] - cur[second]["points"]
+    if old.get(lead, {}).get("rank") != 1:
+        lines.append(f"{nm(lead)} prend la tête du classement.")
+    elif gap > 0:
+        lines.append(f"{nm(lead)} garde la tête, {gap} point{'s' if gap > 1 else ''} devant {nm(second)}.")
+    climb = {m: old[m]["rank"] - cur[m]["rank"] for m in cur if m in old}
+    up = max(climb, key=lambda m: (climb[m], cur[m]["points"])) if climb else None
+    if up and climb[up] >= 2 and up != lead:
+        lines.append(f"{nm(up)} gagne {climb[up]} rangs, du {_ord(old[up]['rank'])} au {_ord(cur[up]['rank'])}.")
+    gains = {pid: v[0] - previous["players"].get(pid, [0])[0] for pid, v in snap["players"].items()}
+    best = max(gains, key=gains.get) if gains else None
+    if best and gains[best] >= 2:
+        mid = int(D.loc[D.playerId == int(best), "manager_id"].iloc[0])
+        lines.append(f"{people.loc[int(best), 'name']} ({nm(mid)}) : {gains[best]} points {when}.")
+    moves = {m: cur[m]["win_pct"] - old[m]["win_pct"] for m in cur if m in old}
+    big = max(moves, key=lambda m: abs(moves[m])) if moves else None
+    if big and abs(moves[big]) >= 2:
+        lines.append(f"Les odds de {nm(big)} passent de {_pct(old[big]['win_pct'])} à {_pct(cur[big]['win_pct'])}.")
+    hurt = [pid for pid, v in snap["players"].items()
+            if v[2] in ("IR", "Out") and previous["players"].get(pid, [0, 0, None])[2] not in ("IR", "Out")]
+    for pid in hurt[: max(0, 4 - len(lines))]:
+        mid = int(D.loc[D.playerId == int(pid), "manager_id"].iloc[0])
+        lines.append(f"{people.loc[int(pid), 'name']} ({nm(mid)}) est maintenant {'blessé' if snap['players'][pid][2] == 'IR' else 'absent'}.")
+    return lines[:4]
+
+
+def _ord(n: int) -> str:
+    return "1er" if n == 1 else f"{n}e"
+
+
+def _pct(x: float) -> str:
+    return f"{x:.1f}".replace(".", ",") + "\u00a0%"
+
+
+def season_awards(hist: list[dict], D: pd.DataFrame, cfg: dict) -> list[dict]:
+    """The season so far, recomputed every morning from data/history (empty before the first game)."""
+    snaps = [h for h in sorted(hist, key=lambda h: h["date"])]
+    live = [h for h in snaps if any(v["points"] > 0 for v in h["managers"].values())]
+    if not live:
+        return []
+    end = live[-1]
+    pts = D.assign(p=D["playerId"].map(lambda p: (end["players"].get(str(p)) or [0])[0]))
+    out = []
+    top = pts.sort_values(["p", "overall"], ascending=[False, True]).iloc[0]
+    out.append({"key": "player", "nhl_id": int(top.playerId), "manager_id": int(top.manager_id), "value": int(top.p)})
+    late = pts[pts["round"] >= cfg["late_round"]].sort_values(["p", "overall"], ascending=[False, False]).iloc[0]
+    out.append({"key": "pick", "nhl_id": int(late.playerId), "manager_id": int(late.manager_id), "value": int(late.p),
+                "round": int(late["round"])})
+    early = pts[pts["round"] <= 3].assign(gap=lambda x: x["p"] - x.groupby("round")["p"].transform("mean"))
+    flop = early.sort_values(["gap", "overall"]).iloc[0]
+    out.append({"key": "bust", "nhl_id": int(flop.playerId), "manager_id": int(flop.manager_id), "value": int(flop.p),
+                "gap": round(float(flop.gap), 1), "round": int(flop["round"])})
+    loss = injury_losses(snaps, D)
+    m = max(loss, key=lambda k: (loss[k]["games"], loss[k]["points"]))
+    if loss[m]["games"] > 0:
+        out.append({"key": "bad_luck", "manager_id": int(m), "value": int(loss[m]["games"]),
+                    "points": round(loss[m]["points"], 1), "worst": loss[m]["worst"]})
+    ids_ = list(end["managers"])
+    firsts = {k: sum(h["managers"][k]["rank"] == 1 for h in live) for k in ids_}
+    king = max(firsts, key=lambda k: (firsts[k], -end["managers"][k]["rank"]))
+    out.append({"key": "king", "manager_id": int(king), "value": int(firsts[king]), "mornings": len(live)})
+    swings = {k: sum(abs(a["managers"][k]["rank"] - b["managers"][k]["rank"]) for a, b in zip(live, live[1:])) for k in ids_}
+    wild = max(swings, key=lambda k: (swings[k], -end["managers"][k]["rank"]))
+    if swings[wild] > 0:
+        out.append({"key": "rollercoaster", "manager_id": int(wild), "value": int(swings[wild])})
+    return out
+
+
 # --- Safety checks ------------------------------------------------------------------------
 
-def checks(D, X, real, proj, managers, previous: dict | None, league: dict, cfg: dict) -> list[str]:
+def checks(D, X, real, proj, managers, previous: dict | None, league: dict, cfg: dict,
+           teams: pd.Series | None = None, nhl: set | None = None) -> list[str]:
     problems = []
+    if teams is not None and nhl:
+        bad = teams.loc[D["playerId"]][~teams.loc[D["playerId"]].isin(nhl)]
+        if len(bad):
+            problems.append("drafted players without a known NHL team (no schedule, no games left): "
+                            + ", ".join(f"{pid} {t!r}" for pid, t in bad.items()))
     if len(D) != TEAMS * ROUNDS or D["playerId"].isna().any() or not D["playerId"].is_unique:
         problems.append(f"expected {TEAMS * ROUNDS} drafted players with unique NHL ids, got {len(D)}")
     sizes = D.groupby("manager_id").size()
@@ -397,20 +574,30 @@ def checks(D, X, real, proj, managers, previous: dict | None, league: dict, cfg:
 # --- The job ------------------------------------------------------------------------------
 
 def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, out_dir=None,
-        write_history: bool = True) -> dict:
+        write_history: bool = True, evening: bool = False) -> dict:
+    """The morning update (games up to yesterday; writes the day's history) or, with evening=True, the
+    10 pm update (adds today's finished games to the site only; the next morning makes it official)."""
     cfg = settings()
     replay = as_of is not None
-    today = (date.fromisoformat(as_of) + timedelta(days=1)).isoformat() if replay else toronto_today().isoformat()
-    as_of = as_of or (date.fromisoformat(today) - timedelta(days=1)).isoformat()
+    if evening:
+        today = as_of or toronto_today().isoformat()
+        as_of = today
+    else:
+        today = (date.fromisoformat(as_of) + timedelta(days=1)).isoformat() if replay else toronto_today().isoformat()
+        as_of = as_of or (date.fromisoformat(today) - timedelta(days=1)).isoformat()
     site_dir = (out_dir / "site") if out_dir else site_export.SITE_DATA
     hist_dir = (out_dir / "history") if out_dir else HISTORY
-    print(f"daily update {today}: season {season}, games up to {as_of}")
+    print(f"{'evening' if evening else 'daily'} update {today}: season {season}, games up to {as_of}"
+          + (" (finished games only)" if evening else ""))
 
     D = load_draft()
     data = dataset.load()
     T, league = team_games(season, as_of, refresh=refresh or replay)
-    real = real_stats(season, as_of)
+    finished = league["finished_on_as_of"] if evening else None
+    real = real_stats(season, as_of, finished)
     goalie_games = nhl_api.goalie_games_to_date(season, as_of)
+    if evening and len(goalie_games):
+        goalie_games = goalie_games[(goalie_games["gameDate"] < as_of) | goalie_games["gameId"].isin(finished)]
     started = bool(T["played"].sum() > 0)
     print(f"  {league['games']} games played, {len(real)} players with stats")
 
@@ -437,19 +624,29 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
                  if p not in cand]
     people = U.loc[list(D["playerId"]) + cand].copy()
 
+    if evening:  # compare with this morning; the history on disk is not changed
+        hist = load_history(hist_dir)
+        previous = hist[-1] if hist else None
+    else:
+        hist = [h for h in load_history(hist_dir) if h["date"] != today]
+        previous = hist[-1] if hist and hist[-1]["date"] < today else None
+
+    # Current NHL team: his NHL.com player page, else today's NHL rosters, else his team at the previous
+    # update, else the draft file (short codes translated). Games left come from this team's schedule.
     shots = site_export.headshots(people.index, refresh)
-    people["nhl_team"] = [shots.get(p, {}).get("nhl_team_now") or t for p, t in zip(people.index, people["team"])]
+    before = {int(k): v[5] for k, v in (previous or {}).get("players", {}).items() if len(v) >= 6}
+    people["nhl_team"] = [shots.get(p, {}).get("nhl_team_now") or rost["team"].get(p) or before.get(p)
+                          or TEAM_ALIAS.get(t, t) for p, t in zip(people.index, people["team"])]
     X = ids.pin(ids.build(people[["name", "team", "pos"]]), D.set_index("playerId")[["espn_id", "df_id"]])
     people["injury"] = [site_export.injury(*a) for a in zip(X["espn_injury"], X["df_injury"], X["df_ir"])]
     R = external.rates(people[["name", "team", "pos"]], data, hb_names=list(people.loc[people.pos != "G", "name"]),
                        hb_refresh=refresh)
     proj = project(people, R, real, T, cfg, goalie_games)
-    hist = [h for h in load_history(hist_dir) if h["date"] != today]
-    previous = hist[-1] if hist and hist[-1]["date"] < today else None
     proj = fill_missing(proj, D, people, T, previous, cfg)
     team = T.reindex(people["nhl_team"].values)
     frac_left = pd.Series((team["left"] / team["total"]).fillna(1.0).to_numpy(), index=people.index)
     people["team_played"] = team["played"].fillna(0).to_numpy()
+    people["team_left"] = team["left"].fillna(0).to_numpy()
     real_fp = real["FP"].reindex(people.index).fillna(0.0)
 
     # Odds and standings.
@@ -464,23 +661,33 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     M["rank"] = pd.Series(range(1, TEAMS + 1), index=order)
     M["proj_rank"] = pd.Series(range(1, TEAMS + 1), index=by_finish)
 
-    problems = checks(D, X, real, proj, M, previous, league, cfg)
+    problems = checks(D, X, real, proj, M, previous, league, cfg, people["nhl_team"], set(T.index))
     if problems:
         raise SystemExit("safety checks failed, nothing written:\n  " + "\n  ".join(problems))
 
-    rows = people.join(real.reindex(people.index)[["GP", "FP"]].fillna(0)).join(proj[["ppg"]])
+    rows = people.join(real.reindex(people.index)[["GP", "FP"]].fillna(0)).join(proj[["ppg", "games_left"]])
     snap = snapshot(today, as_of, M, rows.loc[D["playerId"]], od)
-    hist.append(snap)
+    if not evening:
+        hist.append(snap)
     awards = weekly_awards(hist, D, site_export.season_start(season), today, cfg)
+    counts = counted_players(D, final)
+    stories = {
+        "headline": headline(snap, previous, D, people, evening) if started else [],
+        "week": week_games(D, people, T, counts, today, as_of),
+        "season_awards": season_awards(hist, D, cfg),
+    }
 
     payload = site_export.payload(
         D=D, people=people, X=X, shots=shots, real=real, proj=proj, managers=M, odds_=od,
-        started=started, as_of=as_of, T=T, hist=hist, awards=awards, season=season, cfg=cfg)
+        started=started, as_of=as_of, T=T, hist=hist, awards=awards, season=season, cfg=cfg,
+        counts=counts, stories=stories, snap=snap, previous=previous, evening=evening)
     site_export.write(payload, site_dir)
-    if write_history:
+    if write_history and not evening:
         hist_dir.mkdir(parents=True, exist_ok=True)
         (hist_dir / f"{today}.json").write_text(json.dumps(snap, ensure_ascii=False, separators=(",", ":"), allow_nan=False))
     print(f"  sources: {status}; history: {len(hist)} mornings; awards: {len(awards)} weeks")
+    for line in stories["headline"]:
+        print("  la une:", line)
     print(M.sort_values("rank").to_string())
     return payload
 
@@ -491,9 +698,10 @@ def main() -> None:
     ap.add_argument("--season", type=int, default=SEASON)
     ap.add_argument("--as-of", help="replay: real stats up to this date (YYYY-MM-DD)")
     ap.add_argument("--out", help="write site data and history under this folder instead")
+    ap.add_argument("--evening", action="store_true", help="10 pm update: add today's finished games (site only)")
     a = ap.parse_args()
     from pathlib import Path
-    run(a.season, a.as_of, refresh=not a.no_refresh, out_dir=Path(a.out) if a.out else None)
+    run(a.season, a.as_of, refresh=not a.no_refresh, out_dir=Path(a.out) if a.out else None, evening=a.evening)
 
 
 if __name__ == "__main__":

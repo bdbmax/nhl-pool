@@ -148,3 +148,10 @@ def goalie_games_to_date(season: int, as_of: str) -> pd.DataFrame:
     url = (f"{REST}/goalie/summary?isAggregate=false&isGame=true&limit=-1"
            f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20gameDate%3C=%22{as_of}%22")
     return pd.DataFrame(cached_json(url, f"nhl_rest/to_date/goalie_games_{season}_{as_of}.json", refresh=True)["data"])
+
+
+def skater_games_on(season: int, day: str) -> pd.DataFrame:
+    """Every skater line of one day's games, with the game id (the evening update keeps finished games only)."""
+    url = (f"{REST}/skater/summary?isAggregate=false&isGame=true&limit=-1"
+           f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20gameDate=%22{day}%22")
+    return pd.DataFrame(cached_json(url, f"nhl_rest/to_date/skater_games_{season}_{day}.json", refresh=True)["data"])

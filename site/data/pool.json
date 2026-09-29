@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-09-29T18:26+00:00",
+ "generated": "2026-09-29T19:07+00:00",
  "as_of": "2026-09-28",
  "season_start": "2026-09-29",
  "season_started": false,
@@ -52,7 +52,9 @@
     4.3,
     3.5,
     2.3
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 6,
@@ -78,7 +80,9 @@
     5.2,
     4.4,
     3.1
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 1,
@@ -104,7 +108,9 @@
     6.2,
     5.3,
     3.9
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 4,
@@ -130,7 +136,9 @@
     6.7,
     5.8,
     4.3
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 2,
@@ -156,7 +164,9 @@
     7.3,
     6.2,
     5.0
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 10,
@@ -182,7 +192,9 @@
     7.4,
     6.4,
     5.2
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 3,
@@ -208,7 +220,9 @@
     8.0,
     8.0,
     6.9
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 11,
@@ -234,7 +248,9 @@
     8.7,
     8.2,
     7.1
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 9,
@@ -260,7 +276,9 @@
     10.5,
     10.9,
     10.6
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 5,
@@ -286,7 +304,9 @@
     11.1,
     11.2,
     10.8
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 8,
@@ -312,7 +332,9 @@
     11.8,
     13.2,
     13.8
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   },
   {
    "id": 12,
@@ -338,7 +360,9 @@
     13.0,
     17.0,
     27.1
-   ]
+   ],
+   "rank_change": 0,
+   "win_change": 0
   }
  ],
  "players": [
@@ -8572,5 +8596,63 @@
    }
   }
  ],
- "awards": []
+ "awards": [],
+ "update": "morning",
+ "compared_to": null,
+ "headline": [],
+ "week": {
+  "start": "2026-09-28",
+  "end": "2026-10-04",
+  "managers": {
+   "1": {
+    "left": 28,
+    "total": 28
+   },
+   "2": {
+    "left": 24,
+    "total": 24
+   },
+   "3": {
+    "left": 25,
+    "total": 25
+   },
+   "4": {
+    "left": 24,
+    "total": 24
+   },
+   "5": {
+    "left": 25,
+    "total": 25
+   },
+   "6": {
+    "left": 28,
+    "total": 28
+   },
+   "7": {
+    "left": 26,
+    "total": 26
+   },
+   "8": {
+    "left": 29,
+    "total": 29
+   },
+   "9": {
+    "left": 24,
+    "total": 24
+   },
+   "10": {
+    "left": 25,
+    "total": 25
+   },
+   "11": {
+    "left": 28,
+    "total": 28
+   },
+   "12": {
+    "left": 27,
+    "total": 27
+   }
+  }
+ },
+ "season_awards": []
 }

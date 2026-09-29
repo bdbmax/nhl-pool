@@ -13,6 +13,7 @@ Some mornings also break things on purpose, to prove the update still goes throu
   day 3   a drafted forward vanishes from Daily Faceoff, a drafted goalie from ESPN and CBS
   day 4   every player page fails (NHL photos come from the fixed address pattern)
   day 5+  trade: a drafted forward and a drafted starting goalie change NHL teams and stay there
+  evenings of days 5, 7 and 12: the 10 pm update (that day's finished games, site only, history untouched)
 After every morning the output is checked like the site and the workflow would check it.
 """
 import argparse
@@ -38,11 +39,17 @@ def seeded(fn):
 
 
 def seed_patches(stack: ExitStack) -> None:
-    for name in ("skaters_to_date", "goalies_to_date", "hat_tricks_to_date", "goalie_games_to_date"):
+    for name in ("skaters_to_date", "goalies_to_date", "hat_tricks_to_date", "goalie_games_to_date", "skater_games_on"):
         stack.enter_context(mock.patch.object(nhl_api, name, seeded(getattr(nhl_api, name))))
     team_games = daily.team_games
-    stack.enter_context(mock.patch.object(
-        daily, "team_games", lambda season, as_of, refresh=True: seeded(lambda s, a: team_games(s, a, refresh=False))(season, as_of)))
+
+    def shifted(season, as_of, refresh=True):
+        T, league = seeded(lambda s, a: team_games(s, a, refresh=False))(season, as_of)
+        # The week's schedule in this season's dates ("Cette semaine"); played dates stay in the seed's
+        # dates, like the goalie game rows they are compared with.
+        T["all_dates"] = [[(date.fromisoformat(x) - SHIFT).isoformat() for x in ds] for ds in T["all_dates"]]
+        return T, league
+    stack.enter_context(mock.patch.object(daily, "team_games", shifted))
 
 
 def outage(stack: ExitStack) -> None:
@@ -113,7 +120,7 @@ def check_trade(day: str, d: dict, prev: dict | None, moves: dict) -> str:
     return "; ".join(notes)
 
 
-def check(day: str, out: Path, prev: dict | None) -> dict:
+def check(day: str, out: Path, prev: dict | None, evening: bool = False) -> dict:
     """What the workflow tests and the site rely on."""
     d = json.loads((out / "site" / "pool.json").read_text())  # strict JSON (no NaN)
     players = d["players"] + d["forgotten"]
@@ -124,7 +131,19 @@ def check(day: str, out: Path, prev: dict | None) -> dict:
         assert len(set(vals)) == len(vals), f"duplicate {key}"
     assert all(p["photo"] and str(p["nhl_id"]) in p["photo"] for p in players)
     assert sorted(m["id"] for m in d["managers"]) == list(range(1, 13))
-    assert d["season_started"] is True and d["as_of"] < day
+    assert d["season_started"] is True and (d["as_of"] == day if evening else d["as_of"] < day)
+    assert d["update"] == ("evening" if evening else "morning")
+    assert all(isinstance(x, str) and x for x in d["headline"]) and len(d["headline"]) <= 4
+    assert d["week"]["start"] <= day <= d["week"]["end"] and len(d["week"]["managers"]) == 12
+    assert all(0 <= w["left"] <= w["total"] for w in d["week"]["managers"].values())
+    assert sum(w["total"] for w in d["week"]["managers"].values()) > 0, "no games this week for anyone"
+    assert {a["key"] for a in d["season_awards"]} >= {"player", "pick", "bust", "king"}
+    assert all("rank_change" in m and "win_change" in m for m in d["managers"])
+    nhl = set(nhl_api.current_team_abbrevs())
+    assert all(p["nhl_team"] in nhl for p in d["players"]), [p["name"] for p in d["players"] if p["nhl_team"] not in nhl]
+    # A healthy drafted player always has games left (a wrong team code once gave 0 and sank a manager's odds).
+    zero = [p["name"] for p in d["players"] if not p["injury"] and (p["games_left"] or 0) == 0]
+    assert not zero, zero
     assert d["history"][-1]["date"] == day
     assert sorted(m["rank"] for m in d["managers"]) == list(range(1, 13))
     for m in d["managers"]:
@@ -179,6 +198,17 @@ def main() -> None:
             d = check(day.isoformat(), out, prev)
             if i >= 4:
                 print("  trade check:", check_trade(day.isoformat(), d, prev, moves))
+            if i in (4, 6, 11):
+                files = sorted(p.name for p in (out / "history").glob("*.json"))
+                print(f"\n=== evening {day} (10 pm update) ===")
+                daily.run(refresh=False, out_dir=out, evening=True)
+                e = check(day.isoformat(), out, d, evening=True)
+                assert sorted(p.name for p in (out / "history").glob("*.json")) == files, "evening touched history"
+                gained = sum(m["points"] for m in e["managers"]) - sum(m["points"] for m in d["managers"])
+                assert gained >= 0
+                summary.append(f"{day}  {'evening: +' + str(gained) + ' team points tonight':<45} "
+                               f"headline: {e['headline'][0] if e['headline'] else '-'}")
+                shutil.copy(out / "site" / "pool.json", out / f"pool_{day}_evening.json")
         lead = min(d["managers"], key=lambda m: m["rank"])
         summary.append(f"{day}  {note:<45} games {d['games_played']:>4}  leader {lead['name']} {lead['points']} pts, "
                        f"win {lead['win_pct']}%  awards {len(d['awards'])}")

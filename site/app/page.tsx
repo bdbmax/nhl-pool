@@ -1,4 +1,4 @@
-import { TrendingUpIcon, UsersIcon } from "lucide-react"
+import { CalendarDaysIcon, NewspaperIcon, TrendingUpIcon, UsersIcon } from "lucide-react"
 
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
@@ -8,7 +8,8 @@ import { PageHeader, UpdatedLine } from "@/components/pool/page-header"
 import { PlayerRow } from "@/components/pool/player-row"
 import { RankChart } from "@/components/pool/rank-chart"
 import { StandingsTable } from "@/components/pool/standings-table"
-import { fmt, MANAGERS, pct, PLAYERS, POOL } from "@/lib/pool"
+import { WeekGames } from "@/components/pool/week-games"
+import { dayLabel, fmt, MANAGERS, pct, PLAYERS, POOL } from "@/lib/pool"
 
 export default function StandingsPage() {
   const favorite = [...MANAGERS].sort((a, b) => b.win_pct - a.win_pct)[0]
@@ -24,6 +25,21 @@ export default function StandingsPage() {
         />
         <UpdatedLine />
       </div>
+
+      {started && POOL.headline.length > 0 && (
+        <Card size="sm">
+          <CardHeader>
+            <CardTitle>{POOL.update === "evening" ? "Ce soir" : "La une du jour"}</CardTitle>
+            <CardDescription>{POOL.update === "evening" ? "Depuis ce matin." : "Depuis la mise à jour d'hier."}</CardDescription>
+            <CardAction><NewspaperIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
+          </CardHeader>
+          <CardContent>
+            <ul className="flex list-disc flex-col gap-1.5 pl-5 text-sm">
+              {POOL.headline.map((line) => <li key={line}>{line}</li>)}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="grid grid-cols-2 gap-3">
         <Card size="sm">
@@ -73,6 +89,20 @@ export default function StandingsPage() {
           )}
         </CardContent>
       </Card>
+
+      {POOL.week && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Cette semaine</CardTitle>
+            <CardDescription>
+              Matchs restants du {dayLabel(POOL.week.start)} au {dayLabel(POOL.week.end)} pour les 11 joueurs qui comptent
+              de chaque équipe, sans les blessés. Plus de matchs, plus de chances de remonter.
+            </CardDescription>
+            <CardAction><CalendarDaysIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
+          </CardHeader>
+          <CardContent><WeekGames /></CardContent>
+        </Card>
+      )}
 
       <Card>
         <CardHeader>

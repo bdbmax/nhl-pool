@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { InfoDrawer } from "@/components/pool/info-drawer"
 import { TeamAvatar, TeamCode } from "@/components/pool/team-avatar"
+import { Trend } from "@/components/pool/trend"
 import { fmt, MANAGERS, ord, pct, type Manager } from "@/lib/pool"
 
 const VIEWS = {
@@ -41,7 +42,13 @@ export function StandingsTable({ view }: { view: keyof typeof VIEWS }) {
                 </div>
               </Link>
             </TableCell>
-            <TableCell className="text-right tabular-nums">{v.value(m)}</TableCell>
+            <TableCell className="text-right tabular-nums">
+              <div className="flex flex-col items-end">
+                {v.value(m)}
+                {view === "today" && <Trend change={m.rank_change} />}
+                {view === "odds" && <Trend change={m.win_change} unit="pts" />}
+              </div>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

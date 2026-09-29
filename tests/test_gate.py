@@ -50,3 +50,19 @@ def test_late_start_does_not_change_the_slot(tmp_path):
 
 def test_manual_always_runs(tmp_path):
     assert gate.decide("workflow_dispatch", "", datetime.now(timezone.utc), tmp_path)[0]
+
+
+def test_evening_slot_at_22_toronto_year_round(tmp_path):
+    # 2:00 UTC on Oct 1 = 22:00 EDT on Sept 30; 3:00 UTC is 23:00 then. In winter it's the other way.
+    summer = [gate.decide_mode("schedule", c, datetime(2026, 10, 1, h, 0, tzinfo=timezone.utc), tmp_path)
+              for c, h in (("0 2 * * *", 2), ("0 3 * * *", 3))]
+    assert [(r, m) for r, _, m in summer] == [(True, "evening"), (False, "morning")]
+    winter = [gate.decide_mode("schedule", c, datetime(2026, 12, 16, h, 0, tzinfo=timezone.utc), tmp_path)
+              for c, h in (("0 2 * * *", 2), ("0 3 * * *", 3))]
+    assert [(r, m) for r, _, m in winter] == [(False, "morning"), (True, "evening")]
+
+
+def test_morning_slots_are_morning_mode(tmp_path):
+    now = datetime(2026, 9, 30, 9, 30, tzinfo=timezone.utc)
+    assert gate.decide_mode("schedule", "30 9 * * *", now, tmp_path)[2] == "morning"
+    assert gate.decide_mode("workflow_dispatch", "", now, tmp_path)[2] == "morning"

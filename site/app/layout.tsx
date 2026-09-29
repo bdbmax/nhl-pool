@@ -32,9 +32,14 @@ export const metadata: Metadata = {
     images: [{ url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/share.jpg`, width: 1200, height: 630, alt: "Pool 2026-27 : les chandails des 12 équipes" }],
   },
   twitter: { card: "summary_large_image" },
+  // Ouvert depuis l'écran d'accueil de l'iPhone : plein écran, avec ce nom sous l'icône (app/apple-icon.png).
+  appleWebApp: { capable: true, title: "Pool LNH", statusBarStyle: "black" },
+  other: { "apple-mobile-web-app-capable": "yes" }, // older iPhones (newer ones read app/manifest.ts)
 }
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" }
+export const viewport: Viewport = {
+  width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#1c1b19",
+}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

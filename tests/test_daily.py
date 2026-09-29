@@ -44,7 +44,7 @@ def _draft():
     for m in range(1, 13):
         for r in range(1, 17):
             pos = "F" if r <= 8 else ("D" if r <= 14 else "G")
-            rows.append({"manager_id": m, "round": r, "overall": (r - 1) * 12 + m, "pos": pos,
+            rows.append({"manager_id": m, "manager": f"M{m}", "round": r, "overall": (r - 1) * 12 + m, "pos": pos,
                          "playerId": m * 100 + r, "name": f"P{m}-{r}"})
     return pd.DataFrame(rows)
 
@@ -170,11 +170,74 @@ def test_bad_luck_skips_a_player_traded_that_week():
         players = {str(p): [0, 0, "IR" if hurt else None, 2.0, tgp, team] for p in D["playerId"]}
         return {"date": day, "players": players,
                 "managers": {str(m): {"points": 0, "rank": m} for m in range(1, 13)}}
-    # Everyone hurt all week; their team went from 0 to 4 games, but they all changed teams.
+    # Everyone hurt all week and traded midweek: the jump from Vancouver's count to Edmonton's is not
+    # counted, only the 2 Edmonton games missed after the trade (16 players x 2 games x 2 points).
     hist = [snap("2026-09-29", 0, "VAN", False), snap("2026-10-02", 2, "EDM", True), snap("2026-10-05", 4, "EDM", True)]
     [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
-    assert w["bad_luck"] is None
+    assert w["bad_luck"]["value"] == pytest.approx(16 * 2 * 2.0) and w["bad_luck"]["games"] == 32
     # Same players, same team all week: 4 missed games x 2 points.
     hist = [snap("2026-09-29", 0, "EDM", False), snap("2026-10-02", 2, "EDM", True), snap("2026-10-05", 4, "EDM", True)]
     [w] = daily.weekly_awards(hist, D, "2026-09-29", "2026-10-05", CFG)
     assert w["bad_luck"]["value"] == pytest.approx(16 * 4 * 2.0)
+
+
+def test_week_games_counts_counted_healthy_players_left_this_week():
+    D = _draft()
+    people = D.set_index("playerId")[["name", "pos"]].assign(nhl_team="EDM", injury=None)
+    # Wednesday Oct 7 2026 (week Mon 5 to Sun 11); EDM plays Mon, Wed, Fri, Sun, and next Tue.
+    T = pd.DataFrame({"all_dates": [["2026-10-05", "2026-10-07", "2026-10-09", "2026-10-11", "2026-10-13"]]}, index=["EDM"])
+    counts = set(D.loc[(D.manager_id == 1) & (D["round"].isin([1, 2, 9])), "playerId"])
+    people.loc[D.loc[(D.manager_id == 1) & (D["round"] == 2), "playerId"], "injury"] = "IR"  # out: not counted
+    w = daily.week_games(D, people, T, counts, today="2026-10-07", as_of="2026-10-06")
+    assert (w["start"], w["end"]) == ("2026-10-05", "2026-10-11")
+    assert w["managers"]["1"] == {"left": 2 * 3, "total": 2 * 4}   # 2 healthy counted players: Wed, Fri, Sun left
+    assert w["managers"]["2"] == {"left": 0, "total": 0}           # nobody counted
+
+
+def _snap(day, ranks, points, win, players=None):
+    return {"date": day, "managers": {str(m): {"rank": ranks[m - 1], "points": points[m - 1], "win_pct": win[m - 1],
+                                               "expected_total": 900} for m in range(1, 13)},
+            "players": players or {}}
+
+
+def test_headline_tells_the_story():
+    D = _draft()
+    people = D.set_index("playerId")[["name"]]
+    r0 = list(range(1, 13))
+    r1 = [2, 5, 3, 4, 1] + list(range(6, 13))  # team 5 jumps from 5th to 1st, team 1 drops to 2nd
+    prev = _snap("2026-10-06", r0, [50] * 12, [10.0] * 12, {"105": [3, 2, None, 1, 2], "101": [0, 2, None, 1, 2]})
+    cur = _snap("2026-10-07", r1, [52, 40, 45, 44, 55] + [30] * 7, [9.0, 8, 8, 8, 16.5] + [8] * 7,
+                {"105": [8, 3, None, 1, 3], "101": [0, 2, "IR", 1, 3]})
+    lines = daily.headline(cur, prev, D, people, evening=False)
+    assert lines[0] == "M5 prend la tête du classement."
+    assert "P1-5 (M1) : 5 points hier soir." in lines                   # player 105 went from 3 to 8
+    assert any("passent de 10,0 % à 16,5 %" in x for x in lines)
+    assert "P1-1 (M1) est maintenant blessé." in lines
+    assert len(lines) <= 4 and daily.headline(cur, None, D, people, False) == []
+
+
+def test_season_awards():
+    D = _draft()
+    pl = lambda pts, hurt=None, tgp=0, gp=0: {str(p): [pts.get(p, 0), gp, hurt if p == 102 else None, 1.5, tgp, "EDM"]
+                                              for p in D["playerId"]}
+    pre = _snap("2026-09-29", list(range(1, 13)), [0] * 12, [8.0] * 12, pl({}))
+    d1 = _snap("2026-10-01", [1, 2] + list(range(3, 13)), [10, 8] + [5] * 10, [9.0] * 12, pl({112: 6, 201: 9, 101: 0}, "IR", 2))
+    d2 = _snap("2026-10-02", [2, 1] + list(range(3, 13)), [12, 13] + [6] * 10, [9.0] * 12, pl({112: 7, 201: 12, 101: 0}, "IR", 4))
+    a = {x["key"]: x for x in daily.season_awards([pre, d1, d2], D, CFG)}
+    assert a["player"]["nhl_id"] == 201                        # most points
+    assert a["pick"]["nhl_id"] == 112 and a["pick"]["round"] == 12
+    assert a["bust"]["round"] <= 3
+    assert a["bad_luck"]["manager_id"] == 1 and a["bad_luck"]["value"] == 4   # player 102 missed 2 + 2 games
+    assert a["bad_luck"]["worst"] == {"nhl_id": 102, "games": 4}
+    assert a["king"]["manager_id"] in (1, 2) and a["king"]["value"] == 1 and a["king"]["mornings"] == 2
+    assert a["rollercoaster"]["value"] == 1                      # teams 1 and 2 swapped once
+    assert daily.season_awards([pre], D, CFG) == []            # nothing before the first game
+
+
+def test_checks_catch_a_drafted_player_without_a_known_team():
+    D = _draft()
+    teams = pd.Series("EDM", index=D["playerId"])
+    assert _checks(teams=teams, nhl={"EDM", "TBL"}) == []
+    teams.iloc[3] = "TB"  # the draft file's short code: no schedule would match
+    assert any("without a known NHL team" in p and "'TB'" in p for p in _checks(teams=teams, nhl={"EDM", "TBL"}))
+    assert daily.TEAM_ALIAS["TB"] == "TBL" and set(daily.TEAM_ALIAS.values()) <= {"TBL", "NJD", "LAK", "SJS"}

@@ -1,7 +1,9 @@
 # Daily pool update: real points, updated projections and odds, then publish the site to GitHub Pages.
 # Runs at 5:30 in Toronto year-round, with retries at 6:30 and 7:30 if the 5:30 update did not get saved
-# (a source down, NHL stats late). GitHub cron has no time zones, so it is scheduled every hour from
-# 9:30 to 12:30 UTC and scripts/gate.py keeps the right runs. Scheduled runs can start 5 to 30 minutes late.
+# (a source down, NHL stats late), plus an evening update at 22:00 that adds the day's finished games to
+# the site (the morning run stays the official record in data/history). GitHub cron has no time zones, so
+# it is scheduled at every possible UTC hour and scripts/gate.py keeps the right runs. Scheduled runs can
+# start 5 to 30 minutes late.
 name: Daily update
 
 on:
@@ -10,7 +12,15 @@ on:
     - cron: "30 10 * * *"
     - cron: "30 11 * * *"
     - cron: "30 12 * * *"
+    - cron: "0 2 * * *"
+    - cron: "0 3 * * *"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "morning (official, writes history) or evening (adds today's finished games)"
+        type: choice
+        options: [morning, evening]
+        default: morning
 
 concurrency:
   group: daily
@@ -26,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       run: ${{ steps.gate.outputs.run }}
+      mode: ${{ steps.gate.outputs.mode }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,6 +47,7 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           SCHEDULE: ${{ github.event.schedule }}
+          MODE: ${{ inputs.mode }}
         run: python3 scripts/gate.py data/history >> "$GITHUB_OUTPUT"
 
   update:
@@ -67,7 +79,7 @@ jobs:
       - run: uv sync
 
       - name: Real points, projections, odds, history
-        run: uv run python -m nhlpool.daily
+        run: uv run python -m nhlpool.daily ${{ needs.gate.outputs.mode == 'evening' && '--evening' || '' }}
 
       - name: Tests
         run: uv run pytest -q tests/test_site_ids.py tests/test_scoring.py tests/test_daily.py tests/test_gate.py
@@ -106,7 +118,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   save:
-    needs: deploy
+    needs: [gate, deploy]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -120,6 +132,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/history site/data/pool.json
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
-          git commit -m "Daily update $(TZ=America/Toronto date +%F)"
+          git commit -m "${{ needs.gate.outputs.mode == 'evening' && 'Evening' || 'Daily' }} update $(TZ=America/Toronto date +%F)"
           git pull --rebase
           git push

@@ -2,8 +2,9 @@
 
 Browser tab (app/favicon.ico, 16/32/48): a pixel "P" in Silkscreen Bold over a red bar, drawn pixel-exact at
 each size. The skater sprite is too detailed to read at tab size.
-Home screen (app/apple-icon.png 180, also used by Android): the CC0 skater sprite (see make_jerseys.py) in a white
-jersey with black trim and red stripes.
+Home screen: the CC0 skater sprite (see make_jerseys.py) in a white jersey with black trim and red stripes.
+app/apple-icon.png (180, iPhone) and public/icons/ for Android via app/manifest.ts: 192 and 512, plus a 512
+"maskable" one with more margin, since Android crops home-screen icons to a circle or squircle.
 Run from site/scripts/: python3 make_favicon.py
 """
 
@@ -50,7 +51,11 @@ def main():
     tabs = [tab_icon(n) for n in sizes]
     tabs[-1].save(ROOT / "app/favicon.ico", sizes=[(n, n) for n in sizes], append_images=tabs[:-1])
     skater_icon(180, 0.14, rounded=False).save(ROOT / "app/apple-icon.png")  # iOS rounds the corners itself
-    print("app/favicon.ico, app/apple-icon.png")
+    (ROOT / "public/icons").mkdir(parents=True, exist_ok=True)
+    skater_icon(192, 0.14, rounded=False).save(ROOT / "public/icons/icon-192.png")
+    skater_icon(512, 0.14, rounded=False).save(ROOT / "public/icons/icon-512.png")
+    skater_icon(512, 0.24, rounded=False).save(ROOT / "public/icons/icon-maskable-512.png")  # inside the safe zone
+    print("app/favicon.ico, app/apple-icon.png, public/icons/")
 
 
 if __name__ == "__main__":

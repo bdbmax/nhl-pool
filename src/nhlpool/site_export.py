@@ -82,7 +82,8 @@ def injury(espn_status, df_injury, df_ir) -> str | None:
     return None
 
 
-def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T, hist, awards, season, cfg) -> dict:
+def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T, hist, awards, season, cfg,
+            counts=None, stories=None, snap=None, previous=None, evening=False) -> dict:
     """Everything the site shows. Drafted players and the forgotten carry real stats and projections."""
     today = date.today()
     rl = real.reindex(people.index)
@@ -124,7 +125,7 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
         for pos, n in COUNTED.items():
             ps = sorted([p for p in roster if p["pos"] == pos], key=lambda p: -(p["proj"] or 0))
             for i, p in enumerate(ps):
-                p["counts"] = i < n
+                p["counts"] = (p["nhl_id"] in counts) if counts is not None else i < n
         players += roster
 
     # Draft value: real points (projection before the first game) vs the average of that round.
@@ -149,6 +150,11 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
                      "proj_consensus": num(m["proj_consensus"], 0), "expected_total": num(o["expected_total"], 0),
                      "expected_finish": num(o["expected_finish"], 2), "win_pct": num(o[1] * 100, 1),
                      "finish_odds": [num(o[k] * 100, 1) for k in range(1, len(managers) + 1)]})
+    # Arrows: places and win odds gained since the previous update (yesterday morning, or this morning at 10 pm).
+    for m in mgrs:
+        before = (previous or {}).get("managers", {}).get(str(m["id"]))
+        m["rank_change"] = (before["rank"] - m["rank"]) if before else 0
+        m["win_change"] = num(m["win_pct"] - before["win_pct"], 1) if before else 0
     mgrs.sort(key=lambda m: m["rank"])
 
     nhl_teams = pd.Series([p["nhl_team"] for p in players]).value_counts()
@@ -171,6 +177,10 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
         "history": [{"date": h["date"], "ranks": {k: v["rank"] for k, v in h["managers"].items()},
                      "points": {k: v["points"] for k, v in h["managers"].items()}} for h in hist],
         "awards": awards,
+        # "morning" (5:30, official) or "evening" (10 pm, today's finished games added).
+        "update": "evening" if evening else "morning",
+        "compared_to": (previous or {}).get("date"),
+        **(stories or {"headline": [], "week": None, "season_awards": []}),
     }
 
 

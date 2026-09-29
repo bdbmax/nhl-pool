@@ -44,6 +44,8 @@ export type Manager = {
   expected_finish: number
   win_pct: number
   finish_odds: number[]
+  rank_change: number // places gained since the previous update (negative: lost)
+  win_change: number // win odds change, in percentage points
 }
 
 export type Award = {
@@ -52,8 +54,21 @@ export type Award = {
   to: string
   pick: { nhl_id: number; manager_id: number; value: number; round: number } | null
   comeback: { manager_id: number; value: number; from: number; to: number } | null
-  bad_luck: { manager_id: number; value: number } | null
+  bad_luck: { manager_id: number; value: number; games?: number } | null
   drought: { manager_id: number; value: number }
+}
+
+// Trophées de la saison, recalculés chaque matin (daily.season_awards).
+export type SeasonAward = {
+  key: "player" | "pick" | "bust" | "bad_luck" | "king" | "rollercoaster"
+  manager_id: number
+  value: number
+  nhl_id?: number
+  round?: number
+  gap?: number
+  points?: number
+  mornings?: number
+  worst?: { nhl_id: number; games: number } | null
 }
 
 type Pool = {
@@ -65,6 +80,11 @@ type Pool = {
   real_weight_games: number
   history: { date: string; ranks: Record<string, number>; points: Record<string, number> }[]
   awards: Award[]
+  update: "morning" | "evening"
+  compared_to: string | null
+  headline: string[]
+  week: { start: string; end: string; managers: Record<string, { left: number; total: number }> } | null
+  season_awards: SeasonAward[]
   projection_sources: string[]
   generated: string
   season_started: boolean
