@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-09-29T14:32+00:00",
+ "generated": "2026-09-29T14:45+00:00",
  "as_of": "2026-09-28",
  "season_start": "2026-09-29",
  "season_started": false,
@@ -93,7 +93,7 @@
    "win_pct": 11.5,
    "finish_odds": [
     11.5,
-    11.0,
+    10.9,
     10.7,
     9.9,
     9.5,
@@ -205,7 +205,7 @@
     8.6,
     8.8,
     8.2,
-    8.1,
+    8.0,
     8.1,
     6.9
    ]
@@ -362,8 +362,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 146.9,
-   "proj_left": 146.9,
+   "proj": 146.8,
+   "proj_left": 146.8,
    "games_left": 82.0,
    "proj_gp": 82.0,
    "sources": {
@@ -377,7 +377,7 @@
    "round": 1,
    "overall": 1,
    "counts": true,
-   "vs_round": 28.7
+   "vs_round": 28.6
   },
   {
    "nhl_id": 8478420,
@@ -1109,7 +1109,7 @@
    "sources": {
     "ESPN": 61.1,
     "NHL.com": null,
-    "CBS": 47.3,
+    "CBS": 47.4,
     "HockeyBangers": null
    },
    "age": 25.3,
@@ -3013,9 +3013,9 @@
    "slug": "matthew-knies",
    "name": "Matthew Knies",
    "pos": "F",
-   "nhl_team": "TOR",
+   "nhl_team": "CBJ",
    "number": 23,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/TOR/8482720.png",
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8482720.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4874919.png",
    "injury": null,
    "points": 0,
@@ -6363,7 +6363,7 @@
    "sources": {
     "ESPN": 96.4,
     "NHL.com": 94.2,
-    "CBS": 109.6,
+    "CBS": 109.7,
     "HockeyBangers": 97.1
    },
    "age": 30.4,
@@ -8423,11 +8423,11 @@
    "count": 9
   },
   {
-   "team": "TOR",
-   "count": 9
+   "team": "DAL",
+   "count": 8
   },
   {
-   "team": "DAL",
+   "team": "TOR",
    "count": 8
   },
   {
@@ -8475,6 +8475,10 @@
    "count": 6
   },
   {
+   "team": "CBJ",
+   "count": 6
+  },
+  {
    "team": "STL",
    "count": 6
   },
@@ -8492,10 +8496,6 @@
   },
   {
    "team": "NSH",
-   "count": 5
-  },
-  {
-   "team": "CBJ",
    "count": 5
   },
   {
