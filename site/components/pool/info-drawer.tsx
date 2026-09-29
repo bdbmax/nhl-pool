@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import {
   Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger,
 } from "@/components/ui/drawer"
-import { listJoin, POOL } from "@/lib/pool"
+import { fmt, listJoin, MANAGERS, pct, POOL } from "@/lib/pool"
 
 const SOURCES = listJoin(POOL.projection_sources)
 const K = POOL.real_weight_games
+// Exemples tirés des chiffres du jour : l'équipe projetée au 1er rang.
+const LEAD = [...MANAGERS].sort((a, b) => a.proj_rank - b.proj_rank)[0]
 
 const TOPICS = {
   projected: {
@@ -25,7 +27,8 @@ const TOPICS = {
       "Pour les gardiens, la part des départs projetée est mise à jour avec sa vraie part des départs de son équipe.",
       "La projection finale, ce sont les vrais points récoltés, plus la projection des matchs restants. Les sources sont mises à jour chaque matin.",
       "Seuls les 6 meilleurs attaquants, les 4 meilleurs défenseurs et le meilleur gardien de chaque équipe comptent.",
-      "Les points projetés sont la moyenne de 20 000 saisons simulées. C'est un peu plus que la simple somme des projections, parce que les réservistes prennent le relais quand un joueur se blesse ou tombe en panne.",
+      "Pourquoi simuler 20 000 saisons plutôt qu'additionner les projections ? Parce qu'au pool, seuls les meilleurs comptent à la fin. Si un partant se blesse ou tombe en panne, un réserviste qui connaît une bonne saison prend sa place. La simple somme des projections ignore cette valeur du banc ; la simulation la compte.",
+      `Exemple : pour ${LEAD.name}, la somme des projections des 11 joueurs qui comptent donne ${fmt(LEAD.proj_consensus)} points, mais la moyenne des saisons simulées est de ${fmt(LEAD.expected_total)} points. La différence, c'est la profondeur de son banc.`,
     ],
   },
   odds: {
@@ -37,6 +40,8 @@ const TOPICS = {
       "La saison de chaque joueur est ensuite ajustée à la hausse ou à la baisse selon une vraie variation, tirée de l'évolution des joueurs de la LNH d'une saison à l'autre au cours des trois dernières saisons. Ça tient compte des blessures, des passages à vide, des éclosions et des gardiens qui perdent leur poste.",
       "Les alignements sont fixes, et seuls les 6 meilleurs attaquants, les 4 meilleurs défenseurs et le meilleur gardien comptent.",
       "Les odds de gagner, c'est la proportion des saisons simulées où l'équipe termine au premier rang.",
+      `Pourquoi pas juste les projections ? Une projection dit combien de points une équipe devrait faire, pas ses chances de finir premier. ${LEAD.name} est projeté au 1er rang, mais ne gagne que ${pct(LEAD.win_pct)} des saisons simulées : les autres équipes sont assez proches pour que les blessures et les séquences chaudes changent l'ordre.`,
+      "Avec 20 000 saisons, les pourcentages restent stables à environ un demi-point près d'un matin à l'autre. Quand ils bougent, c'est à cause des vrais matchs, pas du hasard de la simulation.",
       "Une fois la saison commencée, les points déjà récoltés sont comptés tels quels, et seuls les matchs restants sont projetés. La variation d'une saison à l'autre rétrécit avec la part de la saison qui reste. Les odds deviennent donc plus précises au fil de la saison.",
     ],
   },
@@ -61,12 +66,13 @@ export function InfoDrawer({ topic }: { topic: keyof typeof TOPICS }) {
         <CircleHelpIcon />
       </DrawerTrigger>
       <DrawerContent>
-        <div className="mx-auto w-full max-w-md">
+        {/* Titre et bouton fixes ; la liste défile entre les deux quand elle dépasse l'écran. */}
+        <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col">
           <DrawerHeader>
             <DrawerTitle>{t.title}</DrawerTitle>
             <DrawerDescription>{t.summary}</DrawerDescription>
           </DrawerHeader>
-          <ul className="flex list-disc flex-col gap-2 px-8 pb-2 text-sm text-muted-foreground">
+          <ul className="flex min-h-0 list-disc flex-col gap-2 overflow-y-auto overscroll-contain px-8 pb-2 text-sm text-muted-foreground">
             {t.points.map((p) => <li key={p}>{p}</li>)}
           </ul>
           <DrawerFooter>
