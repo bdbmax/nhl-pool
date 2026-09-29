@@ -71,8 +71,8 @@ export default function StandingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Classement au fil de la saison</CardTitle>
-          <CardDescription>Le rang de chaque équipe, jour après jour.</CardDescription>
+          <CardTitle>Au fil de la saison</CardTitle>
+          <CardDescription>Le rang et les odds de gagner de chaque équipe, matin après matin.</CardDescription>
           <CardAction><TrendingUpIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
         </CardHeader>
         <CardContent>

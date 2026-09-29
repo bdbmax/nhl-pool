@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { InfoDrawer } from "@/components/pool/info-drawer"
 import { PlayerAvatar } from "@/components/pool/player-avatar"
+import { TeamOddsChart } from "@/components/pool/rank-chart"
 import { TeamAvatar, TeamCode } from "@/components/pool/team-avatar"
 import {
   countedProjection, fmt, injuryLabel, managerById, MANAGERS, ord, pct, POOL, POSITIONS, rosterOf, signed, statLine,
@@ -115,6 +116,17 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
           )
         })}
       </Tabs>
+
+      {started && POOL.history.length > 1 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Odds au fil de la saison</CardTitle>
+            <CardDescription>Ses odds de gagner le pool, matin après matin. Les autres équipes sont en gris.</CardDescription>
+            <CardAction><InfoDrawer topic="odds" /></CardAction>
+          </CardHeader>
+          <CardContent><TeamOddsChart id={m.id} /></CardContent>
+        </Card>
+      )}
 
       <Card>
         <CardHeader>

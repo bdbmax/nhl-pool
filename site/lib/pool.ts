@@ -78,7 +78,8 @@ type Pool = {
   games_played: number
   season_games: number
   real_weight_games: number
-  history: { date: string; ranks: Record<string, number>; points: Record<string, number> }[]
+  // One entry per morning (data/history): rank, real points and win odds (%) per manager id.
+  history: { date: string; ranks: Record<string, number>; points: Record<string, number>; win: Record<string, number> }[]
   awards: Award[]
   update: "morning" | "evening"
   compared_to: string | null
