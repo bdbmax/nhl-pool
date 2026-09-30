@@ -6,10 +6,11 @@ import { Line, LineChart, XAxis, YAxis } from "recharts"
 import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/chart"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { TeamMark } from "@/components/pool/team-avatar"
 import { dayLabel, fmt, MANAGERS, ord, pct, POOL } from "@/lib/pool"
 
-// Le rang ou les odds de gagner de chaque équipe, matin après matin (data/history). Douze lignes, c'est trop
-// pour douze couleurs : les équipes sont en gris fin, et celle qu'on choisit ressort (le meneur par défaut).
+// Le rang ou les odds de gagner de chaque équipe, matin après matin (data/history). Chaque ligne est à la couleur
+// de son équipe (--team-N) : les autres, fines et pâles ; celle qu'on choisit ressort (le meneur par défaut).
 type Metric = "rank" | "odds"
 const teams = [...MANAGERS].sort((a, b) => a.rank - b.rank)
 const items = teams.map((m) => ({ label: m.name, value: String(m.id) }))
@@ -38,7 +39,7 @@ function Tip({ active, label, focus }: { active?: boolean; label?: string; focus
   return (
     <div className="rounded-lg border bg-background px-2.5 py-1.5 text-xs shadow-xl">
       <div className="font-medium">{dayLabel(label)}</div>
-      <div className="text-muted-foreground">{name} : {ord(h.ranks[focus])} rang, {fmt(h.points[focus])} pts</div>
+      <div className="text-muted-foreground"><TeamMark id={Number(focus)} /> {name} : {ord(h.ranks[focus])} rang, {fmt(h.points[focus])} pts</div>
       {h.win && <div className="text-muted-foreground">Odds de gagner : {pct(h.win[focus])}</div>}
     </div>
   )
@@ -59,10 +60,13 @@ function Lines({ metric, focus }: { metric: Metric; focus: string }) {
         )}
         <ChartTooltip cursor content={<Tip focus={focus} />} />
         {teams.filter((m) => String(m.id) !== focus).map((m) => (
-          <Line key={m.id} dataKey={`t${m.id}`} type="linear" stroke="var(--muted-foreground)" strokeOpacity={0.3} strokeWidth={1.5}
+          <Line key={m.id} dataKey={`t${m.id}`} type="linear" stroke={`var(--team-${m.id})`} strokeOpacity={0.45} strokeWidth={1.5}
             dot={false} activeDot={false} isAnimationActive={false} />
         ))}
-        <Line dataKey={`t${focus}`} type="linear" stroke="var(--color-focus)" strokeWidth={2.5}
+        {/* Les couleurs d'équipe sont pâles : un contour de la même teinte, plus foncé, fait ressortir la ligne choisie. */}
+        <Line dataKey={`t${focus}`} type="linear" stroke={`color-mix(in oklch, var(--team-${focus}), black 45%)`} strokeWidth={4.5}
+          dot={false} activeDot={false} isAnimationActive={false} />
+        <Line dataKey={`t${focus}`} type="linear" stroke={`var(--team-${focus})`} strokeWidth={2.5}
           dot={false} activeDot={{ r: 4, strokeWidth: 2, stroke: "var(--background)" }} isAnimationActive={false} />
       </LineChart>
     </ChartContainer>
@@ -85,7 +89,7 @@ export function RankChart() {
         <SelectTrigger aria-label="Équipe en évidence" className="w-full"><SelectValue /></SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {items.map((i) => <SelectItem key={i.value} value={i.value}>{i.label}</SelectItem>)}
+            {items.map((i) => <SelectItem key={i.value} value={i.value}><TeamMark id={Number(i.value)} /> {i.label}</SelectItem>)}
           </SelectGroup>
         </SelectContent>
       </Select>
