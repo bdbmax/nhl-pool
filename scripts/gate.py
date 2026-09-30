@@ -1,11 +1,12 @@
 """Should this GitHub Actions run update the site, and how? Prints run=true/false and mode=morning/evening
 for $GITHUB_OUTPUT.
 
-The workflow is scheduled at 9:30, 10:30, 11:30 and 12:30 UTC because GitHub cron has no time zones.
-The run whose scheduled time is 5:30 in Toronto always updates (EDT or EST). The ones at 6:30 and 7:30
-Toronto are retries: they update only if that morning's history file is not saved yet (the 5:30 run failed
-or never started). The run whose scheduled time is 22:00 in Toronto is the evening update (cron 2:00 and
-3:00 UTC, the next UTC day): today's finished games, site only. Manual runs are morning updates.
+GitHub cron has no time zones, so the workflow lists every UTC time that can be the right local time.
+Mornings: the run scheduled at 5:xx in Toronto always updates (EDT or EST); 6:xx and 7:xx are retries that
+update only if that morning's history file is not saved yet (5:xx failed or never started).
+Evenings: runs scheduled between 22:00 and 23:29 in Toronto are evening updates (today's finished games,
+site only); there are several, so a skipped or failed one is covered and later ones add games that ended
+since. Their UTC times fall on the next UTC day. Manual runs are morning updates unless MODE says otherwise.
 Standard library only (runs before Python is set up).
 """
 import os
@@ -33,8 +34,8 @@ def decide_mode(event: str, schedule: str, now_utc: datetime, history: Path) -> 
         return True, f"scheduled {label}: the morning update", "morning"
     if planned.hour in (6, 7):
         return (not saved), f"scheduled {label}: retry, today's update {'already saved' if saved else 'missing'}", "morning"
-    if planned.hour == 22:
-        return True, f"scheduled {label}: the evening update", "evening"
+    if planned.hour == 22 or (planned.hour == 23 and planned.minute < 30):
+        return True, f"scheduled {label}: an evening update", "evening"
     return False, f"scheduled {label}: not an update slot", "morning"
 
 
