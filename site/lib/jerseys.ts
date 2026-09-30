@@ -40,3 +40,13 @@ export function standingsOrder() {
 export function skaterStyle(up: number, down: number) {
   return `html[data-skin="retro"]{--skater-up:${jerseyImage(up, "up")};--skater-down:${jerseyImage(down, "down")}}`
 }
+
+// En Rétro, la couleur d'une équipe (--team-N, p. ex. sa ligne dans « Au fil de la saison ») est celle de son chandail.
+// Un chandail blanc ne se verrait pas sur le papier : on prend alors sa bordure.
+export function teamColorStyle() {
+  const vars = MANAGERS.map((m) => {
+    const j = jerseyOf(m.id)
+    return `--team-${m.id}:${contrast(j.main, "#fffdf7") >= 1.5 ? j.main : j.trim}`
+  })
+  return `html[data-skin="retro"]{${vars.join(";")}}`
+}

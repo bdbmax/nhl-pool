@@ -4,7 +4,8 @@ import {
 } from "lucide-react"
 
 // One emblem and one color per team, keyed by draft slot (1-12). Colors are theme
-// variables (--team-N in app/globals.css), with lighter versions in dark mode.
+// variables (--team-N in app/globals.css), with lighter versions in dark mode. In Rétro,
+// --team-N is the jersey color instead (teamColorStyle in lib/jerseys.ts).
 // Class names are written out in full so Tailwind can find them.
 export const EMBLEMS: Record<number, { icon: LucideIcon; label: string; bg: string; text: string }> = {
   1: { icon: CrownIcon, label: "Couronne", bg: "bg-team-1", text: "text-team-1" },

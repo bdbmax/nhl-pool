@@ -6,7 +6,7 @@ import "./skins.css"
 import { BottomNav, TopNav } from "@/components/pool/nav"
 import { ThemeToggle } from "@/components/pool/theme-toggle"
 import { ThemeProvider } from "@/components/theme-provider"
-import { skaterStyle, standingsOrder } from "@/lib/jerseys"
+import { skaterStyle, standingsOrder, teamColorStyle } from "@/lib/jerseys"
 import { SKIN_BOOT } from "@/lib/skins"
 import { cn } from "@/lib/utils"
 
@@ -53,6 +53,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: SKIN_BOOT }} />
         {/* Rétro : le meneur remonte la glace, le 2e la descend. Une page d'équipe met l'équipe à la place du meneur. */}
         <style dangerouslySetInnerHTML={{ __html: skaterStyle(standingsOrder()[0].id, standingsOrder()[1].id) }} />
+        {/* Rétro : chaque équipe prend la couleur de son chandail (les lignes du graphique « Au fil de la saison »). */}
+        <style dangerouslySetInnerHTML={{ __html: teamColorStyle() }} />
       </head>
       <body>
         <ThemeProvider>
