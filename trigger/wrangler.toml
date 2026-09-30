@@ -1,0 +1,7 @@
+# Only needed to deploy from the command line (npx wrangler deploy); the dashboard works too.
+name = "nhlpool-trigger"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[triggers]
+crons = ["5,35 * * * *"]
