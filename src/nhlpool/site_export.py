@@ -121,9 +121,10 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
             p = player(r["playerId"])
             p.update({"manager_id": int(mid), "round": int(r["round"]), "overall": int(r["overall"])})
             roster.append(p)
-        # Who counts: best 6 F, 4 D, 1 G by projected final total (real points + rest of season).
+        # Who counts: best 6 F, 4 D, 1 G by pool points so far, as in the standings; ties go to the better
+        # projected final total (real points + rest of season). daily.counted_players, when given.
         for pos, n in COUNTED.items():
-            ps = sorted([p for p in roster if p["pos"] == pos], key=lambda p: -(p["proj"] or 0))
+            ps = sorted([p for p in roster if p["pos"] == pos], key=lambda p: (-p["points"], -(p["proj"] or 0)))
             for i, p in enumerate(ps):
                 p["counts"] = (p["nhl_id"] in counts) if counts is not None else i < n
         players += roster

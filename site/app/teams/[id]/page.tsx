@@ -90,14 +90,19 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
           ))}
         </TabsList>
         {POSITIONS.map((c) => {
-          const ps = roster.filter((p) => p.pos === c.pos).sort((a, b) => (b.proj ?? 0) - (a.proj ?? 0))
+          // Ceux qui comptent d'abord, par points de pool, puis par projection finale en cas d'égalité (comme les badges).
+          const ps = roster.filter((p) => p.pos === c.pos)
+            .sort((a, b) => (b.counts ? 1 : 0) - (a.counts ? 1 : 0) || b.points - a.points || (b.proj ?? 0) - (a.proj ?? 0))
           const n = POOL.rules.counted[c.pos]
+          const best = fmt(countedProjection(m.id, c.pos))
+          const top = `${n === 1 ? "Le meilleur" : `Les ${n} meilleurs`} sur ${POOL.rules.drafted[c.pos]}`
           return (
             <TabsContent key={c.pos} value={c.pos} className="flex flex-col gap-3">
               <p className="text-sm text-muted-foreground">
-                {n === 1 ? "Le meilleur" : `Les ${n} meilleurs`} sur {POOL.rules.drafted[c.pos]}{" "}
-                {n === 1 ? "compte" : "comptent"}, pour une projection de {fmt(countedProjection(m.id, c.pos))} points
-                {started ? " d'ici la fin de la saison (vrais points compris)" : ""}. Les autres servent de réserve.
+                {started
+                  ? `${top} ${n === 1 ? "compte, selon ses" : "comptent, selon leurs"} points de pool jusqu'ici. Les autres servent de réserve. `
+                    + (n === 1 ? `La meilleure projection finale est de ${best} points.` : `Les ${n} meilleures projections finales totalisent ${best} points.`)
+                  : `${top} ${n === 1 ? "compte" : "comptent"}, pour une projection de ${best} points. Les autres servent de réserve.`}
               </p>
               <ItemGroup>
                 {ps.map((p) => {

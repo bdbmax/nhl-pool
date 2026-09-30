@@ -427,11 +427,12 @@ def weekly_awards(hist: list[dict], D: pd.DataFrame, season_start: str, today: s
 HURT = ("IR", "Out", "Day-to-day")
 
 
-def counted_players(D: pd.DataFrame, final: pd.Series) -> set:
-    """Who counts: best 6 F, 4 D, 1 G per manager by projected final total (as on the site)."""
-    x = D.assign(v=D["playerId"].map(final).fillna(0.0))
+def counted_players(D: pd.DataFrame, points: pd.Series, final: pd.Series) -> set:
+    """Who counts: best 6 F, 4 D, 1 G per manager by pool points so far, as in the standings; ties go to the
+    better projected final total. Before the first game that is the projection alone."""
+    x = D.assign(v=D["playerId"].map(points).fillna(0.0), f=D["playerId"].map(final).fillna(0.0))
     return {pid for _, t in x.groupby("manager_id") for p, n in COUNTED.items()
-            for pid in t[t.pos == p].sort_values("v", ascending=False)["playerId"].head(n)}
+            for pid in t[t.pos == p].sort_values(["v", "f"], ascending=False)["playerId"].head(n)}
 
 
 def week_games(D: pd.DataFrame, people: pd.DataFrame, T: pd.DataFrame, counts: set, today: str, as_of: str) -> dict:
@@ -643,9 +644,9 @@ def _pct(x: float) -> str:
     return f"{x:.1f}".replace(".", ",") + "\u00a0%"
 
 
-def season_awards(hist: list[dict], D: pd.DataFrame, cfg: dict) -> list[dict]:
+def season_awards(hist: list[dict], D: pd.DataFrame, cfg: dict, final: pd.Series | None = None) -> list[dict]:
     """The season so far, recomputed every morning from data/history (empty before the first game).
-    Each award is a top 3 ("podium")."""
+    Each award is a top 3 ("podium"). final (projected final totals) breaks ties on who counts, as on the site."""
     snaps = [h for h in sorted(hist, key=lambda h: h["date"])]
     live = [h for h in snaps if any(v["points"] > 0 for v in h["managers"].values())]
     if not live:
@@ -673,10 +674,10 @@ def season_awards(hist: list[dict], D: pd.DataFrame, cfg: dict) -> list[dict]:
     wild = _top(swings, keep=lambda v: v > 0, tie=rank_now)
     if wild:
         out.append({"key": "rollercoaster", "podium": [{"manager_id": int(k), "value": int(swings[k])} for k in wild]})
-    # Banc en or: points by players who do not count today (all 16 minus the best 6 F, 4 D, 1 G).
+    # Banc en or: points by players who do not count today (all 16 minus the best 6 F, 4 D, 1 G: the "Banc" badges).
+    counted = counted_players(D, pts.set_index("playerId")["p"], final if final is not None else pd.Series(dtype=float))
     bench, best_bench = {}, {}
     for mid, t in pts.groupby("manager_id"):
-        counted = {pid for p, n in COUNTED.items() for pid in t[t.pos == p].sort_values("p", ascending=False)["playerId"].head(n)}
         rest = t[~t["playerId"].isin(counted)].sort_values("p", ascending=False)
         bench[str(mid)] = int(rest["p"].sum())
         best_bench[str(mid)] = rest.iloc[0] if len(rest) else None
@@ -837,7 +838,7 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
     if not evening:
         hist.append(snap)
     awards = weekly_awards(hist, D, site_export.season_start(season), today, cfg)
-    counts = counted_players(D, final)
+    counts = counted_players(D, real_fp, final)
     # Past midnight a same-day update is still about the evening before (evening_day), but it is a new day on
     # the clock: "since" counts from the real date, and "Aujourd'hui" shows the games of the day that started.
     now = date.fromisoformat(today) if replay else toronto_today()
@@ -850,7 +851,7 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
         "tonight": tonight(D, people, T, counts, now.isoformat()),
         "hot_cold": hot_cold(hist, D),
         "player_weeks": player_weeks(hist, D),
-        "season_awards": season_awards(hist, D, cfg),
+        "season_awards": season_awards(hist, D, cfg, final),
     }
 
     stories["race"] = race(M, stories["pace"], T, as_of) if started else None

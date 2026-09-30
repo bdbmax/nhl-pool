@@ -288,6 +288,33 @@ def test_bench_award_counts_points_left_on_the_bench():
     assert a["bench"] == [{"manager_id": 3, "value": 7, "best": {"nhl_id": fwd[6], "points": 4}}]
 
 
+def test_counted_players_follow_pool_points_then_projection():
+    D = _draft()
+    g1, g2 = D.loc[(D.manager_id == 1) & (D.pos == "G"), "playerId"]
+    fwd = D.loc[(D.manager_id == 1) & (D.pos == "F"), "playerId"].tolist()
+    points = pd.Series({g2: 2.0, fwd[7]: 1.0})   # the second goalie won his start; the 8th forward has an assist
+    final = pd.Series({g1: 70.6, g2: 70.3, **{p: 100.0 - i for i, p in enumerate(fwd)}})
+    counts = daily.counted_players(D, points, final)
+    assert g2 in counts and g1 not in counts     # 2 points beat a better projection
+    assert {p for p in fwd if p in counts} == {*fwd[:5], fwd[7]}   # the rest are tied at 0: best projections
+    # The counted players' points add up to the standings.
+    x = D.assign(v=D["playerId"].map(points).fillna(0.0))
+    assert x[x.playerId.isin(counts)].groupby("manager_id")["v"].sum().to_dict() == daily.best_ball(D, points).to_dict()
+    # Before the first game: the projection alone.
+    assert {p for p in fwd if p in daily.counted_players(D, pd.Series(dtype=float), final)} == set(fwd[:6])
+
+
+def test_bench_award_breaks_ties_like_the_badges():
+    D = _draft()
+    # Team 3: 7 forwards with 1 point each; the one with the worst projection (round 1 here) sits on the bench.
+    fwd = D[(D.manager_id == 3) & (D.pos == "F")].sort_values("round")["playerId"].tolist()
+    players = {str(p): [1 if p in fwd[:7] else 0, 1, None, 1.0, 1, "EDM"] for p in D["playerId"]}
+    snap = _snap("2026-10-02", list(range(1, 13)), [6 if m == 3 else 0 for m in range(1, 13)], [8.0] * 12, players)
+    final = pd.Series({p: 50.0 + i for i, p in enumerate(fwd)})
+    a = {x["key"]: x["podium"] for x in daily.season_awards([snap], D, CFG, final)}
+    assert a["bench"] == [{"manager_id": 3, "value": 1, "best": {"nhl_id": fwd[0], "points": 1}}]
+
+
 def test_tonight_lists_players_with_a_game_today_counted_first():
     D = _draft()
     people = D.set_index("playerId")[["pos"]].assign(nhl_team="MTL")

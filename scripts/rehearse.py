@@ -202,6 +202,8 @@ def check(day: str, out: Path, prev: dict | None, evening: bool = False) -> dict
     counted = pd.DataFrame(d["players"]).groupby(["manager_id", "pos"])["counts"].sum()
     assert (counted.xs("F", level="pos") == 6).all() and (counted.xs("D", level="pos") == 4).all()
     assert (counted.xs("G", level="pos") == 1).all()
+    for m in d["managers"]:  # the "Compte" badges add up to the standings
+        assert m["points"] == sum(p["points"] for p in d["players"] if p["manager_id"] == m["id"] and p["counts"]), m["name"]
     if prev:
         before = {m["id"]: m["points"] for m in prev["managers"]}
         assert all(m["points"] >= before[m["id"]] for m in d["managers"]), "a team lost points"

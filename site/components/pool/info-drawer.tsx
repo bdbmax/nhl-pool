@@ -28,7 +28,7 @@ const TOPICS = {
       "La projection finale, ce sont les vrais points récoltés, plus la projection des matchs restants. Les sources sont mises à jour chaque matin.",
       "Seuls les 6 meilleurs attaquants, les 4 meilleurs défenseurs et le meilleur gardien de chaque équipe comptent.",
       "Pourquoi simuler 20 000 saisons plutôt qu'additionner les projections ? Parce qu'au pool, seuls les meilleurs comptent à la fin. Si un partant se blesse ou tombe en panne, un réserviste qui connaît une bonne saison prend sa place. La simple somme des projections ignore cette valeur du banc ; la simulation la compte.",
-      `Exemple : pour ${LEAD.name}, la somme des projections des 11 joueurs qui comptent donne ${fmt(LEAD.proj_consensus)} points, mais la moyenne des saisons simulées est de ${fmt(LEAD.expected_total)} points. La différence, c'est la profondeur de son banc.`,
+      `Exemple : pour ${LEAD.name}, la somme des projections de ses 11 meilleurs joueurs (6 attaquants, 4 défenseurs et 1 gardien) donne ${fmt(LEAD.proj_consensus)} points, mais la moyenne des saisons simulées est de ${fmt(LEAD.expected_total)} points. La différence, c'est la profondeur de son banc.`,
     ],
   },
   odds: {

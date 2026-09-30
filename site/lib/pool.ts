@@ -186,10 +186,13 @@ export function gameTime(iso: string | null) {
     .replace(/ h 00$/, " h")
 }
 
-// Total compté : 6 meilleurs attaquants, 4 défenseurs et 1 gardien, selon la projection finale
-// (vrais points jusqu'ici + projection des matchs restants).
+// Total compté projeté : les 6 meilleurs attaquants, 4 défenseurs et 1 gardien selon la projection finale
+// (vrais points jusqu'ici + projection des matchs restants). Les badges « Compte », eux, suivent les points de pool.
 export function countedProjection(id: number, pos?: Pos) {
-  return rosterOf(id).filter((p) => p.counts && (!pos || p.pos === pos)).reduce((s, p) => s + (p.proj ?? 0), 0)
+  return POSITIONS.filter((c) => !pos || c.pos === pos).reduce((s, c) => {
+    const best = rosterOf(id).filter((p) => p.pos === c.pos).map((p) => p.proj ?? 0).sort((a, b) => b - a)
+    return s + best.slice(0, POOL.rules.counted[c.pos]).reduce((t, v) => t + v, 0)
+  }, 0)
 }
 
 // Nombres à la québécoise : virgule décimale, espace avant le %.
