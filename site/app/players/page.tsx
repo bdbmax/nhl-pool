@@ -1,6 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Item, ItemActions, ItemContent, ItemGroup, ItemMedia, ItemTitle } from "@/components/ui/item"
-import { Progress } from "@/components/ui/progress"
+import { ItemGroup } from "@/components/ui/item"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { PageHeader } from "@/components/pool/page-header"
 import { PlayerRow } from "@/components/pool/player-row"
@@ -26,7 +25,6 @@ export default function PlayersPage() {
   const key = (p: { points: number; proj: number | null }) => (POOL.season_started ? p.points : p.proj ?? 0)
   const top = [...PLAYERS, ...POOL.forgotten].sort((a, b) => key(b) - key(a)).slice(0, 25)
   const injured = PLAYERS.filter((p) => p.injury).sort((a, b) => (b.proj ?? 0) - (a.proj ?? 0))
-  const maxTeam = POOL.nhl_teams[0]?.count ?? 1
   const label = POOL.season_started ? PTS : "proj."
 
   return (
@@ -37,7 +35,6 @@ export default function PlayersPage() {
           <TabsTrigger value="top">Top</TabsTrigger>
           <TabsTrigger value="form">Forme</TabsTrigger>
           <TabsTrigger value="forgotten">Forgotten</TabsTrigger>
-          <TabsTrigger value="nhl">NHL teams</TabsTrigger>
           <TabsTrigger value="injuries">Injuries</TabsTrigger>
         </TabsList>
 
@@ -101,26 +98,6 @@ export default function PlayersPage() {
               <ItemGroup>
                 {POOL.forgotten.map((p, i) => (
                   <PlayerRow key={p.nhl_id} player={p} rank={i + 1} value={key(p)} valueLabel={label} />
-                ))}
-              </ItemGroup>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="nhl">
-          <Card>
-            <CardHeader>
-              <CardTitle>Équipes de la LNH les plus repêchées</CardTitle>
-              <CardDescription>Nombre de joueurs repêchés dans chaque équipe de la LNH.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ItemGroup>
-                {POOL.nhl_teams.map((t) => (
-                  <Item key={t.team} size="sm">
-                    <ItemMedia className="w-10 justify-start text-sm font-medium">{t.team}</ItemMedia>
-                    <ItemContent><Progress value={(t.count / maxTeam) * 100} aria-label={`${t.team} : ${t.count} joueurs`} /></ItemContent>
-                    <ItemActions><span className="w-6 text-right text-sm tabular-nums">{t.count}</span></ItemActions>
-                  </Item>
                 ))}
               </ItemGroup>
             </CardContent>

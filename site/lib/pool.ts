@@ -224,11 +224,3 @@ export function statLine(p: Player) {
 export function seasonStartLabel() {
   return new Date(`${POOL.season_start}T12:00:00Z`).toLocaleDateString("fr-CA", FR_DAY)
 }
-
-// Premier lundi au moins six jours après le début de la saison : remise des premiers trophées.
-export function firstAwardsLabel() {
-  const d = new Date(`${POOL.season_start}T12:00:00Z`)
-  d.setUTCDate(d.getUTCDate() + 6)
-  while (d.getUTCDay() !== 1) d.setUTCDate(d.getUTCDate() + 1)
-  return d.toLocaleDateString("fr-CA", { weekday: "long", ...FR_DAY })
-}

@@ -4,15 +4,13 @@ import {
 } from "lucide-react"
 
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty"
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle } from "@/components/ui/item"
 import { PageHeader } from "@/components/pool/page-header"
 import { HeadToHead } from "@/components/pool/head-to-head"
 import { PlayerRow } from "@/components/pool/player-row"
 import { TeamAvatar } from "@/components/pool/team-avatar"
 import {
-  type Award, dayLabel, firstAwardsLabel, fmt, managerById, ord, playerById, POOL, type SeasonAward, type SeasonEntry,
-  PTS, seasonStartLabel,
+  type Award, dayLabel, fmt, managerById, ord, playerById, POOL, type SeasonAward, type SeasonEntry, PTS,
 } from "@/lib/pool"
 
 // Chaque trophée est un classement : les 3 premiers, le 1er en évidence.
@@ -162,7 +160,7 @@ export default function AwardsPage() {
           : "Les honneurs de la semaine, remis chaque lundi."}
       />
 
-      {latest ? (
+      {latest && (
         <div className="grid gap-3 sm:grid-cols-2">
           {WEEKLY.map((a) => (
             <AwardCard key={a.key} title={a.title} description={a.description} icon={a.icon}>
@@ -170,16 +168,6 @@ export default function AwardsPage() {
             </AwardCard>
           ))}
         </div>
-      ) : (
-        <Empty className="border">
-          <EmptyHeader>
-            <EmptyTitle>Les trophées de la semaine commencent après la semaine 1</EmptyTitle>
-            <EmptyDescription>
-              La saison commence le {seasonStartLabel()}. Les premiers seront remis le {firstAwardsLabel()} : pick de la semaine,
-              meilleure remontée, malchance et disette, chacun avec son top 3.
-            </EmptyDescription>
-          </EmptyHeader>
-        </Empty>
       )}
 
       <SeasonAwards />
