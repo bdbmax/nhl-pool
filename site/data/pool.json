@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-09-30T12:22+00:00",
- "as_of": "2026-09-29",
+ "generated": "2026-09-30T16:14+00:00",
+ "as_of": "2026-09-30",
  "season_start": "2026-09-29",
  "season_started": true,
  "games_played": 0.3,
@@ -37,16 +37,16 @@
    "points": 10,
    "proj_consensus": 930.0,
    "expected_total": 1035.0,
-   "expected_finish": 4.39,
-   "win_pct": 20.9,
+   "expected_finish": 4.4,
+   "win_pct": 20.8,
    "finish_odds": [
-    20.9,
-    15.5,
+    20.8,
+    15.4,
     12.1,
-    10.2,
+    10.3,
     8.9,
     7.7,
-    6.3,
+    6.4,
     5.7,
     4.4,
     3.7,
@@ -54,7 +54,7 @@
     1.8
    ],
    "rank_change": 0,
-   "win_change": 2.7
+   "win_change": -0.1
   },
   {
    "id": 11,
@@ -65,24 +65,24 @@
    "points": 9,
    "proj_consensus": 880.0,
    "expected_total": 958.0,
-   "expected_finish": 6.28,
-   "win_pct": 7.7,
+   "expected_finish": 6.29,
+   "win_pct": 7.6,
    "finish_odds": [
-    7.7,
+    7.6,
+    8.8,
     8.9,
     9.0,
-    9.1,
-    9.2,
-    8.9,
+    9.3,
+    8.8,
     8.8,
     8.7,
     8.5,
-    8.1,
-    7.2,
+    8.2,
+    7.3,
     6.0
    ],
-   "rank_change": 6,
-   "win_change": 0.6
+   "rank_change": 0,
+   "win_change": -0.1
   },
   {
    "id": 6,
@@ -93,52 +93,52 @@
    "points": 6,
    "proj_consensus": 931.0,
    "expected_total": 1008.0,
-   "expected_finish": 5.02,
-   "win_pct": 15.4,
+   "expected_finish": 5.04,
+   "win_pct": 15.3,
    "finish_odds": [
-    15.4,
-    13.3,
-    11.3,
+    15.3,
+    13.2,
+    11.2,
     10.7,
-    9.2,
+    9.3,
     8.0,
-    7.4,
+    7.5,
     6.6,
     6.1,
     5.1,
-    4.1,
-    2.8
+    4.2,
+    2.9
    ],
-   "rank_change": -1,
-   "win_change": 0.4
+   "rank_change": 0,
+   "win_change": -0.1
   },
   {
    "id": 3,
    "name": "P. Allard",
    "slot": 3,
    "rank": 4,
-   "proj_rank": 6,
+   "proj_rank": 7,
    "points": 5,
    "proj_consensus": 886.0,
    "expected_total": 963.0,
-   "expected_finish": 6.16,
-   "win_pct": 8.6,
+   "expected_finish": 6.17,
+   "win_pct": 8.5,
    "finish_odds": [
-    8.6,
+    8.5,
+    9.1,
     9.2,
-    9.3,
     9.1,
     9.1,
     8.9,
-    8.9,
-    8.4,
-    7.8,
+    9.0,
+    8.5,
+    7.9,
     7.5,
     7.1,
     6.0
    ],
-   "rank_change": 3,
-   "win_change": 0.7
+   "rank_change": 0,
+   "win_change": -0.1
   },
   {
    "id": 1,
@@ -149,24 +149,24 @@
    "points": 4,
    "proj_consensus": 883.0,
    "expected_total": 983.0,
-   "expected_finish": 5.6,
+   "expected_finish": 5.62,
    "win_pct": 10.8,
    "finish_odds": [
     10.8,
     10.5,
     10.9,
     10.1,
-    9.9,
+    10.0,
     8.9,
     8.5,
-    7.9,
+    8.0,
     7.0,
     6.3,
-    5.2,
+    5.3,
     3.9
    ],
-   "rank_change": -2,
-   "win_change": -0.8
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 8,
@@ -177,24 +177,24 @@
    "points": 4,
    "proj_consensus": 794.0,
    "expected_total": 886.0,
-   "expected_finish": 8.23,
-   "win_pct": 2.1,
+   "expected_finish": 8.25,
+   "win_pct": 2.0,
    "finish_odds": [
-    2.1,
+    2.0,
     3.1,
     4.3,
     5.2,
-    6.1,
+    6.0,
     7.4,
     8.5,
     9.8,
-    11.2,
-    12.8,
+    11.1,
+    12.9,
     14.1,
-    15.4
+    15.5
    ],
-   "rank_change": 5,
-   "win_change": -0.7
+   "rank_change": 0,
+   "win_change": -0.1
   },
   {
    "id": 2,
@@ -205,24 +205,24 @@
    "points": 3,
    "proj_consensus": 884.0,
    "expected_total": 974.0,
-   "expected_finish": 5.85,
+   "expected_finish": 5.87,
    "win_pct": 9.9,
    "finish_odds": [
     9.9,
     9.7,
-    9.8,
+    9.7,
     9.8,
     9.4,
     9.4,
     8.6,
     8.2,
     7.9,
-    6.8,
+    6.9,
     5.9,
     4.5
    ],
-   "rank_change": -2,
-   "win_change": 0.0
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 12,
@@ -233,52 +233,52 @@
    "points": 3,
    "proj_consensus": 763.0,
    "expected_total": 845.0,
-   "expected_finish": 9.28,
+   "expected_finish": 9.29,
    "win_pct": 0.9,
    "finish_odds": [
     0.9,
-    1.7,
+    1.6,
     2.7,
     3.2,
     4.1,
-    5.0,
+    5.1,
     6.3,
     7.9,
     9.9,
     12.9,
     17.4,
-    28.0
+    28.1
    ],
-   "rank_change": 4,
-   "win_change": -0.2
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 10,
    "name": "A. Cordeau",
    "slot": 10,
    "rank": 9,
-   "proj_rank": 7,
+   "proj_rank": 6,
    "points": 2,
-   "proj_consensus": 881.0,
-   "expected_total": 961.0,
-   "expected_finish": 6.2,
-   "win_pct": 7.6,
+   "proj_consensus": 889.0,
+   "expected_total": 968.0,
+   "expected_finish": 6.03,
+   "win_pct": 8.3,
    "finish_odds": [
-    7.6,
-    8.8,
-    9.1,
-    9.4,
-    9.3,
-    9.4,
+    8.3,
     9.5,
-    8.6,
-    8.1,
-    7.6,
-    6.9,
-    5.5
+    9.8,
+    9.6,
+    9.3,
+    9.5,
+    9.4,
+    8.4,
+    7.7,
+    7.2,
+    6.5,
+    4.9
    ],
-   "rank_change": -3,
-   "win_change": -0.9
+   "rank_change": 0,
+   "win_change": 0.7
   },
   {
    "id": 5,
@@ -289,24 +289,24 @@
    "points": 1,
    "proj_consensus": 813.0,
    "expected_total": 908.0,
-   "expected_finish": 7.62,
+   "expected_finish": 7.64,
    "win_pct": 3.1,
    "finish_odds": [
     3.1,
-    4.7,
-    5.5,
+    4.6,
+    5.4,
     6.5,
     7.3,
     8.7,
     9.3,
-    9.8,
-    10.4,
+    9.9,
+    10.5,
     11.4,
-    12.0,
-    11.2
+    12.1,
+    11.3
    ],
    "rank_change": 0,
-   "win_change": -0.5
+   "win_change": 0.0
   },
   {
    "id": 4,
@@ -317,24 +317,24 @@
    "points": 0,
    "proj_consensus": 885.0,
    "expected_total": 973.0,
-   "expected_finish": 5.89,
+   "expected_finish": 5.9,
    "win_pct": 9.3,
    "finish_odds": [
     9.3,
-    9.9,
-    9.9,
-    9.7,
+    9.8,
+    9.8,
+    9.8,
     9.7,
     9.2,
     8.8,
     8.3,
-    7.8,
+    7.9,
     7.0,
-    6.0,
+    6.1,
     4.4
    ],
-   "rank_change": -7,
-   "win_change": -1.0
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 9,
@@ -345,24 +345,24 @@
    "points": 0,
    "proj_consensus": 827.0,
    "expected_total": 914.0,
-   "expected_finish": 7.48,
-   "win_pct": 3.7,
+   "expected_finish": 7.49,
+   "win_pct": 3.6,
    "finish_odds": [
-    3.7,
+    3.6,
     4.7,
     6.1,
     6.8,
-    7.6,
+    7.5,
     8.5,
     9.1,
     10.0,
-    10.9,
+    11.0,
     10.8,
     11.2,
-    10.6
+    10.7
    ],
-   "rank_change": -3,
-   "win_change": -0.3
+   "rank_change": 0,
+   "win_change": -0.1
   }
  ],
  "players": [
@@ -2613,7 +2613,7 @@
    "sources": {
     "ESPN": 58.0,
     "NHL.com": null,
-    "CBS": 55.4,
+    "CBS": 55.3,
     "HockeyBangers": null
    },
    "age": 29.8,
@@ -4419,8 +4419,8 @@
     "OTL": 0,
     "SO": 0
    },
-   "proj": 62.5,
-   "proj_left": 62.5,
+   "proj": 62.4,
+   "proj_left": 62.4,
    "games_left": 58.0,
    "proj_gp": 58.0,
    "sources": {
@@ -6149,7 +6149,7 @@
    "number": 8,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/WSH/8471214.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3101.png",
-   "injury": "IR",
+   "injury": null,
    "points": 0,
    "gp": 0,
    "stats": {
@@ -6158,21 +6158,21 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 64.5,
-   "proj_left": 64.5,
-   "games_left": 72.0,
-   "proj_gp": 72.0,
+   "proj": 73.4,
+   "proj_left": 73.4,
+   "games_left": 82.0,
+   "proj_gp": 82.0,
    "sources": {
-    "ESPN": 64.9,
-    "NHL.com": 60.1,
-    "CBS": 78.4,
-    "HockeyBangers": 54.5
+    "ESPN": 73.9,
+    "NHL.com": 68.4,
+    "CBS": 89.3,
+    "HockeyBangers": 62.1
    },
    "age": 41.0,
    "manager_id": 10,
    "round": 13,
    "overall": 154,
-   "counts": false,
+   "counts": true,
    "vs_round": -0.3
   },
   {
@@ -6283,7 +6283,7 @@
    "manager_id": 10,
    "round": 16,
    "overall": 183,
-   "counts": true,
+   "counts": false,
    "vs_round": -0.2
   },
   {
@@ -8656,60 +8656,58 @@
   }
  ],
  "awards": [],
- "update": "morning",
- "compared_to": "2026-09-29",
+ "update": "evening",
+ "compared_to": "2026-09-30",
+ "since": "depuis ce matin",
  "headline": [
-  "F. Fusey garde la tête, 1 point devant S. Marcoux.",
-  "S. Marcoux gagne 6 rangs, du 8e au 2e.",
-  "Evan Bouchard (F. Fusey) : 8 points de pool hier soir.",
-  "Les odds de F. Fusey passent de 18,2 % à 20,9 %."
+  "F. Fusey garde la tête, 1 point devant S. Marcoux."
  ],
  "week": {
   "start": "2026-09-28",
   "end": "2026-10-04",
   "managers": {
    "1": {
-    "left": 22,
+    "left": 21,
     "total": 28
    },
    "2": {
-    "left": 21,
+    "left": 19,
     "total": 24
    },
    "3": {
-    "left": 23,
+    "left": 21,
     "total": 25
    },
    "4": {
-    "left": 21,
+    "left": 18,
     "total": 24
    },
    "5": {
-    "left": 22,
+    "left": 19,
     "total": 25
    },
    "6": {
-    "left": 23,
+    "left": 21,
     "total": 27
    },
    "7": {
-    "left": 25,
+    "left": 20,
     "total": 29
    },
    "8": {
-    "left": 20,
+    "left": 18,
     "total": 29
    },
    "9": {
-    "left": 24,
+    "left": 22,
     "total": 25
    },
    "10": {
-    "left": 20,
-    "total": 22
+    "left": 21,
+    "total": 23
    },
    "11": {
-    "left": 24,
+    "left": 22,
     "total": 28
    },
    "12": {
