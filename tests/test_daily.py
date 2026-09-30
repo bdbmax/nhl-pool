@@ -211,7 +211,7 @@ def test_headline_tells_the_story():
                 {"105": [8, 3, None, 1, 3], "101": [0, 2, "IR", 1, 3]})
     lines = daily.headline(cur, prev, D, people, evening=False)
     assert lines[0] == "M5 prend la tête du classement."
-    assert "P1-5 (M1) : 5 points hier soir." in lines                   # player 105 went from 3 to 8
+    assert "P1-5 (M1) : 5 points de pool hier soir." in lines                   # player 105 went from 3 to 8
     assert any("passent de 10,0 % à 16,5 %" in x for x in lines)
     assert "P1-1 (M1) est maintenant blessé." in lines
     assert len(lines) <= 4 and daily.headline(cur, None, D, people, False) == []

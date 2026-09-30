@@ -6,7 +6,7 @@ import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/
 import { dayLabel, fmt, weeklyPoints } from "@/lib/pool"
 
 // Page d'un joueur : ses points semaine par semaine (lundi à lundi), tirés de data/history.
-const config = { pts: { label: "Points", color: "var(--primary)" } } satisfies ChartConfig
+const config = { pts: { label: "Points de pool", color: "var(--primary)" } } satisfies ChartConfig
 
 function Tip({ active, payload }: { active?: boolean; payload?: { payload: { from: string; date: string; pts: number } }[] }) {
   const row = active && payload?.[0]?.payload
@@ -14,7 +14,7 @@ function Tip({ active, payload }: { active?: boolean; payload?: { payload: { fro
   return (
     <div className="rounded-lg border bg-background px-2.5 py-1.5 text-xs shadow-xl">
       <div className="font-medium">Du {dayLabel(row.from)} au {dayLabel(row.date)}</div>
-      <div className="text-muted-foreground">{fmt(row.pts)} point{row.pts === 1 ? "" : "s"}</div>
+      <div className="text-muted-foreground">{fmt(row.pts)} point{row.pts === 1 ? "" : "s"} de pool</div>
     </div>
   )
 }

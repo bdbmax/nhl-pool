@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { PlayerAvatar } from "@/components/pool/player-avatar"
 import { PlayerWeeksChart } from "@/components/pool/player-weeks-chart"
 import { TeamAvatar, TeamCode } from "@/components/pool/team-avatar"
-import { fmt, injuryLabel, managerById, ord, playerById, PLAYERS, POOL, statLine, weeklyPoints } from "@/lib/pool"
+import { fmt, injuryLabel, managerById, ord, playerById, PLAYERS, POOL, SCORING, statLine, weeklyPoints } from "@/lib/pool"
 
 // Une page par joueur (repêché ou oublié) : /players/<id NHL>/.
 export function generateStaticParams() {
@@ -63,7 +63,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
 
       <div className="grid grid-cols-3 gap-3">
         {([
-          ["Points", fmt(p.points)],
+          ["Points de pool", fmt(p.points)],
           [goalie ? "Matchs" : "Matchs joués", fmt(p.gp)],
           ["Pts par match", realRate == null ? "—" : fmt(realRate, 2)],
         ] as const).map(([label, value]) => (
@@ -75,13 +75,16 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
           </Card>
         ))}
       </div>
-      {started && <p className="text-sm text-muted-foreground">Cette saison : {statLine(p)}.</p>}
+      <p className="text-sm text-muted-foreground">
+        {started && <>Dans la LNH cette saison : {statLine(p)}. </>}
+        Points de pool pour un {POS_LONG[p.pos].toLowerCase()} : {SCORING[p.pos]}.
+      </p>
 
       {started && weeks.length > 0 && (
         <Card>
           <CardHeader>
             <CardTitle>Semaine par semaine</CardTitle>
-            <CardDescription>Ses points du pool chaque semaine, de lundi à lundi.</CardDescription>
+            <CardDescription>Ses points de pool chaque semaine, de lundi à lundi.</CardDescription>
           </CardHeader>
           <CardContent><PlayerWeeksChart id={p.nhl_id} /></CardContent>
         </Card>
@@ -91,7 +94,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ id: str
         <CardHeader>
           <CardTitle>Projection</CardTitle>
           <CardDescription>
-            {started ? "Ses vrais points, plus la projection des matchs qui lui restent." : "La moyenne des quatre sources pour la saison."}
+            {started ? "Ses points de pool jusqu'ici, plus la projection des matchs qui lui restent." : "En points de pool, la moyenne des quatre sources pour la saison."}
           </CardDescription>
         </CardHeader>
         <CardContent>

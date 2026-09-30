@@ -95,7 +95,8 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
         run: |
           npm ci
-          npm run build
+          # The build downloads the Google fonts; retry a network hiccup instead of failing the morning.
+          for attempt in 1 2 3; do npm run build && break; [ "$attempt" = 3 ] && exit 1; echo "build failed, retrying"; sleep 20; done
           touch out/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3

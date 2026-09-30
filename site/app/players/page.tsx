@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { PageHeader } from "@/components/pool/page-header"
 import { PlayerRow } from "@/components/pool/player-row"
-import { dayLabel, type FormRow, fmt, playerById, PLAYERS, POOL } from "@/lib/pool"
+import { dayLabel, type FormRow, fmt, playerById, PLAYERS, POOL, PTS } from "@/lib/pool"
 
 // En feu / À froid : les 7 derniers jours, points réels contre ce que la projection attendait pour les matchs joués.
 function FormList({ rows, empty }: { rows: FormRow[]; empty: string }) {
@@ -15,7 +15,7 @@ function FormList({ rows, empty }: { rows: FormRow[]; empty: string }) {
         const p = playerById(r.nhl_id)
         return p ? (
           <PlayerRow key={r.nhl_id} player={p} showManager signed value={r.diff} valueLabel={`${fmt(r.expected, 1)} attendus`}
-            detail={`${fmt(r.points)} pts en ${fmt(r.games)} m.`} />
+            detail={`${fmt(r.points)} ${PTS} en ${fmt(r.games)} m.`} />
         ) : null
       })}
     </ItemGroup>
@@ -27,7 +27,7 @@ export default function PlayersPage() {
   const top = [...PLAYERS, ...POOL.forgotten].sort((a, b) => key(b) - key(a)).slice(0, 25)
   const injured = PLAYERS.filter((p) => p.injury).sort((a, b) => (b.proj ?? 0) - (a.proj ?? 0))
   const maxTeam = POOL.nhl_teams[0]?.count ?? 1
-  const label = POOL.season_started ? "pts" : "proj."
+  const label = POOL.season_started ? PTS : "proj."
 
   return (
     <>

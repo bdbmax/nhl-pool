@@ -608,7 +608,7 @@ def headline(snap: dict, previous: dict | None, D: pd.DataFrame, people: pd.Data
     best = max(gains, key=gains.get) if gains else None
     if best and gains[best] >= 2:
         mid = int(D.loc[D.playerId == int(best), "manager_id"].iloc[0])
-        lines.append(f"{people.loc[int(best), 'name']} ({nm(mid)}) : {gains[best]} points {when}.")
+        lines.append(f"{people.loc[int(best), 'name']} ({nm(mid)}) : {gains[best]} points de pool {when}.")
     moves = {m: cur[m]["win_pct"] - old[m]["win_pct"] for m in cur if m in old}
     big = max(moves, key=lambda m: abs(moves[m])) if moves else None
     if big and abs(moves[big]) >= 2:

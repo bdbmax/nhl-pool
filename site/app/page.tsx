@@ -9,7 +9,7 @@ import { PageHeader, UpdatedLine } from "@/components/pool/page-header"
 import { PlayerRow } from "@/components/pool/player-row"
 import { RankChart } from "@/components/pool/rank-chart"
 import { StandingsTable } from "@/components/pool/standings-table"
-import { fmt, MANAGERS, pct, PLAYERS, POOL } from "@/lib/pool"
+import { fmt, MANAGERS, pct, PLAYERS, POOL, PTS } from "@/lib/pool"
 
 export default function StandingsPage() {
   const favorite = [...MANAGERS].sort((a, b) => b.win_pct - a.win_pct)[0]
@@ -99,7 +99,7 @@ export default function StandingsPage() {
         <CardContent>
           <ItemGroup>
             {top.map((p, i) => (
-              <PlayerRow key={p.nhl_id} player={p} rank={i + 1} value={key(p)} valueLabel={started ? "pts" : "proj."} showManager />
+              <PlayerRow key={p.nhl_id} player={p} rank={i + 1} value={key(p)} valueLabel={started ? PTS : "proj."} showManager />
             ))}
           </ItemGroup>
         </CardContent>

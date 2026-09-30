@@ -130,6 +130,14 @@ export const NAV = [
   { href: "/awards", label: "Trophées", icon: "award" },
 ] as const
 
+// Les points d'un joueur sont des points de pool, pas ceux de la LNH : un but vaut 2 pour un défenseur.
+export const PTS = "pts pool"
+export const SCORING: Record<Pos, string> = {
+  F: "1 par but et par passe, 1 de plus par but gagnant et par tour du chapeau",
+  D: "2 par but, 1 par passe, 1 de plus par but gagnant",
+  G: "2 par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage",
+}
+
 // Position abrégée à la québécoise : A (attaquant), D (défenseur), G (gardien).
 export const POS_SHORT: Record<Pos, string> = { F: "A", D: "D", G: "G" }
 

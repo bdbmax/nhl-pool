@@ -76,7 +76,7 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
       {started && (
         <p className="text-sm text-muted-foreground">
           Projection finale : {fmt(m.expected_total)} points, {ord(m.proj_rank)} rang projeté. Pour chaque joueur :
-          ses points jusqu&apos;ici, et sa projection finale en dessous.
+          ses points de pool jusqu&apos;ici, et sa projection finale en dessous.
         </p>
       )}
 

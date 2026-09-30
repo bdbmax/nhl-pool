@@ -32,8 +32,8 @@ export function PlayerRow({
       <ItemMedia><PlayerAvatar player={player} size="sm" /></ItemMedia>
       <ItemContent className="min-w-0">
         {/* Rétro : le code du DG va à côté du nom (il tient toujours) ; Moderne : son nom, sous le joueur. */}
-        <ItemTitle className="min-w-0 max-w-full">
-          <span className="truncate">{player.name}</span>
+        <ItemTitle className="line-clamp-none flex! min-w-0 max-w-full">
+          <span className="line-clamp-2 min-w-0 break-words">{player.name}</span>
           {mgr && <TeamCode id={mgr.id} />}
         </ItemTitle>
         <ItemDescription className="truncate">
@@ -46,7 +46,7 @@ export function PlayerRow({
         {value !== undefined && (
           <span className="text-right text-sm tabular-nums">
             {signed ? signedFmt(value) : fmt(value)}
-            {valueLabel && <span className="block text-xs text-muted-foreground">{valueLabel}</span>}
+            {valueLabel && <span className="ml-auto block w-min text-xs leading-tight text-muted-foreground">{valueLabel}</span>}
           </span>
         )}
       </ItemActions>

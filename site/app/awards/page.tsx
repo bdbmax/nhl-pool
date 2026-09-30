@@ -12,7 +12,7 @@ import { PlayerRow } from "@/components/pool/player-row"
 import { TeamAvatar } from "@/components/pool/team-avatar"
 import {
   type Award, dayLabel, firstAwardsLabel, fmt, managerById, ord, playerById, POOL, type SeasonAward, type SeasonEntry,
-  seasonStartLabel,
+  PTS, seasonStartLabel,
 } from "@/lib/pool"
 
 // Chaque trophée est un classement : les 3 premiers, le 1er en évidence.
@@ -81,7 +81,7 @@ function weekRows(award: Award, kind: (typeof WEEKLY)[number]["key"]): React.Rea
   if (kind === "pick")
     return award.pick.map((x) => {
       const p = playerById(x.nhl_id)
-      return p && <PlayerRow player={p} detail={`${ord(x.round, true)} ronde`} value={x.value} valueLabel="pts" showManager showInjury={false} />
+      return p && <PlayerRow player={p} detail={`${ord(x.round, true)} ronde`} value={x.value} valueLabel={PTS} showManager showInjury={false} />
     })
   if (kind === "comeback")
     return award.comeback.map((x) => <ManagerLine id={x.manager_id} detail={`du ${ord(x.from)} au ${ord(x.to)} rang`} />)
@@ -106,10 +106,10 @@ const SEASON: Record<SeasonAward["key"], { title: string; description: string; i
 
 function seasonRow(k: SeasonAward["key"], x: SeasonEntry): React.ReactNode {
   const p = x.nhl_id ? playerById(x.nhl_id) : undefined
-  if (k === "player" && p) return <PlayerRow player={p} value={x.value} valueLabel="pts" showManager showInjury={false} />
-  if (k === "pick" && p) return <PlayerRow player={p} detail={`${ord(x.round ?? 0, true)} ronde`} value={x.value} valueLabel="pts" showManager showInjury={false} />
+  if (k === "player" && p) return <PlayerRow player={p} value={x.value} valueLabel={PTS} showManager showInjury={false} />
+  if (k === "pick" && p) return <PlayerRow player={p} detail={`${ord(x.round ?? 0, true)} ronde`} value={x.value} valueLabel={PTS} showManager showInjury={false} />
   if (k === "bust" && p)
-    return <PlayerRow player={p} detail={`${ord(x.round ?? 0, true)} ronde, ${pts(x.value)}`} value={x.gap} valueLabel="écart" showManager signed showInjury={false} />
+    return <PlayerRow player={p} detail={`${ord(x.round ?? 0, true)} ronde, ${fmt(x.value)} ${PTS}`} value={x.gap} valueLabel="écart" showManager signed showInjury={false} />
   if (k === "bad_luck") {
     const worst = x.worst ? playerById(x.worst.nhl_id) : undefined
     return <ManagerLine id={x.manager_id} detail={missed(x.value, x.points ?? 0)
