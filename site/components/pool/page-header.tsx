@@ -1,4 +1,4 @@
-import { POOL, seasonStartLabel, updatedLabel } from "@/lib/pool"
+import { dayLabel, POOL, seasonStartLabel, updatedLabel } from "@/lib/pool"
 
 export function PageHeader({ title, description }: { title: string; description?: string }) {
   return (
@@ -13,7 +13,7 @@ export function UpdatedLine() {
   return (
     <p className="text-xs text-muted-foreground">
       Mis à jour le {updatedLabel()}
-      {POOL.update === "evening" && " · matchs du soir inclus"}
+      {POOL.update === "evening" && ` · avec les matchs terminés du ${dayLabel(POOL.as_of)}`}
       {!POOL.season_started && ` · selon les projections jusqu'au ${seasonStartLabel()}`}
     </p>
   )

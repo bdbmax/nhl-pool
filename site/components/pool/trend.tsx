@@ -8,7 +8,7 @@ export function Trend({ change, unit = "rang" }: { change: number; unit?: "rang"
   if (!POOL.season_started || !POOL.compared_to || !change) return null
   const up = change > 0
   const n = Math.abs(change)
-  const since = POOL.update === "evening" ? "depuis ce matin" : "depuis hier"
+  const since = POOL.since || (POOL.update === "evening" ? "depuis ce matin" : "depuis hier")
   const label = unit === "rang"
     ? `${up ? "Monte" : "Descend"} de ${n} rang${n > 1 ? "s" : ""} ${since}`
     : `${up ? "Hausse" : "Baisse"} de ${fmt(n, 1)} point${n >= 2 ? "s" : ""} ${since}`

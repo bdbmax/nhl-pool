@@ -1,4 +1,6 @@
 """The daily update's math: rate updates, games left, safety checks and award dates."""
+from datetime import date
+
 import pandas as pd
 import pytest
 
@@ -209,12 +211,24 @@ def test_headline_tells_the_story():
     prev = _snap("2026-10-06", r0, [50] * 12, [10.0] * 12, {"105": [3, 2, None, 1, 2], "101": [0, 2, None, 1, 2]})
     cur = _snap("2026-10-07", r1, [52, 40, 45, 44, 55] + [30] * 7, [9.0, 8, 8, 8, 16.5] + [8] * 7,
                 {"105": [8, 3, None, 1, 3], "101": [0, 2, "IR", 1, 3]})
-    lines = daily.headline(cur, prev, D, people, evening=False)
+    lines = daily.headline(cur, prev, D, people, "hier")
     assert lines[0] == "M5 prend la tête du classement."
-    assert "P1-5 (M1) : 5 points de pool hier soir." in lines                   # player 105 went from 3 to 8
+    assert "P1-5 (M1) : 5 points de pool hier." in lines                   # player 105 went from 3 to 8
     assert any("passent de 10,0 % à 16,5 %" in x for x in lines)
     assert "P1-1 (M1) est maintenant blessé." in lines
-    assert len(lines) <= 4 and daily.headline(cur, None, D, people, False) == []
+    assert len(lines) <= 4 and daily.headline(cur, None, D, people, "hier") == []
+    assert "P1-5 (M1) : 5 points de pool depuis ce matin." in daily.headline(cur, prev, D, people, "depuis ce matin")
+
+
+def test_since_says_since_when_in_words():
+    d = date(2026, 10, 7)
+    morning = lambda day: {"date": day}
+    assert daily.since(False, morning("2026-10-06"), d) == "depuis hier"
+    assert daily.since(False, morning("2026-10-04"), d) == "depuis la dernière mise à jour"   # mornings missed
+    assert daily.since(True, morning("2026-10-07"), d) == "depuis ce matin"                  # 14:05, 22:35
+    assert daily.since(True, morning("2026-10-06"), d) == "depuis hier matin"               # 0:35, before 5:35
+    assert daily.since(True, morning("2026-10-05"), d) == "depuis la dernière mise à jour"
+    assert daily.since(True, None, d) == daily.since(False, None, d) == ""
 
 
 def test_season_awards():

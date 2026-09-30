@@ -59,9 +59,9 @@ const TOPICS = {
   today: {
     button: "Comment fonctionne le classement",
     title: "Le classement d'aujourd'hui",
-    summary: "Les vrais points de la LNH, mis à jour chaque matin à 5 h 30, et vers 22 h avec les matchs du soir.",
+    summary: "Les vrais points de la LNH, mis à jour chaque matin à 5 h 30, puis toutes les demi-heures de midi à 1 h 30 avec les matchs terminés.",
     points: [
-      "Les statistiques viennent de la LNH. Le matin, elles comprennent tous les matchs joués jusqu'à la veille. Vers 22 h, les matchs de la soirée qui sont terminés s'ajoutent ; la mise à jour du matin reste la version officielle.",
+      "Les statistiques viennent de la LNH. Le matin, elles comprennent tous les matchs joués jusqu'à la veille. De midi à 1 h 30, chaque demi-heure ajoute les matchs du jour qui sont terminés, et met à jour les blessures, les échanges et les projections ; la mise à jour du matin reste la version officielle.",
       "Les petites flèches montrent les rangs gagnés ou perdus depuis la mise à jour précédente.",
       "Sous chaque équipe, par exemple « 17/24 à jouer cette sem. » : il reste 17 matchs à jouer sur les 24 de la semaine (du lundi au dimanche), additionnés pour les 11 joueurs qui comptent, sans les blessés et les absents. Plus de matchs, plus de chances de remonter.",
       "Ce sont des points de pool, pas les points de la LNH. Attaquants : 1 point par but et par passe, 1 de plus par but gagnant et par tour du chapeau. Défenseurs : 2 points par but, 1 par passe, 1 de plus par but gagnant. Gardiens : 2 points par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage.",

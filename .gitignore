@@ -18,3 +18,6 @@ site/out/
 site/.next/
 site/tsconfig.tsbuildinfo
 site/next-env.d.ts
+
+# Cloudflare Worker (trigger/): wrangler cache
+trigger/.wrangler/

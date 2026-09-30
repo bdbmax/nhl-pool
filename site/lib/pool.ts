@@ -90,7 +90,10 @@ type Pool = {
   // One entry per morning (data/history): rank, real points and win odds (%) per manager id.
   history: { date: string; ranks: Record<string, number>; points: Record<string, number>; win: Record<string, number> }[]
   awards: Award[]
+  // "morning": the official 5:30 update. "evening": a same-day update (every half hour, noon to 1:30).
   update: "morning" | "evening"
+  // Since when the arrows count, in words: "depuis hier", "depuis ce matin", "depuis hier matin".
+  since?: string
   compared_to: string | null
   headline: string[]
   week: { start: string; end: string; managers: Record<string, { left: number; total: number }> } | null

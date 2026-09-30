@@ -150,7 +150,7 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
                      "proj_consensus": num(m["proj_consensus"], 0), "expected_total": num(o["expected_total"], 0),
                      "expected_finish": num(o["expected_finish"], 2), "win_pct": num(o[1] * 100, 1),
                      "finish_odds": [num(o[k] * 100, 1) for k in range(1, len(managers) + 1)]})
-    # Arrows: places and win odds gained since the previous update (yesterday morning, or this morning at 10 pm).
+    # Arrows: places and win odds gained since the previous update (yesterday morning, or this morning for a same-day update).
     for m in mgrs:
         before = (previous or {}).get("managers", {}).get(str(m["id"]))
         m["rank_change"] = (before["rank"] - m["rank"]) if before else 0
@@ -178,10 +178,11 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
                      "points": {k: v["points"] for k, v in h["managers"].items()},
                      "win": {k: v["win_pct"] for k, v in h["managers"].items()}} for h in hist],
         "awards": awards,
-        # "morning" (5:30, official) or "evening" (10 pm, today's finished games added).
+        # "morning" (5:30, official) or "evening" (a same-day update, every half hour from noon to 1:30:
+        # today's finished games added). "since" says since when the arrows count, in words.
         "update": "evening" if evening else "morning",
         "compared_to": (previous or {}).get("date"),
-        **(stories or {"headline": [], "week": None, "season_awards": [], "pace": None, "tonight": None,
+        **(stories or {"since": "", "headline": [], "week": None, "season_awards": [], "pace": None, "tonight": None,
                        "hot_cold": None, "player_weeks": {"dates": [], "points": {}}, "race": None}),
     }
 

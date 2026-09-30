@@ -6,7 +6,7 @@ import { PlayerRow } from "@/components/pool/player-row"
 import { TeamAvatar } from "@/components/pool/team-avatar"
 import { dayLabel, fmt, gameTime, managerById, playerById, POOL, type RaceSide } from "@/lib/pool"
 
-// Page d'équipe : qui joue aujourd'hui (daily.tonight). Ceux qui comptent d'abord.
+// Page d'équipe : qui joue aujourd'hui (daily.tonight, la date du jour même après minuit). Ceux qui comptent d'abord.
 export function TonightCard({ id }: { id: number }) {
   const t = POOL.tonight
   if (!t) return null
@@ -15,7 +15,7 @@ export function TonightCard({ id }: { id: number }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Ce soir</CardTitle>
+        <CardTitle>Aujourd'hui</CardTitle>
         <CardDescription>
           {games.length
             ? `${counted} joueur${counted > 1 ? "s" : ""} qui compte${counted > 1 ? "nt" : ""} en action le ${dayLabel(t.date)}`

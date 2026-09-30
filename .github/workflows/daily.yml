@@ -5,6 +5,8 @@
 # GitHub cron has no time zones, so every possible UTC time is listed and scripts/gate.py keeps the right
 # runs. Minutes are off the hour on purpose: GitHub delays, and sometimes drops, scheduled runs at :00,
 # its busiest moment. Scheduled runs can still start late; the retries cover a skipped one.
+# This schedule is the backup: the Cloudflare Worker in trigger/ starts the runs on time (workflow_dispatch),
+# 5:35 morning and every half hour from 12:05 to 1:35 (same-day updates, evening mode).
 name: Daily update
 
 on:

@@ -5,7 +5,8 @@
   uv run python -m nhlpool.daily --season 20252026 --as-of 2026-01-15 --out /tmp/replay
                                                  # replay: last season's real stats up to a date (a test)
 
-Runs every morning at 5:30 (Toronto) from GitHub Actions (.github/workflows/daily.yml).
+Runs every morning at 5:30 (Toronto) from GitHub Actions (.github/workflows/daily.yml), and every half hour
+from noon to 1:30 as a same-day update (--evening), started by the Cloudflare Worker in trigger/.
 Nothing here uses our own model: projections come from ESPN, NHL.com, CBS and HockeyBangers
 (external.py), real stats from the NHL stats API, injuries from ESPN and Daily Faceoff.
 
@@ -64,8 +65,8 @@ def toronto_today() -> date:
 
 
 def evening_day() -> date:
-    """The day an evening update is about: today, or yesterday if the run started after midnight (GitHub
-    sometimes starts scheduled runs late)."""
+    """The day an evening update is about: today, or yesterday after midnight (the 0:05 to 1:35 runs add the
+    last games of the night; GitHub also sometimes starts scheduled runs late)."""
     now = datetime.now(ZoneInfo("America/Toronto"))
     return toronto_today() - timedelta(days=1) if now.hour < 12 else toronto_today()
 
@@ -470,6 +471,19 @@ def pace(D: pd.DataFrame, people: pd.DataFrame, real: pd.DataFrame, T: pd.DataFr
     return out
 
 
+def since(evening: bool, previous: dict | None, now: date) -> str:
+    """Since when the arrows and the headline count, in words for the site: the morning compares with the
+    previous morning ("depuis hier"), a same-day update with this morning, or yesterday's once past midnight."""
+    if not previous:
+        return ""
+    days = (now - date.fromisoformat(previous["date"])).days
+    if evening and days in (0, 1):
+        return "depuis ce matin" if days == 0 else "depuis hier matin"
+    if not evening and days == 1:
+        return "depuis hier"
+    return "depuis la dernière mise à jour"
+
+
 def tonight(D: pd.DataFrame, people: pd.DataFrame, T: pd.DataFrame, counts: set, today: str) -> dict:
     """Each manager's drafted players with an NHL game today: opponent, home or away, start time (UTC)."""
     out = {}
@@ -584,14 +598,14 @@ def injury_losses(snaps: list[dict], D: pd.DataFrame) -> dict:
     return out
 
 
-def headline(snap: dict, previous: dict | None, D: pd.DataFrame, people: pd.DataFrame, evening: bool) -> list[str]:
-    """Up to four short lines on what changed since the previous update (French, for the site)."""
+def headline(snap: dict, previous: dict | None, D: pd.DataFrame, people: pd.DataFrame, when: str) -> list[str]:
+    """Up to four short lines on what changed since the previous update (French, for the site). when: since
+    when, as in "5 points de pool hier" or "5 points de pool depuis ce matin"."""
     if not previous:
         return []
     name = D.drop_duplicates("manager_id").set_index("manager_id")["manager"]
     nm = lambda m: name[int(m)]
     cur, old = snap["managers"], previous["managers"]
-    when = "ce soir" if evening else "hier soir"
     lines = []
     order = sorted(cur, key=lambda m: cur[m]["rank"])
     lead, second = order[0], order[1]
@@ -722,7 +736,8 @@ def checks(D, X, real, proj, managers, previous: dict | None, league: dict, cfg:
 def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, out_dir=None,
         write_history: bool = True, evening: bool = False) -> dict:
     """The morning update (games up to yesterday; writes the day's history) or, with evening=True, the
-    10 pm update (adds today's finished games to the site only; the next morning makes it official)."""
+    same-day update (every half hour from noon: adds the day's finished games and today's injuries, trades
+    and projections to the site only; the next morning makes it official)."""
     cfg = settings()
     replay = as_of is not None
     if evening:
@@ -823,11 +838,16 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
         hist.append(snap)
     awards = weekly_awards(hist, D, site_export.season_start(season), today, cfg)
     counts = counted_players(D, final)
+    # Past midnight a same-day update is still about the evening before (evening_day), but it is a new day on
+    # the clock: "since" counts from the real date, and "Aujourd'hui" shows the games of the day that started.
+    now = date.fromisoformat(today) if replay else toronto_today()
+    since_ = since(evening, previous, now)
     stories = {
-        "headline": headline(snap, previous, D, people, evening) if started else [],
+        "since": since_,
+        "headline": headline(snap, previous, D, people, "hier" if since_ == "depuis hier" else since_) if started else [],
         "week": week_games(D, people, T, counts, today, as_of),
         "pace": pace(D, people, real, T, counts),
-        "tonight": tonight(D, people, T, counts, today),
+        "tonight": tonight(D, people, T, counts, now.isoformat()),
         "hot_cold": hot_cold(hist, D),
         "player_weeks": player_weeks(hist, D),
         "season_awards": season_awards(hist, D, cfg),
@@ -856,7 +876,7 @@ def main() -> None:
     ap.add_argument("--season", type=int, default=SEASON)
     ap.add_argument("--as-of", help="replay: real stats up to this date (YYYY-MM-DD)")
     ap.add_argument("--out", help="write site data and history under this folder instead")
-    ap.add_argument("--evening", action="store_true", help="10 pm update: add today's finished games (site only)")
+    ap.add_argument("--evening", action="store_true", help="same-day update: add today's finished games (site only)")
     a = ap.parse_args()
     from pathlib import Path
     run(a.season, a.as_of, refresh=not a.no_refresh, out_dir=Path(a.out) if a.out else None, evening=a.evening)

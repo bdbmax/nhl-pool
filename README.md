@@ -51,8 +51,10 @@ The daily job uses external projections only (ESPN, NHL.com, CBS, HockeyBangers)
   surprise shrinks with the square root of the share of the season left.
 - Weekly awards are recomputed from `data/history` every Monday; season awards (Joueur, Pick, Déception,
   Malchance de l'année, Roi de la montagne, Montagnes russes) every morning.
-- An evening update at 22:00 adds the day's finished games to the site only (`--evening`); games still in
-  progress never count, and the 5:30 run stays the official record in `data/history`.
+- Same-day updates every half hour from 12:05 to 1:35 (`--evening`) add the day's finished games and refresh
+  injuries, trades and projections, on the site only; games still in progress never count, and the 5:30 run
+  stays the official record in `data/history`. The Cloudflare Worker in `trigger/` starts them (and the 5:35
+  morning run) on time; GitHub's own schedule in `daily.yml` is the backup.
 - The home page shows arrows (places and odds gained since the previous update), "La une du jour" (a few
   lines generated from the numbers) and "Cette semaine" (games left this week for each team's counted players).
 - Safety checks (192 players with three IDs, 12 teams of 16, no negative stats, no team losing more than

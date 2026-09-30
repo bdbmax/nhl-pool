@@ -26,7 +26,7 @@ export default function StandingsPage() {
       {started && POOL.headline.length > 0 && (
         <Card size="sm">
           <CardHeader>
-            <CardTitle>{POOL.update === "evening" ? "Ce soir" : "La une du jour"}</CardTitle>
+            <CardTitle>{POOL.update === "evening" && POOL.since ? POOL.since[0].toUpperCase() + POOL.since.slice(1) : "La une du jour"}</CardTitle>
             <CardAction><NewspaperIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
           </CardHeader>
           <CardContent>
