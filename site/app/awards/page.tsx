@@ -64,6 +64,9 @@ function AwardCard({ title, description, icon: Icon, children }: {
 }
 
 const pts = (n: number) => `${fmt(n)} pt${Math.abs(n) === 1 ? "" : "s"}`
+// « 1 match manqué, environ 1 pt perdu » ; « 3 matchs manqués, environ 4 pts perdus » (pluriel à partir de 2).
+const missed = (games: number, points: number) =>
+  `${fmt(games)} match${games >= 2 ? "s" : ""} manqué${games >= 2 ? "s" : ""}, environ ${pts(Math.round(points))} perdu${Math.round(points) >= 2 ? "s" : ""}`
 
 // --- La semaine ---------------------------------------------------------------------------
 
@@ -84,7 +87,7 @@ function weekRows(award: Award, kind: (typeof WEEKLY)[number]["key"]): React.Rea
     return award.comeback.map((x) => <ManagerLine id={x.manager_id} detail={`du ${ord(x.from)} au ${ord(x.to)} rang`} />)
   if (kind === "bad_luck")
     return award.bad_luck.map((x) => (
-      <ManagerLine id={x.manager_id} detail={`${fmt(x.games)} matchs manqués, environ ${pts(x.value)} perdus`} />
+      <ManagerLine id={x.manager_id} detail={missed(x.games, x.value)} />
     ))
   return award.drought.map((x) => <ManagerLine id={x.manager_id} detail={`${pts(x.value)} en 7 jours`} />)
 }
@@ -109,7 +112,7 @@ function seasonRow(k: SeasonAward["key"], x: SeasonEntry): React.ReactNode {
     return <PlayerRow player={p} detail={`${ord(x.round ?? 0, true)} ronde, ${pts(x.value)}`} value={x.gap} valueLabel="écart" showManager signed showInjury={false} />
   if (k === "bad_luck") {
     const worst = x.worst ? playerById(x.worst.nhl_id) : undefined
-    return <ManagerLine id={x.manager_id} detail={`${fmt(x.value)} matchs manqués, environ ${pts(x.points ?? 0)} perdus`
+    return <ManagerLine id={x.manager_id} detail={missed(x.value, x.points ?? 0)
       + (worst && x.worst ? `, dont ${fmt(x.worst.games)} par ${worst.name}` : "")} />
   }
   if (k === "bench") {

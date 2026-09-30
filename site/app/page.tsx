@@ -19,10 +19,7 @@ export default function StandingsPage() {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <PageHeader
-          title="Classement"
-          description="Pour chaque équipe, les 6 meilleurs attaquants, les 4 meilleurs défenseurs et le meilleur gardien comptent."
-        />
+        <PageHeader title="Classement" />
         <UpdatedLine />
       </div>
 
@@ -30,7 +27,6 @@ export default function StandingsPage() {
         <Card size="sm">
           <CardHeader>
             <CardTitle>{POOL.update === "evening" ? "Ce soir" : "La une du jour"}</CardTitle>
-            <CardDescription>{POOL.update === "evening" ? "Depuis ce matin." : "Depuis la mise à jour d'hier."}</CardDescription>
             <CardAction><NewspaperIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
           </CardHeader>
           <CardContent>
@@ -78,7 +74,6 @@ export default function StandingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>Au fil de la saison</CardTitle>
-          <CardDescription>Le rang et les odds de gagner de chaque équipe, matin après matin.</CardDescription>
           <CardAction><TrendingUpIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
         </CardHeader>
         <CardContent>
@@ -99,9 +94,6 @@ export default function StandingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>{started ? "Meilleurs pointeurs" : "Meilleures projections"}</CardTitle>
-          <CardDescription>
-            {started ? "Les joueurs repêchés qui ont le plus de points jusqu'ici." : "Les joueurs repêchés qui ont les plus hauts totaux projetés."}
-          </CardDescription>
           <CardAction><UsersIcon aria-hidden className="size-4 text-muted-foreground" /></CardAction>
         </CardHeader>
         <CardContent>

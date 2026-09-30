@@ -189,7 +189,7 @@ export const signed = (x: number | null | undefined, d = 0) => (x == null ? "—
 
 export function updatedLabel() {
   return new Date(POOL.generated).toLocaleString("fr-CA", {
-    day: "numeric", month: "long", hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto",
+    day: "numeric", month: "long", hour: "numeric", minute: "2-digit", timeZone: "America/Toronto",
   })
 }
 

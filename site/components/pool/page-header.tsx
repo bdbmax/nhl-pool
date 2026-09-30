@@ -1,10 +1,10 @@
 import { POOL, seasonStartLabel, updatedLabel } from "@/lib/pool"
 
-export function PageHeader({ title, description }: { title: string; description: string }) {
+export function PageHeader({ title, description }: { title: string; description?: string }) {
   return (
     <header className="flex flex-col gap-1">
       <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-      <p className="text-sm text-muted-foreground">{description}</p>
+      {description && <p className="text-sm text-muted-foreground">{description}</p>}
     </header>
   )
 }
@@ -12,10 +12,9 @@ export function PageHeader({ title, description }: { title: string; description:
 export function UpdatedLine() {
   return (
     <p className="text-xs text-muted-foreground">
-      Mis à jour le {updatedLabel()}.{" "}
-      {POOL.update === "evening" && "Matchs terminés ce soir inclus ; la mise à jour officielle suit à 5 h 30. "}
-      {!POOL.season_started &&
-        `La saison commence le ${seasonStartLabel()}. Tant que les vrais points ne sont pas entrés, le classement est basé sur les projections.`}
+      Mis à jour le {updatedLabel()}
+      {POOL.update === "evening" && " · matchs du soir inclus"}
+      {!POOL.season_started && ` · selon les projections jusqu'au ${seasonStartLabel()}`}
     </p>
   )
 }
