@@ -74,3 +74,26 @@ def test_manual_runs(tmp_path):
     now = datetime.now(timezone.utc)
     assert gate.decide_mode("workflow_dispatch", "", now, tmp_path) == (True, "workflow_dispatch: always runs", "morning")
     assert gate.decide("workflow_dispatch", "", now, tmp_path)[0]
+
+
+def test_what_happened_on_sept_30(tmp_path):
+    # The 22:35 slot (cron 35 2 UTC) started at 8:56 UTC (4:56 Toronto): it must not run as an evening update.
+    run, why, mode = gate.decide_mode("schedule", "35 2 * * *", datetime(2026, 9, 30, 8, 56, tzinfo=timezone.utc), tmp_path)
+    assert not run and mode == "evening" and "too late" in why
+    # An evening slot on time still runs.
+    assert gate.decide_mode("schedule", "35 2 * * *", datetime(2026, 9, 30, 2, 40, tzinfo=timezone.utc), tmp_path)[:3:2] == (True, "evening")
+
+
+def test_late_morning_runs_only_if_the_morning_is_missing(tmp_path):
+    late = datetime(2026, 9, 30, 13, 10, tzinfo=timezone.utc)   # the 5:33 slot starting at 9:10 Toronto
+    assert gate.decide_mode("schedule", "33 9 * * *", late, tmp_path)[0]          # nothing saved: run
+    (tmp_path / "2026-09-30.json").write_text("{}")
+    assert not gate.decide_mode("schedule", "33 9 * * *", late, tmp_path)[0]      # saved: leave it
+    on_time = datetime(2026, 9, 30, 9, 40, tzinfo=timezone.utc)
+    assert gate.decide_mode("schedule", "33 9 * * *", on_time, tmp_path)[0]       # on time: run anyway
+
+
+def test_run_starting_after_midnight_utc(tmp_path):
+    # The 7:33 EST retry (cron 33 12 UTC) delayed past midnight UTC still belongs to the day it was due.
+    run, why, _ = gate.decide_mode("schedule", "33 12 * * *", datetime(2026, 12, 16, 0, 20, tzinfo=timezone.utc), tmp_path)
+    assert run and "07:33" in why and "late" in why
