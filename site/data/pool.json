@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-01T09:38+00:00",
- "as_of": "2026-09-30",
+ "generated": "2026-10-01T16:08+00:00",
+ "as_of": "2026-10-01",
  "season_start": "2026-09-29",
  "season_started": true,
  "games_played": 0.5,
@@ -47,14 +47,14 @@
     8.8,
     7.8,
     6.6,
-    6.0,
+    5.9,
     4.7,
-    4.0,
+    3.9,
     2.9,
     2.0
    ],
    "rank_change": 0,
-   "win_change": -1.1
+   "win_change": 0.0
   },
   {
    "id": 6,
@@ -70,9 +70,9 @@
    "finish_odds": [
     15.7,
     13.2,
-    11.3,
+    11.2,
     10.6,
-    9.3,
+    9.4,
     8.0,
     7.5,
     6.6,
@@ -81,8 +81,8 @@
     4.0,
     2.8
    ],
-   "rank_change": 1,
-   "win_change": 0.3
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 11,
@@ -109,8 +109,8 @@
     7.3,
     6.2
    ],
-   "rank_change": -1,
-   "win_change": -0.3
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 4,
@@ -137,8 +137,8 @@
     5.5,
     3.7
    ],
-   "rank_change": 7,
-   "win_change": 1.0
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 2,
@@ -165,8 +165,8 @@
     5.6,
     4.2
    ],
-   "rank_change": 2,
-   "win_change": 0.4
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 3,
@@ -190,11 +190,11 @@
     8.6,
     8.2,
     7.6,
-    7.4,
+    7.3,
     6.3
    ],
-   "rank_change": -2,
-   "win_change": -0.5
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 8,
@@ -213,7 +213,7 @@
     4.2,
     5.2,
     6.2,
-    7.1,
+    7.0,
     8.6,
     9.8,
     11.2,
@@ -221,8 +221,8 @@
     14.3,
     15.7
    ],
-   "rank_change": -1,
-   "win_change": -0.2
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 1,
@@ -240,8 +240,8 @@
     10.3,
     10.8,
     10.1,
-    9.8,
-    9.1,
+    9.9,
+    9.0,
     8.6,
     7.9,
     7.2,
@@ -249,8 +249,8 @@
     5.4,
     4.0
    ],
-   "rank_change": -3,
-   "win_change": -0.3
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 12,
@@ -273,11 +273,11 @@
     6.2,
     8.0,
     9.8,
-    13.0,
+    12.9,
     17.4,
     27.8
    ],
-   "rank_change": -1,
+   "rank_change": 0,
    "win_change": -0.0
   },
   {
@@ -305,8 +305,8 @@
     6.2,
     4.7
    ],
-   "rank_change": -1,
-   "win_change": 1.0
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 5,
@@ -327,14 +327,14 @@
     7.2,
     8.3,
     9.3,
-    9.9,
+    10.0,
     10.5,
     11.7,
     12.7,
     11.9
    ],
-   "rank_change": -1,
-   "win_change": -0.3
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 9,
@@ -362,7 +362,7 @@
     10.8
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": 0.0
   }
  ],
  "players": [
@@ -1570,14 +1570,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 136.8,
-   "proj_left": 136.8,
+   "proj": 136.7,
+   "proj_left": 136.7,
    "games_left": 79.0,
    "proj_gp": 79.0,
    "sources": {
     "ESPN": 139.7,
     "NHL.com": 132.2,
-    "CBS": 145.3,
+    "CBS": 145.2,
     "HockeyBangers": 129.8
    },
    "age": 33.3,
@@ -2206,7 +2206,7 @@
    "sources": {
     "ESPN": 89.0,
     "NHL.com": null,
-    "CBS": 66.4,
+    "CBS": 66.5,
     "HockeyBangers": null
    },
    "age": 27.8,
@@ -2983,7 +2983,7 @@
    "sources": {
     "ESPN": 79.3,
     "NHL.com": 71.6,
-    "CBS": 81.3,
+    "CBS": 81.4,
     "HockeyBangers": 73.0
    },
    "age": 34.3,
@@ -3309,8 +3309,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 38.9,
-   "proj_left": 37.9,
+   "proj": 39.0,
+   "proj_left": 38.0,
    "games_left": 79.0,
    "proj_gp": 80.0,
    "sources": {
@@ -3457,8 +3457,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 101.4,
-   "proj_left": 101.4,
+   "proj": 101.3,
+   "proj_left": 101.3,
    "games_left": 83.0,
    "proj_gp": 83.0,
    "sources": {
@@ -4537,7 +4537,7 @@
    "sources": {
     "ESPN": 102.9,
     "NHL.com": 103.9,
-    "CBS": 120.2,
+    "CBS": 120.3,
     "HockeyBangers": 102.8
    },
    "age": 30.4,
@@ -4759,7 +4759,7 @@
    "sources": {
     "ESPN": 65.4,
     "NHL.com": null,
-    "CBS": 54.4,
+    "CBS": 54.5,
     "HockeyBangers": null
    },
    "age": 30.8,
@@ -5092,7 +5092,7 @@
    "sources": {
     "ESPN": 39.8,
     "NHL.com": 41.1,
-    "CBS": 38.8,
+    "CBS": null,
     "HockeyBangers": 35.3
    },
    "age": 31.9,
@@ -5573,7 +5573,7 @@
    "sources": {
     "ESPN": 57.0,
     "NHL.com": null,
-    "CBS": 47.5,
+    "CBS": 47.6,
     "HockeyBangers": null
    },
    "age": 25.5,
@@ -5795,7 +5795,7 @@
    "sources": {
     "ESPN": 96.8,
     "NHL.com": 89.1,
-    "CBS": 105.5,
+    "CBS": 105.4,
     "HockeyBangers": 93.5
    },
    "age": 32.0,
@@ -8395,7 +8395,7 @@
    "sources": {
     "ESPN": 61.5,
     "NHL.com": 58.4,
-    "CBS": 60.9,
+    "CBS": 60.8,
     "HockeyBangers": 62.6
    },
    "age": 25.0
@@ -8701,64 +8701,62 @@
   }
  ],
  "awards": [],
- "update": "morning",
- "compared_to": "2026-09-30",
- "since": "depuis hier",
+ "update": "evening",
+ "compared_to": "2026-10-01",
+ "since": "depuis ce matin",
  "headline": [
-  "F. Fusey garde la tête, 4 points devant J. Gobeil.",
-  "P. Fiset gagne 7 rangs, du 11e au 4e.",
-  "Brock Nelson (P. Fiset) : 3 points de pool hier."
+  "F. Fusey garde la tête, 4 points devant J. Gobeil."
  ],
  "week": {
   "start": "2026-09-28",
   "end": "2026-10-04",
   "managers": {
    "1": {
-    "left": 21,
+    "left": 17,
     "total": 28
    },
    "2": {
-    "left": 18,
+    "left": 13,
     "total": 24
    },
    "3": {
-    "left": 21,
+    "left": 14,
     "total": 25
    },
    "4": {
-    "left": 17,
+    "left": 15,
     "total": 25
    },
    "5": {
-    "left": 20,
+    "left": 16,
     "total": 26
    },
    "6": {
-    "left": 20,
+    "left": 15,
     "total": 26
    },
    "7": {
-    "left": 20,
+    "left": 16,
     "total": 29
    },
    "8": {
-    "left": 18,
+    "left": 16,
     "total": 29
    },
    "9": {
-    "left": 21,
+    "left": 16,
     "total": 24
    },
    "10": {
-    "left": 21,
+    "left": 14,
     "total": 23
    },
    "11": {
-    "left": 23,
+    "left": 18,
     "total": 30
    },
    "12": {
-    "left": 22,
+    "left": 18,
     "total": 27
    }
   }
