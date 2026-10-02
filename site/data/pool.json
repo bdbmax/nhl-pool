@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-02T16:39+00:00",
+ "generated": "2026-10-02T17:09+00:00",
  "as_of": "2026-10-02",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -8145,6 +8145,38 @@
    "age": 34.8
   },
   {
+   "nhl_id": 8478916,
+   "espn_id": 3942073,
+   "df_id": 23589,
+   "slug": "joey-daccord",
+   "name": "Joey Daccord",
+   "pos": "G",
+   "nhl_team": "SEA",
+   "number": 35,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8478916.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3942073.png",
+   "injury": null,
+   "points": 2,
+   "gp": 1,
+   "stats": {
+    "GS": 1,
+    "W": 1,
+    "OTL": 0,
+    "SO": 0
+   },
+   "proj": 55.5,
+   "proj_left": 53.5,
+   "games_left": 49.0,
+   "proj_gp": 50.0,
+   "sources": {
+    "ESPN": 59.3,
+    "NHL.com": null,
+    "CBS": 51.6,
+    "HockeyBangers": null
+   },
+   "age": 30.1
+  },
+  {
    "nhl_id": 8482155,
    "espn_id": 4697725,
    "df_id": 32954,
@@ -8209,38 +8241,6 @@
    "age": 31.4
   },
   {
-   "nhl_id": 8482137,
-   "espn_id": 4697394,
-   "df_id": 33018,
-   "slug": "yaroslav-askarov",
-   "name": "Yaroslav Askarov",
-   "pos": "G",
-   "nhl_team": "SJS",
-   "number": 30,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SJS/8482137.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4697394.png",
-   "injury": null,
-   "points": 2,
-   "gp": 1,
-   "stats": {
-    "GS": 1,
-    "W": 1,
-    "OTL": 0,
-    "SO": 0
-   },
-   "proj": 48.1,
-   "proj_left": 46.1,
-   "games_left": 40.0,
-   "proj_gp": 41.0,
-   "sources": {
-    "ESPN": 50.7,
-    "NHL.com": null,
-    "CBS": 45.6,
-    "HockeyBangers": null
-   },
-   "age": 24.3
-  },
-  {
    "nhl_id": 8481554,
    "espn_id": 4565223,
    "df_id": 30605,
@@ -8303,6 +8303,38 @@
     "HockeyBangers": null
    },
    "age": 36.2
+  },
+  {
+   "nhl_id": 8480185,
+   "espn_id": 4233877,
+   "df_id": 28129,
+   "slug": "eetu-luostarinen",
+   "name": "Eetu Luostarinen",
+   "pos": "F",
+   "nhl_team": "FLA",
+   "number": 27,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/FLA/8480185.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4233877.png",
+   "injury": null,
+   "points": 2,
+   "gp": 2,
+   "stats": {
+    "G": 2,
+    "A": 0,
+    "GWG": 0,
+    "HT": 0
+   },
+   "proj": 42.0,
+   "proj_left": 40.0,
+   "games_left": 75.0,
+   "proj_gp": 77.0,
+   "sources": {
+    "ESPN": 36.7,
+    "NHL.com": 52.3,
+    "CBS": null,
+    "HockeyBangers": 36.8
+   },
+   "age": 28.1
   },
   {
    "nhl_id": 8483500,
@@ -8399,38 +8431,6 @@
     "HockeyBangers": 31.5
    },
    "age": 27.4
-  },
-  {
-   "nhl_id": 8479619,
-   "espn_id": 4031645,
-   "df_id": 3864,
-   "slug": "michael-carcone",
-   "name": "Michael Carcone",
-   "pos": "F",
-   "nhl_team": "UTA",
-   "number": 53,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/UTA/8479619.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4031645.png",
-   "injury": null,
-   "points": 2,
-   "gp": 1,
-   "stats": {
-    "G": 1,
-    "A": 1,
-    "GWG": 0,
-    "HT": 0
-   },
-   "proj": 35.8,
-   "proj_left": 33.8,
-   "games_left": 75.0,
-   "proj_gp": 76.0,
-   "sources": {
-    "ESPN": 35.8,
-    "NHL.com": null,
-    "CBS": null,
-    "HockeyBangers": 35.8
-   },
-   "age": 30.4
   }
  ],
  "nhl_teams": [
