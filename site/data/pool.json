@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-02T21:09+00:00",
+ "generated": "2026-10-02T21:39+00:00",
  "as_of": "2026-10-02",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -8273,36 +8273,36 @@
    "age": 25.6
   },
   {
-   "nhl_id": 8474596,
-   "espn_id": 5111,
-   "df_id": 1305,
-   "slug": "jake-allen",
-   "name": "Jake Allen",
-   "pos": "G",
-   "nhl_team": "NJD",
-   "number": 34,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/NJD/8474596.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5111.png",
+   "nhl_id": 8480185,
+   "espn_id": 4233877,
+   "df_id": 28129,
+   "slug": "eetu-luostarinen",
+   "name": "Eetu Luostarinen",
+   "pos": "F",
+   "nhl_team": "FLA",
+   "number": 27,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/FLA/8480185.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4233877.png",
    "injury": null,
    "points": 2,
-   "gp": 1,
+   "gp": 2,
    "stats": {
-    "GS": 1,
-    "W": 1,
-    "OTL": 0,
-    "SO": 0
+    "G": 2,
+    "A": 0,
+    "GWG": 0,
+    "HT": 0
    },
-   "proj": 43.6,
-   "proj_left": 41.6,
-   "games_left": 36.0,
-   "proj_gp": 37.0,
+   "proj": 42.0,
+   "proj_left": 40.0,
+   "games_left": 75.0,
+   "proj_gp": 77.0,
    "sources": {
-    "ESPN": 47.1,
-    "NHL.com": null,
-    "CBS": 40.2,
-    "HockeyBangers": null
+    "ESPN": 36.7,
+    "NHL.com": 52.3,
+    "CBS": null,
+    "HockeyBangers": 36.8
    },
-   "age": 36.2
+   "age": 28.1
   },
   {
    "nhl_id": 8483500,
