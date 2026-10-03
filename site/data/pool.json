@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-03T22:09+00:00",
+ "generated": "2026-10-03T22:43+00:00",
  "as_of": "2026-10-03",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -103,7 +103,7 @@
     9.1,
     7.9,
     7.2,
-    6.3,
+    6.4,
     5.4,
     4.5,
     3.6,
@@ -125,7 +125,7 @@
    "win_pct": 9.9,
    "finish_odds": [
     9.9,
-    10.4,
+    10.3,
     10.4,
     10.0,
     9.7,
@@ -216,9 +216,9 @@
     9.1,
     9.4,
     10.0,
-    10.6,
+    10.7,
     10.2,
-    10.2,
+    10.1,
     8.9
    ],
    "rank_change": 0,
@@ -330,7 +330,7 @@
     9.3,
     11.5,
     13.0,
-    15.0,
+    15.1,
     17.9
    ],
    "rank_change": 0,
@@ -615,7 +615,7 @@
    "sources": {
     "ESPN": 64.2,
     "NHL.com": 79.5,
-    "CBS": 75.2,
+    "CBS": 75.1,
     "HockeyBangers": 75.1
    },
    "age": 25.7,
@@ -689,7 +689,7 @@
    "sources": {
     "ESPN": 66.0,
     "NHL.com": null,
-    "CBS": 52.3,
+    "CBS": 52.4,
     "HockeyBangers": null
    },
    "age": 23.9,
@@ -1466,7 +1466,7 @@
    "sources": {
     "ESPN": null,
     "NHL.com": 55.6,
-    "CBS": 51.4,
+    "CBS": 51.5,
     "HockeyBangers": 45.7
    },
    "age": 22.2,
@@ -1577,7 +1577,7 @@
    "sources": {
     "ESPN": 137.6,
     "NHL.com": 130.3,
-    "CBS": 143.1,
+    "CBS": 143.2,
     "HockeyBangers": 128.1
    },
    "age": 33.3,
@@ -2613,7 +2613,7 @@
    "sources": {
     "ESPN": 62.8,
     "NHL.com": null,
-    "CBS": 60.5,
+    "CBS": 60.6,
     "HockeyBangers": null
    },
    "age": 29.8,
@@ -2909,7 +2909,7 @@
    "sources": {
     "ESPN": 69.6,
     "NHL.com": 88.1,
-    "CBS": 84.2,
+    "CBS": 84.1,
     "HockeyBangers": 79.4
    },
    "age": 22.7,
@@ -3094,7 +3094,7 @@
    "sources": {
     "ESPN": 52.0,
     "NHL.com": 50.6,
-    "CBS": 58.6,
+    "CBS": 58.5,
     "HockeyBangers": 42.1
    },
    "age": 34.5,
@@ -3205,7 +3205,7 @@
    "sources": {
     "ESPN": 63.5,
     "NHL.com": null,
-    "CBS": 53.9,
+    "CBS": 53.8,
     "HockeyBangers": null
    },
    "age": 33.2,
@@ -3945,7 +3945,7 @@
    "sources": {
     "ESPN": 109.1,
     "NHL.com": 115.4,
-    "CBS": 120.6,
+    "CBS": 120.7,
     "HockeyBangers": 113.4
    },
    "age": 27.9,
@@ -4093,7 +4093,7 @@
    "sources": {
     "ESPN": 100.3,
     "NHL.com": 94.1,
-    "CBS": 102.2,
+    "CBS": 102.1,
     "HockeyBangers": 97.1
    },
    "age": 34.9,
@@ -4759,7 +4759,7 @@
    "sources": {
     "ESPN": 65.5,
     "NHL.com": null,
-    "CBS": 56.8,
+    "CBS": 56.7,
     "HockeyBangers": null
    },
    "age": 30.8,
@@ -5203,7 +5203,7 @@
    "sources": {
     "ESPN": 90.1,
     "NHL.com": 94.4,
-    "CBS": 102.7,
+    "CBS": 102.8,
     "HockeyBangers": 86.3
    },
    "age": 25.5,
@@ -6387,7 +6387,7 @@
    "sources": {
     "ESPN": 95.3,
     "NHL.com": 93.3,
-    "CBS": 107.5,
+    "CBS": 107.6,
     "HockeyBangers": 96.0
    },
    "age": 30.4,
@@ -6646,7 +6646,7 @@
    "sources": {
     "ESPN": null,
     "NHL.com": 73.2,
-    "CBS": 73.3,
+    "CBS": 73.2,
     "HockeyBangers": 59.9
    },
    "age": 20.3,
@@ -7423,7 +7423,7 @@
    "sources": {
     "ESPN": 74.0,
     "NHL.com": null,
-    "CBS": 57.4,
+    "CBS": 57.3,
     "HockeyBangers": null
    },
    "age": 33.2,
@@ -8337,6 +8337,38 @@
    "age": 34.8
   },
   {
+   "nhl_id": 8478916,
+   "espn_id": 3942073,
+   "df_id": 23589,
+   "slug": "joey-daccord",
+   "name": "Joey Daccord",
+   "pos": "G",
+   "nhl_team": "SEA",
+   "number": 35,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8478916.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3942073.png",
+   "injury": null,
+   "points": 2,
+   "gp": 1,
+   "stats": {
+    "GS": 1,
+    "W": 1,
+    "OTL": 0,
+    "SO": 0
+   },
+   "proj": 55.5,
+   "proj_left": 53.5,
+   "games_left": 49.0,
+   "proj_gp": 50.0,
+   "sources": {
+    "ESPN": 59.3,
+    "NHL.com": null,
+    "CBS": 51.6,
+    "HockeyBangers": null
+   },
+   "age": 30.1
+  },
+  {
    "nhl_id": 8477496,
    "espn_id": 3041994,
    "df_id": 2133,
@@ -8399,38 +8431,6 @@
     "HockeyBangers": 53.5
    },
    "age": 23.7
-  },
-  {
-   "nhl_id": 8482155,
-   "espn_id": 4697725,
-   "df_id": 32954,
-   "slug": "alex-laferriere",
-   "name": "Alex Laferriere",
-   "pos": "F",
-   "nhl_team": "LAK",
-   "number": 14,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/LAK/8482155.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4697725.png",
-   "injury": null,
-   "points": 2,
-   "gp": 1,
-   "stats": {
-    "G": 0,
-    "A": 2,
-    "GWG": 0,
-    "HT": 0
-   },
-   "proj": 52.7,
-   "proj_left": 50.7,
-   "games_left": 83.0,
-   "proj_gp": 84.0,
-   "sources": {
-    "ESPN": 49.5,
-    "NHL.com": 57.9,
-    "CBS": null,
-    "HockeyBangers": 50.6
-   },
-   "age": 24.9
   }
  ],
  "nhl_teams": [
