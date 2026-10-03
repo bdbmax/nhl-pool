@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-03T16:40+00:00",
+ "generated": "2026-10-03T17:09+00:00",
  "as_of": "2026-10-03",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -48,7 +48,7 @@
     8.7,
     9.0,
     8.8,
-    8.1,
+    8.0,
     7.8,
     6.8,
     5.3
@@ -74,7 +74,7 @@
     10.4,
     9.0,
     7.6,
-    6.7,
+    6.6,
     5.7,
     4.6,
     3.9,
@@ -177,7 +177,7 @@
    "points": 16,
    "proj_consensus": 890.0,
    "expected_total": 976.0,
-   "expected_finish": 5.75,
+   "expected_finish": 5.76,
    "win_pct": 10.2,
    "finish_odds": [
     10.2,
@@ -188,7 +188,7 @@
     9.2,
     8.6,
     8.2,
-    7.7,
+    7.8,
     6.6,
     5.5,
     4.1
@@ -430,7 +430,7 @@
    "sources": {
     "ESPN": 85.3,
     "NHL.com": 97.6,
-    "CBS": 95.8,
+    "CBS": 95.7,
     "HockeyBangers": 77.6
    },
    "age": 29.9,
@@ -534,8 +534,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 65.5,
-   "proj_left": 65.5,
+   "proj": 65.4,
+   "proj_left": 65.4,
    "games_left": 60.0,
    "proj_gp": 62.0,
    "sources": {
@@ -1466,7 +1466,7 @@
    "sources": {
     "ESPN": null,
     "NHL.com": 55.6,
-    "CBS": 51.4,
+    "CBS": 51.5,
     "HockeyBangers": 45.7
    },
    "age": 22.2,
@@ -1681,14 +1681,14 @@
     "OTL": 0,
     "SO": 1
    },
-   "proj": 64.0,
-   "proj_left": 59.0,
+   "proj": 63.9,
+   "proj_left": 58.9,
    "games_left": 43.0,
    "proj_gp": 44.0,
    "sources": {
     "ESPN": 63.3,
     "NHL.com": null,
-    "CBS": 64.6,
+    "CBS": 64.5,
     "HockeyBangers": null
    },
    "age": 36.7,
@@ -2465,7 +2465,7 @@
    "sources": {
     "ESPN": 71.7,
     "NHL.com": 82.6,
-    "CBS": 86.5,
+    "CBS": 86.6,
     "HockeyBangers": 73.4
    },
    "age": 28.4,
@@ -2761,7 +2761,7 @@
    "sources": {
     "ESPN": 102.4,
     "NHL.com": 104.5,
-    "CBS": 105.1,
+    "CBS": 105.2,
     "HockeyBangers": 104.6
    },
    "age": 27.7,
@@ -3205,7 +3205,7 @@
    "sources": {
     "ESPN": 63.5,
     "NHL.com": null,
-    "CBS": 53.9,
+    "CBS": 53.8,
     "HockeyBangers": null
    },
    "age": 33.2,
@@ -4456,14 +4456,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 44.3,
-   "proj_left": 44.3,
+   "proj": 44.4,
+   "proj_left": 44.4,
    "games_left": 76.0,
    "proj_gp": 77.0,
    "sources": {
     "ESPN": 42.4,
     "NHL.com": 50.7,
-    "CBS": 42.4,
+    "CBS": 42.5,
     "HockeyBangers": 41.8
    },
    "age": 28.2,
@@ -4759,7 +4759,7 @@
    "sources": {
     "ESPN": 65.5,
     "NHL.com": null,
-    "CBS": 56.8,
+    "CBS": 56.7,
     "HockeyBangers": null
    },
    "age": 30.8,
@@ -5462,7 +5462,7 @@
    "sources": {
     "ESPN": 55.2,
     "NHL.com": 64.2,
-    "CBS": 62.0,
+    "CBS": 62.1,
     "HockeyBangers": 55.3
    },
    "age": 33.3,
@@ -5758,7 +5758,7 @@
    "sources": {
     "ESPN": 89.5,
     "NHL.com": null,
-    "CBS": 72.0,
+    "CBS": 72.1,
     "HockeyBangers": null
    },
    "age": 32.2,
@@ -5980,7 +5980,7 @@
    "sources": {
     "ESPN": 83.8,
     "NHL.com": 83.8,
-    "CBS": 92.7,
+    "CBS": 92.8,
     "HockeyBangers": 87.6
    },
    "age": 28.2,
@@ -6128,7 +6128,7 @@
    "sources": {
     "ESPN": 37.3,
     "NHL.com": 44.1,
-    "CBS": 39.4,
+    "CBS": 39.3,
     "HockeyBangers": 37.9
    },
    "age": 30.9,
@@ -6269,8 +6269,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 65.0,
-   "proj_left": 65.0,
+   "proj": 65.1,
+   "proj_left": 65.1,
    "games_left": 81.0,
    "proj_gp": 81.0,
    "sources": {
@@ -6535,7 +6535,7 @@
    "sources": {
     "ESPN": 75.7,
     "NHL.com": null,
-    "CBS": 64.2,
+    "CBS": 64.3,
     "HockeyBangers": null
    },
    "age": 28.1,
@@ -6646,7 +6646,7 @@
    "sources": {
     "ESPN": null,
     "NHL.com": 73.2,
-    "CBS": 73.3,
+    "CBS": 73.2,
     "HockeyBangers": 59.9
    },
    "age": 20.3,
@@ -8235,7 +8235,7 @@
    "sources": {
     "ESPN": 56.2,
     "NHL.com": 63.5,
-    "CBS": 61.6,
+    "CBS": 61.7,
     "HockeyBangers": 53.1
    },
    "age": 31.2
@@ -8337,6 +8337,38 @@
    "age": 34.8
   },
   {
+   "nhl_id": 8478916,
+   "espn_id": 3942073,
+   "df_id": 23589,
+   "slug": "joey-daccord",
+   "name": "Joey Daccord",
+   "pos": "G",
+   "nhl_team": "SEA",
+   "number": 35,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8478916.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3942073.png",
+   "injury": null,
+   "points": 2,
+   "gp": 1,
+   "stats": {
+    "GS": 1,
+    "W": 1,
+    "OTL": 0,
+    "SO": 0
+   },
+   "proj": 55.5,
+   "proj_left": 53.5,
+   "games_left": 49.0,
+   "proj_gp": 50.0,
+   "sources": {
+    "ESPN": 59.3,
+    "NHL.com": null,
+    "CBS": 51.6,
+    "HockeyBangers": null
+   },
+   "age": 30.1
+  },
+  {
    "nhl_id": 8477496,
    "espn_id": 3041994,
    "df_id": 2133,
@@ -8399,38 +8431,6 @@
     "HockeyBangers": 53.5
    },
    "age": 23.7
-  },
-  {
-   "nhl_id": 8482155,
-   "espn_id": 4697725,
-   "df_id": 32954,
-   "slug": "alex-laferriere",
-   "name": "Alex Laferriere",
-   "pos": "F",
-   "nhl_team": "LAK",
-   "number": 14,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/LAK/8482155.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4697725.png",
-   "injury": null,
-   "points": 2,
-   "gp": 1,
-   "stats": {
-    "G": 0,
-    "A": 2,
-    "GWG": 0,
-    "HT": 0
-   },
-   "proj": 52.7,
-   "proj_left": 50.7,
-   "games_left": 83.0,
-   "proj_gp": 84.0,
-   "sources": {
-    "ESPN": 49.5,
-    "NHL.com": 57.9,
-    "CBS": null,
-    "HockeyBangers": 50.6
-   },
-   "age": 24.9
   }
  ],
  "nhl_teams": [
