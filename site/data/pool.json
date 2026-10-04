@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-04T01:09+00:00",
+ "generated": "2026-10-04T01:39+00:00",
  "as_of": "2026-10-03",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -73,7 +73,7 @@
     12.1,
     10.4,
     8.9,
-    7.6,
+    7.5,
     6.6,
     5.7,
     4.5,
@@ -158,12 +158,12 @@
     10.3,
     10.0,
     9.0,
-    8.3,
+    8.2,
     7.4,
     6.7,
     5.7,
     4.5,
-    2.8
+    2.9
    ],
    "rank_change": 0,
    "win_change": 0.1
@@ -183,7 +183,7 @@
     9.1,
     9.2,
     9.7,
-    9.7,
+    9.8,
     9.4,
     9.5,
     8.9,
@@ -317,7 +317,7 @@
    "points": 11,
    "proj_consensus": 789.0,
    "expected_total": 875.0,
-   "expected_finish": 8.49,
+   "expected_finish": 8.5,
    "win_pct": 1.6,
    "finish_odds": [
     1.6,
@@ -1688,7 +1688,7 @@
    "sources": {
     "ESPN": 63.3,
     "NHL.com": null,
-    "CBS": 64.6,
+    "CBS": 64.5,
     "HockeyBangers": null
    },
    "age": 36.7,
@@ -5677,8 +5677,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 37.0,
-   "proj_left": 36.0,
+   "proj": 37.1,
+   "proj_left": 36.1,
    "games_left": 67.0,
    "proj_gp": 69.0,
    "sources": {
@@ -7090,7 +7090,7 @@
    "sources": {
     "ESPN": 44.4,
     "NHL.com": 54.9,
-    "CBS": 65.1,
+    "CBS": 65.2,
     "HockeyBangers": 42.5
    },
    "age": 32.7,
@@ -7707,7 +7707,7 @@
    "number": 45,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/MTL/8478851.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3942064.png",
-   "injury": null,
+   "injury": "IR",
    "points": 4,
    "gp": 1,
    "stats": {
@@ -7716,15 +7716,15 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 32.6,
-   "proj_left": 28.6,
-   "games_left": 69.0,
-   "proj_gp": 70.0,
+   "proj": 28.5,
+   "proj_left": 24.5,
+   "games_left": 59.0,
+   "proj_gp": 60.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
     "CBS": null,
-    "HockeyBangers": 32.6
+    "HockeyBangers": 28.5
    },
    "age": 30.0
   },
