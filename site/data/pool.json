@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-04T21:09+00:00",
+ "generated": "2026-10-04T21:39+00:00",
  "as_of": "2026-10-04",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -92,7 +92,7 @@
    "proj_rank": 5,
    "points": 35,
    "proj_consensus": 890.0,
-   "expected_total": 963.0,
+   "expected_total": 962.0,
    "expected_finish": 6.07,
    "win_pct": 8.5,
    "finish_odds": [
@@ -103,7 +103,7 @@
     9.8,
     8.7,
     9.0,
-    8.5,
+    8.6,
     8.1,
     7.5,
     6.5,
@@ -190,7 +190,7 @@
     10.0,
     10.9,
     11.8,
-    12.7,
+    12.6,
     11.5
    ],
    "rank_change": 2,
@@ -345,7 +345,7 @@
    "points": 18,
    "proj_consensus": 785.0,
    "expected_total": 868.0,
-   "expected_finish": 8.66,
+   "expected_finish": 8.67,
    "win_pct": 1.4,
    "finish_odds": [
     1.4,
@@ -356,7 +356,7 @@
     6.4,
     8.1,
     9.1,
-    11.4,
+    11.5,
     13.5,
     15.7,
     18.9
@@ -1015,8 +1015,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 81.3,
-   "proj_left": 78.3,
+   "proj": 81.2,
+   "proj_left": 78.2,
    "games_left": 69.0,
    "proj_gp": 72.0,
    "sources": {
@@ -1688,7 +1688,7 @@
    "sources": {
     "ESPN": 63.3,
     "NHL.com": null,
-    "CBS": 64.6,
+    "CBS": 64.5,
     "HockeyBangers": null
    },
    "age": 36.7,
@@ -4685,7 +4685,7 @@
    "sources": {
     "ESPN": 73.7,
     "NHL.com": 85.6,
-    "CBS": 75.2,
+    "CBS": 75.1,
     "HockeyBangers": 69.3
    },
    "age": 27.0,
@@ -5758,7 +5758,7 @@
    "sources": {
     "ESPN": 92.7,
     "NHL.com": null,
-    "CBS": 74.4,
+    "CBS": 74.5,
     "HockeyBangers": null
    },
    "age": 32.2,
@@ -8273,6 +8273,38 @@
    "age": 29.6
   },
   {
+   "nhl_id": 8481601,
+   "espn_id": 4565244,
+   "df_id": 30654,
+   "slug": "simon-holmstrom",
+   "name": "Simon Holmstrom",
+   "pos": "F",
+   "nhl_team": "NYI",
+   "number": 92,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/NYI/8481601.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4565244.png",
+   "injury": null,
+   "points": 3,
+   "gp": 2,
+   "stats": {
+    "G": 1,
+    "A": 1,
+    "GWG": 1,
+    "HT": 0
+   },
+   "proj": 50.9,
+   "proj_left": 47.9,
+   "games_left": 78.0,
+   "proj_gp": 80.0,
+   "sources": {
+    "ESPN": 51.3,
+    "NHL.com": null,
+    "CBS": null,
+    "HockeyBangers": 50.6
+   },
+   "age": 25.4
+  },
+  {
    "nhl_id": 8479973,
    "espn_id": 4268767,
    "df_id": 4741,
@@ -8399,38 +8431,6 @@
     "HockeyBangers": 40.8
    },
    "age": 25.1
-  },
-  {
-   "nhl_id": 8478055,
-   "espn_id": 3151784,
-   "df_id": 2431,
-   "slug": "gustav-forsling",
-   "name": "Gustav Forsling",
-   "pos": "D",
-   "nhl_team": "FLA",
-   "number": 42,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/FLA/8478055.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3151784.png",
-   "injury": "IR",
-   "points": 3,
-   "gp": 1,
-   "stats": {
-    "G": 1,
-    "A": 0,
-    "GWG": 1,
-    "HT": 0
-   },
-   "proj": 43.3,
-   "proj_left": 40.3,
-   "games_left": 72.0,
-   "proj_gp": 73.0,
-   "sources": {
-    "ESPN": 39.8,
-    "NHL.com": 41.8,
-    "CBS": 48.1,
-    "HockeyBangers": 43.5
-   },
-   "age": 30.3
   }
  ],
  "nhl_teams": [
