@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-04T22:39+00:00",
+ "generated": "2026-10-04T23:09+00:00",
  "as_of": "2026-10-04",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -8273,38 +8273,6 @@
    "age": 29.6
   },
   {
-   "nhl_id": 8481601,
-   "espn_id": 4565244,
-   "df_id": 30654,
-   "slug": "simon-holmstrom",
-   "name": "Simon Holmstrom",
-   "pos": "F",
-   "nhl_team": "NYI",
-   "number": 92,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/NYI/8481601.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4565244.png",
-   "injury": null,
-   "points": 3,
-   "gp": 2,
-   "stats": {
-    "G": 1,
-    "A": 1,
-    "GWG": 1,
-    "HT": 0
-   },
-   "proj": 50.9,
-   "proj_left": 47.9,
-   "games_left": 78.0,
-   "proj_gp": 80.0,
-   "sources": {
-    "ESPN": 51.3,
-    "NHL.com": null,
-    "CBS": null,
-    "HockeyBangers": 50.6
-   },
-   "age": 25.4
-  },
-  {
    "nhl_id": 8479973,
    "espn_id": 4268767,
    "df_id": 4741,
@@ -8431,6 +8399,38 @@
     "HockeyBangers": 40.8
    },
    "age": 25.1
+  },
+  {
+   "nhl_id": 8478055,
+   "espn_id": 3151784,
+   "df_id": 2431,
+   "slug": "gustav-forsling",
+   "name": "Gustav Forsling",
+   "pos": "D",
+   "nhl_team": "FLA",
+   "number": 42,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/FLA/8478055.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3151784.png",
+   "injury": "IR",
+   "points": 3,
+   "gp": 1,
+   "stats": {
+    "G": 1,
+    "A": 0,
+    "GWG": 1,
+    "HT": 0
+   },
+   "proj": 43.3,
+   "proj_left": 40.3,
+   "games_left": 72.0,
+   "proj_gp": 73.0,
+   "sources": {
+    "ESPN": 39.8,
+    "NHL.com": 41.8,
+    "CBS": 48.1,
+    "HockeyBangers": 43.5
+   },
+   "age": 30.3
   }
  ],
  "nhl_teams": [
