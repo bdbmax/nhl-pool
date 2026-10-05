@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-05T02:09+00:00",
+ "generated": "2026-10-05T02:39+00:00",
  "as_of": "2026-10-04",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -8337,6 +8337,38 @@
    "age": 25.4
   },
   {
+   "nhl_id": 8478055,
+   "espn_id": 3151784,
+   "df_id": 2431,
+   "slug": "gustav-forsling",
+   "name": "Gustav Forsling",
+   "pos": "D",
+   "nhl_team": "FLA",
+   "number": 42,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/FLA/8478055.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3151784.png",
+   "injury": null,
+   "points": 3,
+   "gp": 1,
+   "stats": {
+    "G": 1,
+    "A": 0,
+    "GWG": 1,
+    "HT": 0
+   },
+   "proj": 48.9,
+   "proj_left": 45.9,
+   "games_left": 82.0,
+   "proj_gp": 83.0,
+   "sources": {
+    "ESPN": 44.9,
+    "NHL.com": 47.2,
+    "CBS": 54.4,
+    "HockeyBangers": 49.2
+   },
+   "age": 30.3
+  },
+  {
    "nhl_id": 8479973,
    "espn_id": 4268767,
    "df_id": 4741,
@@ -8369,68 +8401,36 @@
    "age": 27.9
   },
   {
-   "nhl_id": 8480434,
-   "espn_id": 4378683,
-   "df_id": 27104,
-   "slug": "sean-durzi",
-   "name": "Sean Durzi",
-   "pos": "D",
-   "nhl_team": "NYR",
-   "number": 5,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/NYR/8480434.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4378683.png",
+   "nhl_id": 8481582,
+   "espn_id": 4565275,
+   "df_id": 29254,
+   "slug": "nick-robertson",
+   "name": "Nick Robertson",
+   "pos": "F",
+   "nhl_team": "PIT",
+   "number": 14,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/PIT/8481582.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4565275.png",
    "injury": null,
    "points": 3,
-   "gp": 4,
+   "gp": 2,
    "stats": {
-    "G": 1,
+    "G": 2,
     "A": 0,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 45.5,
-   "proj_left": 42.5,
-   "games_left": 74.0,
-   "proj_gp": 78.0,
+   "proj": 44.1,
+   "proj_left": 41.1,
+   "games_left": 67.0,
+   "proj_gp": 69.0,
    "sources": {
     "ESPN": null,
-    "NHL.com": 45.7,
-    "CBS": 46.3,
-    "HockeyBangers": 44.4
-   },
-   "age": 28.0
-  },
-  {
-   "nhl_id": 8483489,
-   "espn_id": 5080207,
-   "df_id": 31575,
-   "slug": "fraser-minten",
-   "name": "Fraser Minten",
-   "pos": "F",
-   "nhl_team": "BOS",
-   "number": 93,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/BOS/8483489.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5080207.png",
-   "injury": null,
-   "points": 3,
-   "gp": 3,
-   "stats": {
-    "G": 1,
-    "A": 1,
-    "GWG": 1,
-    "HT": 0
-   },
-   "proj": 44.5,
-   "proj_left": 41.5,
-   "games_left": 76.0,
-   "proj_gp": 79.0,
-   "sources": {
-    "ESPN": 41.2,
-    "NHL.com": 48.9,
+    "NHL.com": 47.4,
     "CBS": null,
-    "HockeyBangers": 43.4
+    "HockeyBangers": 40.8
    },
-   "age": 22.3
+   "age": 25.1
   }
  ],
  "nhl_teams": [
