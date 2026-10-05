@@ -27,9 +27,10 @@ def skater_points(df: pd.DataFrame, rules: dict | None = None) -> pd.Series:
 
 
 def goalie_points(df: pd.DataFrame, rules: dict | None = None) -> pd.Series:
-    """df needs columns: W, OTL, SO."""
+    """df needs columns: W, OTL, SO. Goals (G) count when present (the model's goalie tables have none)."""
     r = (rules or load_league()["scoring"])["G"]
-    return r["win"] * df["W"] + r["otl"] * df["OTL"] + r["shutout"] * df["SO"]
+    goals = df["G"].fillna(0) if "G" in df else 0
+    return r["win"] * df["W"] + r["otl"] * df["OTL"] + r["shutout"] * df["SO"] + r["goal"] * goals
 
 
 def fantasy_points(df: pd.DataFrame, rules: dict | None = None) -> pd.Series:

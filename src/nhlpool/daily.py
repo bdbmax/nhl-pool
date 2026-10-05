@@ -126,7 +126,7 @@ def _stat_frame(sk: pd.DataFrame, gl: pd.DataFrame, ht: pd.Series) -> pd.DataFra
     if len(gl):
         parts.append(pd.DataFrame({"playerId": gl["playerId"], "name": gl["goalieFullName"], "pos": "G",
                                    "GP": gl["gamesPlayed"], "GS": gl["gamesStarted"], "W": gl["wins"],
-                                   "OTL": gl["otLosses"], "SO": gl["shutouts"]}))
+                                   "OTL": gl["otLosses"], "SO": gl["shutouts"], "G": gl["goals"]}))
     R = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame(columns=["playerId"] + STAT_COLS)
     R = R.drop_duplicates("playerId").set_index("playerId").reindex(columns=STAT_COLS)
     # Always numbers, even for an empty table (a day with no games): an empty frame's columns are "object",

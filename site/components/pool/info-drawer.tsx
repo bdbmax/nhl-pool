@@ -64,7 +64,7 @@ const TOPICS = {
       "Les statistiques viennent de la LNH. Le matin, elles comprennent tous les matchs joués jusqu'à la veille. De midi à 1 h 30, chaque demi-heure ajoute les matchs du jour qui sont terminés, et met à jour les blessures, les échanges et les projections ; la mise à jour du matin reste la version officielle.",
       "Les petites flèches montrent les rangs gagnés ou perdus depuis la mise à jour précédente.",
       "Sous chaque équipe, par exemple « 17/24 à jouer cette sem. » : il reste 17 matchs à jouer sur les 24 de la semaine (du lundi au dimanche), additionnés pour les 11 joueurs qui comptent, sans les blessés et les absents. Plus de matchs, plus de chances de remonter.",
-      "Ce sont des points de pool, pas les points de la LNH. Attaquants : 1 point par but et par passe, 1 de plus par but gagnant et par tour du chapeau. Défenseurs : 2 points par but, 1 par passe, 1 de plus par but gagnant. Gardiens : 2 points par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage.",
+      "Ce sont des points de pool, pas les points de la LNH. Attaquants : 1 point par but et par passe, 1 de plus par but gagnant et par tour du chapeau. Défenseurs : 2 points par but, 1 par passe, 1 de plus par but gagnant. Gardiens : 2 points par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage, 10 par but.",
       "Chaque équipe compte ses 6 meilleurs attaquants, ses 4 meilleurs défenseurs et son meilleur gardien à ce jour.",
       "En cas d'égalité, la meilleure projection finale passe devant.",
     ],

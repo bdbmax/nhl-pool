@@ -409,7 +409,7 @@ def test_evening_stats_on_opening_night_with_no_earlier_games(monkeypatch):
         {"gameId": 1, "playerId": 11, "skaterFullName": "B", "positionCode": "D", "gamesPlayed": 1, "goals": 1, "assists": 0, "gameWinningGoals": 0},
         {"gameId": 2, "playerId": 12, "skaterFullName": "C", "positionCode": "L", "gamesPlayed": 1, "goals": 2, "assists": 0, "gameWinningGoals": 0}])
     gl = pd.DataFrame([{"gameId": 1, "gameDate": "2026-09-29", "playerId": 20, "goalieFullName": "G", "gamesPlayed": 1,
-                        "gamesStarted": 1, "wins": 1, "otLosses": 0, "shutouts": 0}])
+                        "gamesStarted": 1, "wins": 1, "otLosses": 0, "shutouts": 0, "goals": 0}])
     monkeypatch.setattr(nhl_api, "skater_games_on", lambda s, d: sk)
     monkeypatch.setattr(nhl_api, "goalie_games_to_date", lambda s, d: gl)
     R = daily.real_stats(20262027, "2026-09-29", finished_today={1})   # game 2 still being played
@@ -417,3 +417,14 @@ def test_evening_stats_on_opening_night_with_no_earlier_games(monkeypatch):
     assert R.loc[10, "FP"] == 3 + 1 + 1 + 1   # hat trick bonus
     assert R.loc[11, "FP"] == 2               # a defenseman's goal counts double
     assert R.loc[20, "FP"] == 2 and 12 not in R.index
+
+
+def test_a_goalie_goal_is_worth_10_points(monkeypatch):
+    from nhlpool.fetch import nhl_api
+    for f in ("skaters_to_date", "hat_tricks_to_date"):
+        monkeypatch.setattr(nhl_api, f, lambda *a: pd.DataFrame())
+    gl = pd.DataFrame([{"playerId": 20, "goalieFullName": "G", "gamesPlayed": 3, "gamesStarted": 3, "wins": 2,
+                        "otLosses": 0, "shutouts": 0, "goals": 1}])
+    monkeypatch.setattr(nhl_api, "goalies_to_date", lambda *a: gl)
+    R = daily.real_stats(20262027, "2026-10-04")
+    assert R.loc[20, "FP"] == 2 * 2 + 10

@@ -2,7 +2,7 @@
 
 Draft-and-hold, best-ball pool. Each team drafts 8 F, 6 D and 2 G. The best 6 F, best 4 D and best 1 G
 (season totals) count. Scoring: F goal 1, assist 1, GWG +1, hat trick +1. D goal 2, assist 1, GWG +1.
-G win 2, OT/SO loss 1, shutout +3.
+G win 2, OT/SO loss 1, shutout +3, goal 10.
 
 Outputs:
 

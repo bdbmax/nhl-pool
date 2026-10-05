@@ -138,7 +138,7 @@ export const PTS = "pts pool"
 export const SCORING: Record<Pos, string> = {
   F: "1 par but et par passe, 1 de plus par but gagnant et par tour du chapeau",
   D: "2 par but, 1 par passe, 1 de plus par but gagnant",
-  G: "2 par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage",
+  G: "2 par victoire, 1 par défaite en prolongation ou en tirs de barrage, 3 de plus par blanchissage, 10 par but",
 }
 
 // Position abrégée à la québécoise : A (attaquant), D (défenseur), G (gardien).
@@ -220,10 +220,12 @@ export function dayLabel(iso: string) {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString("fr-CA", FR_DAY)
 }
 
-// Fiche du joueur : 12 B, 20 P ou 8 V, 2 BL.
+// Fiche du joueur : 12 B, 20 P ou 8 V, 2 BL (et 1 B si un gardien a marqué).
 export function statLine(p: Player) {
   const s = p.stats ?? {}
-  return p.pos === "G" ? `${s.W ?? 0} V, ${s.OTL ?? 0} DP, ${s.SO ?? 0} BL` : `${s.G ?? 0} B, ${s.A ?? 0} P`
+  if (p.pos !== "G") return `${s.G ?? 0} B, ${s.A ?? 0} P`
+  const line = `${s.W ?? 0} V, ${s.OTL ?? 0} DP, ${s.SO ?? 0} BL`
+  return s.G ? `${line}, ${s.G} B` : line
 }
 
 // Date du premier match de la saison, lue dans le calendrier de la LNH.

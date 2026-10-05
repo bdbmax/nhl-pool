@@ -93,7 +93,7 @@ def payload(D, people, X, shots, real, proj, managers, odds_, started, as_of, T,
         row, x, h, r, pr = people.loc[pid], X.loc[pid], shots.get(pid, {}), rl.loc[pid], proj.loc[pid]
         goalie = row["pos"] == "G"
         gp = 0 if pd.isna(r["GP"]) else int(r["GP"])
-        stats = (["GS", "W", "OTL", "SO"] if goalie else ["G", "A", "GWG", "HT"])
+        stats = (["GS", "W", "OTL", "SO", "G"] if goalie else ["G", "A", "GWG", "HT"])
         birth = h.get("birth")
         pts = 0 if pd.isna(r["FP"]) else int(r["FP"])
         return {

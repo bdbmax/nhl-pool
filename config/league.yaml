@@ -37,7 +37,7 @@ second_goalie_last: 2     # take your second goalie only in your last N picks (b
 scoring:
   F: {goal: 1, assist: 1, gwg: 1, hat_trick: 1}
   D: {goal: 2, assist: 1, gwg: 1, hat_trick: 0}
-  G: {win: 2, otl: 1, shutout: 3}
+  G: {win: 2, otl: 1, shutout: 3, goal: 10}
 
 season: 20262027
 
