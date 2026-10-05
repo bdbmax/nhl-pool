@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-04T23:39+00:00",
+ "generated": "2026-10-05T00:09+00:00",
  "as_of": "2026-10-04",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -37,7 +37,7 @@
    "points": 38,
    "proj_consensus": 942.0,
    "expected_total": 1032.0,
-   "expected_finish": 4.35,
+   "expected_finish": 4.34,
    "win_pct": 20.9,
    "finish_odds": [
     20.9,
@@ -46,10 +46,10 @@
     10.6,
     8.8,
     7.5,
-    6.4,
-    5.5,
+    6.5,
+    5.4,
     4.5,
-    3.6,
+    3.5,
     2.6,
     1.7
    ],
@@ -65,10 +65,10 @@
    "points": 38,
    "proj_consensus": 949.0,
    "expected_total": 1020.0,
-   "expected_finish": 4.63,
-   "win_pct": 18.1,
+   "expected_finish": 4.62,
+   "win_pct": 18.2,
    "finish_odds": [
-    18.1,
+    18.2,
     14.6,
     12.6,
     10.5,
@@ -82,7 +82,7 @@
     2.0
    ],
    "rank_change": 1,
-   "win_change": 0.6
+   "win_change": 0.7
   },
   {
    "id": 11,
@@ -99,7 +99,7 @@
     8.5,
     9.1,
     9.4,
-    9.7,
+    9.8,
     9.8,
     8.7,
     9.0,
@@ -107,7 +107,7 @@
     8.1,
     7.5,
     6.5,
-    5.1
+    5.0
    ],
    "rank_change": -1,
    "win_change": 0.0
@@ -148,25 +148,25 @@
    "proj_rank": 9,
    "points": 29,
    "proj_consensus": 853.0,
-   "expected_total": 936.0,
-   "expected_finish": 6.79,
-   "win_pct": 5.3,
+   "expected_total": 934.0,
+   "expected_finish": 6.83,
+   "win_pct": 5.2,
    "finish_odds": [
-    5.3,
-    6.5,
-    7.7,
+    5.2,
+    6.3,
+    7.6,
     8.3,
     8.6,
-    9.4,
+    9.3,
     9.7,
     10.1,
-    9.7,
-    9.3,
-    8.5,
-    6.8
+    9.8,
+    9.5,
+    8.6,
+    7.1
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": -0.1
   },
   {
    "id": 5,
@@ -205,7 +205,7 @@
    "points": 25,
    "proj_consensus": 872.0,
    "expected_total": 966.0,
-   "expected_finish": 5.97,
+   "expected_finish": 5.96,
    "win_pct": 8.7,
    "finish_odds": [
     8.7,
@@ -242,10 +242,10 @@
     9.6,
     9.3,
     9.7,
-    9.0,
+    9.1,
     8.8,
     8.2,
-    7.3,
+    7.2,
     6.6,
     4.8
    ],
@@ -266,7 +266,7 @@
    "finish_odds": [
     7.9,
     8.2,
-    8.9,
+    9.0,
     9.4,
     9.4,
     9.3,
@@ -275,7 +275,7 @@
     8.5,
     8.1,
     6.9,
-    5.5
+    5.4
    ],
    "rank_change": 0,
    "win_change": -0.3
@@ -303,7 +303,7 @@
     9.6,
     13.1,
     17.7,
-    28.4
+    28.3
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -322,9 +322,9 @@
    "finish_odds": [
     6.0,
     7.4,
-    7.5,
+    7.6,
     8.2,
-    9.0,
+    9.1,
     9.0,
     9.0,
     9.1,
@@ -345,7 +345,7 @@
    "points": 18,
    "proj_consensus": 785.0,
    "expected_total": 868.0,
-   "expected_finish": 8.67,
+   "expected_finish": 8.66,
    "win_pct": 1.4,
    "finish_odds": [
     1.4,
@@ -615,7 +615,7 @@
    "sources": {
     "ESPN": 64.2,
     "NHL.com": 79.5,
-    "CBS": 75.2,
+    "CBS": 75.1,
     "HockeyBangers": 75.1
    },
    "age": 25.7,
@@ -655,7 +655,7 @@
     "CBS": 75.9,
     "HockeyBangers": 75.2
    },
-   "age": 21.5,
+   "age": 21.6,
    "manager_id": 1,
    "round": 8,
    "overall": 96,
@@ -1284,7 +1284,7 @@
     "CBS": 78.2,
     "HockeyBangers": 75.4
    },
-   "age": 27.7,
+   "age": 27.8,
    "manager_id": 2,
    "round": 9,
    "overall": 98,
@@ -2727,7 +2727,7 @@
     "CBS": 65.5,
     "HockeyBangers": 59.9
    },
-   "age": 25.6,
+   "age": 25.7,
    "manager_id": 4,
    "round": 16,
    "overall": 189,
@@ -2909,7 +2909,7 @@
    "sources": {
     "ESPN": 69.6,
     "NHL.com": 88.1,
-    "CBS": 84.2,
+    "CBS": 84.1,
     "HockeyBangers": 79.4
    },
    "age": 22.7,
@@ -4688,7 +4688,7 @@
     "CBS": 75.2,
     "HockeyBangers": 69.3
    },
-   "age": 27.0,
+   "age": 27.1,
    "manager_id": 8,
    "round": 5,
    "overall": 56,
@@ -5391,7 +5391,7 @@
     "CBS": 50.0,
     "HockeyBangers": 57.1
    },
-   "age": 23.6,
+   "age": 23.7,
    "manager_id": 9,
    "round": 8,
    "overall": 88,
@@ -5668,7 +5668,7 @@
    "number": 5,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/FLA/8477932.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3114717.png",
-   "injury": null,
+   "injury": "IR",
    "points": 1,
    "gp": 2,
    "stats": {
@@ -5677,15 +5677,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 37.1,
-   "proj_left": 36.1,
-   "games_left": 67.0,
-   "proj_gp": 69.0,
+   "proj": 31.7,
+   "proj_left": 30.7,
+   "games_left": 57.0,
+   "proj_gp": 59.0,
    "sources": {
-    "ESPN": 31.8,
-    "NHL.com": 41.2,
-    "CBS": 39.0,
-    "HockeyBangers": 36.2
+    "ESPN": 27.3,
+    "NHL.com": 35.3,
+    "CBS": 33.3,
+    "HockeyBangers": 30.9
    },
    "age": 30.7,
    "manager_id": 9,
@@ -5758,7 +5758,7 @@
    "sources": {
     "ESPN": 92.7,
     "NHL.com": null,
-    "CBS": 74.4,
+    "CBS": 74.5,
     "HockeyBangers": null
    },
    "age": 32.2,
@@ -8398,7 +8398,7 @@
     "CBS": null,
     "HockeyBangers": 43.4
    },
-   "age": 22.2
+   "age": 22.3
   },
   {
    "nhl_id": 8481582,
@@ -8841,7 +8841,8 @@
  "since": "depuis ce matin",
  "headline": [
   "L. Girard gagne 2 rangs, du 8e au 6e.",
-  "Kyle Connor (J. Gobeil) : 4 points de pool depuis ce matin."
+  "Kyle Connor (J. Gobeil) : 4 points de pool depuis ce matin.",
+  "Aaron Ekblad (B. Belanger) est maintenant blessé."
  ],
  "week": {
   "start": "2026-09-28",
