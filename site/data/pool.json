@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-05T16:40+00:00",
+ "generated": "2026-10-05T17:09+00:00",
  "as_of": "2026-10-05",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -48,9 +48,9 @@
     7.5,
     6.6,
     5.5,
-    4.5,
+    4.6,
     3.7,
-    2.8,
+    2.7,
     1.8
    ],
    "rank_change": 0,
@@ -189,7 +189,7 @@
     7.9,
     9.3,
     11.4,
-    13.5,
+    13.4,
     15.8,
     18.3
    ],
@@ -265,7 +265,7 @@
    "win_pct": 7.8,
    "finish_odds": [
     7.8,
-    8.8,
+    8.9,
     9.3,
     9.3,
     9.4,
@@ -727,7 +727,7 @@
    "sources": {
     "ESPN": 64.0,
     "NHL.com": 76.9,
-    "CBS": 60.9,
+    "CBS": 61.0,
     "HockeyBangers": 63.5
    },
    "age": 29.9,
@@ -2213,7 +2213,7 @@
    "sources": {
     "ESPN": 82.9,
     "NHL.com": null,
-    "CBS": 59.4,
+    "CBS": 59.5,
     "HockeyBangers": null
    },
    "age": 27.8,
@@ -2250,7 +2250,7 @@
    "sources": {
     "ESPN": 91.7,
     "NHL.com": 100.1,
-    "CBS": 99.6,
+    "CBS": 99.7,
     "HockeyBangers": 87.0
    },
    "age": 25.8,
@@ -2725,8 +2725,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 62.3,
-   "proj_left": 62.3,
+   "proj": 62.2,
+   "proj_left": 62.2,
    "games_left": 83.0,
    "proj_gp": 84.0,
    "sources": {
@@ -5323,8 +5323,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 79.5,
-   "proj_left": 76.5,
+   "proj": 79.6,
+   "proj_left": 76.6,
    "games_left": 80.0,
    "proj_gp": 83.0,
    "sources": {
@@ -6073,7 +6073,7 @@
    "sources": {
     "ESPN": 71.1,
     "NHL.com": 79.1,
-    "CBS": 75.4,
+    "CBS": 75.5,
     "HockeyBangers": 68.8
    },
    "age": 27.3,
@@ -7187,7 +7187,7 @@
    "sources": {
     "ESPN": 54.3,
     "NHL.com": 45.3,
-    "CBS": 55.7,
+    "CBS": 55.8,
     "HockeyBangers": 42.0
    },
    "age": 32.6,
@@ -7840,8 +7840,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 58.9,
-   "proj_left": 54.9,
+   "proj": 59.0,
+   "proj_left": 55.0,
    "games_left": 47.0,
    "proj_gp": 49.0,
    "sources": {
@@ -8303,38 +8303,6 @@
    "age": 24.8
   },
   {
-   "nhl_id": 8483678,
-   "espn_id": 5238086,
-   "df_id": 36406,
-   "slug": "elias-pettersson",
-   "name": "Elias Pettersson",
-   "pos": "D",
-   "nhl_team": "VAN",
-   "number": 25,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/VAN/8483678.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5238086.png",
-   "injury": null,
-   "points": 3,
-   "gp": 4,
-   "stats": {
-    "G": 1,
-    "A": 0,
-    "GWG": 1,
-    "HT": 0
-   },
-   "proj": 74.2,
-   "proj_left": 71.2,
-   "games_left": 67.0,
-   "proj_gp": 71.0,
-   "sources": {
-    "ESPN": null,
-    "NHL.com": null,
-    "CBS": null,
-    "HockeyBangers": 74.2
-   },
-   "age": 22.6
-  },
-  {
    "nhl_id": 8475798,
    "espn_id": 5831,
    "df_id": 1934,
@@ -8461,6 +8429,38 @@
     "HockeyBangers": 60.7
    },
    "age": 29.6
+  },
+  {
+   "nhl_id": 8474586,
+   "espn_id": 5032,
+   "df_id": 530,
+   "slug": "jordan-eberle",
+   "name": "Jordan Eberle",
+   "pos": "F",
+   "nhl_team": "SEA",
+   "number": 7,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8474586.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5032.png",
+   "injury": null,
+   "points": 3,
+   "gp": 3,
+   "stats": {
+    "G": 2,
+    "A": 1,
+    "GWG": 0,
+    "HT": 0
+   },
+   "proj": 59.0,
+   "proj_left": 56.0,
+   "games_left": 73.0,
+   "proj_gp": 76.0,
+   "sources": {
+    "ESPN": 58.9,
+    "NHL.com": 59.9,
+    "CBS": 64.7,
+    "HockeyBangers": 52.6
+   },
+   "age": 36.4
   }
  ],
  "nhl_teams": [
