@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-05T18:39+00:00",
+ "generated": "2026-10-05T19:09+00:00",
  "as_of": "2026-10-05",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -8303,6 +8303,38 @@
    "age": 24.8
   },
   {
+   "nhl_id": 8483678,
+   "espn_id": 5238086,
+   "df_id": 36406,
+   "slug": "elias-pettersson",
+   "name": "Elias Pettersson",
+   "pos": "D",
+   "nhl_team": "VAN",
+   "number": 25,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/VAN/8483678.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5238086.png",
+   "injury": null,
+   "points": 3,
+   "gp": 4,
+   "stats": {
+    "G": 1,
+    "A": 0,
+    "GWG": 1,
+    "HT": 0
+   },
+   "proj": 74.2,
+   "proj_left": 71.2,
+   "games_left": 67.0,
+   "proj_gp": 71.0,
+   "sources": {
+    "ESPN": null,
+    "NHL.com": null,
+    "CBS": null,
+    "HockeyBangers": 74.2
+   },
+   "age": 22.6
+  },
+  {
    "nhl_id": 8475798,
    "espn_id": 5831,
    "df_id": 1934,
@@ -8429,38 +8461,6 @@
     "HockeyBangers": 60.7
    },
    "age": 29.6
-  },
-  {
-   "nhl_id": 8474586,
-   "espn_id": 5032,
-   "df_id": 530,
-   "slug": "jordan-eberle",
-   "name": "Jordan Eberle",
-   "pos": "F",
-   "nhl_team": "SEA",
-   "number": 7,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8474586.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5032.png",
-   "injury": null,
-   "points": 3,
-   "gp": 3,
-   "stats": {
-    "G": 2,
-    "A": 1,
-    "GWG": 0,
-    "HT": 0
-   },
-   "proj": 59.0,
-   "proj_left": 56.0,
-   "games_left": 73.0,
-   "proj_gp": 76.0,
-   "sources": {
-    "ESPN": 58.9,
-    "NHL.com": 59.9,
-    "CBS": 64.7,
-    "HockeyBangers": 52.6
-   },
-   "age": 36.4
   }
  ],
  "nhl_teams": [
