@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-06T05:39+00:00",
+ "generated": "2026-10-06T09:39+00:00",
  "as_of": "2026-10-05",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -37,14 +37,14 @@
    "points": 41,
    "proj_consensus": 937.0,
    "expected_total": 1008.0,
-   "expected_finish": 4.75,
+   "expected_finish": 4.74,
    "win_pct": 17.4,
    "finish_odds": [
     17.4,
     14.0,
     12.4,
     10.4,
-    9.0,
+    8.9,
     7.9,
     6.9,
     6.4,
@@ -65,24 +65,24 @@
    "points": 39,
    "proj_consensus": 935.0,
    "expected_total": 1023.0,
-   "expected_finish": 4.4,
-   "win_pct": 20.7,
+   "expected_finish": 4.41,
+   "win_pct": 20.6,
    "finish_odds": [
-    20.7,
-    15.4,
-    12.0,
+    20.6,
+    15.3,
+    12.1,
     10.4,
     9.0,
     7.5,
     6.5,
-    5.5,
+    5.6,
     4.6,
     3.8,
-    2.8,
+    2.7,
     1.8
    ],
    "rank_change": -1,
-   "win_change": -0.1
+   "win_change": -0.2
   },
   {
    "id": 11,
@@ -158,7 +158,7 @@
     10.0,
     9.9,
     9.2,
-    9.1,
+    9.2,
     8.0,
     7.5,
     6.5,
@@ -182,15 +182,15 @@
    "finish_odds": [
     8.4,
     9.4,
-    9.6,
-    9.4,
-    9.6,
-    9.6,
+    9.5,
+    9.5,
+    9.5,
+    9.7,
     8.9,
-    8.6,
-    8.0,
+    8.7,
+    7.9,
     7.2,
-    6.5,
+    6.6,
     4.7
    ],
    "rank_change": 3,
@@ -205,21 +205,21 @@
    "points": 31,
    "proj_consensus": 886.0,
    "expected_total": 950.0,
-   "expected_finish": 6.26,
-   "win_pct": 7.9,
+   "expected_finish": 6.25,
+   "win_pct": 8.0,
    "finish_odds": [
-    7.9,
-    8.7,
+    8.0,
+    8.8,
     9.1,
-    9.1,
+    9.2,
     9.1,
     9.0,
     8.9,
     8.6,
-    8.3,
+    8.2,
     7.8,
     7.3,
-    6.1
+    6.0
    ],
    "rank_change": 4,
    "win_change": 1.2
@@ -233,19 +233,19 @@
    "points": 31,
    "proj_consensus": 818.0,
    "expected_total": 904.0,
-   "expected_finish": 7.52,
+   "expected_finish": 7.53,
    "win_pct": 3.2,
    "finish_odds": [
     3.2,
     4.9,
     5.7,
     6.7,
-    7.5,
+    7.4,
     8.7,
     9.4,
     10.2,
     10.6,
-    11.3,
+    11.2,
     11.7,
     10.2
    ],
@@ -265,8 +265,8 @@
    "win_pct": 1.3,
    "finish_odds": [
     1.3,
-    2.4,
-    3.2,
+    2.5,
+    3.1,
     4.0,
     5.4,
     6.3,
@@ -289,17 +289,17 @@
    "points": 30,
    "proj_consensus": 863.0,
    "expected_total": 954.0,
-   "expected_finish": 6.13,
+   "expected_finish": 6.14,
    "win_pct": 8.2,
    "finish_odds": [
     8.2,
     8.9,
     9.2,
-    9.6,
+    9.5,
     9.6,
     9.5,
-    8.6,
-    8.6,
+    8.7,
+    8.5,
     8.1,
     7.5,
     6.8,
@@ -352,7 +352,7 @@
     8.2,
     8.9,
     9.3,
-    9.1,
+    9.2,
     9.1,
     9.1,
     8.9,
@@ -393,7 +393,7 @@
    "sources": {
     "ESPN": 158.4,
     "NHL.com": 153.6,
-    "CBS": 169.0,
+    "CBS": 168.9,
     "HockeyBangers": 152.4
    },
    "age": 29.7,
@@ -430,7 +430,7 @@
    "sources": {
     "ESPN": 84.5,
     "NHL.com": 96.0,
-    "CBS": 90.5,
+    "CBS": 90.4,
     "HockeyBangers": 77.4
    },
    "age": 29.9,
@@ -467,7 +467,7 @@
    "sources": {
     "ESPN": 87.6,
     "NHL.com": 89.5,
-    "CBS": 103.3,
+    "CBS": 103.2,
     "HockeyBangers": 95.7
    },
    "age": 29.4,
@@ -497,14 +497,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 52.1,
-   "proj_left": 52.1,
+   "proj": 52.0,
+   "proj_left": 52.0,
    "games_left": 59.0,
    "proj_gp": 62.0,
    "sources": {
     "ESPN": 56.0,
     "NHL.com": 60.4,
-    "CBS": 52.1,
+    "CBS": 51.8,
     "HockeyBangers": 39.7
    },
    "age": 35.8,
@@ -571,8 +571,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 68.6,
-   "proj_left": 64.6,
+   "proj": 68.5,
+   "proj_left": 64.5,
    "games_left": 69.0,
    "proj_gp": 72.0,
    "sources": {
@@ -727,7 +727,7 @@
    "sources": {
     "ESPN": 67.1,
     "NHL.com": 79.6,
-    "CBS": 64.2,
+    "CBS": 64.3,
     "HockeyBangers": 66.7
    },
    "age": 29.9,
@@ -801,7 +801,7 @@
    "sources": {
     "ESPN": 65.3,
     "NHL.com": null,
-    "CBS": 67.9,
+    "CBS": 67.8,
     "HockeyBangers": 62.7
    },
    "age": 30.2,
@@ -869,15 +869,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 39.6,
-   "proj_left": 39.6,
-   "games_left": 74.0,
-   "proj_gp": 78.0,
+   "proj": 39.3,
+   "proj_left": 39.3,
+   "games_left": 73.0,
+   "proj_gp": 77.0,
    "sources": {
     "ESPN": null,
     "NHL.com": 44.2,
-    "CBS": 36.6,
-    "HockeyBangers": 38.1
+    "CBS": 36.1,
+    "HockeyBangers": 37.7
    },
    "age": 24.5,
    "manager_id": 1,
@@ -987,7 +987,7 @@
    "sources": {
     "ESPN": 147.5,
     "NHL.com": 144.4,
-    "CBS": 160.9,
+    "CBS": 160.8,
     "HockeyBangers": 141.3
    },
    "age": 31.1,
@@ -1061,7 +1061,7 @@
    "sources": {
     "ESPN": 82.8,
     "NHL.com": 87.8,
-    "CBS": 82.9,
+    "CBS": 82.8,
     "HockeyBangers": 85.4
    },
    "age": 25.4,
@@ -1098,7 +1098,7 @@
    "sources": {
     "ESPN": 81.8,
     "NHL.com": 92.3,
-    "CBS": 91.2,
+    "CBS": 91.1,
     "HockeyBangers": 78.4
    },
    "age": 36.3,
@@ -1173,7 +1173,7 @@
    "sources": {
     "ESPN": 59.8,
     "NHL.com": 69.4,
-    "CBS": 59.9,
+    "CBS": 60.0,
     "HockeyBangers": 55.9
    },
    "age": 24.2,
@@ -1321,7 +1321,7 @@
    "sources": {
     "ESPN": 46.9,
     "NHL.com": 54.8,
-    "CBS": 47.8,
+    "CBS": 47.6,
     "HockeyBangers": 51.7
    },
    "age": 25.1,
@@ -1351,8 +1351,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 70.6,
-   "proj_left": 68.6,
+   "proj": 70.5,
+   "proj_left": 68.5,
    "games_left": 60.0,
    "proj_gp": 63.0,
    "sources": {
@@ -1395,7 +1395,7 @@
    "sources": {
     "ESPN": 69.0,
     "NHL.com": 68.1,
-    "CBS": 75.1,
+    "CBS": 74.9,
     "HockeyBangers": 70.0
    },
    "age": 29.6,
@@ -1506,7 +1506,7 @@
    "sources": {
     "ESPN": 53.0,
     "NHL.com": 62.0,
-    "CBS": 62.9,
+    "CBS": 63.0,
     "HockeyBangers": 51.4
    },
    "age": 29.7,
@@ -1581,7 +1581,7 @@
    "sources": {
     "ESPN": 136.4,
     "NHL.com": 129.7,
-    "CBS": 138.5,
+    "CBS": 138.4,
     "HockeyBangers": 127.5
    },
    "age": 33.3,
@@ -1611,14 +1611,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 95.2,
-   "proj_left": 93.2,
+   "proj": 95.1,
+   "proj_left": 93.1,
    "games_left": 82.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 88.2,
     "NHL.com": 103.1,
-    "CBS": 100.3,
+    "CBS": 100.2,
     "HockeyBangers": 89.0
    },
    "age": 19.1,
@@ -1693,7 +1693,7 @@
    "sources": {
     "ESPN": 65.5,
     "NHL.com": null,
-    "CBS": 64.3,
+    "CBS": 64.4,
     "HockeyBangers": null
    },
    "age": 36.7,
@@ -1760,14 +1760,14 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 97.3,
-   "proj_left": 92.3,
+   "proj": 97.5,
+   "proj_left": 92.5,
    "games_left": 80.0,
    "proj_gp": 82.0,
    "sources": {
     "ESPN": 91.8,
     "NHL.com": null,
-    "CBS": 104.2,
+    "CBS": 104.8,
     "HockeyBangers": 95.9
    },
    "age": 24.7,
@@ -1841,7 +1841,7 @@
    "sources": {
     "ESPN": 76.9,
     "NHL.com": 78.0,
-    "CBS": 82.8,
+    "CBS": 82.7,
     "HockeyBangers": 69.1
    },
    "age": 36.7,
@@ -2094,14 +2094,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 30.4,
-   "proj_left": 28.4,
+   "proj": 31.3,
+   "proj_left": 29.3,
    "games_left": 22.0,
    "proj_gp": 23.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
-    "CBS": 30.4,
+    "CBS": 31.3,
     "HockeyBangers": null
    },
    "age": 27.3,
@@ -2168,14 +2168,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 113.5,
-   "proj_left": 108.5,
+   "proj": 113.4,
+   "proj_left": 108.4,
    "games_left": 70.0,
    "proj_gp": 72.0,
    "sources": {
     "ESPN": 105.9,
     "NHL.com": 118.1,
-    "CBS": 123.0,
+    "CBS": 122.9,
     "HockeyBangers": 106.9
    },
    "age": 20.3,
@@ -2213,7 +2213,7 @@
    "sources": {
     "ESPN": 93.3,
     "NHL.com": null,
-    "CBS": 70.0,
+    "CBS": 70.2,
     "HockeyBangers": null
    },
    "age": 27.8,
@@ -2250,7 +2250,7 @@
    "sources": {
     "ESPN": 91.7,
     "NHL.com": 100.1,
-    "CBS": 99.6,
+    "CBS": 99.5,
     "HockeyBangers": 87.0
    },
    "age": 25.8,
@@ -2287,7 +2287,7 @@
    "sources": {
     "ESPN": 90.1,
     "NHL.com": 98.4,
-    "CBS": 100.3,
+    "CBS": 100.2,
     "HockeyBangers": 82.2
    },
    "age": 28.5,
@@ -2324,7 +2324,7 @@
    "sources": {
     "ESPN": 87.5,
     "NHL.com": 82.4,
-    "CBS": 89.4,
+    "CBS": 89.3,
     "HockeyBangers": 82.3
    },
    "age": 28.8,
@@ -2361,7 +2361,7 @@
    "sources": {
     "ESPN": 72.2,
     "NHL.com": 66.5,
-    "CBS": 75.0,
+    "CBS": 74.9,
     "HockeyBangers": 63.4
    },
    "age": 33.5,
@@ -2398,7 +2398,7 @@
    "sources": {
     "ESPN": 83.7,
     "NHL.com": 91.5,
-    "CBS": 96.1,
+    "CBS": 95.9,
     "HockeyBangers": 78.3
    },
    "age": 39.2,
@@ -2472,7 +2472,7 @@
    "sources": {
     "ESPN": 69.6,
     "NHL.com": 79.7,
-    "CBS": 82.4,
+    "CBS": 82.5,
     "HockeyBangers": 71.2
    },
    "age": 28.4,
@@ -2509,7 +2509,7 @@
    "sources": {
     "ESPN": 75.3,
     "NHL.com": 75.3,
-    "CBS": 85.9,
+    "CBS": 85.8,
     "HockeyBangers": 65.6
    },
    "age": 35.0,
@@ -2576,14 +2576,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 52.6,
-   "proj_left": 49.6,
+   "proj": 52.5,
+   "proj_left": 49.5,
    "games_left": 79.0,
    "proj_gp": 83.0,
    "sources": {
     "ESPN": 51.2,
     "NHL.com": 58.0,
-    "CBS": 55.7,
+    "CBS": 55.6,
     "HockeyBangers": 45.4
    },
    "age": 30.5,
@@ -2658,7 +2658,7 @@
    "sources": {
     "ESPN": 64.9,
     "NHL.com": 77.3,
-    "CBS": 74.2,
+    "CBS": 74.1,
     "HockeyBangers": 64.1
    },
    "age": 31.5,
@@ -2732,7 +2732,7 @@
    "sources": {
     "ESPN": 58.9,
     "NHL.com": 60.9,
-    "CBS": 62.6,
+    "CBS": 62.5,
     "HockeyBangers": 57.7
    },
    "age": 25.7,
@@ -2762,8 +2762,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 112.9,
-   "proj_left": 107.9,
+   "proj": 112.8,
+   "proj_left": 107.8,
    "games_left": 79.0,
    "proj_gp": 81.0,
    "sources": {
@@ -2881,7 +2881,7 @@
    "sources": {
     "ESPN": 85.1,
     "NHL.com": 84.1,
-    "CBS": 94.0,
+    "CBS": 93.9,
     "HockeyBangers": 80.0
    },
    "age": 32.1,
@@ -2918,7 +2918,7 @@
    "sources": {
     "ESPN": 75.6,
     "NHL.com": 93.4,
-    "CBS": 89.8,
+    "CBS": 89.7,
     "HockeyBangers": 85.0
    },
    "age": 22.7,
@@ -2955,7 +2955,7 @@
    "sources": {
     "ESPN": 75.7,
     "NHL.com": 75.7,
-    "CBS": 79.4,
+    "CBS": 79.5,
     "HockeyBangers": 74.8
    },
    "age": 31.5,
@@ -3022,14 +3022,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 73.9,
-   "proj_left": 70.9,
+   "proj": 73.8,
+   "proj_left": 70.8,
    "games_left": 75.0,
    "proj_gp": 78.0,
    "sources": {
     "ESPN": 69.8,
     "NHL.com": 77.6,
-    "CBS": 76.3,
+    "CBS": 76.2,
     "HockeyBangers": 71.8
    },
    "age": 26.5,
@@ -3103,7 +3103,7 @@
    "sources": {
     "ESPN": 50.1,
     "NHL.com": 48.8,
-    "CBS": 54.6,
+    "CBS": 54.5,
     "HockeyBangers": 40.6
    },
    "age": 34.5,
@@ -3215,7 +3215,7 @@
    "sources": {
     "ESPN": 62.8,
     "NHL.com": null,
-    "CBS": 49.7,
+    "CBS": 49.8,
     "HockeyBangers": null
    },
    "age": 33.2,
@@ -3245,8 +3245,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 44.4,
-   "proj_left": 44.4,
+   "proj": 44.3,
+   "proj_left": 44.3,
    "games_left": 79.0,
    "proj_gp": 82.0,
    "sources": {
@@ -3319,15 +3319,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 40.0,
-   "proj_left": 37.0,
-   "games_left": 74.0,
-   "proj_gp": 78.0,
+   "proj": 39.7,
+   "proj_left": 36.7,
+   "games_left": 73.0,
+   "proj_gp": 77.0,
    "sources": {
     "ESPN": null,
     "NHL.com": 39.8,
-    "CBS": 43.4,
-    "HockeyBangers": 36.8
+    "CBS": 42.9,
+    "HockeyBangers": 36.3
    },
    "age": 32.7,
    "manager_id": 5,
@@ -3356,8 +3356,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 127.8,
-   "proj_left": 121.8,
+   "proj": 127.7,
+   "proj_left": 121.7,
    "games_left": 75.0,
    "proj_gp": 78.0,
    "sources": {
@@ -3437,7 +3437,7 @@
    "sources": {
     "ESPN": 105.0,
     "NHL.com": 107.0,
-    "CBS": 112.2,
+    "CBS": 112.1,
     "HockeyBangers": 105.0
    },
    "age": 29.8,
@@ -3474,7 +3474,7 @@
    "sources": {
     "ESPN": 94.1,
     "NHL.com": 87.4,
-    "CBS": 95.5,
+    "CBS": 95.3,
     "HockeyBangers": 87.1
    },
    "age": 33.6,
@@ -3585,7 +3585,7 @@
    "sources": {
     "ESPN": 81.0,
     "NHL.com": 90.1,
-    "CBS": 91.6,
+    "CBS": 91.7,
     "HockeyBangers": 79.3
    },
    "age": 36.4,
@@ -3616,14 +3616,14 @@
     "SO": 1,
     "G": 0
    },
-   "proj": 76.5,
-   "proj_left": 69.5,
+   "proj": 76.7,
+   "proj_left": 69.7,
    "games_left": 55.0,
    "proj_gp": 58.0,
    "sources": {
     "ESPN": 78.2,
     "NHL.com": null,
-    "CBS": 74.8,
+    "CBS": 75.1,
     "HockeyBangers": null
    },
    "age": 27.9,
@@ -3801,14 +3801,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 44.5,
-   "proj_left": 43.5,
+   "proj": 44.4,
+   "proj_left": 43.4,
    "games_left": 72.0,
    "proj_gp": 75.0,
    "sources": {
     "ESPN": 43.2,
     "NHL.com": 46.6,
-    "CBS": 44.1,
+    "CBS": 44.0,
     "HockeyBangers": 44.0
    },
    "age": 26.7,
@@ -3845,7 +3845,7 @@
    "sources": {
     "ESPN": 75.0,
     "NHL.com": 75.0,
-    "CBS": 79.1,
+    "CBS": 79.0,
     "HockeyBangers": 61.6
    },
    "age": 40.2,
@@ -3882,7 +3882,7 @@
    "sources": {
     "ESPN": 47.7,
     "NHL.com": 48.7,
-    "CBS": 60.0,
+    "CBS": 59.9,
     "HockeyBangers": 45.7
    },
    "age": 39.5,
@@ -3913,14 +3913,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 23.2,
-   "proj_left": 23.2,
+   "proj": 23.1,
+   "proj_left": 23.1,
    "games_left": 19.0,
    "proj_gp": 19.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
-    "CBS": 23.2,
+    "CBS": 23.1,
     "HockeyBangers": null
    },
    "age": 29.9,
@@ -3957,7 +3957,7 @@
    "sources": {
     "ESPN": 111.0,
     "NHL.com": 117.0,
-    "CBS": 125.5,
+    "CBS": 125.4,
     "HockeyBangers": 115.1
    },
    "age": 27.9,
@@ -4031,7 +4031,7 @@
    "sources": {
     "ESPN": 85.7,
     "NHL.com": 96.7,
-    "CBS": 84.8,
+    "CBS": 84.5,
     "HockeyBangers": 86.5
    },
    "age": 23.4,
@@ -4106,7 +4106,7 @@
    "sources": {
     "ESPN": 102.6,
     "NHL.com": 96.7,
-    "CBS": 106.5,
+    "CBS": 106.6,
     "HockeyBangers": 99.6
    },
    "age": 34.9,
@@ -4143,7 +4143,7 @@
    "sources": {
     "ESPN": 88.2,
     "NHL.com": 88.2,
-    "CBS": 96.8,
+    "CBS": 96.7,
     "HockeyBangers": 90.4
    },
    "age": 29.2,
@@ -4254,7 +4254,7 @@
    "sources": {
     "ESPN": 83.4,
     "NHL.com": 80.5,
-    "CBS": 94.9,
+    "CBS": 95.0,
     "HockeyBangers": 80.7
    },
    "age": 30.6,
@@ -4358,15 +4358,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 60.6,
-   "proj_left": 60.6,
-   "games_left": 74.0,
-   "proj_gp": 78.0,
+   "proj": 60.0,
+   "proj_left": 60.0,
+   "games_left": 73.0,
+   "proj_gp": 77.0,
    "sources": {
     "ESPN": null,
     "NHL.com": 62.7,
-    "CBS": 61.8,
-    "HockeyBangers": 57.4
+    "CBS": 60.6,
+    "HockeyBangers": 56.7
    },
    "age": 19.9,
    "manager_id": 7,
@@ -4470,14 +4470,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 43.1,
-   "proj_left": 43.1,
+   "proj": 43.0,
+   "proj_left": 43.0,
    "games_left": 75.0,
    "proj_gp": 77.0,
    "sources": {
     "ESPN": 40.9,
     "NHL.com": 48.9,
-    "CBS": 42.1,
+    "CBS": 42.0,
     "HockeyBangers": 40.3
    },
    "age": 28.2,
@@ -4625,7 +4625,7 @@
    "sources": {
     "ESPN": 70.4,
     "NHL.com": 74.4,
-    "CBS": 73.9,
+    "CBS": 73.8,
     "HockeyBangers": 72.9
    },
    "age": 22.5,
@@ -4662,7 +4662,7 @@
    "sources": {
     "ESPN": 66.1,
     "NHL.com": 68.5,
-    "CBS": 69.1,
+    "CBS": 69.0,
     "HockeyBangers": 58.8
    },
    "age": 26.7,
@@ -4729,8 +4729,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 80.2,
-   "proj_left": 77.2,
+   "proj": 80.1,
+   "proj_left": 77.1,
    "games_left": 79.0,
    "proj_gp": 83.0,
    "sources": {
@@ -4774,7 +4774,7 @@
    "sources": {
     "ESPN": 79.2,
     "NHL.com": null,
-    "CBS": 69.0,
+    "CBS": 69.1,
     "HockeyBangers": null
    },
    "age": 30.8,
@@ -4841,14 +4841,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 64.0,
-   "proj_left": 61.0,
+   "proj": 63.9,
+   "proj_left": 60.9,
    "games_left": 82.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 61.4,
     "NHL.com": 60.2,
-    "CBS": 69.6,
+    "CBS": 69.4,
     "HockeyBangers": 64.7
    },
    "age": 29.7,
@@ -4885,7 +4885,7 @@
    "sources": {
     "ESPN": 59.4,
     "NHL.com": 55.6,
-    "CBS": 55.9,
+    "CBS": 55.7,
     "HockeyBangers": 61.2
    },
    "age": 21.8,
@@ -4922,7 +4922,7 @@
    "sources": {
     "ESPN": 64.7,
     "NHL.com": 69.7,
-    "CBS": 60.1,
+    "CBS": 60.0,
     "HockeyBangers": 68.2
    },
    "age": 25.0,
@@ -4952,14 +4952,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 55.2,
-   "proj_left": 52.2,
+   "proj": 55.3,
+   "proj_left": 52.3,
    "games_left": 81.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 58.5,
     "NHL.com": 45.8,
-    "CBS": 63.7,
+    "CBS": 63.8,
     "HockeyBangers": 52.9
    },
    "age": 32.6,
@@ -4996,7 +4996,7 @@
    "sources": {
     "ESPN": 43.3,
     "NHL.com": 47.6,
-    "CBS": 51.9,
+    "CBS": 51.8,
     "HockeyBangers": 50.0
    },
    "age": 29.7,
@@ -5027,14 +5027,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 59.7,
-   "proj_left": 58.7,
+   "proj": 59.8,
+   "proj_left": 58.8,
    "games_left": 42.0,
    "proj_gp": 44.0,
    "sources": {
     "ESPN": 68.1,
     "NHL.com": null,
-    "CBS": 51.3,
+    "CBS": 51.4,
     "HockeyBangers": null
    },
    "age": 28.3,
@@ -5182,7 +5182,7 @@
    "sources": {
     "ESPN": 84.3,
     "NHL.com": 95.1,
-    "CBS": 96.6,
+    "CBS": 96.4,
     "HockeyBangers": 86.9
    },
    "age": 22.6,
@@ -5219,7 +5219,7 @@
    "sources": {
     "ESPN": 86.9,
     "NHL.com": 91.1,
-    "CBS": 98.5,
+    "CBS": 98.6,
     "HockeyBangers": 83.2
    },
    "age": 25.5,
@@ -5293,7 +5293,7 @@
    "sources": {
     "ESPN": 63.1,
     "NHL.com": 73.9,
-    "CBS": 65.2,
+    "CBS": 65.1,
     "HockeyBangers": 70.0
    },
    "age": 20.8,
@@ -5323,14 +5323,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 79.5,
-   "proj_left": 76.5,
+   "proj": 79.6,
+   "proj_left": 76.6,
    "games_left": 80.0,
    "proj_gp": 83.0,
    "sources": {
     "ESPN": 74.0,
     "NHL.com": 86.9,
-    "CBS": 79.2,
+    "CBS": 79.3,
     "HockeyBangers": 78.1
    },
    "age": 22.4,
@@ -5367,7 +5367,7 @@
    "sources": {
     "ESPN": 81.3,
     "NHL.com": 98.5,
-    "CBS": 90.5,
+    "CBS": 90.4,
     "HockeyBangers": 92.7
    },
    "age": 21.8,
@@ -5441,7 +5441,7 @@
    "sources": {
     "ESPN": 56.9,
     "NHL.com": 61.5,
-    "CBS": 58.7,
+    "CBS": 58.5,
     "HockeyBangers": 57.0
    },
    "age": 25.5,
@@ -5478,7 +5478,7 @@
    "sources": {
     "ESPN": 53.3,
     "NHL.com": 62.0,
-    "CBS": 59.2,
+    "CBS": 59.1,
     "HockeyBangers": 53.4
    },
    "age": 33.3,
@@ -5515,7 +5515,7 @@
    "sources": {
     "ESPN": 70.3,
     "NHL.com": 74.2,
-    "CBS": 72.3,
+    "CBS": 72.2,
     "HockeyBangers": 66.8
    },
    "age": 27.1,
@@ -5552,7 +5552,7 @@
    "sources": {
     "ESPN": 55.5,
     "NHL.com": 68.5,
-    "CBS": 57.0,
+    "CBS": 56.9,
     "HockeyBangers": 58.5
    },
    "age": 22.3,
@@ -5628,7 +5628,7 @@
    "sources": {
     "ESPN": 72.5,
     "NHL.com": null,
-    "CBS": 68.8,
+    "CBS": 68.9,
     "HockeyBangers": null
    },
    "age": 26.3,
@@ -5739,7 +5739,7 @@
    "sources": {
     "ESPN": 98.7,
     "NHL.com": 104.0,
-    "CBS": 112.7,
+    "CBS": 112.8,
     "HockeyBangers": 107.8
    },
    "age": 27.0,
@@ -5777,7 +5777,7 @@
    "sources": {
     "ESPN": 95.7,
     "NHL.com": null,
-    "CBS": 77.2,
+    "CBS": 77.3,
     "HockeyBangers": null
    },
    "age": 32.2,
@@ -5807,14 +5807,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 94.4,
-   "proj_left": 91.4,
+   "proj": 94.3,
+   "proj_left": 91.3,
    "games_left": 79.0,
    "proj_gp": 82.0,
    "sources": {
     "ESPN": 95.3,
     "NHL.com": 88.5,
-    "CBS": 101.3,
+    "CBS": 101.0,
     "HockeyBangers": 92.4
    },
    "age": 32.0,
@@ -5851,7 +5851,7 @@
    "sources": {
     "ESPN": 76.5,
     "NHL.com": 81.8,
-    "CBS": 78.4,
+    "CBS": 78.6,
     "HockeyBangers": 75.2
    },
    "age": 27.2,
@@ -5888,7 +5888,7 @@
    "sources": {
     "ESPN": 85.8,
     "NHL.com": 87.8,
-    "CBS": 95.8,
+    "CBS": 95.9,
     "HockeyBangers": 87.7
    },
    "age": 28.8,
@@ -5925,7 +5925,7 @@
    "sources": {
     "ESPN": 83.8,
     "NHL.com": 87.8,
-    "CBS": 87.3,
+    "CBS": 87.2,
     "HockeyBangers": 85.8
    },
    "age": 28.1,
@@ -5999,7 +5999,7 @@
    "sources": {
     "ESPN": 80.9,
     "NHL.com": 80.9,
-    "CBS": 88.3,
+    "CBS": 88.2,
     "HockeyBangers": 84.5
    },
    "age": 28.2,
@@ -6036,7 +6036,7 @@
    "sources": {
     "ESPN": 65.0,
     "NHL.com": 65.0,
-    "CBS": 65.6,
+    "CBS": 65.5,
     "HockeyBangers": 68.8
    },
    "age": 28.9,
@@ -6103,14 +6103,14 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 66.4,
-   "proj_left": 63.4,
+   "proj": 66.3,
+   "proj_left": 63.3,
    "games_left": 77.0,
    "proj_gp": 81.0,
    "sources": {
     "ESPN": 65.5,
     "NHL.com": 70.4,
-    "CBS": 61.3,
+    "CBS": 61.2,
     "HockeyBangers": 68.2
    },
    "age": 25.9,
@@ -6177,14 +6177,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 71.2,
-   "proj_left": 70.2,
+   "proj": 71.1,
+   "proj_left": 70.1,
    "games_left": 80.0,
    "proj_gp": 82.0,
    "sources": {
     "ESPN": 71.6,
     "NHL.com": 66.5,
-    "CBS": 85.9,
+    "CBS": 85.8,
     "HockeyBangers": 60.7
    },
    "age": 41.1,
@@ -6259,7 +6259,7 @@
    "sources": {
     "ESPN": 39.3,
     "NHL.com": 42.8,
-    "CBS": 37.1,
+    "CBS": 37.0,
     "HockeyBangers": 39.8
    },
    "age": 25.0,
@@ -6289,14 +6289,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 60.3,
-   "proj_left": 60.3,
+   "proj": 60.2,
+   "proj_left": 60.2,
    "games_left": 79.0,
    "proj_gp": 81.0,
    "sources": {
     "ESPN": 51.1,
     "NHL.com": 63.9,
-    "CBS": 68.4,
+    "CBS": 68.2,
     "HockeyBangers": 57.6
    },
    "age": 24.0,
@@ -6363,14 +6363,14 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 106.6,
-   "proj_left": 99.6,
+   "proj": 106.5,
+   "proj_left": 99.5,
    "games_left": 73.0,
    "proj_gp": 76.0,
    "sources": {
     "ESPN": 102.7,
     "NHL.com": 109.4,
-    "CBS": 113.7,
+    "CBS": 113.6,
     "HockeyBangers": 100.5
    },
    "age": 29.9,
@@ -6437,14 +6437,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 102.8,
-   "proj_left": 97.8,
+   "proj": 102.9,
+   "proj_left": 97.9,
    "games_left": 81.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 102.1,
     "NHL.com": 96.4,
-    "CBS": 113.3,
+    "CBS": 113.4,
     "HockeyBangers": 99.6
    },
    "age": 28.2,
@@ -6668,7 +6668,7 @@
     "ESPN": null,
     "NHL.com": 70.8,
     "CBS": 71.6,
-    "HockeyBangers": 57.1
+    "HockeyBangers": 57.2
    },
    "age": 20.3,
    "manager_id": 11,
@@ -6705,7 +6705,7 @@
    "sources": {
     "ESPN": 89.4,
     "NHL.com": null,
-    "CBS": 71.1,
+    "CBS": 71.0,
     "HockeyBangers": null
    },
    "age": 31.2,
@@ -6809,8 +6809,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 63.3,
-   "proj_left": 61.3,
+   "proj": 63.4,
+   "proj_left": 61.4,
    "games_left": 78.0,
    "proj_gp": 81.0,
    "sources": {
@@ -6927,7 +6927,7 @@
    "sources": {
     "ESPN": 107.5,
     "NHL.com": 107.5,
-    "CBS": 116.9,
+    "CBS": 116.8,
     "HockeyBangers": 106.2
    },
    "age": 27.2,
@@ -6964,7 +6964,7 @@
    "sources": {
     "ESPN": 94.9,
     "NHL.com": 100.8,
-    "CBS": 97.8,
+    "CBS": 97.9,
     "HockeyBangers": 101.5
    },
    "age": 27.2,
@@ -7001,7 +7001,7 @@
    "sources": {
     "ESPN": 65.7,
     "NHL.com": 75.8,
-    "CBS": 68.1,
+    "CBS": 68.0,
     "HockeyBangers": 64.2
    },
    "age": 25.5,
@@ -7032,8 +7032,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 72.4,
-   "proj_left": 70.4,
+   "proj": 72.5,
+   "proj_left": 70.5,
    "games_left": 51.0,
    "proj_gp": 52.0,
    "sources": {
@@ -7076,7 +7076,7 @@
    "sources": {
     "ESPN": 79.8,
     "NHL.com": 78.8,
-    "CBS": 81.3,
+    "CBS": 81.2,
     "HockeyBangers": 75.2
    },
    "age": 30.4,
@@ -7224,7 +7224,7 @@
    "sources": {
     "ESPN": 62.5,
     "NHL.com": 67.4,
-    "CBS": 69.2,
+    "CBS": 69.3,
     "HockeyBangers": 53.3
    },
    "age": 30.3,
@@ -7440,14 +7440,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 65.7,
-   "proj_left": 61.7,
+   "proj": 65.3,
+   "proj_left": 61.3,
    "games_left": 45.0,
    "proj_gp": 47.0,
    "sources": {
     "ESPN": 72.6,
     "NHL.com": null,
-    "CBS": 58.7,
+    "CBS": 58.0,
     "HockeyBangers": null
    },
    "age": 33.2,
@@ -7484,7 +7484,7 @@
    "sources": {
     "ESPN": 53.2,
     "NHL.com": 54.2,
-    "CBS": 63.7,
+    "CBS": 63.6,
     "HockeyBangers": 45.8
    },
    "age": 35.4,
@@ -7517,14 +7517,14 @@
     "SO": 1,
     "G": 0
    },
-   "proj": 52.4,
-   "proj_left": 45.4,
+   "proj": 52.8,
+   "proj_left": 45.8,
    "games_left": 32.0,
    "proj_gp": 34.0,
    "sources": {
     "ESPN": 55.3,
     "NHL.com": null,
-    "CBS": 49.6,
+    "CBS": 50.4,
     "HockeyBangers": null
    },
    "age": 25.5
@@ -7685,7 +7685,7 @@
    "sources": {
     "ESPN": 52.7,
     "NHL.com": 52.7,
-    "CBS": 59.4,
+    "CBS": 59.3,
     "HockeyBangers": 54.6
    },
    "age": 29.4
@@ -7782,7 +7782,7 @@
    "sources": {
     "ESPN": 63.8,
     "NHL.com": 61.0,
-    "CBS": 66.4,
+    "CBS": 66.3,
     "HockeyBangers": 64.7
    },
    "age": 25.0
@@ -7839,15 +7839,15 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 61.7,
-   "proj_left": 57.7,
-   "games_left": 76.0,
-   "proj_gp": 79.0,
+   "proj": 61.3,
+   "proj_left": 57.3,
+   "games_left": 75.0,
+   "proj_gp": 78.0,
    "sources": {
     "ESPN": null,
-    "NHL.com": 63.3,
-    "CBS": 65.3,
-    "HockeyBangers": 56.6
+    "NHL.com": 63.2,
+    "CBS": 64.6,
+    "HockeyBangers": 56.0
    },
    "age": 20.8
   },
@@ -7904,8 +7904,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 59.0,
-   "proj_left": 55.0,
+   "proj": 58.9,
+   "proj_left": 54.9,
    "games_left": 47.0,
    "proj_gp": 49.0,
    "sources": {
@@ -7937,14 +7937,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 54.1,
-   "proj_left": 50.1,
+   "proj": 54.2,
+   "proj_left": 50.2,
    "games_left": 42.0,
    "proj_gp": 45.0,
    "sources": {
     "ESPN": 55.5,
     "NHL.com": null,
-    "CBS": 52.6,
+    "CBS": 52.9,
     "HockeyBangers": null
    },
    "age": 24.3
@@ -7977,7 +7977,7 @@
     "ESPN": null,
     "NHL.com": 52.7,
     "CBS": 53.0,
-    "HockeyBangers": 40.6
+    "HockeyBangers": 40.7
    },
    "age": 29.7
   },
@@ -8908,6 +8908,51 @@
     "11": 7.86,
     "12": 0.83
    }
+  },
+  {
+   "date": "2026-10-06",
+   "ranks": {
+    "1": 10,
+    "2": 12,
+    "3": 7,
+    "4": 5,
+    "5": 8,
+    "6": 1,
+    "7": 2,
+    "8": 9,
+    "9": 4,
+    "10": 6,
+    "11": 3,
+    "12": 11
+   },
+   "points": {
+    "1": 30,
+    "2": 25,
+    "3": 31,
+    "4": 33,
+    "5": 31,
+    "6": 41,
+    "7": 39,
+    "8": 31,
+    "9": 34,
+    "10": 32,
+    "11": 39,
+    "12": 26
+   },
+   "win": {
+    "1": 8.22,
+    "2": 8.04,
+    "3": 7.96,
+    "4": 10.07,
+    "5": 3.19,
+    "6": 17.44,
+    "7": 20.64,
+    "8": 1.31,
+    "9": 5.7,
+    "10": 8.44,
+    "11": 8.17,
+    "12": 0.8
+   }
   }
  ],
  "awards": [
@@ -8988,13 +9033,13 @@
    ]
   }
  ],
- "update": "evening",
+ "update": "morning",
  "compared_to": "2026-10-05",
- "since": "depuis hier matin",
+ "since": "depuis hier",
  "headline": [
   "J. Gobeil prend la tête du classement.",
   "P. Allard gagne 4 rangs, du 11e au 7e.",
-  "Jake Oettinger (P. Fiset) : 5 points de pool depuis hier matin.",
+  "Jake Oettinger (P. Fiset) : 5 points de pool hier.",
   "Macklin Celebrini (P. Fiset) est maintenant blessé."
  ],
  "week": {
@@ -10072,7 +10117,7 @@
  },
  "hot_cold": {
   "from": "2026-09-29",
-  "to": "2026-10-05",
+  "to": "2026-10-06",
   "hot": [
    {
     "nhl_id": 8478048,
@@ -10089,13 +10134,6 @@
     "diff": 7.4
    },
    {
-    "nhl_id": 8480280,
-    "points": 7,
-    "games": 2,
-    "expected": 2.6,
-    "diff": 4.4
-   },
-   {
     "nhl_id": 8474593,
     "points": 6,
     "games": 2,
@@ -10108,9 +10146,37 @@
     "games": 2,
     "expected": 2.3,
     "diff": 3.7
+   },
+   {
+    "nhl_id": 8480280,
+    "points": 7,
+    "games": 3,
+    "expected": 3.5,
+    "diff": 3.5
    }
   ],
   "cold": [
+   {
+    "nhl_id": 8476460,
+    "points": 0,
+    "games": 3,
+    "expected": 3.4,
+    "diff": -3.4
+   },
+   {
+    "nhl_id": 8485406,
+    "points": 0,
+    "games": 4,
+    "expected": 3.3,
+    "diff": -3.3
+   },
+   {
+    "nhl_id": 8477956,
+    "points": 2,
+    "games": 4,
+    "expected": 5.2,
+    "diff": -3.2
+   },
    {
     "nhl_id": 8477933,
     "points": 0,
@@ -10124,802 +10190,974 @@
     "games": 3,
     "expected": 3.1,
     "diff": -3.1
-   },
-   {
-    "nhl_id": 8485406,
-    "points": 0,
-    "games": 3,
-    "expected": 2.5,
-    "diff": -2.5
-   },
-   {
-    "nhl_id": 8480027,
-    "points": 0,
-    "games": 2,
-    "expected": 2.4,
-    "diff": -2.4
-   },
-   {
-    "nhl_id": 8479318,
-    "points": 1,
-    "games": 3,
-    "expected": 3.4,
-    "diff": -2.4
    }
   ]
  },
  "player_weeks": {
   "dates": [
    "2026-09-29",
-   "2026-10-05"
+   "2026-10-05",
+   "2026-10-06"
   ],
   "points": {
    "8478402": [
     0,
+    9,
     9
    ],
    "8478420": [
     0,
-    1
+    1,
+    2
    ],
    "8478483": [
     0,
+    2,
     2
    ],
    "8475167": [
+    0,
     0,
     0
    ],
    "8477493": [
     0,
+    0,
     0
    ],
    "8477447": [
     0,
+    4,
     4
    ],
    "8481605": [
     0,
+    2,
     2
    ],
    "8484227": [
     0,
+    3,
     3
    ],
    "8482661": [
     0,
+    4,
     4
    ],
    "8478449": [
     0,
-    0
+    0,
+    2
    ],
    "8477495": [
+    0,
     0,
     0
    ],
    "8477946": [
     0,
+    0,
     0
    ],
    "8475683": [
+    0,
     0,
     0
    ],
    "8482142": [
     0,
+    0,
     0
    ],
    "8478440": [
     0,
+    2,
     2
    ],
    "8483495": [
+    0,
     0,
     0
    ],
    "8477492": [
     0,
+    5,
     5
    ],
    "8479323": [
     0,
+    4,
     4
    ],
    "8481559": [
     0,
+    2,
     2
    ],
    "8474600": [
     0,
+    3,
     3
    ],
    "8482487": [
     0,
+    3,
     3
    ],
    "8482105": [
+    0,
     0,
     0
    ],
    "8482078": [
     0,
+    0,
     0
    ],
    "8484144": [
+    0,
     0,
     0
    ],
    "8480002": [
     0,
+    0,
     0
    ],
    "8481581": [
+    0,
     0,
     0
    ],
    "8475913": [
     0,
+    2,
     2
    ],
    "8478439": [
     0,
+    2,
     2
    ],
    "8478038": [
     0,
+    2,
     2
    ],
    "8483485": [
     0,
+    1,
     1
    ],
    "8478493": [
     0,
+    1,
     1
    ],
    "8477465": [
     0,
+    1,
     1
    ],
    "8476453": [
     0,
-    2
+    2,
+    4
    ],
    "8485366": [
     0,
+    2,
     2
    ],
    "8479420": [
     0,
+    2,
     2
    ],
    "8474593": [
     0,
+    6,
     6
    ],
    "8474590": [
     0,
-    1
+    1,
+    2
    ],
    "8482116": [
     0,
-    1
+    1,
+    5
    ],
    "8477960": [
     0,
+    2,
     2
    ],
    "8474564": [
     0,
+    2,
     2
    ],
    "8476885": [
     0,
+    1,
     1
    ],
    "8477986": [
     0,
+    2,
     2
    ],
    "8482093": [
+    0,
     0,
     0
    ],
    "8476389": [
     0,
+    1,
     1
    ],
    "8484798": [
+    0,
     0,
     0
    ],
    "8478882": [
     0,
+    3,
     3
    ],
    "8481611": [
     0,
+    2,
     2
    ],
    "8476880": [
     0,
+    1,
     1
    ],
    "8484801": [
     0,
+    5,
     5
    ],
    "8479979": [
     0,
-    0
+    0,
+    5
    ],
    "8481540": [
     0,
+    2,
     2
    ],
    "8479345": [
     0,
+    4,
     4
    ],
    "8479337": [
     0,
+    1,
     1
    ],
    "8476906": [
     0,
+    3,
     3
    ],
    "8471675": [
     0,
+    2,
     2
    ],
    "8478397": [
+    0,
     0,
     0
    ],
    "8480208": [
     0,
-    0
+    0,
+    1
    ],
    "8475754": [
     0,
+    3,
     3
    ],
    "8480807": [
     0,
+    3,
     3
    ],
    "8477948": [
     0,
+    3,
     3
    ],
    "8478406": [
     0,
+    4,
     4
    ],
    "8477500": [
     0,
+    2,
     2
    ],
    "8475200": [
+    0,
     0,
     0
    ],
    "8481528": [
     0,
+    0,
     0
    ],
    "8480039": [
     0,
+    5,
     5
    ],
    "8478178": [
     0,
+    1,
     1
    ],
    "8475809": [
+    0,
     0,
     0
    ],
    "8476887": [
     0,
+    1,
     1
    ],
    "8483445": [
     0,
+    4,
     4
    ],
    "8477504": [
     0,
-    2
+    2,
+    3
    ],
    "8475786": [
+    0,
     0,
     0
    ],
    "8480830": [
     0,
+    3,
     3
    ],
    "8482720": [
     0,
+    5,
     5
    ],
    "8475753": [
+    0,
     0,
     0
    ],
    "8482684": [
     0,
+    2,
     2
    ],
    "8477955": [
     0,
+    4,
     4
    ],
    "8476434": [
+    0,
     0,
     0
    ],
    "8475218": [
     0,
+    0,
     0
    ],
    "8475810": [
+    0,
     0,
     0
    ],
    "8476854": [
     0,
+    3,
     3
    ],
    "8477934": [
     0,
+    6,
     6
    ],
    "8480839": [
     0,
+    2,
     2
    ],
    "8478398": [
     0,
+    6,
     6
    ],
    "8476460": [
+    0,
     0,
     0
    ],
    "8477933": [
     0,
+    0,
     0
    ],
    "8478010": [
     0,
-    1
+    1,
+    2
    ],
    "8474578": [
     0,
-    3
+    3,
+    4
    ],
    "8480280": [
     0,
+    7,
     7
    ],
    "8478407": [
     0,
+    6,
     6
    ],
    "8478445": [
+    0,
     0,
     0
    ],
    "8475171": [
     0,
+    0,
     0
    ],
    "8477940": [
     0,
+    1,
     1
    ],
    "8480817": [
     0,
+    1,
     1
    ],
    "8471215": [
     0,
+    4,
     4
    ],
    "8471724": [
     0,
+    3,
     3
    ],
    "8478470": [
+    0,
     0,
     0
    ],
    "8480069": [
     0,
+    4,
     4
    ],
    "8480803": [
     0,
+    12,
     12
    ],
    "8482740": [
     0,
+    1,
     1
    ],
    "8478872": [
     0,
+    5,
     5
    ],
    "8478550": [
     0,
+    3,
     3
    ],
    "8478427": [
     0,
+    4,
     4
    ],
    "8482122": [
+    0,
     0,
     0
    ],
    "8480893": [
     0,
+    2,
     2
    ],
    "8477951": [
     0,
+    5,
     5
    ],
    "8475158": [
     0,
+    1,
     1
    ],
    "8484768": [
     0,
+    1,
     1
    ],
    "8485406": [
+    0,
     0,
     0
    ],
    "8475166": [
     0,
+    2,
     2
    ],
    "8477424": [
     0,
+    2,
     2
    ],
    "8484258": [
+    0,
     0,
     0
    ],
    "8475764": [
     0,
+    0,
     0
    ],
    "8477956": [
     0,
+    2,
     2
    ],
    "8479318": [
     0,
+    1,
     1
    ],
    "8483515": [
+    0,
     0,
     0
    ],
    "8480865": [
     0,
+    1,
     1
    ],
    "8480801": [
+    0,
     0,
     0
    ],
    "8476459": [
     0,
+    3,
     3
    ],
    "8478048": [
     0,
+    14,
     14
    ],
    "8484166": [
     0,
+    1,
     1
    ],
    "8478469": [
     0,
+    3,
     3
    ],
    "8484387": [
     0,
+    1,
     1
    ],
    "8482077": [
+    0,
     0,
     0
    ],
    "8476853": [
     0,
+    3,
     3
    ],
    "8478396": [
     0,
+    2,
     2
    ],
    "8483548": [
     0,
+    1,
     1
    ],
    "8480796": [
+    0,
     0,
     0
    ],
    "8480336": [
     0,
+    0,
     0
    ],
    "8478864": [
     0,
+    3,
     3
    ],
    "8483457": [
     0,
+    3,
     3
    ],
    "8481557": [
+    0,
     0,
     0
    ],
    "8479410": [
     0,
+    4,
     4
    ],
    "8484984": [
     0,
+    2,
     2
    ],
    "8483431": [
     0,
+    3,
     3
    ],
    "8484153": [
     0,
+    6,
     6
    ],
    "8482730": [
     0,
+    2,
     2
    ],
    "8481533": [
     0,
+    1,
     1
    ],
    "8476462": [
     0,
+    2,
     2
    ],
    "8480014": [
     0,
+    2,
     2
    ],
    "8483516": [
     0,
+    2,
     2
    ],
    "8482982": [
     0,
+    2,
     2
    ],
    "8480843": [
     0,
+    4,
     4
    ],
    "8482671": [
     0,
+    3,
     3
    ],
    "8477932": [
     0,
+    1,
     1
    ],
    "8480800": [
     0,
+    5,
     5
    ],
    "8476883": [
     0,
-    2
+    2,
+    4
    ],
    "8477404": [
     0,
+    3,
     3
    ],
    "8480036": [
     0,
-    2
+    2,
+    5
    ],
    "8479314": [
     0,
+    2,
     2
    ],
    "8479542": [
     0,
-    2
+    2,
+    3
    ],
    "8479325": [
+    0,
     0,
     0
    ],
    "8479407": [
     0,
+    1,
     1
    ],
    "8479425": [
     0,
+    5,
     5
    ],
    "8480023": [
+    0,
     0,
     0
    ],
    "8481604": [
     0,
+    3,
     3
    ],
    "8477950": [
+    0,
     0,
     0
    ],
    "8471214": [
     0,
+    1,
     1
    ],
    "8476945": [
+    0,
     0,
     0
    ],
    "8482100": [
     0,
+    0,
     0
    ],
    "8482667": [
+    0,
     0,
     0
    ],
    "8478460": [
     0,
+    2,
     2
    ],
    "8478403": [
     0,
+    7,
     7
    ],
    "8477939": [
     0,
+    3,
     3
    ],
    "8479343": [
     0,
+    5,
     5
    ],
    "8481524": [
+    0,
     0,
     0
    ],
    "8482699": [
     0,
+    6,
     6
    ],
    "8479394": [
     0,
+    2,
     2
    ],
    "8484762": [
     0,
+    2,
     2
    ],
    "8479987": [
     0,
+    1,
     1
    ],
    "8484873": [
     0,
+    2,
     2
    ],
    "8478009": [
     0,
+    5,
     5
    ],
    "8481598": [
     0,
+    1,
     1
    ],
    "8484145": [
     0,
+    1,
     1
    ],
    "8477409": [
     0,
+    2,
     2
    ],
    "8484152": [
     0,
+    4,
     4
    ],
    "8483506": [
+    0,
     0,
     0
    ],
    "8480018": [
     0,
+    4,
     4
    ],
    "8480027": [
     0,
-    0
+    0,
+    2
    ],
    "8481542": [
     0,
+    1,
     1
    ],
    "8480313": [
     0,
+    2,
     2
    ],
    "8477949": [
     0,
+    3,
     3
    ],
    "8477346": [
+    0,
     0,
     0
    ],
    "8480012": [
     0,
+    6,
     6
    ],
    "8476875": [
     0,
+    1,
     1
    ],
    "8477935": [
     0,
+    2,
     2
    ],
    "8486067": [
+    0,
     0,
     0
    ],
    "8476902": [
     0,
+    0,
     0
    ],
    "8476892": [
     0,
+    1,
     1
    ],
    "8474141": [
     0,
+    1,
     1
    ],
    "8477498": [
+    0,
     0,
     0
    ],
    "8476999": [
     0,
-    2
+    2,
+    4
    ],
    "8475184": [
     0,
+    2,
     2
    ]
   }
@@ -10972,24 +11210,24 @@
    "key": "bust",
    "podium": [
     {
-     "nhl_id": 8480027,
-     "manager_id": 12,
-     "value": 0,
-     "gap": -2.9,
+     "nhl_id": 8479318,
+     "manager_id": 8,
+     "value": 1,
+     "gap": -2.8,
      "round": 2
     },
     {
-     "nhl_id": 8479979,
-     "manager_id": 4,
-     "value": 0,
-     "gap": -2.9,
+     "nhl_id": 8478178,
+     "manager_id": 5,
+     "value": 1,
+     "gap": -2.8,
      "round": 2
     },
     {
-     "nhl_id": 8476453,
-     "manager_id": 3,
+     "nhl_id": 8477956,
+     "manager_id": 8,
      "value": 2,
-     "gap": -2.3,
+     "gap": -2.5,
      "round": 1
     }
    ]
@@ -10999,26 +11237,26 @@
    "podium": [
     {
      "manager_id": 10,
-     "value": 8,
-     "points": 6.0,
+     "value": 10,
+     "points": 7.6,
      "worst": {
       "nhl_id": 8479325,
-      "games": 3
+      "games": 4
      }
     },
     {
      "manager_id": 5,
-     "value": 4,
-     "points": 3.8,
+     "value": 5,
+     "points": 4.7,
      "worst": {
       "nhl_id": 8475810,
-      "games": 2
+      "games": 3
      }
     },
     {
      "manager_id": 2,
-     "value": 3,
-     "points": 3.5,
+     "value": 4,
+     "points": 4.6,
      "worst": {
       "nhl_id": 8484144,
       "games": 3
@@ -11032,12 +11270,17 @@
     {
      "manager_id": 7,
      "value": 5,
-     "mornings": 6
+     "mornings": 7
+    },
+    {
+     "manager_id": 6,
+     "value": 1,
+     "mornings": 7
     },
     {
      "manager_id": 11,
      "value": 1,
-     "mornings": 6
+     "mornings": 7
     }
    ]
   },
@@ -11045,16 +11288,16 @@
    "key": "rollercoaster",
    "podium": [
     {
+     "manager_id": 3,
+     "value": 13
+    },
+    {
      "manager_id": 4,
      "value": 12
     },
     {
-     "manager_id": 1,
-     "value": 9
-    },
-    {
-     "manager_id": 3,
-     "value": 9
+     "manager_id": 10,
+     "value": 11
     }
    ]
   },
@@ -11070,18 +11313,18 @@
      }
     },
     {
+     "manager_id": 4,
+     "value": 5,
+     "best": {
+      "nhl_id": 8478406,
+      "points": 4
+     }
+    },
+    {
      "manager_id": 11,
      "value": 4,
      "best": {
       "nhl_id": 8479394,
-      "points": 2
-     }
-    },
-    {
-     "manager_id": 3,
-     "value": 4,
-     "best": {
-      "nhl_id": 8481611,
       "points": 2
      }
     }
