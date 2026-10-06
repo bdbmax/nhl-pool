@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-06T23:09+00:00",
+ "generated": "2026-10-06T23:39+00:00",
  "as_of": "2026-10-06",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -76,7 +76,7 @@
     7.6,
     6.4,
     5.6,
-    4.7,
+    4.6,
     3.8,
     2.8,
     1.8
@@ -93,7 +93,7 @@
    "points": 39,
    "proj_consensus": 892.0,
    "expected_total": 960.0,
-   "expected_finish": 6.01,
+   "expected_finish": 6.0,
    "win_pct": 8.9,
    "finish_odds": [
     8.9,
@@ -161,7 +161,7 @@
     9.1,
     8.1,
     7.4,
-    6.6,
+    6.7,
     5.3,
     3.4
    ],
@@ -191,7 +191,7 @@
     7.9,
     7.2,
     6.6,
-    4.7
+    4.8
    ],
    "rank_change": 0,
    "win_change": -0.1
@@ -301,7 +301,7 @@
     8.7,
     8.3,
     7.8,
-    7.0,
+    7.1,
     6.0,
     4.8
    ],
@@ -1537,8 +1537,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 47.1,
-   "proj_left": 46.1,
+   "proj": 47.0,
+   "proj_left": 46.0,
    "games_left": 35.0,
    "proj_gp": 36.0,
    "sources": {
@@ -1693,7 +1693,7 @@
    "sources": {
     "ESPN": 65.5,
     "NHL.com": null,
-    "CBS": 64.4,
+    "CBS": 64.3,
     "HockeyBangers": null
    },
    "age": 36.7,
@@ -4106,7 +4106,7 @@
    "sources": {
     "ESPN": 102.6,
     "NHL.com": 96.7,
-    "CBS": 106.5,
+    "CBS": 106.6,
     "HockeyBangers": 99.6
    },
    "age": 34.9,
@@ -4774,7 +4774,7 @@
    "sources": {
     "ESPN": 79.2,
     "NHL.com": null,
-    "CBS": 69.1,
+    "CBS": 69.0,
     "HockeyBangers": null
    },
    "age": 30.8,
@@ -4922,7 +4922,7 @@
    "sources": {
     "ESPN": 64.7,
     "NHL.com": 69.7,
-    "CBS": 60.1,
+    "CBS": 60.0,
     "HockeyBangers": 68.2
    },
    "age": 25.0,
@@ -5293,7 +5293,7 @@
    "sources": {
     "ESPN": 55.2,
     "NHL.com": 64.6,
-    "CBS": 57.1,
+    "CBS": 56.9,
     "HockeyBangers": 61.2
    },
    "age": 20.8,
@@ -6809,8 +6809,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 63.4,
-   "proj_left": 61.4,
+   "proj": 63.3,
+   "proj_left": 61.3,
    "games_left": 78.0,
    "proj_gp": 81.0,
    "sources": {
@@ -7904,8 +7904,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 58.9,
-   "proj_left": 54.9,
+   "proj": 59.0,
+   "proj_left": 55.0,
    "games_left": 47.0,
    "proj_gp": 49.0,
    "sources": {
