@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-07T16:39+00:00",
+ "generated": "2026-10-07T17:09+00:00",
  "as_of": "2026-10-07",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -42,7 +42,7 @@
    "finish_odds": [
     22.0,
     15.8,
-    12.3,
+    12.4,
     10.2,
     8.8,
     7.4,
@@ -98,16 +98,16 @@
    "finish_odds": [
     4.1,
     5.4,
-    6.6,
+    6.7,
     7.5,
     8.1,
     8.8,
-    9.8,
+    9.7,
     10.0,
     10.6,
     10.3,
     10.3,
-    8.6
+    8.5
    ],
    "rank_change": 0,
    "win_change": -0.7
@@ -121,13 +121,13 @@
    "points": 43,
    "proj_consensus": 932.0,
    "expected_total": 1001.0,
-   "expected_finish": 4.98,
+   "expected_finish": 4.99,
    "win_pct": 15.7,
    "finish_odds": [
     15.7,
     13.1,
-    11.6,
-    10.5,
+    11.5,
+    10.6,
     9.6,
     8.0,
     7.1,
@@ -158,7 +158,7 @@
     9.3,
     9.2,
     9.2,
-    8.8,
+    8.9,
     8.4,
     8.2,
     7.5,
@@ -265,10 +265,10 @@
    "win_pct": 8.0,
    "finish_odds": [
     8.0,
-    8.8,
+    8.9,
     9.5,
     9.3,
-    9.3,
+    9.2,
     9.6,
     9.0,
     9.1,
@@ -3903,7 +3903,7 @@
    "number": 35,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/MTL/8478470.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3942714.png",
-   "injury": null,
+   "injury": "IR",
    "points": 0,
    "gp": 0,
    "stats": {
@@ -3913,14 +3913,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 22.0,
-   "proj_left": 22.0,
-   "games_left": 18.0,
-   "proj_gp": 18.0,
+   "proj": 19.2,
+   "proj_left": 19.2,
+   "games_left": 16.0,
+   "proj_gp": 16.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
-    "CBS": 22.0,
+    "CBS": 19.2,
     "HockeyBangers": null
    },
    "age": 29.9,
@@ -9081,6 +9081,7 @@
  "compared_to": "2026-10-07",
  "since": "depuis ce matin",
  "headline": [
+  "Sam Montembeault (J. Gobeil) est maintenant blessé.",
   "Mikhail Sergachev (B. Belanger) est maintenant blessé."
  ],
  "week": {
