@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-09T21:39+00:00",
+ "generated": "2026-10-09T22:09+00:00",
  "as_of": "2026-10-09",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -72,7 +72,7 @@
     10.2,
     10.2,
     9.8,
-    9.8,
+    9.7,
     8.8,
     8.9,
     8.0,
@@ -97,12 +97,12 @@
    "win_pct": 16.6,
    "finish_odds": [
     16.6,
-    14.0,
+    14.1,
     12.0,
     10.5,
     9.2,
     7.9,
-    6.8,
+    6.9,
     6.3,
     5.5,
     4.8,
@@ -260,7 +260,7 @@
    "proj_rank": 10,
    "points": 45,
    "proj_consensus": 814.0,
-   "expected_total": 904.0,
+   "expected_total": 905.0,
    "expected_finish": 7.55,
    "win_pct": 3.1,
    "finish_odds": [
@@ -274,7 +274,7 @@
     10.2,
     10.6,
     11.3,
-    11.4,
+    11.3,
     10.5
    ],
    "rank_change": 0,
@@ -296,12 +296,12 @@
     9.8,
     10.0,
     9.5,
-    9.7,
+    9.8,
     9.4,
     8.5,
     8.0,
     7.6,
-    7.2,
+    7.1,
     6.0,
     5.0
    ],
@@ -1871,14 +1871,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 39.9,
-   "proj_left": 37.9,
+   "proj": 39.8,
+   "proj_left": 37.8,
    "games_left": 78.0,
    "proj_gp": 82.0,
    "sources": {
     "ESPN": 41.2,
     "NHL.com": 43.4,
-    "CBS": 40.2,
+    "CBS": null,
     "HockeyBangers": 34.9
    },
    "age": 32.6,
@@ -2732,7 +2732,7 @@
    "sources": {
     "ESPN": 54.8,
     "NHL.com": 56.7,
-    "CBS": 57.9,
+    "CBS": 57.8,
     "HockeyBangers": 53.8
    },
    "age": 25.7,
@@ -3022,8 +3022,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 79.6,
-   "proj_left": 72.6,
+   "proj": 79.5,
+   "proj_left": 72.5,
    "games_left": 73.0,
    "proj_gp": 78.0,
    "sources": {
@@ -3585,7 +3585,7 @@
    "sources": {
     "ESPN": 78.3,
     "NHL.com": 87.1,
-    "CBS": 88.3,
+    "CBS": 88.4,
     "HockeyBangers": 76.7
    },
    "age": 36.4,
@@ -4402,7 +4402,7 @@
    "sources": {
     "ESPN": 64.0,
     "NHL.com": 62.4,
-    "CBS": 66.9,
+    "CBS": 67.0,
     "HockeyBangers": 63.8
    },
    "age": 36.1,
@@ -4848,7 +4848,7 @@
    "sources": {
     "ESPN": 57.4,
     "NHL.com": 56.3,
-    "CBS": 64.5,
+    "CBS": 64.4,
     "HockeyBangers": 60.4
    },
    "age": 29.7,
@@ -6333,7 +6333,7 @@
    "sources": {
     "ESPN": 106.2,
     "NHL.com": 106.2,
-    "CBS": 109.3,
+    "CBS": 109.2,
     "HockeyBangers": 101.7
    },
    "age": 29.2,
@@ -6407,7 +6407,7 @@
    "sources": {
     "ESPN": 96.6,
     "NHL.com": 94.8,
-    "CBS": 104.2,
+    "CBS": 104.3,
     "HockeyBangers": 97.2
    },
    "age": 30.4,
@@ -6437,8 +6437,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 101.7,
-   "proj_left": 94.7,
+   "proj": 101.8,
+   "proj_left": 94.8,
    "games_left": 79.0,
    "proj_gp": 84.0,
    "sources": {
@@ -6623,8 +6623,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 73.1,
-   "proj_left": 69.1,
+   "proj": 73.0,
+   "proj_left": 69.0,
    "games_left": 78.0,
    "proj_gp": 83.0,
    "sources": {
@@ -6964,7 +6964,7 @@
    "sources": {
     "ESPN": 97.3,
     "NHL.com": 103.0,
-    "CBS": 100.2,
+    "CBS": 100.1,
     "HockeyBangers": 103.7
    },
    "age": 27.2,
@@ -7685,7 +7685,7 @@
    "sources": {
     "ESPN": null,
     "NHL.com": 62.5,
-    "CBS": 75.7,
+    "CBS": 75.6,
     "HockeyBangers": 50.0
    },
    "age": 34.3
@@ -7871,8 +7871,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 65.4,
-   "proj_left": 60.4,
+   "proj": 65.3,
+   "proj_left": 60.3,
    "games_left": 77.0,
    "proj_gp": 82.0,
    "sources": {
@@ -8360,7 +8360,7 @@
    "sources": {
     "ESPN": 58.6,
     "NHL.com": 61.4,
-    "CBS": 62.4,
+    "CBS": 62.3,
     "HockeyBangers": 56.1
    },
    "age": 28.3
