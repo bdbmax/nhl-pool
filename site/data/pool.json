@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-12T05:39+00:00",
+ "generated": "2026-10-12T09:39+00:00",
  "as_of": "2026-10-11",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -7516,14 +7516,14 @@
     "GWG": 0,
     "HT": 1
    },
-   "proj": 73.1,
-   "proj_left": 64.1,
+   "proj": 72.6,
+   "proj_left": 63.6,
    "games_left": 77.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 71.3,
     "NHL.com": null,
-    "CBS": 74.0,
+    "CBS": null,
     "HockeyBangers": 73.9
    },
    "age": 25.0
@@ -9177,9 +9177,130 @@
     "11": 9.04,
     "12": 0.83
    }
+  },
+  {
+   "date": "2026-10-12",
+   "ranks": {
+    "1": 10,
+    "2": 9,
+    "3": 4,
+    "4": 8,
+    "5": 11,
+    "6": 3,
+    "7": 1,
+    "8": 5,
+    "9": 7,
+    "10": 6,
+    "11": 2,
+    "12": 12
+   },
+   "points": {
+    "1": 55,
+    "2": 58,
+    "3": 67,
+    "4": 58,
+    "5": 53,
+    "6": 67,
+    "7": 77,
+    "8": 64,
+    "9": 60,
+    "10": 61,
+    "11": 71,
+    "12": 50
+   },
+   "win": {
+    "1": 8.93,
+    "2": 7.8,
+    "3": 10.16,
+    "4": 9.05,
+    "5": 1.71,
+    "6": 15.49,
+    "7": 23.36,
+    "8": 1.38,
+    "9": 4.32,
+    "10": 7.83,
+    "11": 9.22,
+    "12": 0.74
+   }
   }
  ],
  "awards": [
+  {
+   "week_end": "2026-10-12",
+   "from": "2026-10-05",
+   "to": "2026-10-12",
+   "pick": [
+    {
+     "nhl_id": 8476999,
+     "manager_id": 12,
+     "value": 6,
+     "round": 15
+    },
+    {
+     "nhl_id": 8475913,
+     "manager_id": 2,
+     "value": 6,
+     "round": 11
+    },
+    {
+     "nhl_id": 8480336,
+     "manager_id": 8,
+     "value": 5,
+     "round": 16
+    }
+   ],
+   "comeback": [
+    {
+     "manager_id": 3,
+     "value": 7,
+     "from": 11,
+     "to": 4
+    },
+    {
+     "manager_id": 10,
+     "value": 3,
+     "from": 9,
+     "to": 6
+    },
+    {
+     "manager_id": 2,
+     "value": 1,
+     "from": 10,
+     "to": 9
+    }
+   ],
+   "bad_luck": [
+    {
+     "manager_id": 2,
+     "value": 9.4,
+     "games": 9
+    },
+    {
+     "manager_id": 10,
+     "value": 7.7,
+     "games": 11
+    },
+    {
+     "manager_id": 3,
+     "value": 4.0,
+     "games": 4
+    }
+   ],
+   "drought": [
+    {
+     "manager_id": 5,
+     "value": 23
+    },
+    {
+     "manager_id": 4,
+     "value": 26
+    },
+    {
+     "manager_id": 9,
+     "value": 26
+    }
+   ]
+  },
   {
    "week_end": "2026-10-05",
    "from": "2026-09-29",
@@ -9257,63 +9378,63 @@
    ]
   }
  ],
- "update": "evening",
+ "update": "morning",
  "compared_to": "2026-10-11",
- "since": "depuis hier matin",
+ "since": "depuis hier",
  "headline": [
   "F. Fusey garde la tête, 6 points devant S. Marcoux.",
-  "Shayne Gostisbehere (P. Fiset) : 3 points de pool depuis hier matin."
+  "Shayne Gostisbehere (P. Fiset) : 3 points de pool hier."
  ],
  "week": {
-  "start": "2026-10-05",
-  "end": "2026-10-11",
+  "start": "2026-10-12",
+  "end": "2026-10-18",
   "managers": {
    "1": {
-    "left": 0,
-    "total": 31
+    "left": 36,
+    "total": 36
    },
    "2": {
-    "left": 0,
-    "total": 28
+    "left": 33,
+    "total": 33
    },
    "3": {
-    "left": 0,
-    "total": 32
+    "left": 35,
+    "total": 35
    },
    "4": {
-    "left": 0,
-    "total": 36
+    "left": 35,
+    "total": 35
    },
    "5": {
-    "left": 0,
-    "total": 26
+    "left": 28,
+    "total": 28
    },
    "6": {
-    "left": 0,
-    "total": 36
+    "left": 34,
+    "total": 34
    },
    "7": {
-    "left": 0,
-    "total": 31
+    "left": 32,
+    "total": 32
    },
    "8": {
-    "left": 0,
+    "left": 32,
     "total": 32
    },
    "9": {
-    "left": 0,
-    "total": 32
+    "left": 35,
+    "total": 35
    },
    "10": {
-    "left": 0,
-    "total": 31
+    "left": 36,
+    "total": 36
    },
    "11": {
-    "left": 0,
-    "total": 32
+    "left": 33,
+    "total": 33
    },
    "12": {
-    "left": 0,
+    "left": 34,
     "total": 34
    }
   }
@@ -9746,8 +9867,8 @@
   }
  },
  "hot_cold": {
-  "from": "2026-10-04",
-  "to": "2026-10-11",
+  "from": "2026-10-05",
+  "to": "2026-10-12",
   "hot": [
    {
     "nhl_id": 8479979,
@@ -9794,20 +9915,6 @@
     "diff": -4.5
    },
    {
-    "nhl_id": 8477447,
-    "points": 0,
-    "games": 4,
-    "expected": 3.5,
-    "diff": -3.5
-   },
-   {
-    "nhl_id": 8482699,
-    "points": 1,
-    "games": 4,
-    "expected": 4.4,
-    "diff": -3.4
-   },
-   {
     "nhl_id": 8481540,
     "points": 0,
     "games": 3,
@@ -9820,6 +9927,20 @@
     "games": 4,
     "expected": 4.1,
     "diff": -3.1
+   },
+   {
+    "nhl_id": 8479345,
+    "points": 0,
+    "games": 3,
+    "expected": 3.1,
+    "diff": -3.1
+   },
+   {
+    "nhl_id": 8483445,
+    "points": 0,
+    "games": 3,
+    "expected": 3.0,
+    "diff": -3.0
    }
   ]
  },
@@ -9827,7 +9948,7 @@
   "dates": [
    "2026-09-29",
    "2026-10-05",
-   "2026-10-11"
+   "2026-10-12"
   ],
   "points": {
    "8478402": [
@@ -9918,7 +10039,7 @@
    "8479323": [
     0,
     4,
-    5
+    6
    ],
    "8481559": [
     0,
@@ -10038,7 +10159,7 @@
    "8477986": [
     0,
     2,
-    4
+    5
    ],
    "8482093": [
     0,
@@ -10058,12 +10179,12 @@
    "8478882": [
     0,
     3,
-    5
+    6
    ],
    "8481611": [
     0,
     2,
-    4
+    6
    ],
    "8476880": [
     0,
@@ -10098,7 +10219,7 @@
    "8476906": [
     0,
     3,
-    6
+    9
    ],
    "8471675": [
     0,
@@ -10188,7 +10309,7 @@
    "8480830": [
     0,
     3,
-    7
+    9
    ],
    "8482720": [
     0,
@@ -10208,7 +10329,7 @@
    "8477955": [
     0,
     4,
-    6
+    8
    ],
    "8476434": [
     0,
@@ -10273,7 +10394,7 @@
    "8478407": [
     0,
     6,
-    8
+    9
    ],
    "8478445": [
     0,
@@ -10338,7 +10459,7 @@
    "8478427": [
     0,
     4,
-    9
+    11
    ],
    "8482122": [
     0,
@@ -10418,7 +10539,7 @@
    "8476459": [
     0,
     3,
-    5
+    7
    ],
    "8478048": [
     0,
@@ -10468,7 +10589,7 @@
    "8480336": [
     0,
     0,
-    4
+    5
    ],
    "8478864": [
     0,
@@ -10613,7 +10734,7 @@
    "8471214": [
     0,
     1,
-    1
+    2
    ],
    "8476945": [
     0,
@@ -10678,7 +10799,7 @@
    "8484873": [
     0,
     2,
-    3
+    4
    ],
    "8478009": [
     0,
@@ -10823,16 +10944,16 @@
      "round": 9
     },
     {
+     "nhl_id": 8478407,
+     "manager_id": 6,
+     "value": 9,
+     "round": 9
+    },
+    {
      "nhl_id": 8476999,
      "manager_id": 12,
      "value": 8,
      "round": 15
-    },
-    {
-     "nhl_id": 8475913,
-     "manager_id": 2,
-     "value": 8,
-     "round": 11
     }
    ]
   },
@@ -10843,7 +10964,7 @@
      "nhl_id": 8478178,
      "manager_id": 5,
      "value": 2,
-     "gap": -5.5,
+     "gap": -5.6,
      "round": 2
     },
     {
@@ -10867,17 +10988,17 @@
    "podium": [
     {
      "manager_id": 10,
-     "value": 18,
-     "points": 13.1,
+     "value": 19,
+     "points": 13.7,
      "worst": {
-      "nhl_id": 8479325,
-      "games": 6
+      "nhl_id": 8482100,
+      "games": 7
      }
     },
     {
      "manager_id": 2,
-     "value": 11,
-     "points": 12.0,
+     "value": 12,
+     "points": 12.9,
      "worst": {
       "nhl_id": 8484144,
       "games": 6
@@ -10899,18 +11020,18 @@
    "podium": [
     {
      "manager_id": 7,
-     "value": 10,
-     "mornings": 12
+     "value": 11,
+     "mornings": 13
     },
     {
      "manager_id": 11,
      "value": 1,
-     "mornings": 12
+     "mornings": 13
     },
     {
      "manager_id": 6,
      "value": 1,
-     "mornings": 12
+     "mornings": 13
     }
    ]
   },
@@ -10919,15 +11040,15 @@
    "podium": [
     {
      "manager_id": 10,
-     "value": 24
+     "value": 25
     },
     {
      "manager_id": 4,
-     "value": 20
+     "value": 21
     },
     {
      "manager_id": 2,
-     "value": 17
+     "value": 18
     }
    ]
   },
@@ -10951,11 +11072,11 @@
      }
     },
     {
-     "manager_id": 9,
-     "value": 10,
+     "manager_id": 3,
+     "value": 11,
      "best": {
-      "nhl_id": 8482730,
-      "points": 3
+      "nhl_id": 8481611,
+      "points": 6
      }
     }
    ]
