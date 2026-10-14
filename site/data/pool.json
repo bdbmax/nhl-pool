@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-14T18:09+00:00",
+ "generated": "2026-10-14T18:39+00:00",
  "as_of": "2026-10-14",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -73,7 +73,7 @@
     12.0,
     10.9,
     9.3,
-    8.1,
+    8.2,
     7.4,
     6.5,
     5.6,
@@ -98,14 +98,14 @@
    "finish_odds": [
     9.6,
     10.5,
-    10.1,
-    10.1,
+    10.2,
+    10.0,
     9.9,
     9.3,
-    9.1,
+    9.0,
     8.1,
     7.6,
-    6.7,
+    6.6,
     5.4,
     3.7
    ],
@@ -130,12 +130,12 @@
     8.0,
     8.7,
     9.1,
-    10.0,
+    9.9,
     10.2,
     10.8,
     10.0,
     9.2,
-    7.1
+    7.2
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -161,9 +161,9 @@
     7.2,
     8.9,
     11.3,
-    13.6,
+    13.7,
     17.6,
-    22.1
+    22.2
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -186,11 +186,11 @@
     10.0,
     9.8,
     9.5,
-    9.0,
+    9.1,
     8.1,
     7.5,
     6.4,
-    5.2,
+    5.3,
     3.7
    ],
    "rank_change": 0,
@@ -232,12 +232,12 @@
    "proj_rank": 7,
    "points": 73,
    "proj_consensus": 873.0,
-   "expected_total": 943.0,
-   "expected_finish": 5.99,
+   "expected_total": 944.0,
+   "expected_finish": 5.97,
    "win_pct": 8.7,
    "finish_odds": [
     8.7,
-    9.3,
+    9.4,
     9.6,
     9.6,
     9.7,
@@ -247,7 +247,7 @@
     7.9,
     7.4,
     6.0,
-    4.6
+    4.5
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -266,7 +266,7 @@
    "finish_odds": [
     8.6,
     9.2,
-    9.8,
+    9.7,
     9.8,
     9.9,
     9.4,
@@ -289,17 +289,17 @@
    "points": 71,
    "proj_consensus": 883.0,
    "expected_total": 958.0,
-   "expected_finish": 5.58,
+   "expected_finish": 5.59,
    "win_pct": 10.1,
    "finish_odds": [
     10.1,
-    10.9,
+    10.8,
     10.5,
-    10.2,
+    10.1,
     10.1,
     9.7,
     8.9,
-    8.4,
+    8.3,
     7.2,
     6.4,
     4.8,
@@ -326,7 +326,7 @@
     5.3,
     5.9,
     7.6,
-    9.2,
+    9.3,
     10.3,
     11.6,
     13.5,
@@ -345,7 +345,7 @@
    "points": 61,
    "proj_consensus": 744.0,
    "expected_total": 820.0,
-   "expected_finish": 9.51,
+   "expected_finish": 9.52,
    "win_pct": 0.7,
    "finish_odds": [
     0.7,
@@ -357,7 +357,7 @@
     5.7,
     7.8,
     9.7,
-    13.0,
+    12.9,
     19.0,
     29.7
    ],
@@ -711,7 +711,7 @@
    "number": 24,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/DAL/8478449.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3904183.png",
-   "injury": "Day-to-day",
+   "injury": null,
    "points": 4,
    "gp": 6,
    "stats": {
@@ -720,15 +720,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 66.7,
-   "proj_left": 62.7,
-   "games_left": 69.0,
-   "proj_gp": 75.0,
+   "proj": 67.6,
+   "proj_left": 63.6,
+   "games_left": 70.0,
+   "proj_gp": 76.0,
    "sources": {
-    "ESPN": 64.8,
-    "NHL.com": 75.8,
-    "CBS": 61.8,
-    "HockeyBangers": 64.4
+    "ESPN": 65.7,
+    "NHL.com": 76.9,
+    "CBS": 62.6,
+    "HockeyBangers": 65.2
    },
    "age": 29.9,
    "manager_id": 1,
