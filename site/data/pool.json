@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-14T09:39+00:00",
- "as_of": "2026-10-13",
+ "generated": "2026-10-14T16:39+00:00",
+ "as_of": "2026-10-14",
  "season_start": "2026-09-29",
  "season_started": true,
  "games_played": 6.6,
@@ -54,7 +54,7 @@
     1.5
    ],
    "rank_change": 0,
-   "win_change": -4.6
+   "win_change": -0.0
   },
   {
    "id": 6,
@@ -74,15 +74,15 @@
     10.9,
     9.3,
     8.1,
-    7.4,
+    7.3,
     6.5,
     5.6,
     4.7,
     3.5,
     2.2
    ],
-   "rank_change": 2,
-   "win_change": 1.4
+   "rank_change": 0,
+   "win_change": -0.1
   },
   {
    "id": 11,
@@ -110,7 +110,7 @@
     3.7
    ],
    "rank_change": 0,
-   "win_change": 0.8
+   "win_change": 0.0
   },
   {
    "id": 9,
@@ -137,8 +137,8 @@
     9.2,
     7.1
    ],
-   "rank_change": 3,
-   "win_change": 0.6
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 8,
@@ -166,7 +166,7 @@
     22.1
    ],
    "rank_change": 0,
-   "win_change": -0.3
+   "win_change": 0.0
   },
   {
    "id": 10,
@@ -188,13 +188,13 @@
     9.5,
     9.0,
     8.1,
-    7.5,
+    7.4,
     6.4,
     5.2,
     3.7
    ],
    "rank_change": 0,
-   "win_change": 1.5
+   "win_change": -0.0
   },
   {
    "id": 3,
@@ -221,8 +221,8 @@
     6.5,
     4.9
    ],
-   "rank_change": -5,
-   "win_change": -2.6
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 1,
@@ -250,7 +250,7 @@
     4.6
    ],
    "rank_change": 0,
-   "win_change": -0.2
+   "win_change": 0.0
   },
   {
    "id": 2,
@@ -278,7 +278,7 @@
     4.2
    ],
    "rank_change": 0,
-   "win_change": 1.6
+   "win_change": -0.0
   },
   {
    "id": 4,
@@ -306,7 +306,7 @@
     2.9
    ],
    "rank_change": 0,
-   "win_change": 1.8
+   "win_change": -0.0
   },
   {
    "id": 5,
@@ -334,7 +334,7 @@
     13.5
    ],
    "rank_change": 0,
-   "win_change": 0.1
+   "win_change": 0.0
   },
   {
    "id": 12,
@@ -362,7 +362,7 @@
     29.7
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": 0.0
   }
  ],
  "players": [
@@ -1024,7 +1024,7 @@
    "sources": {
     "ESPN": 77.5,
     "NHL.com": 86.7,
-    "CBS": 81.1,
+    "CBS": 81.0,
     "HockeyBangers": 77.6
    },
    "age": 28.7,
@@ -1136,7 +1136,7 @@
    "sources": {
     "ESPN": 59.0,
     "NHL.com": null,
-    "CBS": 46.8,
+    "CBS": 46.7,
     "HockeyBangers": null
    },
    "age": 25.4,
@@ -1581,7 +1581,7 @@
    "sources": {
     "ESPN": 133.6,
     "NHL.com": 127.5,
-    "CBS": 136.0,
+    "CBS": 136.1,
     "HockeyBangers": 125.6
    },
    "age": 33.3,
@@ -1686,8 +1686,8 @@
     "SO": 1,
     "G": 0
    },
-   "proj": 57.4,
-   "proj_left": 49.4,
+   "proj": 57.5,
+   "proj_left": 49.5,
    "games_left": 38.0,
    "proj_gp": 43.0,
    "sources": {
@@ -1989,7 +1989,7 @@
    "sources": {
     "ESPN": 61.9,
     "NHL.com": 56.1,
-    "CBS": 68.4,
+    "CBS": 68.5,
     "HockeyBangers": 51.6
    },
    "age": 33.3,
@@ -2175,7 +2175,7 @@
    "sources": {
     "ESPN": 115.9,
     "NHL.com": 131.4,
-    "CBS": 125.7,
+    "CBS": 125.8,
     "HockeyBangers": 116.2
    },
    "age": 20.3,
@@ -2844,7 +2844,7 @@
    "sources": {
     "ESPN": 58.1,
     "NHL.com": null,
-    "CBS": 46.0,
+    "CBS": 46.1,
     "HockeyBangers": null
    },
    "age": 34.2,
@@ -3511,7 +3511,7 @@
    "sources": {
     "ESPN": 74.8,
     "NHL.com": 83.5,
-    "CBS": 81.4,
+    "CBS": 81.5,
     "HockeyBangers": 72.0
    },
    "age": 30.9,
@@ -3915,8 +3915,8 @@
    },
    "proj": 0.0,
    "proj_left": 0.0,
-   "games_left": 7.0,
-   "proj_gp": 7.0,
+   "games_left": 6.0,
+   "proj_gp": 6.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
@@ -4769,8 +4769,8 @@
    },
    "proj": 16.0,
    "proj_left": 0.0,
-   "games_left": 33.0,
-   "proj_gp": 38.0,
+   "games_left": 28.0,
+   "proj_gp": 33.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
@@ -5182,7 +5182,7 @@
    "sources": {
     "ESPN": 84.1,
     "NHL.com": 93.5,
-    "CBS": 93.2,
+    "CBS": 93.1,
     "HockeyBangers": 86.3
    },
    "age": 22.7,
@@ -6556,7 +6556,7 @@
    "sources": {
     "ESPN": 71.1,
     "NHL.com": null,
-    "CBS": 62.9,
+    "CBS": 63.0,
     "HockeyBangers": null
    },
    "age": 28.2,
@@ -6927,7 +6927,7 @@
    "sources": {
     "ESPN": 104.7,
     "NHL.com": 104.7,
-    "CBS": 110.9,
+    "CBS": 110.8,
     "HockeyBangers": 103.5
    },
    "age": 27.2,
@@ -7447,7 +7447,7 @@
    "sources": {
     "ESPN": 84.4,
     "NHL.com": null,
-    "CBS": 71.1,
+    "CBS": 71.2,
     "HockeyBangers": null
    },
    "age": 33.2,
@@ -8451,8 +8451,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 54.7,
-   "proj_left": 48.7,
+   "proj": 54.8,
+   "proj_left": 48.8,
    "games_left": 77.0,
    "proj_gp": 82.0,
    "sources": {
@@ -9470,37 +9470,34 @@
    ]
   }
  ],
- "update": "morning",
- "compared_to": "2026-10-13",
- "since": "depuis hier",
+ "update": "evening",
+ "compared_to": "2026-10-14",
+ "since": "depuis ce matin",
  "headline": [
-  "F. Fusey garde la tête, 6 points devant J. Gobeil.",
-  "B. Belanger gagne 3 rangs, du 7e au 4e.",
-  "Brady Tkachuk (M. Gosselin) : 5 points de pool hier.",
-  "Les odds de F. Fusey passent de 25,6 % à 21,0 %."
+  "F. Fusey garde la tête, 6 points devant J. Gobeil."
  ],
  "week": {
   "start": "2026-10-12",
   "end": "2026-10-18",
   "managers": {
    "1": {
-    "left": 21,
+    "left": 18,
     "total": 36
    },
    "2": {
-    "left": 20,
+    "left": 17,
     "total": 33
    },
    "3": {
-    "left": 19,
+    "left": 18,
     "total": 31
    },
    "4": {
-    "left": 22,
+    "left": 18,
     "total": 36
    },
    "5": {
-    "left": 18,
+    "left": 17,
     "total": 27
    },
    "6": {
@@ -9512,23 +9509,23 @@
     "total": 29
    },
    "8": {
-    "left": 20,
-    "total": 33
-   },
-   "9": {
     "left": 19,
     "total": 33
    },
+   "9": {
+    "left": 18,
+    "total": 33
+   },
    "10": {
-    "left": 22,
+    "left": 21,
     "total": 36
    },
    "11": {
-    "left": 21,
+    "left": 20,
     "total": 33
    },
    "12": {
-    "left": 22,
+    "left": 18,
     "total": 34
    }
   }
@@ -11419,7 +11416,7 @@
     "ppg": 1.072
    },
    "catch_weeks": 0.5,
-   "caught_weeks": 18.4
+   "caught_weeks": 18.3
   },
   "3": {
    "ahead": {
@@ -11434,7 +11431,7 @@
     "left_diff": 1,
     "ppg": 1.028
    },
-   "catch_weeks": 18.4,
+   "catch_weeks": 18.3,
    "caught_weeks": null
   },
   "1": {
