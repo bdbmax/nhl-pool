@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-16T01:09+00:00",
+ "generated": "2026-10-16T01:39+00:00",
  "as_of": "2026-10-15",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -38,9 +38,9 @@
    "proj_consensus": 943.0,
    "expected_total": 1018.0,
    "expected_finish": 4.01,
-   "win_pct": 24.1,
+   "win_pct": 24.2,
    "finish_odds": [
-    24.1,
+    24.2,
     16.7,
     12.8,
     10.2,
@@ -54,7 +54,7 @@
     1.1
    ],
    "rank_change": 0,
-   "win_change": 0.4
+   "win_change": 0.5
   },
   {
    "id": 6,
@@ -185,7 +185,7 @@
     2.7,
     3.5,
     4.6,
-    5.9,
+    6.0,
     7.2,
     8.9,
     11.2,
@@ -266,7 +266,7 @@
    "finish_odds": [
     8.7,
     10.2,
-    10.0,
+    10.1,
     10.1,
     10.1,
     9.8,
@@ -2614,14 +2614,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 64.1,
-   "proj_left": 58.1,
+   "proj": 64.2,
+   "proj_left": 58.2,
    "games_left": 42.0,
    "proj_gp": 47.0,
    "sources": {
     "ESPN": 64.6,
     "NHL.com": null,
-    "CBS": 63.7,
+    "CBS": 63.8,
     "HockeyBangers": null
    },
    "age": 29.9,
@@ -4477,7 +4477,7 @@
    "sources": {
     "ESPN": 37.6,
     "NHL.com": 44.5,
-    "CBS": 38.4,
+    "CBS": 38.5,
     "HockeyBangers": 37.1
    },
    "age": 28.2,
@@ -6511,14 +6511,14 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 87.8,
-   "proj_left": 78.8,
+   "proj": 87.9,
+   "proj_left": 78.9,
    "games_left": 71.0,
    "proj_gp": 78.0,
    "sources": {
     "ESPN": 83.1,
     "NHL.com": 93.6,
-    "CBS": 92.1,
+    "CBS": 92.2,
     "HockeyBangers": 82.6
    },
    "age": 23.5,
@@ -7113,7 +7113,7 @@
    "sources": {
     "ESPN": 49.1,
     "NHL.com": 57.6,
-    "CBS": 66.9,
+    "CBS": 67.0,
     "HockeyBangers": 47.6
    },
    "age": 32.8,
@@ -7872,14 +7872,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 28.8,
-   "proj_left": 20.8,
+   "proj": 28.7,
+   "proj_left": 20.7,
    "games_left": 15.0,
    "proj_gp": 19.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
-    "CBS": 28.8,
+    "CBS": 28.7,
     "HockeyBangers": null
    },
    "age": 24.8
