@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-18T16:08+00:00",
+ "generated": "2026-10-18T16:38+00:00",
  "as_of": "2026-10-18",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -35,26 +35,26 @@
    "rank": 1,
    "proj_rank": 1,
    "points": 108,
-   "proj_consensus": 943.0,
-   "expected_total": 1008.0,
-   "expected_finish": 4.21,
-   "win_pct": 22.2,
+   "proj_consensus": 954.0,
+   "expected_total": 1018.0,
+   "expected_finish": 3.99,
+   "win_pct": 24.3,
    "finish_odds": [
-    22.2,
-    15.8,
-    12.6,
-    10.3,
-    9.1,
-    7.3,
-    6.1,
-    5.2,
-    4.3,
-    3.5,
-    2.2,
-    1.4
+    24.3,
+    16.9,
+    12.9,
+    9.9,
+    8.6,
+    6.8,
+    5.8,
+    4.8,
+    3.8,
+    3.1,
+    1.9,
+    1.1
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": 2.1
   },
   {
    "id": 6,
@@ -65,16 +65,16 @@
    "points": 101,
    "proj_consensus": 926.0,
    "expected_total": 977.0,
-   "expected_finish": 5.01,
-   "win_pct": 14.9,
+   "expected_finish": 5.02,
+   "win_pct": 14.7,
    "finish_odds": [
-    14.9,
-    12.7,
-    12.0,
+    14.7,
+    12.6,
+    11.9,
     10.8,
-    9.4,
+    9.5,
     8.4,
-    7.7,
+    7.8,
     6.8,
     6.1,
     5.0,
@@ -82,35 +82,35 @@
     2.3
    ],
    "rank_change": 0,
-   "win_change": 0.3
+   "win_change": 0.1
   },
   {
    "id": 1,
    "name": "D. Archambault",
    "slot": 1,
    "rank": 3,
-   "proj_rank": 4,
+   "proj_rank": 5,
    "points": 101,
    "proj_consensus": 892.0,
-   "expected_total": 954.0,
-   "expected_finish": 5.65,
-   "win_pct": 10.5,
+   "expected_total": 948.0,
+   "expected_finish": 5.83,
+   "win_pct": 9.5,
    "finish_odds": [
-    10.5,
-    10.6,
-    10.5,
-    10.2,
-    9.4,
+    9.5,
+    9.9,
+    9.9,
+    10.1,
+    9.5,
     9.6,
-    8.4,
-    8.1,
-    7.5,
-    6.5,
-    5.1,
-    3.7
+    8.6,
+    8.2,
+    7.8,
+    7.2,
+    5.5,
+    4.2
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": -1.0
   },
   {
    "id": 11,
@@ -122,23 +122,23 @@
    "proj_consensus": 882.0,
    "expected_total": 944.0,
    "expected_finish": 5.93,
-   "win_pct": 8.4,
+   "win_pct": 8.3,
    "finish_odds": [
-    8.4,
+    8.3,
     9.8,
+    9.7,
     9.8,
-    9.6,
-    10.0,
-    9.5,
+    9.9,
+    9.7,
     9.1,
     8.8,
     8.0,
-    7.0,
+    7.1,
     6.1,
     3.8
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": -0.2
   },
   {
    "id": 9,
@@ -150,14 +150,14 @@
    "proj_consensus": 862.0,
    "expected_total": 925.0,
    "expected_finish": 6.48,
-   "win_pct": 6.1,
+   "win_pct": 6.0,
    "finish_odds": [
-    6.1,
-    7.8,
-    7.9,
-    8.9,
+    6.0,
+    7.6,
+    8.1,
+    9.0,
     9.5,
-    9.4,
+    9.5,
     9.8,
     9.8,
     9.5,
@@ -166,7 +166,7 @@
     5.3
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": -0.1
   },
   {
    "id": 4,
@@ -178,23 +178,23 @@
    "proj_consensus": 896.0,
    "expected_total": 960.0,
    "expected_finish": 5.45,
-   "win_pct": 10.9,
+   "win_pct": 10.7,
    "finish_odds": [
-    10.9,
-    11.3,
     10.7,
-    10.5,
+    11.2,
+    10.8,
+    10.7,
     10.3,
-    9.4,
-    8.8,
-    7.7,
-    7.2,
+    9.5,
+    8.7,
+    7.8,
+    7.1,
     6.0,
-    4.5,
+    4.4,
     2.6
    ],
    "rank_change": 0,
-   "win_change": 0.0
+   "win_change": -0.2
   },
   {
    "id": 8,
@@ -206,51 +206,51 @@
    "proj_consensus": 778.0,
    "expected_total": 832.0,
    "expected_finish": 9.26,
-   "win_pct": 0.8,
+   "win_pct": 0.7,
    "finish_odds": [
-    0.8,
+    0.7,
     1.5,
     2.2,
-    2.8,
-    4.1,
-    5.4,
-    6.7,
+    2.9,
+    4.0,
+    5.5,
+    6.8,
     8.5,
-    10.8,
-    14.1,
+    10.9,
+    14.0,
     18.6,
     24.4
    ],
    "rank_change": 0,
-   "win_change": 0.0
+   "win_change": -0.1
   },
   {
    "id": 10,
    "name": "A. Cordeau",
    "slot": 10,
    "rank": 8,
-   "proj_rank": 5,
+   "proj_rank": 4,
    "points": 96,
    "proj_consensus": 910.0,
    "expected_total": 948.0,
    "expected_finish": 5.81,
-   "win_pct": 9.4,
+   "win_pct": 9.3,
    "finish_odds": [
-    9.4,
+    9.3,
+    9.9,
+    10.3,
     10.0,
-    10.2,
-    10.0,
-    9.4,
-    9.4,
-    9.1,
-    8.4,
-    7.7,
+    9.5,
+    9.5,
+    9.0,
+    8.5,
+    7.8,
     6.7,
     5.7,
     3.9
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": -0.2
   },
   {
    "id": 2,
@@ -261,16 +261,16 @@
    "points": 94,
    "proj_consensus": 870.0,
    "expected_total": 939.0,
-   "expected_finish": 6.06,
-   "win_pct": 8.2,
+   "expected_finish": 6.07,
+   "win_pct": 8.1,
    "finish_odds": [
-    8.2,
+    8.1,
     8.5,
     9.8,
-    9.5,
-    9.7,
     9.6,
-    9.4,
+    9.8,
+    9.6,
+    9.5,
     8.8,
     8.2,
     7.7,
@@ -278,7 +278,7 @@
     4.4
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": -0.1
   },
   {
    "id": 3,
@@ -289,24 +289,24 @@
    "points": 86,
    "proj_consensus": 862.0,
    "expected_total": 915.0,
-   "expected_finish": 6.79,
-   "win_pct": 5.5,
+   "expected_finish": 6.8,
+   "win_pct": 5.4,
    "finish_odds": [
-    5.5,
-    6.8,
-    7.5,
+    5.4,
+    6.7,
+    7.6,
     8.2,
-    8.8,
-    9.0,
-    9.6,
+    8.9,
+    8.9,
+    9.7,
     9.6,
     9.7,
-    9.3,
+    9.2,
     8.8,
     7.2
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": -0.2
   },
   {
    "id": 5,
@@ -318,23 +318,23 @@
    "proj_consensus": 807.0,
    "expected_total": 882.0,
    "expected_finish": 7.8,
-   "win_pct": 2.4,
+   "win_pct": 2.3,
    "finish_odds": [
-    2.4,
-    3.9,
+    2.3,
+    4.0,
     4.8,
     6.3,
-    6.7,
-    8.5,
-    9.8,
-    10.6,
-    11.3,
+    6.8,
+    8.4,
+    9.7,
+    10.7,
+    11.2,
     12.4,
     12.6,
     10.8
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": -0.1
   },
   {
    "id": 12,
@@ -346,23 +346,23 @@
    "proj_consensus": 755.0,
    "expected_total": 821.0,
    "expected_finish": 9.55,
-   "win_pct": 0.7,
+   "win_pct": 0.6,
    "finish_odds": [
-    0.7,
+    0.6,
     1.2,
     2.0,
     2.8,
     3.5,
     4.5,
-    5.5,
+    5.6,
     7.7,
     9.7,
     13.0,
-    19.1,
+    19.2,
     30.2
    ],
    "rank_change": 0,
-   "win_change": 0.0
+   "win_change": -0.1
   }
  ],
  "players": [
@@ -711,7 +711,7 @@
    "number": 24,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/DAL/8478449.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3904183.png",
-   "injury": "Day-to-day",
+   "injury": "IR",
    "points": 5,
    "gp": 8,
    "stats": {
@@ -720,15 +720,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 64.9,
-   "proj_left": 59.9,
-   "games_left": 67.0,
-   "proj_gp": 75.0,
+   "proj": 56.8,
+   "proj_left": 51.8,
+   "games_left": 58.0,
+   "proj_gp": 66.0,
    "sources": {
-    "ESPN": 63.1,
-    "NHL.com": 73.4,
-    "CBS": 60.3,
-    "HockeyBangers": 62.7
+    "ESPN": 55.3,
+    "NHL.com": 64.2,
+    "CBS": 52.9,
+    "HockeyBangers": 55.0
    },
    "age": 29.9,
    "manager_id": 1,
@@ -4015,7 +4015,7 @@
    "number": 53,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/DAL/8482740.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4874740.png",
-   "injury": "IR",
+   "injury": null,
    "points": 4,
    "gp": 6,
    "stats": {
@@ -4024,15 +4024,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 74.7,
-   "proj_left": 70.7,
-   "games_left": 66.0,
-   "proj_gp": 72.0,
+   "proj": 85.4,
+   "proj_left": 81.4,
+   "games_left": 76.0,
+   "proj_gp": 82.0,
    "sources": {
-    "ESPN": 72.8,
-    "NHL.com": 81.2,
-    "CBS": 71.3,
-    "HockeyBangers": 73.4
+    "ESPN": 83.3,
+    "NHL.com": 92.9,
+    "CBS": 81.5,
+    "HockeyBangers": 83.9
    },
    "age": 23.4,
    "manager_id": 7,
@@ -9655,7 +9655,9 @@
  "compared_to": "2026-10-18",
  "since": "depuis ce matin",
  "headline": [
-  "F. Fusey garde la tête, 7 points devant J. Gobeil."
+  "F. Fusey garde la tête, 7 points devant J. Gobeil.",
+  "Les odds de F. Fusey passent de 22,2 % à 24,3 %.",
+  "Roope Hintz (D. Archambault) est maintenant blessé."
  ],
  "week": {
   "start": "2026-10-12",
@@ -9663,7 +9665,7 @@
   "managers": {
    "1": {
     "left": 0,
-    "total": 36
+    "total": 33
    },
    "2": {
     "left": 0,
