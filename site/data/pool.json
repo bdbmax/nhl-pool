@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-20T01:08+00:00",
+ "generated": "2026-10-20T01:38+00:00",
  "as_of": "2026-10-19",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -8369,6 +8369,38 @@
    "age": 33.6
   },
   {
+   "nhl_id": 8483678,
+   "espn_id": 5238086,
+   "df_id": 36406,
+   "slug": "elias-pettersson",
+   "name": "Elias Pettersson",
+   "pos": "D",
+   "nhl_team": "VAN",
+   "number": 25,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/VAN/8483678.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5238086.png",
+   "injury": null,
+   "points": 7,
+   "gp": 10,
+   "stats": {
+    "G": 3,
+    "A": 0,
+    "GWG": 1,
+    "HT": 0
+   },
+   "proj": 69.9,
+   "proj_left": 62.9,
+   "games_left": 62.0,
+   "proj_gp": 72.0,
+   "sources": {
+    "ESPN": null,
+    "NHL.com": null,
+    "CBS": null,
+    "HockeyBangers": 69.9
+   },
+   "age": 22.7
+  },
+  {
    "nhl_id": 8482175,
    "espn_id": 4697438,
    "df_id": 31777,
@@ -8431,38 +8463,6 @@
     "HockeyBangers": 61.9
    },
    "age": 32.9
-  },
-  {
-   "nhl_id": 8478444,
-   "espn_id": 3899979,
-   "df_id": 2497,
-   "slug": "brock-boeser",
-   "name": "Brock Boeser",
-   "pos": "F",
-   "nhl_team": "VAN",
-   "number": 6,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/VAN/8478444.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3899979.png",
-   "injury": null,
-   "points": 7,
-   "gp": 10,
-   "stats": {
-    "G": 2,
-    "A": 5,
-    "GWG": 0,
-    "HT": 0
-   },
-   "proj": 60.2,
-   "proj_left": 53.2,
-   "games_left": 71.0,
-   "proj_gp": 81.0,
-   "sources": {
-    "ESPN": 60.2,
-    "NHL.com": 57.9,
-    "CBS": 62.9,
-    "HockeyBangers": 59.7
-   },
-   "age": 29.6
   }
  ],
  "nhl_teams": [
