@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-22T23:09+00:00",
+ "generated": "2026-10-22T23:39+00:00",
  "as_of": "2026-10-22",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -37,24 +37,24 @@
    "points": 124,
    "proj_consensus": 958.0,
    "expected_total": 1017.0,
-   "expected_finish": 3.89,
-   "win_pct": 24.8,
+   "expected_finish": 3.88,
+   "win_pct": 24.9,
    "finish_odds": [
-    24.8,
+    24.9,
     17.1,
     13.3,
     10.1,
     8.5,
     7.1,
     5.6,
-    4.6,
-    3.8,
+    4.5,
+    3.7,
     2.7,
     1.6,
     0.9
    ],
    "rank_change": 0,
-   "win_change": 0.5
+   "win_change": 0.6
   },
   {
    "id": 1,
@@ -63,26 +63,26 @@
    "rank": 2,
    "proj_rank": 3,
    "points": 119,
-   "proj_consensus": 905.0,
-   "expected_total": 963.0,
-   "expected_finish": 5.26,
-   "win_pct": 12.0,
+   "proj_consensus": 902.0,
+   "expected_total": 959.0,
+   "expected_finish": 5.35,
+   "win_pct": 11.5,
    "finish_odds": [
-    12.0,
-    11.9,
     11.5,
+    11.5,
+    11.2,
     10.7,
-    10.3,
-    9.2,
+    10.2,
+    9.4,
     8.3,
-    7.7,
-    6.6,
-    5.3,
-    4.1,
-    2.4
+    8.0,
+    6.8,
+    5.5,
+    4.3,
+    2.6
    ],
    "rank_change": 0,
-   "win_change": 0.1
+   "win_change": -0.4
   },
   {
    "id": 9,
@@ -93,17 +93,17 @@
    "points": 118,
    "proj_consensus": 862.0,
    "expected_total": 922.0,
-   "expected_finish": 6.43,
+   "expected_finish": 6.42,
    "win_pct": 5.7,
    "finish_odds": [
     5.7,
-    7.2,
-    8.3,
+    7.3,
+    8.4,
     9.1,
-    9.8,
+    9.7,
     10.1,
     10.3,
-    10.3,
+    10.2,
     9.6,
     8.6,
     6.7,
@@ -125,14 +125,14 @@
    "win_pct": 7.6,
    "finish_odds": [
     7.6,
-    9.1,
+    9.2,
     9.7,
     10.1,
-    10.0,
+    10.1,
     10.0,
     9.5,
     9.1,
-    8.4,
+    8.3,
     7.2,
     5.9,
     3.3
@@ -149,19 +149,19 @@
    "points": 112,
    "proj_consensus": 894.0,
    "expected_total": 951.0,
-   "expected_finish": 5.58,
+   "expected_finish": 5.57,
    "win_pct": 9.5,
    "finish_odds": [
     9.5,
     10.8,
-    10.3,
-    10.6,
+    10.4,
+    10.5,
     10.5,
     9.9,
     9.5,
     8.3,
     7.4,
-    6.4,
+    6.3,
     4.5,
     2.5
    ],
@@ -177,7 +177,7 @@
    "points": 112,
    "proj_consensus": 784.0,
    "expected_total": 834.0,
-   "expected_finish": 9.09,
+   "expected_finish": 9.08,
    "win_pct": 0.8,
    "finish_odds": [
     0.8,
@@ -185,7 +185,7 @@
     2.3,
     3.1,
     4.4,
-    5.8,
+    5.7,
     7.4,
     9.3,
     11.6,
@@ -205,24 +205,24 @@
    "points": 111,
    "proj_consensus": 933.0,
    "expected_total": 979.0,
-   "expected_finish": 4.86,
-   "win_pct": 15.3,
+   "expected_finish": 4.85,
+   "win_pct": 15.4,
    "finish_odds": [
-    15.3,
+    15.4,
     13.5,
     12.0,
     11.2,
     9.7,
-    8.3,
+    8.2,
     7.8,
-    6.7,
-    5.7,
-    4.8,
+    6.6,
+    5.8,
+    4.7,
     3.2,
     1.9
    ],
    "rank_change": 0,
-   "win_change": 0.1
+   "win_change": 0.2
   },
   {
    "id": 10,
@@ -233,24 +233,24 @@
    "points": 104,
    "proj_consensus": 898.0,
    "expected_total": 934.0,
-   "expected_finish": 6.12,
-   "win_pct": 7.5,
+   "expected_finish": 6.11,
+   "win_pct": 7.6,
    "finish_odds": [
-    7.5,
+    7.6,
     8.6,
     9.3,
     9.5,
     9.9,
     9.6,
-    9.7,
+    9.6,
     9.4,
     8.7,
-    7.2,
-    6.4,
+    7.1,
+    6.3,
     4.2
    ],
    "rank_change": 0,
-   "win_change": 0.3
+   "win_change": 0.4
   },
   {
    "id": 2,
@@ -261,19 +261,19 @@
    "points": 103,
    "proj_consensus": 873.0,
    "expected_total": 934.0,
-   "expected_finish": 6.09,
+   "expected_finish": 6.08,
    "win_pct": 7.4,
    "finish_odds": [
     7.4,
     8.3,
-    9.4,
+    9.5,
     9.7,
     9.9,
     10.3,
     9.8,
     9.3,
-    8.5,
-    7.5,
+    8.4,
+    7.6,
     6.0,
     3.8
    ],
@@ -289,24 +289,24 @@
    "points": 100,
    "proj_consensus": 888.0,
    "expected_total": 939.0,
-   "expected_finish": 5.95,
-   "win_pct": 8.2,
+   "expected_finish": 5.94,
+   "win_pct": 8.3,
    "finish_odds": [
-    8.2,
-    9.5,
+    8.3,
+    9.6,
     9.8,
     9.9,
-    9.7,
     9.6,
-    9.3,
+    9.6,
+    9.2,
     8.9,
-    8.2,
+    8.3,
     7.2,
     5.8,
     3.8
    ],
    "rank_change": 0,
-   "win_change": 0.0
+   "win_change": 0.1
   },
   {
    "id": 12,
@@ -317,7 +317,7 @@
    "points": 89,
    "proj_consensus": 741.0,
    "expected_total": 801.0,
-   "expected_finish": 9.95,
+   "expected_finish": 9.94,
    "win_pct": 0.4,
    "finish_odds": [
     0.4,
@@ -331,7 +331,7 @@
     9.3,
     13.2,
     20.1,
-    35.3
+    35.2
    ],
    "rank_change": 0,
    "win_change": -0.0
@@ -345,18 +345,18 @@
    "points": 84,
    "proj_consensus": 779.0,
    "expected_total": 844.0,
-   "expected_finish": 8.81,
+   "expected_finish": 8.8,
    "win_pct": 0.9,
    "finish_odds": [
     0.9,
     1.9,
-    2.7,
+    2.8,
     3.9,
-    4.7,
+    4.8,
     6.3,
     8.0,
-    9.9,
-    12.2,
+    10.0,
+    12.1,
     14.9,
     17.4,
     17.1
@@ -451,7 +451,7 @@
    "number": 93,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/VGK/8478483.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3899937.png",
-   "injury": null,
+   "injury": "Out",
    "points": 13,
    "gp": 11,
    "stats": {
@@ -460,15 +460,15 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 98.1,
-   "proj_left": 85.1,
-   "games_left": 71.0,
-   "proj_gp": 82.0,
+   "proj": 94.5,
+   "proj_left": 81.5,
+   "games_left": 68.0,
+   "proj_gp": 79.0,
    "sources": {
-    "ESPN": 93.4,
-    "NHL.com": 94.9,
-    "CBS": 104.7,
-    "HockeyBangers": 99.6
+    "ESPN": 90.0,
+    "NHL.com": 91.4,
+    "CBS": 100.8,
+    "HockeyBangers": 95.9
    },
    "age": 29.5,
    "manager_id": 1,
@@ -727,7 +727,7 @@
    "sources": {
     "ESPN": 64.4,
     "NHL.com": 74.5,
-    "CBS": 61.2,
+    "CBS": 61.1,
     "HockeyBangers": 64.0
    },
    "age": 29.9,
@@ -4069,7 +4069,7 @@
    "sources": {
     "ESPN": 86.5,
     "NHL.com": null,
-    "CBS": 85.4,
+    "CBS": 85.5,
     "HockeyBangers": null
    },
    "age": 30.4,
@@ -4099,14 +4099,14 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 95.1,
-   "proj_left": 88.1,
+   "proj": 95.0,
+   "proj_left": 88.0,
    "games_left": 77.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 97.2,
     "NHL.com": 92.1,
-    "CBS": 96.3,
+    "CBS": 96.2,
     "HockeyBangers": 94.6
    },
    "age": 35.0,
@@ -4433,14 +4433,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 70.2,
-   "proj_left": 62.2,
+   "proj": 70.3,
+   "proj_left": 62.3,
    "games_left": 56.0,
    "proj_gp": 63.0,
    "sources": {
     "ESPN": 69.8,
     "NHL.com": null,
-    "CBS": 70.6,
+    "CBS": 70.7,
     "HockeyBangers": null
    },
    "age": 31.5,
@@ -4662,7 +4662,7 @@
    "sources": {
     "ESPN": 54.6,
     "NHL.com": 56.4,
-    "CBS": 54.3,
+    "CBS": 54.2,
     "HockeyBangers": 48.8
    },
    "age": 26.8,
@@ -5145,7 +5145,7 @@
    "sources": {
     "ESPN": 113.8,
     "NHL.com": 122.5,
-    "CBS": 125.1,
+    "CBS": 125.0,
     "HockeyBangers": 116.7
    },
    "age": 29.5,
@@ -5404,7 +5404,7 @@
    "sources": {
     "ESPN": 50.3,
     "NHL.com": 67.4,
-    "CBS": 51.6,
+    "CBS": 51.5,
     "HockeyBangers": 58.3
    },
    "age": 23.7,
@@ -5515,7 +5515,7 @@
    "sources": {
     "ESPN": 62.4,
     "NHL.com": 65.6,
-    "CBS": 60.7,
+    "CBS": 60.8,
     "HockeyBangers": 59.5
    },
    "age": 27.2,
@@ -6444,7 +6444,7 @@
    "sources": {
     "ESPN": 101.1,
     "NHL.com": 96.6,
-    "CBS": 110.3,
+    "CBS": 110.4,
     "HockeyBangers": 99.2
    },
    "age": 28.2,
@@ -9913,6 +9913,7 @@
  "since": "depuis ce matin",
  "headline": [
   "F. Fusey garde la tête, 5 points devant D. Archambault.",
+  "Mitch Marner (D. Archambault) est maintenant absent.",
   "Nick Suzuki (D. Giroux) est maintenant absent."
  ],
  "week": {
@@ -9920,8 +9921,8 @@
   "end": "2026-10-25",
   "managers": {
    "1": {
-    "left": 13,
-    "total": 35
+    "left": 12,
+    "total": 32
    },
    "2": {
     "left": 15,
