@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-23T17:09+00:00",
+ "generated": "2026-10-23T17:39+00:00",
  "as_of": "2026-10-23",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -44,9 +44,9 @@
     17.0,
     13.1,
     10.5,
-    8.7,
-    7.2,
-    5.9,
+    8.6,
+    7.3,
+    5.8,
     4.7,
     3.8,
     2.8,
@@ -97,9 +97,9 @@
    "win_pct": 6.0,
    "finish_odds": [
     6.0,
-    7.6,
+    7.5,
     8.5,
-    9.5,
+    9.4,
     9.7,
     10.2,
     10.7,
@@ -157,7 +157,7 @@
     12.1,
     11.3,
     9.6,
-    8.3,
+    8.4,
     8.0,
     6.8,
     5.9,
@@ -238,7 +238,7 @@
    "finish_odds": [
     8.6,
     9.1,
-    10.1,
+    10.0,
     10.3,
     10.0,
     10.5,
@@ -261,21 +261,21 @@
    "points": 114,
    "proj_consensus": 903.0,
    "expected_total": 937.0,
-   "expected_finish": 5.93,
+   "expected_finish": 5.91,
    "win_pct": 8.2,
    "finish_odds": [
     8.2,
-    9.3,
+    9.4,
     9.8,
-    9.8,
+    9.9,
     10.1,
-    9.7,
-    9.7,
-    9.2,
+    9.6,
+    9.8,
+    9.1,
     8.1,
-    7.0,
-    5.8,
-    3.5
+    6.9,
+    5.7,
+    3.4
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -297,12 +297,12 @@
     10.9,
     10.5,
     9.8,
-    9.6,
+    9.7,
     8.8,
     8.5,
     7.3,
-    6.2,
-    4.5,
+    6.1,
+    4.6,
     2.7
    ],
    "rank_change": 0,
@@ -352,13 +352,13 @@
     1.1,
     1.8,
     2.4,
-    3.5,
+    3.6,
     4.9,
     6.2,
     8.5,
     11.3,
     15.3,
-    20.1,
+    20.2,
     24.3
    ],
    "rank_change": 0,
@@ -6201,11 +6201,11 @@
    "slug": "connor-hellebuyck",
    "name": "Connor Hellebuyck",
    "pos": "G",
-   "nhl_team": "WPG",
+   "nhl_team": "NJD",
    "number": 37,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/WPG/8476945.png",
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/NJD/8476945.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3020225.png",
-   "injury": "IR",
+   "injury": "Day-to-day",
    "points": 0,
    "gp": 0,
    "stats": {
@@ -6215,12 +6215,12 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 29.0,
-   "proj_left": 29.0,
-   "games_left": 25.0,
-   "proj_gp": 25.0,
+   "proj": 33.0,
+   "proj_left": 33.0,
+   "games_left": 28.0,
+   "proj_gp": 28.0,
    "sources": {
-    "ESPN": 29.0,
+    "ESPN": 33.0,
     "NHL.com": null,
     "CBS": null,
     "HockeyBangers": null
@@ -8530,6 +8530,10 @@
    "count": 6
   },
   {
+   "team": "NJD",
+   "count": 6
+  },
+  {
    "team": "STL",
    "count": 6
   },
@@ -8539,10 +8543,6 @@
   },
   {
    "team": "NYR",
-   "count": 5
-  },
-  {
-   "team": "NJD",
    "count": 5
   },
   {
@@ -8566,15 +8566,15 @@
    "count": 5
   },
   {
-   "team": "WPG",
-   "count": 5
-  },
-  {
    "team": "BOS",
    "count": 5
   },
   {
    "team": "CHI",
+   "count": 4
+  },
+  {
+   "team": "WPG",
    "count": 4
   },
   {
