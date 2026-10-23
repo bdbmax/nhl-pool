@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-23T18:39+00:00",
+ "generated": "2026-10-23T19:09+00:00",
  "as_of": "2026-10-23",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -7690,39 +7690,6 @@
    "age": 21.4
   },
   {
-   "nhl_id": 8482221,
-   "espn_id": 4894487,
-   "df_id": 33010,
-   "slug": "devon-levi",
-   "name": "Devon Levi",
-   "pos": "G",
-   "nhl_team": "EDM",
-   "number": 27,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8482221.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4894487.png",
-   "injury": null,
-   "points": 12,
-   "gp": 7,
-   "stats": {
-    "GS": 7,
-    "W": 6,
-    "OTL": 0,
-    "SO": 0,
-    "G": 0
-   },
-   "proj": 70.4,
-   "proj_left": 58.4,
-   "games_left": 41.0,
-   "proj_gp": 48.0,
-   "sources": {
-    "ESPN": null,
-    "NHL.com": null,
-    "CBS": 70.4,
-    "HockeyBangers": null
-   },
-   "age": 24.8
-  },
-  {
    "nhl_id": 8480981,
    "espn_id": 4587909,
    "df_id": 28910,
@@ -7754,6 +7721,39 @@
     "HockeyBangers": null
    },
    "age": 26.2
+  },
+  {
+   "nhl_id": 8482221,
+   "espn_id": 4894487,
+   "df_id": 33010,
+   "slug": "devon-levi",
+   "name": "Devon Levi",
+   "pos": "G",
+   "nhl_team": "EDM",
+   "number": 27,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8482221.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4894487.png",
+   "injury": "IR",
+   "points": 12,
+   "gp": 7,
+   "stats": {
+    "GS": 7,
+    "W": 6,
+    "OTL": 0,
+    "SO": 0,
+    "G": 0
+   },
+   "proj": 62.5,
+   "proj_left": 50.5,
+   "games_left": 36.0,
+   "proj_gp": 43.0,
+   "sources": {
+    "ESPN": null,
+    "NHL.com": null,
+    "CBS": 62.5,
+    "HockeyBangers": null
+   },
+   "age": 24.8
   },
   {
    "nhl_id": 8482193,
