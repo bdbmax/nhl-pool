@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-24T16:38+00:00",
+ "generated": "2026-10-24T17:08+00:00",
  "as_of": "2026-10-24",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -74,7 +74,7 @@
     10.1,
     10.5,
     9.7,
-    8.7,
+    8.6,
     8.4,
     7.4,
     6.0,
@@ -103,7 +103,7 @@
     9.7,
     10.2,
     10.7,
-    10.3,
+    10.2,
     9.5,
     8.3,
     6.3,
@@ -130,7 +130,7 @@
     3.8,
     4.8,
     6.5,
-    7.8,
+    7.9,
     9.8,
     12.1,
     15.0,
@@ -162,7 +162,7 @@
     8.6,
     7.1,
     6.0,
-    4.5,
+    4.4,
     2.4
    ],
    "rank_change": 0,
@@ -188,7 +188,7 @@
     8.4,
     8.0,
     6.7,
-    6.0,
+    5.9,
     5.0,
     3.2,
     1.9
@@ -204,7 +204,7 @@
    "proj_rank": 6,
    "points": 118,
    "proj_consensus": 886.0,
-   "expected_total": 941.0,
+   "expected_total": 942.0,
    "expected_finish": 5.71,
    "win_pct": 8.9,
    "finish_odds": [
@@ -212,12 +212,12 @@
     10.0,
     10.1,
     10.3,
-    10.5,
+    10.4,
     9.9,
     9.6,
     8.9,
     7.9,
-    6.6,
+    6.5,
     4.8,
     2.5
    ],
@@ -239,7 +239,7 @@
     6.3,
     7.8,
     8.6,
-    9.4,
+    9.3,
     9.5,
     9.9,
     10.2,
@@ -268,14 +268,14 @@
     9.6,
     10.0,
     9.9,
-    10.2,
+    10.3,
     9.5,
     9.7,
-    8.8,
+    8.9,
     8.2,
     6.7,
-    5.5,
-    3.3
+    5.6,
+    3.4
    ],
    "rank_change": 0,
    "win_change": 0.1
@@ -297,7 +297,7 @@
     10.5,
     10.5,
     9.8,
-    9.6,
+    9.7,
     8.9,
     8.6,
     7.5,
@@ -330,7 +330,7 @@
     6.6,
     9.4,
     13.8,
-    20.4,
+    20.3,
     34.3
    ],
    "rank_change": 0,
@@ -351,12 +351,12 @@
     0.5,
     1.2,
     1.9,
-    2.6,
+    2.7,
     3.6,
     5.1,
     6.6,
     8.7,
-    11.5,
+    11.6,
     15.2,
     19.8,
     23.1
@@ -839,7 +839,7 @@
    "sources": {
     "ESPN": 74.9,
     "NHL.com": null,
-    "CBS": 59.7,
+    "CBS": 59.8,
     "HockeyBangers": null
    },
    "age": 38.1,
@@ -1210,7 +1210,7 @@
    "sources": {
     "ESPN": 83.2,
     "NHL.com": 81.7,
-    "CBS": 84.1,
+    "CBS": 84.0,
     "HockeyBangers": 83.2
    },
    "age": 24.6,
@@ -2287,7 +2287,7 @@
    "sources": {
     "ESPN": 76.5,
     "NHL.com": 83.0,
-    "CBS": 82.1,
+    "CBS": 82.2,
     "HockeyBangers": 70.3
    },
    "age": 28.6,
@@ -2658,7 +2658,7 @@
    "sources": {
     "ESPN": 70.3,
     "NHL.com": 79.6,
-    "CBS": 76.2,
+    "CBS": 76.1,
     "HockeyBangers": 69.6
    },
    "age": 31.6,
@@ -3319,8 +3319,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 34.5,
-   "proj_left": 29.5,
+   "proj": 34.4,
+   "proj_left": 29.4,
    "games_left": 61.0,
    "proj_gp": 72.0,
    "sources": {
@@ -3393,8 +3393,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 87.0,
-   "proj_left": 81.0,
+   "proj": 87.1,
+   "proj_left": 81.1,
    "games_left": 70.0,
    "proj_gp": 77.0,
    "sources": {
@@ -3623,7 +3623,7 @@
    "sources": {
     "ESPN": 84.2,
     "NHL.com": null,
-    "CBS": 82.9,
+    "CBS": 82.8,
     "HockeyBangers": null
    },
    "age": 27.9,
@@ -4327,7 +4327,7 @@
    "proj_gp": 73.0,
    "sources": {
     "ESPN": null,
-    "NHL.com": 43.2,
+    "NHL.com": 43.1,
     "CBS": 28.0,
     "HockeyBangers": 35.2
    },
@@ -4551,7 +4551,7 @@
    "sources": {
     "ESPN": 112.9,
     "NHL.com": 113.7,
-    "CBS": 126.6,
+    "CBS": 126.5,
     "HockeyBangers": 112.9
    },
    "age": 30.4,
@@ -5219,7 +5219,7 @@
    "sources": {
     "ESPN": 89.5,
     "NHL.com": 92.6,
-    "CBS": 97.0,
+    "CBS": 97.1,
     "HockeyBangers": 86.8
    },
    "age": 25.6,
@@ -6205,7 +6205,7 @@
    "number": 37,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/NJD/8476945.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3020225.png",
-   "injury": "Day-to-day",
+   "injury": "Out",
    "points": 0,
    "gp": 0,
    "stats": {
@@ -6215,14 +6215,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 31.4,
-   "proj_left": 31.4,
+   "proj": 30.6,
+   "proj_left": 30.6,
    "games_left": 28.0,
    "proj_gp": 28.0,
    "sources": {
-    "ESPN": 33.0,
+    "ESPN": 32.1,
     "NHL.com": null,
-    "CBS": 29.8,
+    "CBS": 29.0,
     "HockeyBangers": null
    },
    "age": 33.4,
@@ -7523,7 +7523,7 @@
    "sources": {
     "ESPN": 78.4,
     "NHL.com": null,
-    "CBS": 81.8,
+    "CBS": 81.9,
     "HockeyBangers": 80.6
    },
    "age": 25.0
@@ -8136,7 +8136,7 @@
    "sources": {
     "ESPN": 55.8,
     "NHL.com": 60.1,
-    "CBS": 60.9,
+    "CBS": 60.8,
     "HockeyBangers": 51.6
    },
    "age": 31.9
@@ -10002,6 +10002,7 @@
  "headline": [
   "Victor Hedman (D. Archambault) est maintenant blessé.",
   "Evgeni Malkin (J. Gobeil) est maintenant blessé.",
+  "Connor Hellebuyck (A. Cordeau) est maintenant absent.",
   "Logan Thompson (D. Giroux) est maintenant blessé."
  ],
  "week": {
