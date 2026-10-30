@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-30T17:08+00:00",
+ "generated": "2026-10-30T17:38+00:00",
  "as_of": "2026-10-30",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -51,7 +51,7 @@
     9.7,
     7.8,
     5.4,
-    2.6
+    2.5
    ],
    "rank_change": 0,
    "win_change": -0.0
@@ -186,7 +186,7 @@
     10.4,
     10.5,
     9.9,
-    9.8,
+    9.9,
     8.8,
     7.7,
     6.2,
@@ -315,8 +315,8 @@
    "rank": 11,
    "proj_rank": 12,
    "points": 117,
-   "proj_consensus": 737.0,
-   "expected_total": 785.0,
+   "proj_consensus": 736.0,
+   "expected_total": 784.0,
    "expected_finish": 10.3,
    "win_pct": 0.2,
    "finish_odds": [
@@ -328,10 +328,10 @@
     2.6,
     3.9,
     5.7,
-    8.8,
+    8.7,
     13.6,
     22.5,
-    38.4
+    38.5
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -358,7 +358,7 @@
     7.4,
     10.6,
     16.3,
-    22.8,
+    22.9,
     27.8
    ],
    "rank_change": 0,
@@ -7319,7 +7319,7 @@
    "number": 55,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/STL/8476892.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3069341.png",
-   "injury": null,
+   "injury": "Day-to-day",
    "points": 4,
    "gp": 13,
    "stats": {
@@ -7328,21 +7328,21 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 33.3,
-   "proj_left": 29.3,
-   "games_left": 71.0,
-   "proj_gp": 84.0,
+   "proj": 32.9,
+   "proj_left": 28.9,
+   "games_left": 70.0,
+   "proj_gp": 83.0,
    "sources": {
-    "ESPN": 30.4,
-    "NHL.com": 37.2,
+    "ESPN": 30.1,
+    "NHL.com": 36.7,
     "CBS": null,
-    "HockeyBangers": 32.3
+    "HockeyBangers": 31.9
    },
    "age": 33.5,
    "manager_id": 12,
    "round": 12,
    "overall": 133,
-   "counts": true,
+   "counts": false,
    "vs_round": -3.8
   },
   {
@@ -7416,7 +7416,7 @@
    "manager_id": 12,
    "round": 14,
    "overall": 157,
-   "counts": false,
+   "counts": true,
    "vs_round": -4.1
   },
   {
@@ -10483,8 +10483,8 @@
    "gp": 133,
    "points": 117,
    "ppg": 0.88,
-   "left": 776,
-   "left_vs_avg": -1
+   "left": 775,
+   "left_vs_avg": -2
   }
  },
  "tonight": {
@@ -12709,7 +12709,7 @@
    "behind": {
     "manager_id": 12,
     "gap": 26,
-    "left_diff": -7,
+    "left_diff": -6,
     "ppg": 0.88
    },
    "catch_weeks": null,
@@ -12719,13 +12719,13 @@
    "ahead": {
     "manager_id": 8,
     "gap": 26,
-    "left_diff": 7,
+    "left_diff": 6,
     "ppg": 0.979
    },
    "behind": {
     "manager_id": 5,
     "gap": 3,
-    "left_diff": -3,
+    "left_diff": -4,
     "ppg": 0.838
    },
    "catch_weeks": null,
@@ -12735,7 +12735,7 @@
    "ahead": {
     "manager_id": 12,
     "gap": 3,
-    "left_diff": 3,
+    "left_diff": 4,
     "ppg": 0.88
    },
    "behind": null,
