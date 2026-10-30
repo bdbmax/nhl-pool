@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-30T09:38+00:00",
- "as_of": "2026-10-29",
+ "generated": "2026-10-30T16:08+00:00",
+ "as_of": "2026-10-30",
  "season_start": "2026-09-29",
  "season_started": true,
  "games_played": 13.3,
@@ -53,8 +53,8 @@
     5.4,
     2.6
    ],
-   "rank_change": 2,
-   "win_change": -1.0
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 1,
@@ -69,20 +69,20 @@
    "win_pct": 12.8,
    "finish_odds": [
     12.8,
-    12.4,
+    12.3,
     11.5,
     11.0,
     10.7,
-    9.5,
+    9.6,
     8.5,
     7.6,
     6.5,
-    4.8,
+    4.9,
     3.1,
     1.6
    ],
    "rank_change": 0,
-   "win_change": -1.5
+   "win_change": -0.0
   },
   {
    "id": 7,
@@ -98,7 +98,7 @@
    "finish_odds": [
     18.5,
     15.2,
-    13.0,
+    12.9,
     11.1,
     9.7,
     8.5,
@@ -109,8 +109,8 @@
     1.8,
     0.9
    ],
-   "rank_change": -2,
-   "win_change": -3.8
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 2,
@@ -138,7 +138,7 @@
     1.2
    ],
    "rank_change": 0,
-   "win_change": -0.2
+   "win_change": -0.0
   },
   {
    "id": 3,
@@ -165,8 +165,8 @@
     3.0,
     1.4
    ],
-   "rank_change": 2,
-   "win_change": 3.3
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 10,
@@ -184,7 +184,7 @@
     10.4,
     10.4,
     10.4,
-    10.4,
+    10.5,
     9.9,
     9.9,
     8.8,
@@ -194,7 +194,7 @@
     2.1
    ],
    "rank_change": 0,
-   "win_change": 2.2
+   "win_change": -0.0
   },
   {
    "id": 4,
@@ -210,7 +210,7 @@
    "finish_odds": [
     8.2,
     9.2,
-    9.9,
+    10.0,
     10.3,
     10.3,
     10.8,
@@ -221,8 +221,8 @@
     4.3,
     1.9
    ],
-   "rank_change": 1,
-   "win_change": -0.3
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 11,
@@ -249,8 +249,8 @@
     7.2,
     3.8
    ],
-   "rank_change": 2,
-   "win_change": 0.8
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 6,
@@ -278,7 +278,7 @@
     1.7
    ],
    "rank_change": 0,
-   "win_change": 0.9
+   "win_change": -0.0
   },
   {
    "id": 8,
@@ -299,14 +299,14 @@
     4.1,
     5.7,
     7.4,
-    9.9,
+    10.0,
     12.7,
     17.3,
     19.5,
     16.5
    ],
-   "rank_change": -5,
-   "win_change": -0.1
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 12,
@@ -334,7 +334,7 @@
     38.4
    ],
    "rank_change": 0,
-   "win_change": -0.2
+   "win_change": 0.0
   },
   {
    "id": 5,
@@ -359,10 +359,10 @@
     10.6,
     16.3,
     22.9,
-    27.8
+    27.9
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": 0.0
   }
  ],
  "players": [
@@ -1166,8 +1166,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 72.0,
-   "proj_left": 64.0,
+   "proj": 71.9,
+   "proj_left": 63.9,
    "games_left": 60.0,
    "proj_gp": 66.0,
    "sources": {
@@ -1544,7 +1544,7 @@
    "sources": {
     "ESPN": 58.3,
     "NHL.com": null,
-    "CBS": 55.6,
+    "CBS": 55.7,
     "HockeyBangers": null
    },
    "age": 31.5,
@@ -2769,7 +2769,7 @@
    "sources": {
     "ESPN": 107.0,
     "NHL.com": 108.4,
-    "CBS": 108.4,
+    "CBS": 108.3,
     "HockeyBangers": 108.5
    },
    "age": 27.8,
@@ -3140,7 +3140,7 @@
    "sources": {
     "ESPN": 53.0,
     "NHL.com": 58.4,
-    "CBS": 55.6,
+    "CBS": 55.5,
     "HockeyBangers": 62.0
    },
    "age": 23.1,
@@ -3208,8 +3208,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 58.6,
-   "proj_left": 49.6,
+   "proj": 58.7,
+   "proj_left": 49.7,
    "games_left": 46.0,
    "proj_gp": 55.0,
    "sources": {
@@ -4440,7 +4440,7 @@
    "sources": {
     "ESPN": 64.8,
     "NHL.com": null,
-    "CBS": 65.5,
+    "CBS": 65.4,
     "HockeyBangers": null
    },
    "age": 31.5,
@@ -4551,7 +4551,7 @@
    "sources": {
     "ESPN": 108.3,
     "NHL.com": 109.0,
-    "CBS": 121.1,
+    "CBS": 121.0,
     "HockeyBangers": 108.3
    },
    "age": 30.4,
@@ -4769,8 +4769,8 @@
    },
    "proj": 16.0,
    "proj_left": 0.0,
-   "games_left": 3.0,
-   "proj_gp": 8.0,
+   "games_left": 2.0,
+   "proj_gp": 7.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
@@ -4848,7 +4848,7 @@
    "sources": {
     "ESPN": 49.7,
     "NHL.com": 48.8,
-    "CBS": 52.1,
+    "CBS": 52.0,
     "HockeyBangers": 52.0
    },
    "age": 29.7,
@@ -4996,7 +4996,7 @@
    "sources": {
     "ESPN": 41.9,
     "NHL.com": 44.9,
-    "CBS": 46.7,
+    "CBS": 46.8,
     "HockeyBangers": 46.5
    },
    "age": 29.8,
@@ -5777,7 +5777,7 @@
    "sources": {
     "ESPN": 90.0,
     "NHL.com": null,
-    "CBS": 78.7,
+    "CBS": 78.8,
     "HockeyBangers": null
    },
    "age": 32.3,
@@ -6036,7 +6036,7 @@
    "sources": {
     "ESPN": 64.1,
     "NHL.com": 64.1,
-    "CBS": 62.9,
+    "CBS": 62.8,
     "HockeyBangers": 66.7
    },
    "age": 29.0,
@@ -6549,8 +6549,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 54.4,
-   "proj_left": 45.4,
+   "proj": 54.5,
+   "proj_left": 45.5,
    "games_left": 35.0,
    "proj_gp": 43.0,
    "sources": {
@@ -10341,29 +10341,26 @@
    ]
   }
  ],
- "update": "morning",
- "compared_to": "2026-10-29",
- "since": "depuis hier",
+ "update": "evening",
+ "compared_to": "2026-10-30",
+ "since": "depuis ce matin",
  "headline": [
-  "B. Belanger prend la tête du classement.",
-  "Matthew Schaefer (P. Allard) : 6 points de pool hier.",
-  "Les odds de F. Fusey passent de 22,3 % à 18,5 %.",
-  "Dylan Larkin (D. Archambault) est maintenant blessé."
+  "B. Belanger garde la tête, 8 points devant D. Archambault."
  ],
  "week": {
   "start": "2026-10-26",
   "end": "2026-11-01",
   "managers": {
    "1": {
-    "left": 12,
+    "left": 9,
     "total": 30
    },
    "2": {
-    "left": 12,
+    "left": 9,
     "total": 30
    },
    "3": {
-    "left": 12,
+    "left": 11,
     "total": 32
    },
    "4": {
@@ -10371,19 +10368,19 @@
     "total": 33
    },
    "5": {
-    "left": 11,
+    "left": 10,
     "total": 30
    },
    "6": {
-    "left": 14,
+    "left": 11,
     "total": 31
    },
    "7": {
-    "left": 12,
+    "left": 11,
     "total": 31
    },
    "8": {
-    "left": 10,
+    "left": 8,
     "total": 27
    },
    "9": {
@@ -10391,11 +10388,11 @@
     "total": 30
    },
    "10": {
-    "left": 11,
+    "left": 9,
     "total": 28
    },
    "11": {
-    "left": 11,
+    "left": 9,
     "total": 31
    },
    "12": {
