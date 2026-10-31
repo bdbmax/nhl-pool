@@ -6,11 +6,11 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-10-31T20:56+00:00",
+ "generated": "2026-10-31T21:08+00:00",
  "as_of": "2026-10-31",
  "season_start": "2026-09-29",
  "season_started": true,
- "games_played": 13.6,
+ "games_played": 13.8,
  "season_games": 84,
  "real_weight_games": 40,
  "rules": {
@@ -29,88 +29,88 @@
  },
  "managers": [
   {
+   "id": 1,
+   "name": "D. Archambault",
+   "slot": 1,
+   "rank": 1,
+   "proj_rank": 3,
+   "points": 176,
+   "proj_consensus": 930.0,
+   "expected_total": 968.0,
+   "expected_finish": 4.87,
+   "win_pct": 14.3,
+   "finish_odds": [
+    14.3,
+    13.0,
+    12.1,
+    11.1,
+    10.3,
+    9.6,
+    8.3,
+    7.1,
+    5.9,
+    4.3,
+    2.8,
+    1.3
+   ],
+   "rank_change": 1,
+   "win_change": -0.1
+  },
+  {
    "id": 9,
    "name": "B. Belanger",
    "slot": 9,
-   "rank": 1,
+   "rank": 2,
    "proj_rank": 8,
    "points": 176,
    "proj_consensus": 887.0,
    "expected_total": 930.0,
    "expected_finish": 6.0,
-   "win_pct": 6.8,
+   "win_pct": 6.9,
    "finish_odds": [
-    6.8,
+    6.9,
     8.3,
     9.0,
     10.2,
     10.3,
-    10.9,
     11.0,
-    10.5,
-    9.1,
-    7.0,
+    10.9,
+    10.4,
+    9.0,
+    7.1,
     4.8,
     2.2
    ],
-   "rank_change": 0,
-   "win_change": 1.1
-  },
-  {
-   "id": 1,
-   "name": "D. Archambault",
-   "slot": 1,
-   "rank": 2,
-   "proj_rank": 2,
-   "points": 173,
-   "proj_consensus": 929.0,
-   "expected_total": 969.0,
-   "expected_finish": 4.86,
-   "win_pct": 14.5,
-   "finish_odds": [
-    14.5,
-    12.9,
-    12.2,
-    11.2,
-    10.2,
-    9.4,
-    8.2,
-    7.0,
-    6.0,
-    4.3,
-    2.8,
-    1.3
-   ],
-   "rank_change": 0,
-   "win_change": 0.1
+   "rank_change": -1,
+   "win_change": 1.2
   },
   {
    "id": 2,
    "name": "M. Bélanger",
    "slot": 2,
    "rank": 3,
-   "proj_rank": 3,
-   "points": 170,
-   "proj_consensus": 918.0,
-   "expected_total": 967.0,
-   "expected_finish": 4.89,
-   "win_pct": 13.4,
+   "proj_rank": 2,
+   "points": 175,
+   "proj_consensus": 924.0,
+   "expected_total": 970.0,
+   "expected_finish": 4.79,
+   "win_pct": 14.1,
    "finish_odds": [
-    13.4,
-    12.4,
-    12.5,
-    11.4,
-    10.6,
-    10.2,
-    8.5,
-    7.3,
-    6.2,
-    4.1,
-    2.4,
-    1.1
+    14.1,
+    12.8,
+    12.7,
+    11.5,
+    10.7,
+    9.7,
+    8.6,
+    7.0,
+    5.7,
+    3.9,
+    2.2,
+    1.0
    ],
    "rank_change": 0,
-   "win_change": 0.8
+   "win_change": 1.5
   },
   {
    "id": 7,
@@ -118,83 +118,83 @@
    "slot": 7,
    "rank": 4,
    "proj_rank": 1,
-   "points": 164,
-   "proj_consensus": 939.0,
-   "expected_total": 985.0,
-   "expected_finish": 4.41,
-   "win_pct": 18.3,
+   "points": 166,
+   "proj_consensus": 938.0,
+   "expected_total": 983.0,
+   "expected_finish": 4.48,
+   "win_pct": 17.7,
    "finish_odds": [
-    18.3,
-    14.9,
-    13.0,
-    10.9,
-    9.9,
+    17.7,
+    14.5,
+    12.9,
+    11.0,
+    10.2,
     8.5,
-    6.8,
-    6.3,
-    5.0,
-    3.6,
+    7.0,
+    6.5,
+    5.1,
+    3.7,
     1.9,
-    0.9
+    1.0
    ],
    "rank_change": 0,
-   "win_change": -0.0
-  },
-  {
-   "id": 10,
-   "name": "A. Cordeau",
-   "slot": 10,
-   "rank": 5,
-   "proj_rank": 6,
-   "points": 158,
-   "proj_consensus": 917.0,
-   "expected_total": 944.0,
-   "expected_finish": 5.57,
-   "win_pct": 9.3,
-   "finish_odds": [
-    9.3,
-    10.5,
-    10.4,
-    10.6,
-    10.3,
-    10.0,
-    9.6,
-    9.1,
-    7.8,
-    6.1,
-    4.2,
-    2.1
-   ],
-   "rank_change": 1,
-   "win_change": 0.3
+   "win_change": -0.6
   },
   {
    "id": 3,
    "name": "P. Allard",
    "slot": 3,
-   "rank": 6,
+   "rank": 5,
    "proj_rank": 4,
-   "points": 157,
-   "proj_consensus": 914.0,
-   "expected_total": 957.0,
-   "expected_finish": 5.21,
-   "win_pct": 12.4,
+   "points": 164,
+   "proj_consensus": 919.0,
+   "expected_total": 962.0,
+   "expected_finish": 5.08,
+   "win_pct": 13.1,
    "finish_odds": [
-    12.4,
-    11.4,
-    11.4,
-    10.8,
+    13.1,
+    12.0,
+    11.7,
+    11.1,
     9.9,
-    9.6,
-    9.1,
-    8.3,
-    6.8,
-    5.2,
-    3.5,
-    1.7
+    9.4,
+    9.0,
+    7.9,
+    6.5,
+    4.8,
+    3.2,
+    1.5
    ],
-   "rank_change": -1,
-   "win_change": -1.3
+   "rank_change": 0,
+   "win_change": -0.6
+  },
+  {
+   "id": 10,
+   "name": "A. Cordeau",
+   "slot": 10,
+   "rank": 6,
+   "proj_rank": 6,
+   "points": 160,
+   "proj_consensus": 914.0,
+   "expected_total": 941.0,
+   "expected_finish": 5.66,
+   "win_pct": 8.8,
+   "finish_odds": [
+    8.8,
+    10.1,
+    10.2,
+    10.4,
+    10.4,
+    10.1,
+    9.8,
+    9.2,
+    8.0,
+    6.4,
+    4.4,
+    2.2
+   ],
+   "rank_change": 0,
+   "win_change": -0.2
   },
   {
    "id": 6,
@@ -202,27 +202,27 @@
    "slot": 6,
    "rank": 7,
    "proj_rank": 5,
-   "points": 150,
-   "proj_consensus": 918.0,
+   "points": 152,
+   "proj_consensus": 919.0,
    "expected_total": 957.0,
-   "expected_finish": 5.23,
-   "win_pct": 11.8,
+   "expected_finish": 5.22,
+   "win_pct": 11.9,
    "finish_odds": [
-    11.8,
+    11.9,
     12.1,
     11.0,
-    10.6,
-    10.6,
-    9.4,
+    10.8,
+    10.3,
+    9.5,
     8.8,
-    8.1,
-    7.0,
+    8.2,
+    6.8,
     5.5,
-    3.5,
+    3.4,
     1.7
    ],
    "rank_change": 0,
-   "win_change": -0.6
+   "win_change": -0.5
   },
   {
    "id": 11,
@@ -231,26 +231,26 @@
    "rank": 8,
    "proj_rank": 9,
    "points": 150,
-   "proj_consensus": 863.0,
-   "expected_total": 910.0,
-   "expected_finish": 6.64,
-   "win_pct": 4.8,
+   "proj_consensus": 862.0,
+   "expected_total": 908.0,
+   "expected_finish": 6.68,
+   "win_pct": 4.7,
    "finish_odds": [
-    4.8,
-    6.2,
+    4.7,
+    6.1,
+    7.3,
+    8.5,
+    9.2,
+    10.1,
+    10.9,
+    11.1,
+    11.1,
+    9.8,
     7.4,
-    8.6,
-    9.5,
-    10.0,
-    11.0,
-    11.2,
-    10.8,
-    9.7,
-    7.2,
-    3.6
+    3.7
    ],
    "rank_change": 1,
-   "win_change": 0.0
+   "win_change": -0.1
   },
   {
    "id": 4,
@@ -259,26 +259,26 @@
    "rank": 9,
    "proj_rank": 7,
    "points": 149,
-   "proj_consensus": 882.0,
-   "expected_total": 935.0,
-   "expected_finish": 5.85,
-   "win_pct": 7.8,
+   "proj_consensus": 880.0,
+   "expected_total": 933.0,
+   "expected_finish": 5.91,
+   "win_pct": 7.5,
    "finish_odds": [
-    7.8,
-    8.8,
-    9.6,
-    10.1,
-    10.5,
+    7.5,
+    8.6,
+    9.4,
+    9.9,
+    10.4,
     10.7,
-    10.5,
-    9.6,
-    9.2,
-    6.8,
-    4.5,
-    2.0
+    10.4,
+    9.8,
+    9.4,
+    7.0,
+    4.7,
+    2.1
    ],
    "rank_change": -1,
-   "win_change": -0.3
+   "win_change": -0.6
   },
   {
    "id": 8,
@@ -289,49 +289,21 @@
    "points": 145,
    "proj_consensus": 778.0,
    "expected_total": 828.0,
-   "expected_finish": 9.17,
-   "win_pct": 0.5,
+   "expected_finish": 9.18,
+   "win_pct": 0.6,
    "finish_odds": [
-    0.5,
-    1.3,
+    0.6,
+    1.2,
     1.7,
     2.6,
-    3.9,
-    5.4,
-    7.2,
-    9.7,
-    12.7,
-    17.6,
-    20.0,
-    17.3
-   ],
-   "rank_change": 0,
-   "win_change": -0.1
-  },
-  {
-   "id": 12,
-   "name": "D. Giroux",
-   "slot": 12,
-   "rank": 11,
-   "proj_rank": 12,
-   "points": 119,
-   "proj_consensus": 737.0,
-   "expected_total": 783.0,
-   "expected_finish": 10.32,
-   "win_pct": 0.2,
-   "finish_odds": [
-    0.2,
-    0.4,
-    0.7,
-    1.2,
-    1.9,
-    2.4,
     3.8,
-    5.7,
-    8.5,
-    13.6,
-    22.6,
-    38.9
+    5.5,
+    7.1,
+    9.6,
+    12.7,
+    17.4,
+    20.2,
+    17.5
    ],
    "rank_change": 0,
    "win_change": 0.0
@@ -340,28 +312,56 @@
    "id": 5,
    "name": "L. Girard",
    "slot": 5,
-   "rank": 12,
+   "rank": 11,
    "proj_rank": 11,
-   "points": 117,
-   "proj_consensus": 752.0,
-   "expected_total": 804.0,
-   "expected_finish": 9.82,
+   "points": 120,
+   "proj_consensus": 754.0,
+   "expected_total": 806.0,
+   "expected_finish": 9.79,
    "win_pct": 0.3,
    "finish_odds": [
     0.3,
-    0.7,
-    1.1,
-    1.7,
-    2.5,
+    0.8,
+    1.2,
+    1.8,
+    2.6,
     3.5,
-    5.4,
-    7.3,
-    11.0,
+    5.5,
+    7.5,
+    11.1,
     16.6,
-    22.7,
-    27.2
+    22.6,
+    26.5
    ],
-   "rank_change": 0,
+   "rank_change": 1,
+   "win_change": 0.0
+  },
+  {
+   "id": 12,
+   "name": "D. Giroux",
+   "slot": 12,
+   "rank": 12,
+   "proj_rank": 12,
+   "points": 119,
+   "proj_consensus": 737.0,
+   "expected_total": 783.0,
+   "expected_finish": 10.33,
+   "win_pct": 0.2,
+   "finish_odds": [
+    0.2,
+    0.4,
+    0.7,
+    1.2,
+    1.8,
+    2.5,
+    3.7,
+    5.7,
+    8.6,
+    13.5,
+    22.4,
+    39.3
+   ],
+   "rank_change": -1,
    "win_change": 0.0
   }
  ],
@@ -378,30 +378,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8478402.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3895074.png",
    "injury": null,
-   "points": 36,
-   "gp": 13,
+   "points": 37,
+   "gp": 14,
    "stats": {
     "G": 8,
-    "A": 28,
+    "A": 29,
     "GWG": 0,
     "HT": 0
    },
-   "proj": 177.7,
-   "proj_left": 141.7,
-   "games_left": 69.0,
+   "proj": 175.4,
+   "proj_left": 138.4,
+   "games_left": 68.0,
    "proj_gp": 82.0,
    "sources": {
-    "ESPN": 177.5,
-    "NHL.com": 174.1,
-    "CBS": 185.9,
-    "HockeyBangers": 173.3
+    "ESPN": 175.2,
+    "NHL.com": 171.9,
+    "CBS": 183.4,
+    "HockeyBangers": 171.1
    },
    "age": 29.8,
    "manager_id": 1,
    "round": 1,
    "overall": 1,
    "counts": true,
-   "vs_round": 15.8
+   "vs_round": 16.2
   },
   {
    "nhl_id": 8478420,
@@ -438,7 +438,7 @@
    "round": 2,
    "overall": 24,
    "counts": true,
-   "vs_round": 0.3
+   "vs_round": 0.2
   },
   {
    "nhl_id": 8478483,
@@ -475,7 +475,7 @@
    "round": 3,
    "overall": 25,
    "counts": true,
-   "vs_round": 2.6
+   "vs_round": 2.5
   },
   {
    "nhl_id": 8475167,
@@ -489,30 +489,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8475167.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5157.png",
    "injury": null,
-   "points": 7,
-   "gp": 11,
+   "points": 9,
+   "gp": 12,
    "stats": {
-    "G": 2,
+    "G": 3,
     "A": 2,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 53.2,
-   "proj_left": 46.2,
+   "proj": 55.7,
+   "proj_left": 46.7,
    "games_left": 52.0,
-   "proj_gp": 63.0,
+   "proj_gp": 64.0,
    "sources": {
-    "ESPN": 56.2,
-    "NHL.com": 59.5,
-    "CBS": 53.4,
-    "HockeyBangers": 43.9
+    "ESPN": 58.5,
+    "NHL.com": 61.7,
+    "CBS": 55.8,
+    "HockeyBangers": 46.7
    },
    "age": 35.9,
    "manager_id": 1,
    "round": 4,
    "overall": 48,
    "counts": true,
-   "vs_round": -5.5
+   "vs_round": -3.8
   },
   {
    "nhl_id": 8477493,
@@ -549,7 +549,7 @@
    "round": 5,
    "overall": 49,
    "counts": false,
-   "vs_round": -10.5
+   "vs_round": -10.8
   },
   {
    "nhl_id": 8477447,
@@ -660,7 +660,7 @@
    "round": 8,
    "overall": 96,
    "counts": true,
-   "vs_round": -1.6
+   "vs_round": -1.7
   },
   {
    "nhl_id": 8482661,
@@ -735,7 +735,7 @@
    "round": 10,
    "overall": 120,
    "counts": true,
-   "vs_round": 1.4
+   "vs_round": 1.3
   },
   {
    "nhl_id": 8477495,
@@ -884,7 +884,7 @@
    "round": 14,
    "overall": 168,
    "counts": false,
-   "vs_round": -4.3
+   "vs_round": -4.4
   },
   {
    "nhl_id": 8478440,
@@ -958,7 +958,7 @@
    "round": 16,
    "overall": 192,
    "counts": false,
-   "vs_round": -0.2
+   "vs_round": -0.6
   },
   {
    "nhl_id": 8477492,
@@ -980,8 +980,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 143.9,
-   "proj_left": 120.9,
+   "proj": 144.0,
+   "proj_left": 121.0,
    "games_left": 69.0,
    "proj_gp": 82.0,
    "sources": {
@@ -995,7 +995,7 @@
    "round": 1,
    "overall": 2,
    "counts": true,
-   "vs_round": 2.8
+   "vs_round": 2.2
   },
   {
    "nhl_id": 8479323,
@@ -1032,7 +1032,7 @@
    "round": 2,
    "overall": 23,
    "counts": true,
-   "vs_round": 0.3
+   "vs_round": 0.2
   },
   {
    "nhl_id": 8481559,
@@ -1069,7 +1069,7 @@
    "round": 3,
    "overall": 26,
    "counts": true,
-   "vs_round": 5.6
+   "vs_round": 5.5
   },
   {
    "nhl_id": 8474600,
@@ -1084,29 +1084,29 @@
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5436.png",
    "injury": null,
    "points": 16,
-   "gp": 13,
+   "gp": 14,
    "stats": {
     "G": 1,
     "A": 14,
     "GWG": 0,
     "HT": 0
    },
-   "proj": 88.9,
-   "proj_left": 72.9,
-   "games_left": 64.0,
+   "proj": 86.5,
+   "proj_left": 70.5,
+   "games_left": 63.0,
    "proj_gp": 77.0,
    "sources": {
-    "ESPN": 85.8,
-    "NHL.com": 93.0,
-    "CBS": 93.1,
-    "HockeyBangers": 83.5
+    "ESPN": 83.6,
+    "NHL.com": 90.5,
+    "CBS": 90.6,
+    "HockeyBangers": 81.3
    },
    "age": 36.4,
    "manager_id": 2,
    "round": 4,
    "overall": 47,
    "counts": true,
-   "vs_round": 3.5
+   "vs_round": 3.2
   },
   {
    "nhl_id": 8482487,
@@ -1144,7 +1144,7 @@
    "round": 5,
    "overall": 50,
    "counts": false,
-   "vs_round": -4.5
+   "vs_round": -4.8
   },
   {
    "nhl_id": 8482105,
@@ -1255,7 +1255,7 @@
    "round": 8,
    "overall": 95,
    "counts": false,
-   "vs_round": -2.6
+   "vs_round": -2.7
   },
   {
    "nhl_id": 8480002,
@@ -1329,7 +1329,7 @@
    "round": 10,
    "overall": 119,
    "counts": false,
-   "vs_round": -4.6
+   "vs_round": -4.7
   },
   {
    "nhl_id": 8475913,
@@ -1477,7 +1477,7 @@
    "round": 14,
    "overall": 167,
    "counts": true,
-   "vs_round": 0.7
+   "vs_round": 0.6
   },
   {
    "nhl_id": 8478493,
@@ -1528,23 +1528,23 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8477465.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3042020.png",
    "injury": null,
-   "points": 11,
-   "gp": 6,
+   "points": 16,
+   "gp": 7,
    "stats": {
-    "GS": 6,
-    "W": 3,
+    "GS": 7,
+    "W": 4,
     "OTL": 2,
-    "SO": 1,
+    "SO": 2,
     "G": 0
    },
-   "proj": 56.9,
-   "proj_left": 45.9,
-   "games_left": 32.0,
-   "proj_gp": 38.0,
+   "proj": 65.3,
+   "proj_left": 49.3,
+   "games_left": 33.0,
+   "proj_gp": 40.0,
    "sources": {
-    "ESPN": 58.3,
+    "ESPN": 66.8,
     "NHL.com": null,
-    "CBS": 55.5,
+    "CBS": 63.9,
     "HockeyBangers": null
    },
    "age": 31.5,
@@ -1552,7 +1552,7 @@
    "round": 16,
    "overall": 191,
    "counts": true,
-   "vs_round": 5.8
+   "vs_round": 10.4
   },
   {
    "nhl_id": 8476453,
@@ -1566,30 +1566,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8476453.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/2563060.png",
    "injury": null,
-   "points": 15,
-   "gp": 12,
+   "points": 18,
+   "gp": 13,
    "stats": {
     "G": 4,
-    "A": 11,
+    "A": 14,
     "GWG": 0,
     "HT": 0
    },
-   "proj": 124.3,
-   "proj_left": 109.3,
-   "games_left": 68.0,
+   "proj": 127.5,
+   "proj_left": 109.5,
+   "games_left": 67.0,
    "proj_gp": 80.0,
    "sources": {
-    "ESPN": 126.7,
-    "NHL.com": 121.7,
-    "CBS": 128.8,
-    "HockeyBangers": 120.1
+    "ESPN": 129.8,
+    "NHL.com": 125.0,
+    "CBS": 131.9,
+    "HockeyBangers": 123.5
    },
    "age": 33.4,
    "manager_id": 3,
    "round": 1,
    "overall": 3,
    "counts": true,
-   "vs_round": -5.2
+   "vs_round": -2.8
   },
   {
    "nhl_id": 8485366,
@@ -1604,29 +1604,29 @@
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5291933.png",
    "injury": null,
    "points": 19,
-   "gp": 13,
+   "gp": 14,
    "stats": {
     "G": 4,
     "A": 10,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 105.3,
-   "proj_left": 86.3,
-   "games_left": 71.0,
+   "proj": 102.5,
+   "proj_left": 83.5,
+   "games_left": 70.0,
    "proj_gp": 84.0,
    "sources": {
-    "ESPN": 100.9,
-    "NHL.com": 111.1,
-    "CBS": 107.7,
-    "HockeyBangers": 101.5
+    "ESPN": 98.3,
+    "NHL.com": 108.1,
+    "CBS": 104.8,
+    "HockeyBangers": 98.8
    },
    "age": 19.2,
    "manager_id": 3,
    "round": 2,
    "overall": 22,
    "counts": true,
-   "vs_round": 1.3
+   "vs_round": 1.2
   },
   {
    "nhl_id": 8479420,
@@ -1663,7 +1663,7 @@
    "round": 3,
    "overall": 27,
    "counts": true,
-   "vs_round": 2.6
+   "vs_round": 2.5
   },
   {
    "nhl_id": 8474593,
@@ -1701,7 +1701,7 @@
    "round": 4,
    "overall": 46,
    "counts": false,
-   "vs_round": -2.5
+   "vs_round": -2.8
   },
   {
    "nhl_id": 8474590,
@@ -1715,30 +1715,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8474590.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5118.png",
    "injury": null,
-   "points": 11,
-   "gp": 12,
+   "points": 14,
+   "gp": 13,
    "stats": {
-    "G": 4,
-    "A": 2,
+    "G": 5,
+    "A": 3,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 76.3,
-   "proj_left": 65.3,
-   "games_left": 64.0,
+   "proj": 80.8,
+   "proj_left": 66.8,
+   "games_left": 63.0,
    "proj_gp": 76.0,
    "sources": {
-    "ESPN": 77.0,
-    "NHL.com": 81.4,
-    "CBS": 76.0,
-    "HockeyBangers": 70.8
+    "ESPN": 81.5,
+    "NHL.com": 85.7,
+    "CBS": 80.5,
+    "HockeyBangers": 75.5
    },
    "age": 36.8,
    "manager_id": 3,
    "round": 5,
    "overall": 51,
    "counts": true,
-   "vs_round": 0.5
+   "vs_round": 3.2
   },
   {
    "nhl_id": 8482116,
@@ -1826,30 +1826,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/NSH/8474564.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5037.png",
    "injury": null,
-   "points": 15,
-   "gp": 13,
+   "points": 16,
+   "gp": 14,
    "stats": {
-    "G": 7,
+    "G": 8,
     "A": 8,
     "GWG": 0,
     "HT": 0
    },
    "proj": 84.0,
-   "proj_left": 69.0,
-   "games_left": 71.0,
+   "proj_left": 68.0,
+   "games_left": 70.0,
    "proj_gp": 84.0,
    "sources": {
-    "ESPN": 83.8,
-    "NHL.com": 84.5,
-    "CBS": 89.1,
-    "HockeyBangers": 78.4
+    "ESPN": 83.9,
+    "NHL.com": 84.6,
+    "CBS": 89.0,
+    "HockeyBangers": 78.7
    },
    "age": 36.7,
    "manager_id": 3,
    "round": 8,
    "overall": 94,
    "counts": true,
-   "vs_round": 3.4
+   "vs_round": 4.3
   },
   {
    "nhl_id": 8476885,
@@ -1923,7 +1923,7 @@
    "round": 10,
    "overall": 118,
    "counts": true,
-   "vs_round": 4.4
+   "vs_round": 4.3
   },
   {
    "nhl_id": 8482093,
@@ -2071,7 +2071,7 @@
    "round": 14,
    "overall": 166,
    "counts": false,
-   "vs_round": -1.3
+   "vs_round": -1.4
   },
   {
    "nhl_id": 8481611,
@@ -2146,7 +2146,7 @@
    "round": 16,
    "overall": 190,
    "counts": false,
-   "vs_round": -0.2
+   "vs_round": -0.6
   },
   {
    "nhl_id": 8484801,
@@ -2183,7 +2183,7 @@
    "round": 1,
    "overall": 4,
    "counts": true,
-   "vs_round": -3.2
+   "vs_round": -3.8
   },
   {
    "nhl_id": 8479979,
@@ -2221,7 +2221,7 @@
    "round": 2,
    "overall": 21,
    "counts": true,
-   "vs_round": 4.3
+   "vs_round": 4.2
   },
   {
    "nhl_id": 8481540,
@@ -2258,7 +2258,7 @@
    "round": 3,
    "overall": 28,
    "counts": true,
-   "vs_round": 0.6
+   "vs_round": 0.5
   },
   {
    "nhl_id": 8479345,
@@ -2295,7 +2295,7 @@
    "round": 4,
    "overall": 45,
    "counts": true,
-   "vs_round": -2.5
+   "vs_round": -2.8
   },
   {
    "nhl_id": 8479337,
@@ -2332,7 +2332,7 @@
    "round": 5,
    "overall": 52,
    "counts": true,
-   "vs_round": 4.5
+   "vs_round": 4.2
   },
   {
    "nhl_id": 8476906,
@@ -2443,7 +2443,7 @@
    "round": 8,
    "overall": 93,
    "counts": false,
-   "vs_round": -4.6
+   "vs_round": -4.7
   },
   {
    "nhl_id": 8480208,
@@ -2517,7 +2517,7 @@
    "round": 10,
    "overall": 117,
    "counts": true,
-   "vs_round": -1.6
+   "vs_round": -1.7
   },
   {
    "nhl_id": 8480807,
@@ -2644,29 +2644,29 @@
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3042002.png",
    "injury": null,
    "points": 15,
-   "gp": 13,
+   "gp": 14,
    "stats": {
     "G": 7,
     "A": 7,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 76.5,
-   "proj_left": 61.5,
-   "games_left": 62.0,
+   "proj": 74.5,
+   "proj_left": 59.5,
+   "games_left": 61.0,
    "proj_gp": 75.0,
    "sources": {
-    "ESPN": 73.3,
-    "NHL.com": 81.8,
-    "CBS": 78.1,
-    "HockeyBangers": 72.7
+    "ESPN": 71.4,
+    "NHL.com": 79.6,
+    "CBS": 76.0,
+    "HockeyBangers": 70.9
    },
    "age": 31.6,
    "manager_id": 4,
    "round": 14,
    "overall": 165,
    "counts": true,
-   "vs_round": 6.7
+   "vs_round": 6.6
   },
   {
    "nhl_id": 8475200,
@@ -2740,7 +2740,7 @@
    "round": 16,
    "overall": 189,
    "counts": false,
-   "vs_round": 2.8
+   "vs_round": 2.4
   },
   {
    "nhl_id": 8480039,
@@ -2777,7 +2777,7 @@
    "round": 1,
    "overall": 5,
    "counts": true,
-   "vs_round": -2.2
+   "vs_round": -2.8
   },
   {
    "nhl_id": 8478178,
@@ -2814,7 +2814,7 @@
    "round": 2,
    "overall": 20,
    "counts": true,
-   "vs_round": -9.7
+   "vs_round": -9.8
   },
   {
    "nhl_id": 8475809,
@@ -2852,7 +2852,7 @@
    "round": 3,
    "overall": 29,
    "counts": false,
-   "vs_round": -10.4
+   "vs_round": -10.5
   },
   {
    "nhl_id": 8476887,
@@ -2866,30 +2866,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/NSH/8476887.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/2968772.png",
    "injury": null,
-   "points": 15,
-   "gp": 13,
+   "points": 17,
+   "gp": 14,
    "stats": {
     "G": 5,
-    "A": 10,
+    "A": 12,
     "GWG": 0,
     "HT": 0
    },
-   "proj": 92.3,
+   "proj": 94.3,
    "proj_left": 77.3,
-   "games_left": 71.0,
+   "games_left": 70.0,
    "proj_gp": 84.0,
    "sources": {
-    "ESPN": 91.5,
-    "NHL.com": 90.8,
-    "CBS": 98.8,
-    "HockeyBangers": 88.0
+    "ESPN": 93.6,
+    "NHL.com": 92.9,
+    "CBS": 100.7,
+    "HockeyBangers": 90.2
    },
    "age": 32.2,
    "manager_id": 5,
    "round": 4,
    "overall": 44,
    "counts": true,
-   "vs_round": 2.5
+   "vs_round": 4.2
   },
   {
    "nhl_id": 8483445,
@@ -2918,7 +2918,7 @@
    "sources": {
     "ESPN": 65.4,
     "NHL.com": 77.9,
-    "CBS": 72.2,
+    "CBS": 72.1,
     "HockeyBangers": 72.0
    },
    "age": 22.8,
@@ -2926,7 +2926,7 @@
    "round": 5,
    "overall": 53,
    "counts": true,
-   "vs_round": -1.5
+   "vs_round": -1.8
   },
   {
    "nhl_id": 8477504,
@@ -2985,15 +2985,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 52.5,
-   "proj_left": 51.5,
-   "games_left": 61.0,
-   "proj_gp": 67.0,
+   "proj": 51.6,
+   "proj_left": 50.6,
+   "games_left": 60.0,
+   "proj_gp": 66.0,
    "sources": {
-    "ESPN": 54.3,
-    "NHL.com": 49.2,
-    "CBS": 56.2,
-    "HockeyBangers": 50.2
+    "ESPN": 53.4,
+    "NHL.com": 48.4,
+    "CBS": 55.3,
+    "HockeyBangers": 49.4
    },
    "age": 34.4,
    "manager_id": 5,
@@ -3037,7 +3037,7 @@
    "round": 8,
    "overall": 92,
    "counts": true,
-   "vs_round": 3.4
+   "vs_round": 3.3
   },
   {
    "nhl_id": 8482720,
@@ -3111,7 +3111,7 @@
    "round": 10,
    "overall": 116,
    "counts": true,
-   "vs_round": -0.6
+   "vs_round": -0.7
   },
   {
    "nhl_id": 8482684,
@@ -3237,30 +3237,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8475218.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/2558631.png",
    "injury": null,
-   "points": 6,
-   "gp": 11,
+   "points": 7,
+   "gp": 12,
    "stats": {
     "G": 2,
-    "A": 2,
+    "A": 3,
     "GWG": 0,
     "HT": 0
    },
-   "proj": 46.9,
+   "proj": 47.9,
    "proj_left": 40.9,
-   "games_left": 69.0,
+   "games_left": 68.0,
    "proj_gp": 80.0,
    "sources": {
-    "ESPN": 46.0,
-    "NHL.com": 46.0,
-    "CBS": 52.4,
-    "HockeyBangers": 43.3
+    "ESPN": 47.0,
+    "NHL.com": 47.0,
+    "CBS": 53.1,
+    "HockeyBangers": 44.4
    },
    "age": 36.4,
    "manager_id": 5,
    "round": 14,
    "overall": 164,
    "counts": true,
-   "vs_round": -2.3
+   "vs_round": -1.4
   },
   {
    "nhl_id": 8475810,
@@ -3334,7 +3334,7 @@
    "round": 16,
    "overall": 188,
    "counts": false,
-   "vs_round": -0.2
+   "vs_round": -0.6
   },
   {
    "nhl_id": 8477934,
@@ -3348,30 +3348,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8477934.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3114727.png",
    "injury": null,
-   "points": 25,
-   "gp": 13,
+   "points": 27,
+   "gp": 14,
    "stats": {
     "G": 12,
-    "A": 12,
+    "A": 14,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 135.3,
-   "proj_left": 110.3,
-   "games_left": 66.0,
+   "proj": 136.1,
+   "proj_left": 109.1,
+   "games_left": 65.0,
    "proj_gp": 79.0,
    "sources": {
-    "ESPN": 129.4,
-    "NHL.com": 135.6,
-    "CBS": 144.0,
-    "HockeyBangers": 132.3
+    "ESPN": 130.4,
+    "NHL.com": 136.4,
+    "CBS": 144.5,
+    "HockeyBangers": 133.2
    },
    "age": 31.0,
    "manager_id": 6,
    "round": 1,
    "overall": 6,
    "counts": true,
-   "vs_round": 4.8
+   "vs_round": 6.2
   },
   {
    "nhl_id": 8480839,
@@ -3408,7 +3408,7 @@
    "round": 2,
    "overall": 19,
    "counts": true,
-   "vs_round": -8.7
+   "vs_round": -8.8
   },
   {
    "nhl_id": 8478398,
@@ -3445,7 +3445,7 @@
    "round": 3,
    "overall": 30,
    "counts": true,
-   "vs_round": 3.6
+   "vs_round": 3.5
   },
   {
    "nhl_id": 8476460,
@@ -3482,7 +3482,7 @@
    "round": 4,
    "overall": 43,
    "counts": true,
-   "vs_round": -0.5
+   "vs_round": -0.8
   },
   {
    "nhl_id": 8477933,
@@ -3519,7 +3519,7 @@
    "round": 5,
    "overall": 54,
    "counts": true,
-   "vs_round": 1.5
+   "vs_round": 1.2
   },
   {
    "nhl_id": 8478010,
@@ -3533,30 +3533,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8478010.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3151187.png",
    "injury": null,
-   "points": 10,
-   "gp": 12,
+   "points": 11,
+   "gp": 13,
    "stats": {
     "G": 3,
-    "A": 7,
+    "A": 8,
     "GWG": 0,
     "HT": 0
    },
    "proj": 79.6,
-   "proj_left": 69.6,
-   "games_left": 72.0,
+   "proj_left": 68.6,
+   "games_left": 71.0,
    "proj_gp": 84.0,
    "sources": {
-    "ESPN": 75.3,
+    "ESPN": 75.6,
     "NHL.com": 83.9,
-    "CBS": 79.8,
-    "HockeyBangers": 79.2
+    "CBS": 79.9,
+    "HockeyBangers": 79.3
    },
    "age": 30.6,
    "manager_id": 6,
    "round": 6,
    "overall": 67,
-   "counts": false,
-   "vs_round": -2.2
+   "counts": true,
+   "vs_round": -1.2
   },
   {
    "nhl_id": 8474578,
@@ -3631,7 +3631,7 @@
    "round": 8,
    "overall": 91,
    "counts": true,
-   "vs_round": 6.4
+   "vs_round": 6.3
   },
   {
    "nhl_id": 8478407,
@@ -3690,22 +3690,22 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 52.7,
-   "proj_left": 52.7,
-   "games_left": 54.0,
-   "proj_gp": 54.0,
+   "proj": 51.8,
+   "proj_left": 51.8,
+   "games_left": 53.0,
+   "proj_gp": 53.0,
    "sources": {
-    "ESPN": 49.0,
+    "ESPN": 48.2,
     "NHL.com": null,
-    "CBS": 55.6,
-    "HockeyBangers": 53.5
+    "CBS": 54.7,
+    "HockeyBangers": 52.6
    },
    "age": 29.4,
    "manager_id": 6,
    "round": 10,
    "overall": 115,
    "counts": false,
-   "vs_round": -9.6
+   "vs_round": -9.7
   },
   {
    "nhl_id": 8475171,
@@ -3845,15 +3845,15 @@
    "sources": {
     "ESPN": 70.0,
     "NHL.com": 70.0,
-    "CBS": 68.5,
+    "CBS": 68.6,
     "HockeyBangers": 60.3
    },
    "age": 40.3,
    "manager_id": 6,
    "round": 14,
    "overall": 163,
-   "counts": true,
-   "vs_round": 2.7
+   "counts": false,
+   "vs_round": 2.6
   },
   {
    "nhl_id": 8471724,
@@ -3928,7 +3928,7 @@
    "round": 16,
    "overall": 187,
    "counts": false,
-   "vs_round": -5.2
+   "vs_round": -5.6
   },
   {
    "nhl_id": 8480069,
@@ -3957,7 +3957,7 @@
    "sources": {
     "ESPN": 101.5,
     "NHL.com": 105.7,
-    "CBS": 107.9,
+    "CBS": 108.0,
     "HockeyBangers": 104.4
    },
    "age": 28.0,
@@ -3965,7 +3965,7 @@
    "round": 1,
    "overall": 7,
    "counts": true,
-   "vs_round": -6.2
+   "vs_round": -6.8
   },
   {
    "nhl_id": 8480803,
@@ -3979,30 +3979,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8480803.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4352722.png",
    "injury": null,
-   "points": 31,
-   "gp": 13,
+   "points": 32,
+   "gp": 14,
    "stats": {
     "G": 7,
-    "A": 15,
+    "A": 16,
     "GWG": 2,
     "HT": 1
    },
-   "proj": 145.3,
-   "proj_left": 114.3,
-   "games_left": 71.0,
+   "proj": 143.9,
+   "proj_left": 111.9,
+   "games_left": 70.0,
    "proj_gp": 84.0,
    "sources": {
-    "ESPN": 143.9,
-    "NHL.com": 141.5,
-    "CBS": 156.2,
-    "HockeyBangers": 139.5
+    "ESPN": 142.6,
+    "NHL.com": 140.3,
+    "CBS": 154.4,
+    "HockeyBangers": 138.3
    },
    "age": 27.0,
    "manager_id": 7,
    "round": 2,
    "overall": 18,
    "counts": true,
-   "vs_round": 13.3
+   "vs_round": 14.2
   },
   {
    "nhl_id": 8482740,
@@ -4039,7 +4039,7 @@
    "round": 3,
    "overall": 31,
    "counts": true,
-   "vs_round": -2.4
+   "vs_round": -2.5
   },
   {
    "nhl_id": 8478872,
@@ -4077,7 +4077,7 @@
    "round": 4,
    "overall": 42,
    "counts": true,
-   "vs_round": 2.5
+   "vs_round": 2.2
   },
   {
    "nhl_id": 8478550,
@@ -4114,7 +4114,7 @@
    "round": 5,
    "overall": 55,
    "counts": true,
-   "vs_round": 3.5
+   "vs_round": 3.2
   },
   {
    "nhl_id": 8478427,
@@ -4225,7 +4225,7 @@
    "round": 8,
    "overall": 90,
    "counts": true,
-   "vs_round": 3.4
+   "vs_round": 3.3
   },
   {
    "nhl_id": 8477951,
@@ -4276,30 +4276,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/NSH/8475158.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5208.png",
    "injury": null,
-   "points": 16,
-   "gp": 13,
+   "points": 17,
+   "gp": 14,
    "stats": {
     "G": 7,
-    "A": 7,
+    "A": 8,
     "GWG": 2,
     "HT": 0
    },
    "proj": 85.1,
-   "proj_left": 69.1,
-   "games_left": 70.0,
+   "proj_left": 68.1,
+   "games_left": 69.0,
    "proj_gp": 83.0,
    "sources": {
-    "ESPN": 85.0,
+    "ESPN": 85.1,
     "NHL.com": 83.7,
-    "CBS": 90.8,
-    "HockeyBangers": 80.8
+    "CBS": 90.7,
+    "HockeyBangers": 81.0
    },
    "age": 35.7,
    "manager_id": 7,
    "round": 10,
    "overall": 114,
    "counts": true,
-   "vs_round": 6.4
+   "vs_round": 7.3
   },
   {
    "nhl_id": 8484768,
@@ -4433,14 +4433,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 65.2,
-   "proj_left": 55.2,
-   "games_left": 51.0,
-   "proj_gp": 61.0,
+   "proj": 62.8,
+   "proj_left": 52.8,
+   "games_left": 49.0,
+   "proj_gp": 59.0,
    "sources": {
-    "ESPN": 64.8,
+    "ESPN": 62.4,
     "NHL.com": null,
-    "CBS": 65.6,
+    "CBS": 63.2,
     "HockeyBangers": null
    },
    "age": 31.5,
@@ -4448,7 +4448,7 @@
    "round": 14,
    "overall": 162,
    "counts": false,
-   "vs_round": 1.7
+   "vs_round": 1.6
   },
   {
    "nhl_id": 8484258,
@@ -4522,7 +4522,7 @@
    "round": 16,
    "overall": 186,
    "counts": false,
-   "vs_round": -1.2
+   "vs_round": -1.6
   },
   {
    "nhl_id": 8477956,
@@ -4559,7 +4559,7 @@
    "round": 1,
    "overall": 8,
    "counts": true,
-   "vs_round": -0.2
+   "vs_round": -0.8
   },
   {
    "nhl_id": 8479318,
@@ -4596,7 +4596,7 @@
    "round": 2,
    "overall": 17,
    "counts": true,
-   "vs_round": 7.3
+   "vs_round": 7.2
   },
   {
    "nhl_id": 8483515,
@@ -4633,7 +4633,7 @@
    "round": 3,
    "overall": 32,
    "counts": false,
-   "vs_round": -4.4
+   "vs_round": -4.5
   },
   {
    "nhl_id": 8480865,
@@ -4670,7 +4670,7 @@
    "round": 4,
    "overall": 41,
    "counts": true,
-   "vs_round": -7.5
+   "vs_round": -7.8
   },
   {
    "nhl_id": 8480801,
@@ -4707,7 +4707,7 @@
    "round": 5,
    "overall": 56,
    "counts": true,
-   "vs_round": 7.5
+   "vs_round": 7.2
   },
   {
    "nhl_id": 8476459,
@@ -4819,7 +4819,7 @@
    "round": 8,
    "overall": 89,
    "counts": false,
-   "vs_round": -4.6
+   "vs_round": -4.7
   },
   {
    "nhl_id": 8478469,
@@ -4893,7 +4893,7 @@
    "round": 10,
    "overall": 113,
    "counts": true,
-   "vs_round": 2.4
+   "vs_round": 2.3
   },
   {
    "nhl_id": 8482077,
@@ -5042,7 +5042,7 @@
    "round": 14,
    "overall": 161,
    "counts": false,
-   "vs_round": -2.3
+   "vs_round": -2.4
   },
   {
    "nhl_id": 8480796,
@@ -5116,7 +5116,7 @@
    "round": 16,
    "overall": 185,
    "counts": true,
-   "vs_round": 3.8
+   "vs_round": 3.4
   },
   {
    "nhl_id": 8478864,
@@ -5153,7 +5153,7 @@
    "round": 1,
    "overall": 9,
    "counts": true,
-   "vs_round": 7.8
+   "vs_round": 7.2
   },
   {
    "nhl_id": 8483457,
@@ -5190,7 +5190,7 @@
    "round": 2,
    "overall": 16,
    "counts": true,
-   "vs_round": -3.7
+   "vs_round": -3.8
   },
   {
    "nhl_id": 8481557,
@@ -5227,7 +5227,7 @@
    "round": 3,
    "overall": 33,
    "counts": true,
-   "vs_round": 1.6
+   "vs_round": 1.5
   },
   {
    "nhl_id": 8479410,
@@ -5264,7 +5264,7 @@
    "round": 4,
    "overall": 40,
    "counts": true,
-   "vs_round": 8.5
+   "vs_round": 8.2
   },
   {
    "nhl_id": 8484984,
@@ -5301,7 +5301,7 @@
    "round": 5,
    "overall": 57,
    "counts": false,
-   "vs_round": -8.5
+   "vs_round": -8.8
   },
   {
    "nhl_id": 8483431,
@@ -5412,7 +5412,7 @@
    "round": 8,
    "overall": 88,
    "counts": true,
-   "vs_round": 1.4
+   "vs_round": 1.3
   },
   {
    "nhl_id": 8481533,
@@ -5486,7 +5486,7 @@
    "round": 10,
    "overall": 112,
    "counts": false,
-   "vs_round": -2.6
+   "vs_round": -2.7
   },
   {
    "nhl_id": 8480014,
@@ -5636,7 +5636,7 @@
    "round": 14,
    "overall": 160,
    "counts": true,
-   "vs_round": 0.7
+   "vs_round": 0.6
   },
   {
    "nhl_id": 8482671,
@@ -5710,7 +5710,7 @@
    "round": 16,
    "overall": 184,
    "counts": false,
-   "vs_round": -1.2
+   "vs_round": -1.6
   },
   {
    "nhl_id": 8480800,
@@ -5747,7 +5747,7 @@
    "round": 1,
    "overall": 10,
    "counts": true,
-   "vs_round": 5.8
+   "vs_round": 5.2
   },
   {
    "nhl_id": 8476883,
@@ -5761,23 +5761,23 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8476883.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/2976847.png",
    "injury": null,
-   "points": 12,
-   "gp": 9,
+   "points": 13,
+   "gp": 10,
    "stats": {
-    "GS": 9,
+    "GS": 10,
     "W": 6,
-    "OTL": 0,
+    "OTL": 1,
     "SO": 0,
     "G": 0
    },
-   "proj": 84.4,
-   "proj_left": 72.4,
+   "proj": 84.8,
+   "proj_left": 71.8,
    "games_left": 52.0,
-   "proj_gp": 61.0,
+   "proj_gp": 62.0,
    "sources": {
-    "ESPN": 90.0,
+    "ESPN": 90.3,
     "NHL.com": null,
-    "CBS": 78.8,
+    "CBS": 79.3,
     "HockeyBangers": null
    },
    "age": 32.3,
@@ -5785,7 +5785,7 @@
    "round": 2,
    "overall": 15,
    "counts": true,
-   "vs_round": -5.7
+   "vs_round": -4.8
   },
   {
    "nhl_id": 8477404,
@@ -5799,30 +5799,30 @@
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8477404.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3042083.png",
    "injury": null,
-   "points": 14,
-   "gp": 12,
+   "points": 15,
+   "gp": 13,
    "stats": {
-    "G": 7,
+    "G": 8,
     "A": 6,
     "GWG": 1,
     "HT": 0
    },
-   "proj": 96.2,
-   "proj_left": 82.2,
-   "games_left": 70.0,
+   "proj": 95.8,
+   "proj_left": 80.8,
+   "games_left": 69.0,
    "proj_gp": 82.0,
    "sources": {
-    "ESPN": 96.7,
-    "NHL.com": 91.7,
-    "CBS": 101.8,
-    "HockeyBangers": 94.6
+    "ESPN": 96.3,
+    "NHL.com": 91.5,
+    "CBS": 101.2,
+    "HockeyBangers": 94.3
    },
    "age": 32.1,
    "manager_id": 10,
    "round": 3,
    "overall": 34,
    "counts": true,
-   "vs_round": 0.6
+   "vs_round": 1.5
   },
   {
    "nhl_id": 8480036,
@@ -5859,7 +5859,7 @@
    "round": 4,
    "overall": 39,
    "counts": true,
-   "vs_round": 0.5
+   "vs_round": 0.2
   },
   {
    "nhl_id": 8479314,
@@ -5896,7 +5896,7 @@
    "round": 5,
    "overall": 58,
    "counts": true,
-   "vs_round": 10.5
+   "vs_round": 10.2
   },
   {
    "nhl_id": 8479542,
@@ -5911,22 +5911,22 @@
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4065019.png",
    "injury": null,
    "points": 19,
-   "gp": 12,
+   "gp": 13,
    "stats": {
     "G": 8,
     "A": 8,
     "GWG": 2,
     "HT": 1
    },
-   "proj": 100.2,
-   "proj_left": 81.2,
-   "games_left": 64.0,
+   "proj": 97.6,
+   "proj_left": 78.6,
+   "games_left": 63.0,
    "proj_gp": 76.0,
    "sources": {
-    "ESPN": 98.2,
-    "NHL.com": 101.1,
-    "CBS": 102.0,
-    "HockeyBangers": 99.6
+    "ESPN": 95.6,
+    "NHL.com": 98.4,
+    "CBS": 99.3,
+    "HockeyBangers": 97.0
    },
    "age": 28.2,
    "manager_id": 10,
@@ -6007,7 +6007,7 @@
    "round": 8,
    "overall": 87,
    "counts": true,
-   "vs_round": 0.4
+   "vs_round": 0.3
   },
   {
    "nhl_id": 8479425,
@@ -6081,7 +6081,7 @@
    "round": 10,
    "overall": 111,
    "counts": true,
-   "vs_round": 0.4
+   "vs_round": 0.3
   },
   {
    "nhl_id": 8481604,
@@ -6133,22 +6133,22 @@
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3114769.png",
    "injury": null,
    "points": 5,
-   "gp": 13,
+   "gp": 14,
    "stats": {
     "G": 1,
     "A": 3,
     "GWG": 0,
     "HT": 0
    },
-   "proj": 36.3,
-   "proj_left": 31.3,
-   "games_left": 57.0,
+   "proj": 35.3,
+   "proj_left": 30.3,
+   "games_left": 56.0,
    "proj_gp": 70.0,
    "sources": {
-    "ESPN": 35.1,
-    "NHL.com": 39.5,
-    "CBS": 35.1,
-    "HockeyBangers": 35.5
+    "ESPN": 34.1,
+    "NHL.com": 38.4,
+    "CBS": 34.1,
+    "HockeyBangers": 34.5
    },
    "age": 31.0,
    "manager_id": 10,
@@ -6230,7 +6230,7 @@
    "round": 14,
    "overall": 159,
    "counts": false,
-   "vs_round": -4.3
+   "vs_round": -4.4
   },
   {
    "nhl_id": 8482100,
@@ -6304,7 +6304,7 @@
    "round": 16,
    "overall": 183,
    "counts": false,
-   "vs_round": -3.2
+   "vs_round": -3.6
   },
   {
    "nhl_id": 8478460,
@@ -6341,7 +6341,7 @@
    "round": 1,
    "overall": 11,
    "counts": true,
-   "vs_round": -11.2
+   "vs_round": -11.8
   },
   {
    "nhl_id": 8478403,
@@ -6378,7 +6378,7 @@
    "round": 2,
    "overall": 14,
    "counts": true,
-   "vs_round": 3.3
+   "vs_round": 3.2
   },
   {
    "nhl_id": 8477939,
@@ -6415,7 +6415,7 @@
    "round": 3,
    "overall": 35,
    "counts": true,
-   "vs_round": 5.6
+   "vs_round": 5.5
   },
   {
    "nhl_id": 8479343,
@@ -6452,7 +6452,7 @@
    "round": 4,
    "overall": 38,
    "counts": true,
-   "vs_round": 3.5
+   "vs_round": 3.2
   },
   {
    "nhl_id": 8481524,
@@ -6489,7 +6489,7 @@
    "round": 5,
    "overall": 59,
    "counts": false,
-   "vs_round": -9.5
+   "vs_round": -9.8
   },
   {
    "nhl_id": 8482699,
@@ -6601,7 +6601,7 @@
    "round": 8,
    "overall": 86,
    "counts": true,
-   "vs_round": 1.4
+   "vs_round": 1.3
   },
   {
    "nhl_id": 8479987,
@@ -6675,7 +6675,7 @@
    "round": 10,
    "overall": 110,
    "counts": true,
-   "vs_round": 1.4
+   "vs_round": 1.3
   },
   {
    "nhl_id": 8478009,
@@ -6690,22 +6690,22 @@
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/3151981.png",
    "injury": null,
    "points": 15,
-   "gp": 9,
+   "gp": 10,
    "stats": {
-    "GS": 9,
+    "GS": 10,
     "W": 6,
     "OTL": 0,
     "SO": 1,
     "G": 0
    },
-   "proj": 78.4,
-   "proj_left": 63.4,
+   "proj": 77.0,
+   "proj_left": 62.0,
    "games_left": 50.0,
-   "proj_gp": 59.0,
+   "proj_gp": 60.0,
    "sources": {
-    "ESPN": 85.1,
+    "ESPN": 83.6,
     "NHL.com": null,
-    "CBS": 71.7,
+    "CBS": 70.5,
     "HockeyBangers": null
    },
    "age": 31.2,
@@ -6824,7 +6824,7 @@
    "round": 14,
    "overall": 158,
    "counts": true,
-   "vs_round": 6.7
+   "vs_round": 6.6
   },
   {
    "nhl_id": 8484152,
@@ -6898,7 +6898,7 @@
    "round": 16,
    "overall": 182,
    "counts": true,
-   "vs_round": -1.2
+   "vs_round": -1.6
   },
   {
    "nhl_id": 8480018,
@@ -6935,7 +6935,7 @@
    "round": 1,
    "overall": 12,
    "counts": true,
-   "vs_round": -8.2
+   "vs_round": -8.8
   },
   {
    "nhl_id": 8480027,
@@ -6972,7 +6972,7 @@
    "round": 2,
    "overall": 13,
    "counts": true,
-   "vs_round": -2.7
+   "vs_round": -2.8
   },
   {
    "nhl_id": 8481542,
@@ -7009,7 +7009,7 @@
    "round": 3,
    "overall": 36,
    "counts": true,
-   "vs_round": -5.4
+   "vs_round": -5.5
   },
   {
    "nhl_id": 8480313,
@@ -7047,7 +7047,7 @@
    "round": 4,
    "overall": 37,
    "counts": false,
-   "vs_round": -2.5
+   "vs_round": -2.8
   },
   {
    "nhl_id": 8477949,
@@ -7084,7 +7084,7 @@
    "round": 5,
    "overall": 60,
    "counts": true,
-   "vs_round": 6.5
+   "vs_round": 6.2
   },
   {
    "nhl_id": 8477346,
@@ -7195,7 +7195,7 @@
    "round": 8,
    "overall": 85,
    "counts": true,
-   "vs_round": -6.6
+   "vs_round": -6.7
   },
   {
    "nhl_id": 8477935,
@@ -7269,7 +7269,7 @@
    "round": 10,
    "overall": 109,
    "counts": true,
-   "vs_round": 2.4
+   "vs_round": 2.3
   },
   {
    "nhl_id": 8476902,
@@ -7417,7 +7417,7 @@
    "round": 14,
    "overall": 157,
    "counts": true,
-   "vs_round": -4.3
+   "vs_round": -4.4
   },
   {
    "nhl_id": 8476999,
@@ -7484,7 +7484,7 @@
    "sources": {
     "ESPN": 43.7,
     "NHL.com": 44.4,
-    "CBS": 47.4,
+    "CBS": 47.3,
     "HockeyBangers": 38.7
    },
    "age": 35.5,
@@ -7492,7 +7492,7 @@
    "round": 16,
    "overall": 181,
    "counts": false,
-   "vs_round": -0.2
+   "vs_round": -0.6
   }
  ],
  "forgotten": [
@@ -7549,14 +7549,14 @@
     "SO": 2,
     "G": 0
    },
-   "proj": 78.7,
-   "proj_left": 60.7,
+   "proj": 78.6,
+   "proj_left": 60.6,
    "games_left": 44.0,
    "proj_gp": 51.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
-    "CBS": 78.7,
+    "CBS": 78.6,
     "HockeyBangers": null
    },
    "age": 21.9
@@ -7686,10 +7686,42 @@
    "sources": {
     "ESPN": 67.5,
     "NHL.com": 72.3,
-    "CBS": 71.3,
+    "CBS": 71.4,
     "HockeyBangers": 65.4
    },
    "age": 31.3
+  },
+  {
+   "nhl_id": 8481617,
+   "espn_id": 4565231,
+   "df_id": 30606,
+   "slug": "vasily-podkolzin",
+   "name": "Vasily Podkolzin",
+   "pos": "F",
+   "nhl_team": "EDM",
+   "number": 92,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8481617.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4565231.png",
+   "injury": null,
+   "points": 16,
+   "gp": 14,
+   "stats": {
+    "G": 9,
+    "A": 5,
+    "GWG": 2,
+    "HT": 0
+   },
+   "proj": 60.3,
+   "proj_left": 44.3,
+   "games_left": 65.0,
+   "proj_gp": 79.0,
+   "sources": {
+    "ESPN": 56.5,
+    "NHL.com": 64.6,
+    "CBS": null,
+    "HockeyBangers": 59.7
+   },
+   "age": 25.4
   },
   {
    "nhl_id": 8484158,
@@ -7786,38 +7818,6 @@
     "HockeyBangers": 60.8
    },
    "age": 33.6
-  },
-  {
-   "nhl_id": 8481617,
-   "espn_id": 4565231,
-   "df_id": 30606,
-   "slug": "vasily-podkolzin",
-   "name": "Vasily Podkolzin",
-   "pos": "F",
-   "nhl_team": "EDM",
-   "number": 92,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8481617.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/4565231.png",
-   "injury": null,
-   "points": 15,
-   "gp": 13,
-   "stats": {
-    "G": 8,
-    "A": 5,
-    "GWG": 2,
-    "HT": 0
-   },
-   "proj": 59.5,
-   "proj_left": 44.5,
-   "games_left": 66.0,
-   "proj_gp": 79.0,
-   "sources": {
-    "ESPN": 55.6,
-    "NHL.com": 63.9,
-    "CBS": null,
-    "HockeyBangers": 58.9
-   },
-   "age": 25.4
   },
   {
    "nhl_id": 8478458,
@@ -8417,14 +8417,14 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 31.3,
-   "proj_left": 19.3,
-   "games_left": 14.0,
-   "proj_gp": 21.0,
+   "proj": 30.5,
+   "proj_left": 18.5,
+   "games_left": 13.0,
+   "proj_gp": 20.0,
    "sources": {
     "ESPN": null,
     "NHL.com": null,
-    "CBS": 31.3,
+    "CBS": 30.5,
     "HockeyBangers": null
    },
    "age": 24.8
@@ -10389,8 +10389,8 @@
  "compared_to": "2026-10-31",
  "since": "depuis ce matin",
  "headline": [
-  "B. Belanger garde la tête, 3 points devant D. Archambault.",
-  "Lucas Raymond (M. Bélanger) : 2 points de pool depuis ce matin.",
+  "D. Archambault prend la tête du classement.",
+  "Tristan Jarry (M. Bélanger) : 5 points de pool depuis ce matin.",
   "Adrian Kempe (P. Allard) est maintenant blessé."
  ],
  "week": {
@@ -10449,80 +10449,80 @@
  },
  "pace": {
   "1": {
-   "gp": 144,
-   "points": 173,
-   "ppg": 1.201,
-   "left": 775,
-   "left_vs_avg": 1
+   "gp": 146,
+   "points": 176,
+   "ppg": 1.205,
+   "left": 773,
+   "left_vs_avg": 0
   },
   "2": {
-   "gp": 142,
-   "points": 170,
-   "ppg": 1.197,
-   "left": 775,
-   "left_vs_avg": 1
+   "gp": 144,
+   "points": 175,
+   "ppg": 1.215,
+   "left": 773,
+   "left_vs_avg": 0
   },
   "3": {
-   "gp": 139,
-   "points": 157,
-   "ppg": 1.129,
-   "left": 778,
-   "left_vs_avg": 4
+   "gp": 143,
+   "points": 164,
+   "ppg": 1.147,
+   "left": 774,
+   "left_vs_avg": 1
   },
   "4": {
-   "gp": 143,
+   "gp": 144,
    "points": 149,
-   "ppg": 1.042,
-   "left": 776,
+   "ppg": 1.035,
+   "left": 775,
    "left_vs_avg": 2
   },
   "5": {
-   "gp": 139,
-   "points": 117,
-   "ppg": 0.842,
-   "left": 775,
-   "left_vs_avg": 1
+   "gp": 141,
+   "points": 120,
+   "ppg": 0.851,
+   "left": 773,
+   "left_vs_avg": 0
   },
   "6": {
-   "gp": 143,
-   "points": 150,
-   "ppg": 1.049,
-   "left": 773,
+   "gp": 145,
+   "points": 152,
+   "ppg": 1.048,
+   "left": 772,
    "left_vs_avg": -1
   },
   "7": {
-   "gp": 140,
-   "points": 164,
-   "ppg": 1.171,
-   "left": 776,
-   "left_vs_avg": 2
+   "gp": 142,
+   "points": 166,
+   "ppg": 1.169,
+   "left": 774,
+   "left_vs_avg": 1
   },
   "8": {
    "gp": 150,
    "points": 145,
    "ppg": 0.967,
    "left": 765,
-   "left_vs_avg": -9
+   "left_vs_avg": -8
   },
   "9": {
    "gp": 147,
    "points": 176,
    "ppg": 1.197,
    "left": 773,
-   "left_vs_avg": -1
-  },
-  "10": {
-   "gp": 141,
-   "points": 158,
-   "ppg": 1.121,
-   "left": 774,
    "left_vs_avg": 0
   },
+  "10": {
+   "gp": 144,
+   "points": 160,
+   "ppg": 1.111,
+   "left": 771,
+   "left_vs_avg": -2
+  },
   "11": {
-   "gp": 143,
+   "gp": 144,
    "points": 150,
-   "ppg": 1.049,
-   "left": 776,
+   "ppg": 1.042,
+   "left": 775,
    "left_vs_avg": 2
   },
   "12": {
@@ -10530,7 +10530,7 @@
    "points": 119,
    "ppg": 0.881,
    "left": 773,
-   "left_vs_avg": -1
+   "left_vs_avg": 0
   }
  },
  "tonight": {
@@ -10964,19 +10964,19 @@
      "counts": true
     },
     {
+     "nhl_id": 8478010,
+     "team": "TBL",
+     "opp": "NSH",
+     "home": false,
+     "start": "2026-10-31T18:00:00Z",
+     "counts": true
+    },
+    {
      "nhl_id": 8480839,
      "team": "BUF",
      "opp": "LAK",
      "home": false,
      "start": "2026-10-31T20:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8471215,
-     "team": "PIT",
-     "opp": "MTL",
-     "home": false,
-     "start": "2026-10-31T23:00:00Z",
      "counts": true
     },
     {
@@ -10996,19 +10996,19 @@
      "counts": true
     },
     {
-     "nhl_id": 8478010,
-     "team": "TBL",
-     "opp": "NSH",
-     "home": false,
-     "start": "2026-10-31T18:00:00Z",
-     "counts": false
-    },
-    {
      "nhl_id": 8478445,
      "team": "NYI",
      "opp": "EDM",
      "home": true,
      "start": "2026-10-31T18:00:00Z",
+     "counts": false
+    },
+    {
+     "nhl_id": 8471215,
+     "team": "PIT",
+     "opp": "MTL",
+     "home": false,
+     "start": "2026-10-31T23:00:00Z",
      "counts": false
     },
     {
@@ -13278,109 +13278,109 @@
   }
  ],
  "race": {
-  "9": {
+  "1": {
    "ahead": null,
    "behind": {
-    "manager_id": 1,
-    "gap": 3,
-    "left_diff": -2,
-    "ppg": 1.201
+    "manager_id": 9,
+    "gap": 0,
+    "left_diff": 0,
+    "ppg": 1.197
    },
    "catch_weeks": null,
-   "caught_weeks": 12.6
+   "caught_weeks": null
   },
-  "1": {
+  "9": {
    "ahead": {
-    "manager_id": 9,
-    "gap": 3,
-    "left_diff": 2,
-    "ppg": 1.197
+    "manager_id": 1,
+    "gap": 0,
+    "left_diff": 0,
+    "ppg": 1.205
    },
    "behind": {
     "manager_id": 2,
-    "gap": 3,
+    "gap": 1,
     "left_diff": 0,
-    "ppg": 1.197
+    "ppg": 1.215
    },
-   "catch_weeks": 12.6,
-   "caught_weeks": null
+   "catch_weeks": null,
+   "caught_weeks": 1.7
   },
   "2": {
    "ahead": {
-    "manager_id": 1,
-    "gap": 3,
+    "manager_id": 9,
+    "gap": 1,
     "left_diff": 0,
-    "ppg": 1.201
+    "ppg": 1.197
    },
    "behind": {
     "manager_id": 7,
-    "gap": 6,
+    "gap": 9,
     "left_diff": -1,
-    "ppg": 1.171
+    "ppg": 1.169
    },
-   "catch_weeks": null,
+   "catch_weeks": 1.7,
    "caught_weeks": null
   },
   "7": {
    "ahead": {
     "manager_id": 2,
-    "gap": 6,
+    "gap": 9,
     "left_diff": 1,
-    "ppg": 1.197
+    "ppg": 1.215
+   },
+   "behind": {
+    "manager_id": 3,
+    "gap": 2,
+    "left_diff": 0,
+    "ppg": 1.147
+   },
+   "catch_weeks": null,
+   "caught_weeks": null
+  },
+  "3": {
+   "ahead": {
+    "manager_id": 7,
+    "gap": 2,
+    "left_diff": 0,
+    "ppg": 1.169
    },
    "behind": {
     "manager_id": 10,
-    "gap": 6,
-    "left_diff": 2,
-    "ppg": 1.121
+    "gap": 4,
+    "left_diff": 3,
+    "ppg": 1.111
    },
    "catch_weeks": null,
    "caught_weeks": null
   },
   "10": {
    "ahead": {
-    "manager_id": 7,
-    "gap": 6,
-    "left_diff": -2,
-    "ppg": 1.171
-   },
-   "behind": {
     "manager_id": 3,
-    "gap": 1,
-    "left_diff": -4,
-    "ppg": 1.129
-   },
-   "catch_weeks": null,
-   "caught_weeks": 2.1
-  },
-  "3": {
-   "ahead": {
-    "manager_id": 10,
-    "gap": 1,
-    "left_diff": 4,
-    "ppg": 1.121
+    "gap": 4,
+    "left_diff": -3,
+    "ppg": 1.147
    },
    "behind": {
     "manager_id": 6,
-    "gap": 7,
-    "left_diff": 5,
-    "ppg": 1.049
+    "gap": 8,
+    "left_diff": -1,
+    "ppg": 1.048
    },
-   "catch_weeks": 2.1,
+   "catch_weeks": null,
    "caught_weeks": null
   },
   "6": {
    "ahead": {
-    "manager_id": 3,
-    "gap": 7,
-    "left_diff": -5,
-    "ppg": 1.129
+    "manager_id": 10,
+    "gap": 8,
+    "left_diff": 1,
+    "ppg": 1.111
    },
    "behind": {
     "manager_id": 11,
-    "gap": 0,
+    "gap": 2,
     "left_diff": -3,
-    "ppg": 1.049
+    "ppg": 1.042
    },
    "catch_weeks": null,
    "caught_weeks": null
@@ -13388,15 +13388,15 @@
   "11": {
    "ahead": {
     "manager_id": 6,
-    "gap": 0,
+    "gap": 2,
     "left_diff": 3,
-    "ppg": 1.049
+    "ppg": 1.048
    },
    "behind": {
     "manager_id": 4,
     "gap": 1,
     "left_diff": 0,
-    "ppg": 1.042
+    "ppg": 1.035
    },
    "catch_weeks": null,
    "caught_weeks": null
@@ -13406,12 +13406,12 @@
     "manager_id": 11,
     "gap": 1,
     "left_diff": 0,
-    "ppg": 1.049
+    "ppg": 1.042
    },
    "behind": {
     "manager_id": 8,
     "gap": 4,
-    "left_diff": 11,
+    "left_diff": 10,
     "ppg": 0.967
    },
    "catch_weeks": null,
@@ -13421,43 +13421,43 @@
    "ahead": {
     "manager_id": 4,
     "gap": 4,
-    "left_diff": -11,
-    "ppg": 1.042
-   },
-   "behind": {
-    "manager_id": 12,
-    "gap": 26,
-    "left_diff": -8,
-    "ppg": 0.881
-   },
-   "catch_weeks": null,
-   "caught_weeks": null
-  },
-  "12": {
-   "ahead": {
-    "manager_id": 8,
-    "gap": 26,
-    "left_diff": 8,
-    "ppg": 0.967
+    "left_diff": -10,
+    "ppg": 1.035
    },
    "behind": {
     "manager_id": 5,
-    "gap": 2,
-    "left_diff": -2,
-    "ppg": 0.842
+    "gap": 25,
+    "left_diff": -8,
+    "ppg": 0.851
    },
    "catch_weeks": null,
    "caught_weeks": null
   },
   "5": {
    "ahead": {
+    "manager_id": 8,
+    "gap": 25,
+    "left_diff": 8,
+    "ppg": 0.967
+   },
+   "behind": {
     "manager_id": 12,
-    "gap": 2,
-    "left_diff": 2,
+    "gap": 1,
+    "left_diff": 0,
     "ppg": 0.881
    },
-   "behind": null,
    "catch_weeks": null,
+   "caught_weeks": 1.0
+  },
+  "12": {
+   "ahead": {
+    "manager_id": 5,
+    "gap": 1,
+    "left_diff": 0,
+    "ppg": 0.851
+   },
+   "behind": null,
+   "catch_weeks": 1.0,
    "caught_weeks": null
   }
  }
