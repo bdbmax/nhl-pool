@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-01T10:38+00:00",
- "as_of": "2026-10-31",
+ "generated": "2026-11-01T17:08+00:00",
+ "as_of": "2026-11-01",
  "season_start": "2026-09-29",
  "season_started": true,
  "games_played": 14.1,
@@ -44,7 +44,7 @@
     13.1,
     13.1,
     11.4,
-    11.0,
+    10.9,
     9.7,
     8.3,
     7.0,
@@ -53,8 +53,8 @@
     1.9,
     0.8
    ],
-   "rank_change": 2,
-   "win_change": 2.1
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 9,
@@ -81,8 +81,8 @@
     4.7,
     2.1
    ],
-   "rank_change": -1,
-   "win_change": 0.9
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 1,
@@ -109,8 +109,8 @@
     3.0,
     1.4
    ],
-   "rank_change": -1,
-   "win_change": -1.7
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 7,
@@ -138,7 +138,7 @@
     0.8
    ],
    "rank_change": 0,
-   "win_change": -0.9
+   "win_change": 0.0
   },
   {
    "id": 3,
@@ -166,7 +166,7 @@
     1.2
    ],
    "rank_change": 0,
-   "win_change": 0.0
+   "win_change": -0.0
   },
   {
    "id": 10,
@@ -194,7 +194,7 @@
     1.9
    ],
    "rank_change": 0,
-   "win_change": -0.0
+   "win_change": 0.0
   },
   {
    "id": 6,
@@ -222,7 +222,7 @@
     1.4
    ],
    "rank_change": 0,
-   "win_change": 0.4
+   "win_change": 0.0
   },
   {
    "id": 4,
@@ -244,13 +244,13 @@
     10.9,
     10.8,
     9.8,
-    9.3,
+    9.4,
     6.7,
     4.2,
     1.7
    ],
    "rank_change": 0,
-   "win_change": -0.5
+   "win_change": 0.0
   },
   {
    "id": 11,
@@ -278,7 +278,7 @@
     3.3
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": -0.0
   },
   {
    "id": 8,
@@ -306,7 +306,7 @@
     17.7
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": 0.0
   },
   {
    "id": 5,
@@ -333,8 +333,8 @@
     23.6,
     25.7
    ],
-   "rank_change": 1,
-   "win_change": -0.1
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 12,
@@ -361,8 +361,8 @@
     22.7,
     42.0
    ],
-   "rank_change": -1,
-   "win_change": -0.1
+   "rank_change": 0,
+   "win_change": -0.0
   }
  ],
  "players": [
@@ -987,7 +987,7 @@
    "sources": {
     "ESPN": 144.9,
     "NHL.com": 142.9,
-    "CBS": 149.4,
+    "CBS": 149.3,
     "HockeyBangers": 140.8
    },
    "age": 31.2,
@@ -1767,7 +1767,7 @@
    "sources": {
     "ESPN": 98.6,
     "NHL.com": null,
-    "CBS": 103.6,
+    "CBS": 103.5,
     "HockeyBangers": 101.2
    },
    "age": 24.8,
@@ -2621,7 +2621,7 @@
    "sources": {
     "ESPN": 71.4,
     "NHL.com": null,
-    "CBS": 69.3,
+    "CBS": 69.2,
     "HockeyBangers": null
    },
    "age": 29.9,
@@ -3511,7 +3511,7 @@
    "sources": {
     "ESPN": 75.3,
     "NHL.com": 82.1,
-    "CBS": 85.0,
+    "CBS": 84.9,
     "HockeyBangers": 73.0
    },
    "age": 31.0,
@@ -4470,8 +4470,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 39.9,
-   "proj_left": 34.9,
+   "proj": 39.8,
+   "proj_left": 34.8,
    "games_left": 64.0,
    "proj_gp": 77.0,
    "sources": {
@@ -6549,8 +6549,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 60.1,
-   "proj_left": 51.1,
+   "proj": 60.0,
+   "proj_left": 51.0,
    "games_left": 39.0,
    "proj_gp": 47.0,
    "sources": {
@@ -6630,7 +6630,7 @@
    "sources": {
     "ESPN": 66.9,
     "NHL.com": 67.6,
-    "CBS": 69.4,
+    "CBS": 69.5,
     "HockeyBangers": 63.9
    },
    "age": 28.3,
@@ -10430,65 +10430,62 @@
    ]
   }
  ],
- "update": "morning",
- "compared_to": "2026-10-31",
- "since": "depuis hier",
+ "update": "evening",
+ "compared_to": "2026-11-01",
+ "since": "depuis ce matin",
  "headline": [
-  "M. Bélanger prend la tête du classement.",
-  "Tristan Jarry (M. Bélanger) : 5 points de pool hier.",
-  "Les odds de M. Bélanger passent de 12,6 % à 14,7 %.",
-  "Adrian Kempe (P. Allard) est maintenant blessé."
+  "M. Bélanger garde la tête, 1 point devant B. Belanger."
  ],
  "week": {
   "start": "2026-10-26",
   "end": "2026-11-01",
   "managers": {
    "1": {
-    "left": 4,
+    "left": 0,
     "total": 30
    },
    "2": {
-    "left": 4,
+    "left": 0,
     "total": 31
    },
    "3": {
-    "left": 3,
+    "left": 0,
     "total": 28
    },
    "4": {
-    "left": 3,
+    "left": 0,
     "total": 33
    },
    "5": {
-    "left": 3,
+    "left": 0,
     "total": 30
    },
    "6": {
-    "left": 4,
+    "left": 0,
     "total": 31
    },
    "7": {
-    "left": 4,
+    "left": 0,
     "total": 31
    },
    "8": {
-    "left": 4,
+    "left": 0,
     "total": 28
    },
    "9": {
-    "left": 7,
+    "left": 0,
     "total": 34
    },
    "10": {
-    "left": 2,
+    "left": 0,
     "total": 28
    },
    "11": {
-    "left": 3,
+    "left": 0,
     "total": 31
    },
    "12": {
-    "left": 2,
+    "left": 0,
     "total": 24
    }
   }
@@ -13093,7 +13090,7 @@
     "ppg": 0.863
    },
    "catch_weeks": null,
-   "caught_weeks": 19.8
+   "caught_weeks": 19.7
   },
   "12": {
    "ahead": {
@@ -13103,7 +13100,7 @@
     "ppg": 0.854
    },
    "behind": null,
-   "catch_weeks": 19.8,
+   "catch_weeks": 19.7,
    "caught_weeks": null
   }
  }
