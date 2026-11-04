@@ -1,3 +1,5 @@
+import { dailyEditions } from "@/lib/recaps"
+import { RecapSummary } from "@/components/pool/daily-recap"
 import { NewspaperIcon, TrendingUpIcon, UsersIcon } from "lucide-react"
 
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,6 +14,7 @@ import { StandingsTable } from "@/components/pool/standings-table"
 import { fmt, MANAGERS, pct, PLAYERS, POOL, PTS } from "@/lib/pool"
 
 export default function StandingsPage() {
+  const edition = dailyEditions()[0]
   const favorite = [...MANAGERS].sort((a, b) => b.win_pct - a.win_pct)[0]
   const started = POOL.season_started
   const key = (p: { points: number; proj: number | null }) => (started ? p.points : p.proj ?? 0)
@@ -23,7 +26,7 @@ export default function StandingsPage() {
         <UpdatedLine />
       </div>
 
-      {started && POOL.headline.length > 0 && (
+      {started && edition ? <RecapSummary edition={edition} /> : started && POOL.headline.length > 0 && (
         <Card size="sm">
           <CardHeader>
             <CardTitle>{POOL.update === "evening" && POOL.since ? POOL.since[0].toUpperCase() + POOL.since.slice(1) : "La une du jour"}</CardTitle>

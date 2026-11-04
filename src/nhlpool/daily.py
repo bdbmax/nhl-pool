@@ -835,6 +835,10 @@ def run(season: int = SEASON, as_of: str | None = None, refresh: bool = True, ou
 
     rows = people.join(real.reindex(people.index)[["GP", "FP"]].fillna(0)).join(proj[["ppg", "games_left"]])
     snap = snapshot(today, as_of, M, rows.loc[D["playerId"]], od)
+    # Preserve scoring detail for dated recaps; older archives still support point/GP changes.
+    snap["stats"] = {str(pid): {k: int(real.loc[pid, k]) if pid in real.index else 0
+                              for k in ("G", "A", "GWG", "HT", "W", "OTL", "SO")}
+                     for pid in D["playerId"]}
     if not evening:
         hist.append(snap)
     awards = weekly_awards(hist, D, site_export.season_start(season), today, cfg)

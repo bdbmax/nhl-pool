@@ -1,3 +1,5 @@
+import { dailyEditions } from "@/lib/recaps"
+import { TeamDailyRecap } from "@/components/pool/daily-recap"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -25,6 +27,8 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
   const { id } = await params
   const m = managerById(Number(id))
   if (!m) notFound()
+  const edition = dailyEditions()[0]
+  const recap = edition?.teams.find(t => t.id === m.id)
   const roster = rosterOf(m.id)
   const started = POOL.season_started
 
@@ -61,6 +65,8 @@ export default async function TeamPage({ params }: { params: Promise<{ id: strin
           </Card>
         ))}
       </div>
+
+      {started && edition && recap && <TeamDailyRecap edition={edition} team={recap} />}
 
       {started && POOL.pace?.[String(m.id)] && (() => {
         const p = POOL.pace[String(m.id)]

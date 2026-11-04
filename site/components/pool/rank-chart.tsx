@@ -61,13 +61,13 @@ function Lines({ metric, focus }: { metric: Metric; focus: string }) {
         )}
         <ChartTooltip cursor content={<Tip focus={focus} />} />
         {teams.filter((m) => String(m.id) !== focus).map((m) => (
-          <Line key={m.id} dataKey={`t${m.id}`} type="linear" stroke={`var(--team-${m.id})`} strokeOpacity={0.45} strokeWidth={1.5}
+          <Line key={m.id} dataKey={`t${m.id}`} type="monotoneX" stroke={`var(--team-${m.id})`} strokeOpacity={0.45} strokeWidth={1.5}
             dot={false} activeDot={false} isAnimationActive={false} />
         ))}
         {/* Un contour de la même teinte, plus foncé, fait ressortir la ligne choisie, même quand sa couleur est pâle. */}
-        <Line dataKey={`t${focus}`} type="linear" stroke={`color-mix(in oklch, var(--team-${focus}), black 45%)`} strokeWidth={4.5}
+        <Line dataKey={`t${focus}`} type="monotoneX" stroke={`color-mix(in oklch, var(--team-${focus}), black 45%)`} strokeWidth={4.5}
           dot={false} activeDot={false} isAnimationActive={false} />
-        <Line dataKey={`t${focus}`} type="linear" stroke={`var(--team-${focus})`} strokeWidth={2.5}
+        <Line dataKey={`t${focus}`} type="monotoneX" stroke={`var(--team-${focus})`} strokeWidth={2.5}
           dot={false} activeDot={{ r: 4, strokeWidth: 2, stroke: "var(--background)" }} isAnimationActive={false} />
       </LineChart>
     </ChartContainer>
