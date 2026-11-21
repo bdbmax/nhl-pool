@@ -54,6 +54,8 @@ The daily job uses external projections only (ESPN, NHL.com, CBS, HockeyBangers)
 - GitHub Actions runs same-day updates every half hour from 12:05 to 01:35 Toronto time (`--evening`).
   These refresh injuries, trades and projections and count finished games once the NHL has posted the
   stats. The morning run writes the official record in `data/history`.
+- The Cloudflare Worker in `trigger/` also dispatches the GitHub workflow at 05:35 and at the
+  same-day slots. GitHub-hosted runners score the games, build the site and deploy to GitHub Pages.
 - The home page shows arrows (places and odds gained since the previous update), "La une du jour" (a few
   lines generated from the numbers) and "Cette semaine" (games left this week for each team's counted players).
 - Safety checks (192 players with three IDs, 12 teams of 16, no negative stats, no team losing more than
