@@ -29,7 +29,7 @@ Do this again the day before the draft, since Daily Faceoff lines and injuries c
 
 The site (`site/`, Next.js static export) is published to GitHub Pages at https://nhlpool.ca (domain on Cloudflare, DNS only; the old
 https://bdbmax.github.io/nhl-pool/ redirects there).
-`.github/workflows/daily.yml` runs every morning at 5:30 (Toronto) and can be started by hand
+`.github/workflows/daily.yml` runs every morning at 5:33 (Toronto) and can be started by hand
 (Actions tab, "Daily update", "Run workflow"):
 
 ```
@@ -51,17 +51,16 @@ The daily job uses external projections only (ESPN, NHL.com, CBS, HockeyBangers)
   surprise shrinks with the square root of the share of the season left.
 - Weekly awards are recomputed from `data/history` every Monday; season awards (Joueur, Pick, Déception,
   Malchance de l'année, Roi de la montagne, Montagnes russes) every morning.
-- Same-day updates every half hour from 12:05 to 1:35 (`--evening`) add the day's finished games and refresh
-  injuries, trades and projections, on the site only; games still in progress never count, and the 5:30 run
-  stays the official record in `data/history`. The Cloudflare Worker in `trigger/` starts them (and the 5:35
-  morning run) on time; GitHub's own schedule in `daily.yml` is the backup.
+- GitHub Actions runs same-day updates every half hour from 12:05 to 01:35 Toronto time (`--evening`).
+  These refresh injuries, trades and projections and count finished games once the NHL has posted the
+  stats. The morning run writes the official record in `data/history`.
 - The home page shows arrows (places and odds gained since the previous update), "La une du jour" (a few
   lines generated from the numbers) and "Cette semaine" (games left this week for each team's counted players).
 - Safety checks (192 players with three IDs, 12 teams of 16, no negative stats, no team losing more than
   2 real points overnight, skater goals and goalie wins reconcile with the scoreboard). If one fails, nothing
   is published, the site keeps yesterday's version and GitHub emails the failure.
-- If the 5:30 update fails, it is retried at 6:30 and 7:30 (only if that morning's history file is not saved;
-  see `scripts/gate.py`). The history is committed only after the site is published.
+- If the 5:33 update fails, it is retried at 6:33, 7:33 and 11:33 Toronto time as long as that morning's
+  history file is missing (see `scripts/gate.py`). The history is committed after the site is published.
 - A download that fails falls back to the previous copy (cached between runs). A drafted player whom no
   source projects keeps yesterday's pace. Draft IDs (NHL, ESPN, Daily Faceoff) are pinned in
   `data/pool_2026/draft_ids.csv`, so a player dropping off a lineup page keeps his IDs.

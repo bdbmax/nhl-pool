@@ -1,22 +1,7 @@
-"""Should this GitHub Actions run update the site, and how? Prints run=true/false and mode=morning/evening
-for $GITHUB_OUTPUT.
-
-GitHub cron has no time zones, so the workflow lists every UTC time that can be the right local time.
-Mornings: the run scheduled at 5:xx in Toronto always updates (EDT or EST); 6:xx and 7:xx are retries that
-update only if that morning's history file is not saved yet (5:xx failed or never started).
-Evenings: runs scheduled between 22:00 and 23:29 in Toronto are evening updates (today's finished games,
-site only); there are several, so a skipped or failed one is covered and later ones add games that ended
-since. Their UTC times fall on the next UTC day. Manual runs are morning updates unless MODE says otherwise.
-
-GitHub can start scheduled runs hours late (on Sept 30, 2026 the 22:35 evening slot started at 4:56). So:
-an evening slot more than 2 hours late does nothing (the next morning covers those games), and a morning
-slot runs whenever that morning's update is still missing, but a late one (2+ hours) never redoes a
-morning that is already saved.
-Standard library only (runs before Python is set up).
-"""
+"""Choose whether and how to update the site from a Toronto-time GitHub Actions schedule."""
 import os
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, time, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -32,22 +17,29 @@ def decide(event: str, schedule: str, now_utc: datetime, history: Path) -> tuple
 def decide_mode(event: str, schedule: str, now_utc: datetime, history: Path) -> tuple[bool, str, str]:
     if event != "schedule":
         return True, f"{event}: always runs", "morning"
-    minute, hour = (int(x) for x in schedule.split()[:2])
-    # The most recent time this cron was due (a run can start hours late, even past midnight UTC).
-    due = now_utc.replace(hour=hour, minute=minute, second=0, microsecond=0)
-    if due > now_utc:
-        due -= timedelta(days=1)
+    minute_field, hour = schedule.split()[:2]
+    now = now_utc.astimezone(TORONTO)
+    # Each cron covers one local hour. Keep its date and mode even when GitHub starts late.
+    slots = [
+        datetime.combine(day, time(int(hour), int(minute), fold=fold), TORONTO).astimezone(timezone.utc)
+        for day in (now.date(), now.date() - timedelta(days=1))
+        for minute in minute_field.split(",")
+        for fold in (0, 1)
+    ]
+    due = max(slot for slot in slots if slot <= now_utc)
     late = now_utc - due > LATE
     planned = due.astimezone(TORONTO)
     saved = (history / f"{planned.date().isoformat()}.json").exists()
     label = planned.strftime("%H:%M %Z") + (f", started {int((now_utc - due).total_seconds() // 60)} min late" if late else "")
-    if planned.hour in (5, 6, 7):
+    if planned.hour in (5, 6, 7, 11):
+        if planned.date() != now.date():
+            return False, f"scheduled {label}: the next morning's schedule covers it", "morning"
         if not saved:
             return True, f"scheduled {label}: the morning update (not saved yet)", "morning"
         if planned.hour == 5 and not late:
             return True, f"scheduled {label}: the morning update", "morning"
         return False, f"scheduled {label}: this morning's update is already saved", "morning"
-    if planned.hour == 22 or (planned.hour == 23 and planned.minute < 30):
+    if planned.hour >= 12 or planned.hour <= 1:
         if late:
             return False, f"scheduled {label}: too late for an evening update (the morning update covers it)", "evening"
         return True, f"scheduled {label}: an evening update", "evening"

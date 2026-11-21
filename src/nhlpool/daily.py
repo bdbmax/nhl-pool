@@ -6,7 +6,7 @@
                                                  # replay: last season's real stats up to a date (a test)
 
 Runs every morning at 5:30 (Toronto) from GitHub Actions (.github/workflows/daily.yml), and every half hour
-from noon to 1:30 as a same-day update (--evening), started by the Cloudflare Worker in trigger/.
+from noon to 1:35 as a same-day update (--evening), scheduled by GitHub Actions.
 Nothing here uses our own model: projections come from ESPN, NHL.com, CBS and HockeyBangers
 (external.py), real stats from the NHL stats API, injuries from ESPN and Daily Faceoff.
 

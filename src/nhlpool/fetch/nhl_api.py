@@ -1,7 +1,10 @@
 """NHL public APIs: api.nhle.com/stats/rest (season tables) and api-web.nhle.com."""
+import json
+from urllib.parse import urlencode
+
 import pandas as pd
 
-from .http import cached_json
+from .http import _get, cached_download, cached_json
 
 REST = "https://api.nhle.com/stats/rest/en"
 WEB = "https://api-web.nhle.com/v1"
@@ -114,27 +117,55 @@ def playoffs(kind: str, season: int) -> pd.DataFrame:
 
 # --- Season to date (the daily job). Always re-downloaded: these change every night. ---
 
-def _to_date(kind: str, report: str, season: int, as_of: str, extra: str = "") -> pd.DataFrame:
-    """Per-player totals over regular-season games up to and including `as_of` (YYYY-MM-DD)."""
-    url = (f"{REST}/{kind}/{report}?isAggregate=true&isGame=true&limit=-1"
-           f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20gameDate%3C=%22{as_of}%22{extra}")
-    rel = f"nhl_rest/to_date/{kind}_{report}_{season}_{as_of}{'_ht' if extra else ''}.json"
-    return pd.DataFrame(cached_json(url, rel, refresh=True)["data"])
+def _game_report(kind: str, filters: str, cache_name: str, aggregate: bool = False) -> pd.DataFrame:
+    """Fetch a complete report before replacing the cached copy."""
+    key_fields = ("playerId",) if aggregate else ("gameId", "playerId")
+    params = {
+        "isAggregate": str(aggregate).lower(),
+        "isGame": "true",
+        "cayenneExp": filters,
+        "limit": 100,  # the API caps responses at 100 rows, including requests for limit=-1
+        "sort": json.dumps([{"property": field, "direction": "ASC"} for field in key_fields]),
+    }
+
+    def download() -> str:
+        rows, seen = [], set()
+        total = None
+        while total is None or len(rows) < total:
+            query = urlencode({**params, "start": len(rows)})
+            page = _get(f"{REST}/{kind}/summary?{query}").json()
+            if total is None:
+                total = page["total"]
+            batch = page["data"]
+            keys = {tuple(row[field] for field in key_fields) for row in batch}
+            if (page["total"] != total or len(rows) + len(batch) > total
+                    or (not batch and len(rows) < total) or len(keys) != len(batch) or seen & keys):
+                raise RuntimeError(f"Inconsistent NHL {cache_name} at offset {len(rows)} of {total}")
+            rows.extend(batch)
+            seen.update(keys)
+        return json.dumps({"data": rows, "total": total}, separators=(",", ":"))
+
+    report = json.loads(cached_download(f"nhl_rest/to_date/{cache_name}.json", True, download))
+    rows = report["data"]
+    if len(rows) != report["total"]:
+        raise RuntimeError(f"Incomplete NHL {cache_name}: {len(rows)} of {report['total']} rows")
+    return pd.DataFrame(rows)
 
 
 def skaters_to_date(season: int, as_of: str) -> pd.DataFrame:
-    return _to_date("skater", "summary", season, as_of)
+    return _game_report("skater", f'seasonId={season} and gameTypeId=2 and gameDate<="{as_of}"',
+                        f"skater_summary_{season}_{as_of}", aggregate=True)
 
 
 def goalies_to_date(season: int, as_of: str) -> pd.DataFrame:
-    return _to_date("goalie", "summary", season, as_of)
+    return _game_report("goalie", f'seasonId={season} and gameTypeId=2 and gameDate<="{as_of}"',
+                        f"goalie_summary_{season}_{as_of}", aggregate=True)
 
 
 def hat_tricks_to_date(season: int, as_of: str) -> pd.DataFrame:
     """Every skater game with 3+ goals up to `as_of` (one row per game)."""
-    url = (f"{REST}/skater/summary?isAggregate=false&isGame=true&limit=-1"
-           f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20goals%3E=3%20and%20gameDate%3C=%22{as_of}%22")
-    return pd.DataFrame(cached_json(url, f"nhl_rest/to_date/hat_tricks_{season}_{as_of}.json", refresh=True)["data"])
+    filters = f'seasonId={season} and gameTypeId=2 and goals>=3 and gameDate<="{as_of}"'
+    return _game_report("skater", filters, f"hat_tricks_{season}_{as_of}")
 
 
 def schedule(team: str, season: int, refresh: bool = True) -> list[dict]:
@@ -145,13 +176,11 @@ def schedule(team: str, season: int, refresh: bool = True) -> list[dict]:
 
 def goalie_games_to_date(season: int, as_of: str) -> pd.DataFrame:
     """Every goalie appearance up to `as_of`, with the team he played for (about 2,800 rows a season)."""
-    url = (f"{REST}/goalie/summary?isAggregate=false&isGame=true&limit=-1"
-           f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20gameDate%3C=%22{as_of}%22")
-    return pd.DataFrame(cached_json(url, f"nhl_rest/to_date/goalie_games_{season}_{as_of}.json", refresh=True)["data"])
+    return _game_report("goalie", f'seasonId={season} and gameTypeId=2 and gameDate<="{as_of}"',
+                        f"goalie_games_{season}_{as_of}")
 
 
 def skater_games_on(season: int, day: str) -> pd.DataFrame:
     """Every skater line of one day's games, with the game id (the evening update keeps finished games only)."""
-    url = (f"{REST}/skater/summary?isAggregate=false&isGame=true&limit=-1"
-           f"&cayenneExp=seasonId={season}%20and%20gameTypeId=2%20and%20gameDate=%22{day}%22")
-    return pd.DataFrame(cached_json(url, f"nhl_rest/to_date/skater_games_{season}_{day}.json", refresh=True)["data"])
+    return _game_report("skater", f'seasonId={season} and gameTypeId=2 and gameDate="{day}"',
+                        f"skater_games_{season}_{day}")

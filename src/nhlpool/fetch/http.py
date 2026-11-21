@@ -5,6 +5,7 @@ sources (rosters, lines, projections) pass refresh=True to re-download.
 """
 import json
 import time
+from collections.abc import Callable
 from pathlib import Path
 
 import requests
@@ -43,11 +44,15 @@ def _get(url: str, headers: dict | None = None, retries: int = 6) -> requests.Re
 
 
 def cached_text(url: str, rel_path: str, refresh: bool = False, headers: dict | None = None) -> str:
+    return cached_download(rel_path, refresh, lambda: _get(url, headers=headers).text)
+
+
+def cached_download(rel_path: str, refresh: bool, download: Callable[[], str]) -> str:
     path: Path = RAW / rel_path
     if path.exists() and not refresh:
         return path.read_text()
     try:
-        text = _get(url, headers=headers).text
+        text = download()
     except Exception as e:
         # A re-download failed: keep going with the previous copy when there is one.
         if path.exists():
