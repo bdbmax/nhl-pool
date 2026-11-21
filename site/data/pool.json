@@ -6,8 +6,8 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-21T16:48+00:00",
- "as_of": "2026-11-20",
+ "generated": "2026-11-21T17:09+00:00",
+ "as_of": "2026-11-21",
  "season_start": "2026-09-29",
  "season_started": true,
  "games_played": 22.4,
@@ -54,7 +54,7 @@
     0.4
    ],
    "rank_change": 0,
-   "win_change": -2.6
+   "win_change": -0.0
   },
   {
    "id": 9,
@@ -81,8 +81,8 @@
     2.2,
     0.5
    ],
-   "rank_change": 1,
-   "win_change": 3.8
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 2,
@@ -109,8 +109,8 @@
     2.0,
     0.3
    ],
-   "rank_change": -1,
-   "win_change": 1.6
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 3,
@@ -138,7 +138,7 @@
     0.3
    ],
    "rank_change": 0,
-   "win_change": -0.9
+   "win_change": 0.0
   },
   {
    "id": 6,
@@ -165,8 +165,8 @@
     1.0,
     0.2
    ],
-   "rank_change": 1,
-   "win_change": -0.7
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 10,
@@ -193,8 +193,8 @@
     2.7,
     0.6
    ],
-   "rank_change": 1,
-   "win_change": 1.7
+   "rank_change": 0,
+   "win_change": -0.0
   },
   {
    "id": 7,
@@ -221,8 +221,8 @@
     2.7,
     0.7
    ],
-   "rank_change": -2,
-   "win_change": -2.6
+   "rank_change": 0,
+   "win_change": 0.0
   },
   {
    "id": 11,
@@ -250,7 +250,7 @@
     2.1
    ],
    "rank_change": 0,
-   "win_change": -0.3
+   "win_change": 0.0
   },
   {
    "id": 4,
@@ -334,7 +334,7 @@
     9.1
    ],
    "rank_change": 0,
-   "win_change": 0.1
+   "win_change": 0.0
   },
   {
    "id": 12,
@@ -11367,65 +11367,62 @@
    ]
   }
  ],
- "update": "morning",
- "compared_to": "2026-11-19",
- "since": "depuis la dernière mise à jour",
+ "update": "evening",
+ "compared_to": "2026-11-21",
+ "since": "depuis ce matin",
  "headline": [
-  "D. Archambault garde la tête, 10 points devant B. Belanger.",
-  "Travis Konecny (M. Bélanger) : 5 points de pool depuis la dernière mise à jour.",
-  "Les odds de B. Belanger passent de 5,2 % à 9,0 %.",
-  "Oliver Ekman-Larsson (J. Gobeil) est maintenant blessé."
+  "D. Archambault garde la tête, 10 points devant B. Belanger."
  ],
  "week": {
   "start": "2026-11-16",
   "end": "2026-11-22",
   "managers": {
    "1": {
-    "left": 12,
+    "left": 3,
     "total": 32
    },
    "2": {
-    "left": 10,
+    "left": 3,
     "total": 25
    },
    "3": {
-    "left": 13,
+    "left": 4,
     "total": 31
    },
    "4": {
-    "left": 12,
+    "left": 3,
     "total": 31
    },
    "5": {
-    "left": 11,
+    "left": 2,
     "total": 26
    },
    "6": {
-    "left": 16,
+    "left": 6,
     "total": 33
    },
    "7": {
-    "left": 8,
+    "left": 3,
     "total": 19
    },
    "8": {
-    "left": 12,
+    "left": 3,
     "total": 30
    },
    "9": {
-    "left": 13,
+    "left": 2,
     "total": 36
    },
    "10": {
-    "left": 11,
+    "left": 5,
     "total": 27
    },
    "11": {
-    "left": 13,
+    "left": 3,
     "total": 32
    },
    "12": {
-    "left": 12,
+    "left": 3,
     "total": 31
    }
   }
@@ -15048,7 +15045,7 @@
     "ppg": 1.173
    },
    "catch_weeks": null,
-   "caught_weeks": 13.1
+   "caught_weeks": 13.0
   },
   "9": {
    "ahead": {
@@ -15063,8 +15060,8 @@
     "left_diff": 0,
     "ppg": 1.18
    },
-   "catch_weeks": 13.1,
-   "caught_weeks": 12.8
+   "catch_weeks": 13.0,
+   "caught_weeks": 12.7
   },
   "2": {
    "ahead": {
@@ -15079,7 +15076,7 @@
     "left_diff": -10,
     "ppg": 1.157
    },
-   "catch_weeks": 12.8,
+   "catch_weeks": 12.7,
    "caught_weeks": null
   },
   "3": {
@@ -15128,7 +15125,7 @@
     "ppg": 1.174
    },
    "catch_weeks": null,
-   "caught_weeks": 7.7
+   "caught_weeks": 7.6
   },
   "7": {
    "ahead": {
@@ -15143,7 +15140,7 @@
     "left_diff": -4,
     "ppg": 1.085
    },
-   "catch_weeks": 7.7,
+   "catch_weeks": 7.6,
    "caught_weeks": null
   },
   "11": {
