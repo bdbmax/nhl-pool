@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-22T23:08+00:00",
+ "generated": "2026-11-22T23:38+00:00",
  "as_of": "2026-11-22",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -47,7 +47,7 @@
     11.0,
     9.7,
     8.2,
-    7.2,
+    7.1,
     5.5,
     3.7,
     1.6,
@@ -93,7 +93,7 @@
    "points": 281,
    "proj_consensus": 894.0,
    "expected_total": 934.0,
-   "expected_finish": 5.18,
+   "expected_finish": 5.19,
    "win_pct": 9.6,
    "finish_odds": [
     9.6,
@@ -125,7 +125,7 @@
    "win_pct": 22.4,
    "finish_odds": [
     22.4,
-    16.7,
+    16.8,
     13.2,
     10.9,
     9.4,
@@ -160,7 +160,7 @@
     10.8,
     11.8,
     13.0,
-    13.1,
+    13.0,
     10.2,
     6.0,
     1.4
@@ -238,11 +238,11 @@
    "finish_odds": [
     10.9,
     11.0,
-    11.5,
+    11.4,
     11.4,
     10.6,
     10.6,
-    9.5,
+    9.4,
     8.7,
     7.5,
     5.2,
@@ -430,7 +430,7 @@
    "sources": {
     "ESPN": 95.6,
     "NHL.com": 101.7,
-    "CBS": 98.5,
+    "CBS": 98.4,
     "HockeyBangers": 91.8
    },
    "age": 30.1,
@@ -727,7 +727,7 @@
    "sources": {
     "ESPN": 76.3,
     "NHL.com": 82.9,
-    "CBS": 75.0,
+    "CBS": 74.9,
     "HockeyBangers": 76.1
    },
    "age": 30.0,
@@ -1537,14 +1537,14 @@
     "SO": 2,
     "G": 0
    },
-   "proj": 59.5,
-   "proj_left": 38.5,
+   "proj": 59.3,
+   "proj_left": 38.3,
    "games_left": 25.0,
    "proj_gp": 35.0,
    "sources": {
     "ESPN": 59.6,
     "NHL.com": null,
-    "CBS": 59.4,
+    "CBS": 59.0,
     "HockeyBangers": null
    },
    "age": 31.6,
@@ -1982,8 +1982,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 57.0,
-   "proj_left": 42.0,
+   "proj": 57.1,
+   "proj_left": 42.1,
    "games_left": 54.0,
    "proj_gp": 78.0,
    "sources": {
@@ -2428,8 +2428,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 44.8,
-   "proj_left": 34.8,
+   "proj": 44.9,
+   "proj_left": 34.9,
    "games_left": 58.0,
    "proj_gp": 83.0,
    "sources": {
@@ -3356,8 +3356,8 @@
     "GWG": 3,
     "HT": 0
    },
-   "proj": 144.2,
-   "proj_left": 95.2,
+   "proj": 144.1,
+   "proj_left": 95.1,
    "games_left": 55.0,
    "proj_gp": 80.0,
    "sources": {
@@ -4031,7 +4031,7 @@
    "sources": {
     "ESPN": 88.1,
     "NHL.com": 94.2,
-    "CBS": 87.2,
+    "CBS": 87.1,
     "HockeyBangers": 88.6
    },
    "age": 23.5,
@@ -6705,7 +6705,7 @@
    "sources": {
     "ESPN": 83.2,
     "NHL.com": null,
-    "CBS": 72.5,
+    "CBS": 72.4,
     "HockeyBangers": null
    },
    "age": 31.3,
@@ -8172,6 +8172,38 @@
    "age": 26.7
   },
   {
+   "nhl_id": 8484800,
+   "espn_id": 5216877,
+   "df_id": 36542,
+   "slug": "berkly-catton",
+   "name": "Berkly Catton",
+   "pos": "F",
+   "nhl_team": "SEA",
+   "number": 27,
+   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8484800.png",
+   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5216877.png",
+   "injury": null,
+   "points": 19,
+   "gp": 20,
+   "stats": {
+    "G": 8,
+    "A": 10,
+    "GWG": 0,
+    "HT": 1
+   },
+   "proj": 52.7,
+   "proj_left": 33.7,
+   "games_left": 53.0,
+   "proj_gp": 73.0,
+   "sources": {
+    "ESPN": null,
+    "NHL.com": 57.3,
+    "CBS": null,
+    "HockeyBangers": 48.0
+   },
+   "age": 20.9
+  },
+  {
    "nhl_id": 8484158,
    "espn_id": 5149211,
    "df_id": 35106,
@@ -8429,38 +8461,6 @@
     "HockeyBangers": 49.4
    },
    "age": 28.6
-  },
-  {
-   "nhl_id": 8484800,
-   "espn_id": 5216877,
-   "df_id": 36542,
-   "slug": "berkly-catton",
-   "name": "Berkly Catton",
-   "pos": "F",
-   "nhl_team": "SEA",
-   "number": 27,
-   "photo": "https://assets.nhle.com/mugs/nhl/20262027/SEA/8484800.png",
-   "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5216877.png",
-   "injury": null,
-   "points": 18,
-   "gp": 20,
-   "stats": {
-    "G": 8,
-    "A": 9,
-    "GWG": 0,
-    "HT": 1
-   },
-   "proj": 50.8,
-   "proj_left": 32.8,
-   "games_left": 53.0,
-   "proj_gp": 73.0,
-   "sources": {
-    "ESPN": null,
-    "NHL.com": 55.4,
-    "CBS": null,
-    "HockeyBangers": 46.2
-   },
-   "age": 20.9
   }
  ],
  "nhl_teams": [
