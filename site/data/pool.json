@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-23T23:08+00:00",
+ "generated": "2026-11-23T23:38+00:00",
  "as_of": "2026-11-23",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -76,7 +76,7 @@
     11.2,
     11.8,
     10.9,
-    9.8,
+    9.9,
     6.3,
     2.8,
     0.6
@@ -161,7 +161,7 @@
     11.6,
     11.3,
     10.9,
-    7.6,
+    7.5,
     3.6,
     0.7
    ],
@@ -213,7 +213,7 @@
     9.6,
     10.3,
     10.7,
-    10.8,
+    10.7,
     11.2,
     11.0,
     9.6,
@@ -234,9 +234,9 @@
    "proj_consensus": 906.0,
    "expected_total": 944.0,
    "expected_finish": 4.94,
-   "win_pct": 12.9,
+   "win_pct": 13.0,
    "finish_odds": [
-    12.9,
+    13.0,
     12.1,
     11.8,
     11.5,
@@ -250,7 +250,7 @@
     0.4
    ],
    "rank_change": 0,
-   "win_change": 2.3
+   "win_change": 2.4
   },
   {
    "id": 4,
@@ -329,7 +329,7 @@
     6.1,
     9.4,
     14.5,
-    23.5,
+    23.6,
     23.5,
     9.7
    ],
@@ -358,7 +358,7 @@
     1.4,
     2.9,
     7.3,
-    19.3,
+    19.2,
     67.6
    ],
    "rank_change": 0,
@@ -2985,8 +2985,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 46.9,
-   "proj_left": 39.9,
+   "proj": 46.8,
+   "proj_left": 39.8,
    "games_left": 48.0,
    "proj_gp": 62.0,
    "sources": {
@@ -5515,7 +5515,7 @@
    "sources": {
     "ESPN": 62.5,
     "NHL.com": 64.4,
-    "CBS": 63.5,
+    "CBS": 63.4,
     "HockeyBangers": 60.7
    },
    "age": 27.3,
@@ -6444,7 +6444,7 @@
    "sources": {
     "ESPN": 100.9,
     "NHL.com": 98.1,
-    "CBS": 104.8,
+    "CBS": 104.9,
     "HockeyBangers": 99.7
    },
    "age": 28.3,
@@ -6705,7 +6705,7 @@
    "sources": {
     "ESPN": 83.2,
     "NHL.com": null,
-    "CBS": 72.4,
+    "CBS": 72.3,
     "HockeyBangers": null
    },
    "age": 31.3,
@@ -6927,7 +6927,7 @@
    "sources": {
     "ESPN": 81.7,
     "NHL.com": 89.0,
-    "CBS": 84.9,
+    "CBS": 85.0,
     "HockeyBangers": 82.3
    },
    "age": 27.3,
@@ -8353,8 +8353,8 @@
     "SO": 0,
     "G": 0
    },
-   "proj": 64.2,
-   "proj_left": 46.2,
+   "proj": 64.1,
+   "proj_left": 46.1,
    "games_left": 40.0,
    "proj_gp": 57.0,
    "sources": {
