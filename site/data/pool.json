@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-24T04:38+00:00",
+ "generated": "2026-11-24T05:08+00:00",
  "as_of": "2026-11-23",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -11534,10 +11534,10 @@
  ],
  "update": "evening",
  "compared_to": "2026-11-23",
- "since": "depuis ce matin",
+ "since": "depuis hier matin",
  "headline": [
   "D. Archambault garde la tête, 5 points devant B. Belanger.",
-  "Gabriel Vilardi (B. Belanger) : 4 points de pool depuis ce matin.",
+  "Gabriel Vilardi (B. Belanger) : 4 points de pool depuis hier matin.",
   "Les odds de P. Allard passent de 23,7 % à 21,0 %.",
   "Jacob Trouba (P. Allard) est maintenant blessé."
  ],
@@ -11682,664 +11682,132 @@
   }
  },
  "tonight": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "managers": {
    "1": [
     {
-     "nhl_id": 8483495,
-     "team": "CGY",
-     "opp": "OTT",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8481605,
-     "team": "ANA",
-     "opp": "SEA",
-     "home": false,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8482661,
-     "team": "MIN",
-     "opp": "SJS",
-     "home": false,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8484227,
-     "team": "SJS",
-     "opp": "MIN",
+     "nhl_id": 8478402,
+     "team": "EDM",
+     "opp": "VGK",
      "home": true,
-     "start": "2026-11-24T03:00:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
     },
     {
-     "nhl_id": 8475683,
-     "team": "TOR",
-     "opp": "NYI",
+     "nhl_id": 8478483,
+     "team": "VGK",
+     "opp": "EDM",
      "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
+     "start": "2026-11-25T01:00:00Z",
+     "counts": true
     },
     {
-     "nhl_id": 8477946,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
+     "nhl_id": 8477447,
+     "team": "VGK",
+     "opp": "EDM",
+     "home": false,
+     "start": "2026-11-25T01:00:00Z",
      "counts": false
     }
    ],
    "2": [
     {
-     "nhl_id": 8480002,
-     "team": "NJD",
-     "opp": "CBJ",
-     "home": true,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8481559,
-     "team": "NJD",
-     "opp": "CBJ",
-     "home": true,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8478493,
-     "team": "MIN",
-     "opp": "SJS",
+     "nhl_id": 8475913,
+     "team": "VGK",
+     "opp": "EDM",
      "home": false,
-     "start": "2026-11-24T03:00:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
     },
     {
-     "nhl_id": 8483485,
-     "team": "CBJ",
-     "opp": "NJD",
-     "home": false,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8482105,
-     "team": "OTT",
-     "opp": "CGY",
+     "nhl_id": 8477465,
+     "team": "EDM",
+     "opp": "VGK",
      "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8482487,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    }
-   ],
-   "3": [
-    {
-     "nhl_id": 8476389,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8477960,
-     "team": "LAK",
-     "opp": "MTL",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8482116,
-     "team": "OTT",
-     "opp": "CGY",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8485366,
-     "team": "NYI",
-     "opp": "TOR",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8477986,
-     "team": "SEA",
-     "opp": "ANA",
-     "home": true,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8476885,
-     "team": "SJS",
-     "opp": "MIN",
-     "home": true,
-     "start": "2026-11-24T03:00:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
     }
    ],
+   "3": [],
    "4": [
     {
-     "nhl_id": 8477500,
-     "team": "NYI",
-     "opp": "TOR",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480208,
-     "team": "OTT",
-     "opp": "CGY",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8481540,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8475200,
-     "team": "SJS",
-     "opp": "MIN",
-     "home": true,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8484801,
-     "team": "SJS",
-     "opp": "MIN",
-     "home": true,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8481528,
-     "team": "OTT",
-     "opp": "CGY",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
+     "nhl_id": 8478397,
+     "team": "VGK",
+     "opp": "EDM",
+     "home": false,
+     "start": "2026-11-25T01:00:00Z",
      "counts": false
     }
    ],
    "5": [
     {
-     "nhl_id": 8482684,
-     "team": "NJD",
-     "opp": "CBJ",
+     "nhl_id": 8475218,
+     "team": "EDM",
+     "opp": "VGK",
      "home": true,
-     "start": "2026-11-24T00:00:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
     },
     {
-     "nhl_id": 8482720,
-     "team": "CBJ",
-     "opp": "NJD",
-     "home": false,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8478178,
-     "team": "TOR",
-     "opp": "NYI",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8477955,
-     "team": "SEA",
-     "opp": "ANA",
+     "nhl_id": 8475786,
+     "team": "EDM",
+     "opp": "VGK",
      "home": true,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8483445,
-     "team": "ANA",
-     "opp": "SEA",
-     "home": false,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8477504,
-     "team": "WPG",
-     "opp": "UTA",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": false
     }
    ],
    "6": [
     {
-     "nhl_id": 8476460,
-     "team": "WPG",
-     "opp": "UTA",
+     "nhl_id": 8477934,
+     "team": "EDM",
+     "opp": "VGK",
      "home": true,
-     "start": "2026-11-24T00:30:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
-    },
-    {
-     "nhl_id": 8478398,
-     "team": "WPG",
-     "opp": "UTA",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8478407,
-     "team": "SEA",
-     "opp": "ANA",
-     "home": true,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8475171,
-     "team": "TOR",
-     "opp": "NYI",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8478445,
-     "team": "NYI",
-     "opp": "TOR",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
     }
    ],
    "7": [
     {
-     "nhl_id": 8477951,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
+     "nhl_id": 8480803,
+     "team": "EDM",
+     "opp": "VGK",
+     "home": true,
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
-    },
-    {
-     "nhl_id": 8478550,
-     "team": "LAK",
-     "opp": "MTL",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480893,
-     "team": "TOR",
-     "opp": "NYI",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8484768,
-     "team": "CGY",
-     "opp": "OTT",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8475166,
-     "team": "TOR",
-     "opp": "NYI",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8478872,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8482122,
-     "team": "MIN",
-     "opp": "SJS",
-     "home": false,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": false
     }
    ],
    "8": [
     {
-     "nhl_id": 8476853,
-     "team": "TOR",
-     "opp": "NYI",
+     "nhl_id": 8478396,
+     "team": "VGK",
+     "opp": "EDM",
      "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8478469,
-     "team": "OTT",
-     "opp": "CGY",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8479318,
-     "team": "TOR",
-     "opp": "NYI",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480865,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8484166,
-     "team": "CBJ",
-     "opp": "NJD",
-     "home": false,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8483515,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": false
     }
    ],
-   "9": [
-    {
-     "nhl_id": 8479410,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480014,
-     "team": "WPG",
-     "opp": "UTA",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8482730,
-     "team": "LAK",
-     "opp": "MTL",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8483431,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8483457,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480843,
-     "team": "ANA",
-     "opp": "SEA",
-     "home": false,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8484153,
-     "team": "ANA",
-     "opp": "SEA",
-     "home": false,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8478864,
-     "team": "MIN",
-     "opp": "SJS",
-     "home": false,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8481557,
-     "team": "MIN",
-     "opp": "SJS",
-     "home": false,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8476462,
-     "team": "NJD",
-     "opp": "CBJ",
-     "home": true,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8482982,
-     "team": "CBJ",
-     "opp": "NJD",
-     "home": false,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8484984,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    }
-   ],
-   "10": [
-    {
-     "nhl_id": 8479407,
-     "team": "NJD",
-     "opp": "CBJ",
-     "home": true,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480800,
-     "team": "MIN",
-     "opp": "SJS",
-     "home": false,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8476945,
-     "team": "NJD",
-     "opp": "CBJ",
-     "home": true,
-     "start": "2026-11-24T00:00:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8477950,
-     "team": "NYI",
-     "opp": "TOR",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8482667,
-     "team": "OTT",
-     "opp": "CGY",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    }
-   ],
+   "9": [],
+   "10": [],
    "11": [
     {
-     "nhl_id": 8478460,
-     "team": "CBJ",
-     "opp": "NJD",
+     "nhl_id": 8478403,
+     "team": "VGK",
+     "opp": "EDM",
      "home": false,
-     "start": "2026-11-24T00:00:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": true
     },
     {
-     "nhl_id": 8477939,
-     "team": "TOR",
-     "opp": "NYI",
+     "nhl_id": 8479394,
+     "team": "VGK",
+     "opp": "EDM",
      "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8478009,
-     "team": "NYI",
-     "opp": "TOR",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8479343,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8484762,
-     "team": "ANA",
-     "opp": "SEA",
-     "home": false,
-     "start": "2026-11-24T02:40:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8482699,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8484152,
-     "team": "SJS",
-     "opp": "MIN",
-     "home": true,
-     "start": "2026-11-24T03:00:00Z",
+     "start": "2026-11-25T01:00:00Z",
      "counts": false
     }
    ],
-   "12": [
-    {
-     "nhl_id": 8476875,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8476999,
-     "team": "OTT",
-     "opp": "CGY",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8477346,
-     "team": "UTA",
-     "opp": "WPG",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8480018,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": true
-    },
-    {
-     "nhl_id": 8475184,
-     "team": "MTL",
-     "opp": "LAK",
-     "home": true,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8486067,
-     "team": "TOR",
-     "opp": "NYI",
-     "home": false,
-     "start": "2026-11-24T00:30:00Z",
-     "counts": false
-    },
-    {
-     "nhl_id": 8477498,
-     "team": "SJS",
-     "opp": "MIN",
-     "home": true,
-     "start": "2026-11-24T03:00:00Z",
-     "counts": false
-    }
-   ]
+   "12": []
   }
  },
  "hot_cold": {
