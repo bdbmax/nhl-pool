@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-25T06:57+00:00",
+ "generated": "2026-11-25T10:39+00:00",
  "as_of": "2026-11-24",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -10977,6 +10977,51 @@
     "11": 5.16,
     "12": 0.01
    }
+  },
+  {
+   "date": "2026-11-25",
+   "ranks": {
+    "1": 1,
+    "2": 3,
+    "3": 4,
+    "4": 9,
+    "5": 11,
+    "6": 6,
+    "7": 8,
+    "8": 10,
+    "9": 2,
+    "10": 7,
+    "11": 5,
+    "12": 12
+   },
+   "points": {
+    "1": 304,
+    "2": 287,
+    "3": 285,
+    "4": 255,
+    "5": 223,
+    "6": 278,
+    "7": 271,
+    "8": 226,
+    "9": 302,
+    "10": 272,
+    "11": 283,
+    "12": 189
+   },
+   "win": {
+    "1": 14.26,
+    "2": 9.0,
+    "3": 21.11,
+    "4": 5.33,
+    "5": 0.4,
+    "6": 16.04,
+    "7": 12.87,
+    "8": 0.11,
+    "9": 7.87,
+    "10": 7.09,
+    "11": 5.91,
+    "12": 0.01
+   }
   }
  ],
  "awards": [
@@ -11577,12 +11622,12 @@
    ]
   }
  ],
- "update": "evening",
+ "update": "morning",
  "compared_to": "2026-11-24",
- "since": "depuis hier matin",
+ "since": "depuis hier",
  "headline": [
   "D. Archambault prend la tête du classement.",
-  "Jack Eichel (S. Marcoux) : 3 points de pool depuis hier matin."
+  "Jack Eichel (S. Marcoux) : 3 points de pool hier."
  ],
  "week": {
   "start": "2026-11-23",
@@ -13090,52 +13135,59 @@
   }
  },
  "hot_cold": {
-  "from": "2026-11-17",
-  "to": "2026-11-24",
+  "from": "2026-11-18",
+  "to": "2026-11-25",
   "hot": [
    {
     "nhl_id": 8483506,
-    "points": 10,
-    "games": 4,
-    "expected": 2.5,
-    "diff": 7.5
-   },
-   {
-    "nhl_id": 8481557,
-    "points": 12,
-    "games": 4,
-    "expected": 5.2,
-    "diff": 6.8
-   },
-   {
-    "nhl_id": 8478493,
-    "points": 10,
-    "games": 4,
-    "expected": 3.7,
-    "diff": 6.3
-   },
-   {
-    "nhl_id": 8480023,
-    "points": 10,
-    "games": 4,
-    "expected": 4.3,
-    "diff": 5.7
+    "points": 7,
+    "games": 3,
+    "expected": 1.9,
+    "diff": 5.1
    },
    {
     "nhl_id": 8479979,
-    "points": 9,
+    "points": 7,
+    "games": 2,
+    "expected": 2.5,
+    "diff": 4.5
+   },
+   {
+    "nhl_id": 8478439,
+    "points": 6,
+    "games": 2,
+    "expected": 1.8,
+    "diff": 4.2
+   },
+   {
+    "nhl_id": 8481557,
+    "points": 8,
     "games": 3,
-    "expected": 3.7,
-    "diff": 5.3
+    "expected": 3.9,
+    "diff": 4.1
+   },
+   {
+    "nhl_id": 8478460,
+    "points": 8,
+    "games": 3,
+    "expected": 3.9,
+    "diff": 4.1
    }
   ],
   "cold": [
    {
-    "nhl_id": 8480803,
+    "nhl_id": 8477934,
     "points": 3,
     "games": 4,
-    "expected": 6.6,
-    "diff": -3.6
+    "expected": 6.8,
+    "diff": -3.8
+   },
+   {
+    "nhl_id": 8478402,
+    "points": 4,
+    "games": 4,
+    "expected": 7.8,
+    "diff": -3.8
    },
    {
     "nhl_id": 8481540,
@@ -13157,13 +13209,6 @@
     "games": 3,
     "expected": 3.0,
     "diff": -3.0
-   },
-   {
-    "nhl_id": 8484873,
-    "points": 0,
-    "games": 3,
-    "expected": 2.9,
-    "diff": -2.9
    }
   ]
  },
@@ -13177,7 +13222,7 @@
    "2026-11-02",
    "2026-11-09",
    "2026-11-23",
-   "2026-11-24"
+   "2026-11-25"
   ],
   "points": {
    "8478402": [
@@ -13189,7 +13234,7 @@
     39,
     47,
     58,
-    58
+    59
    ],
    "8478420": [
     0,
@@ -13211,7 +13256,7 @@
     16,
     21,
     28,
-    28
+    30
    ],
    "8475167": [
     0,
@@ -13244,7 +13289,7 @@
     7,
     8,
     9,
-    9
+    10
    ],
    "8481605": [
     0,
@@ -14256,7 +14301,7 @@
     36,
     43,
     55,
-    55
+    57
    ],
    "8482740": [
     0,
@@ -14960,7 +15005,7 @@
     21,
     26,
     33,
-    33
+    36
    ],
    "8477939": [
     0,
@@ -15015,7 +15060,7 @@
     9,
     12,
     16,
-    16
+    18
    ],
    "8484762": [
     0,
@@ -15301,12 +15346,12 @@
     {
      "nhl_id": 8478402,
      "manager_id": 1,
-     "value": 58
+     "value": 59
     },
     {
      "nhl_id": 8480803,
      "manager_id": 7,
-     "value": 55
+     "value": 57
     },
     {
      "nhl_id": 8478864,
@@ -15345,21 +15390,21 @@
      "nhl_id": 8480018,
      "manager_id": 12,
      "value": 20,
-     "gap": -16.7,
+     "gap": -16.8,
      "round": 1
     },
     {
      "nhl_id": 8475809,
      "manager_id": 5,
      "value": 9,
-     "gap": -16.2,
+     "gap": -16.3,
      "round": 3
     },
     {
      "nhl_id": 8478178,
      "manager_id": 5,
      "value": 19,
-     "gap": -12.9,
+     "gap": -13.3,
      "round": 2
     }
    ]
@@ -15387,8 +15432,8 @@
     },
     {
      "manager_id": 5,
-     "value": 57,
-     "points": 50.1,
+     "value": 58,
+     "points": 51.0,
      "worst": {
       "nhl_id": 8475810,
       "games": 16
@@ -15402,17 +15447,17 @@
     {
      "manager_id": 7,
      "value": 27,
-     "mornings": 52
+     "mornings": 53
     },
     {
      "manager_id": 2,
      "value": 11,
-     "mornings": 52
+     "mornings": 53
     },
     {
-     "manager_id": 9,
-     "value": 6,
-     "mornings": 52
+     "manager_id": 1,
+     "value": 7,
+     "mornings": 53
     }
    ]
   },
@@ -15420,12 +15465,12 @@
    "key": "rollercoaster",
    "podium": [
     {
-     "manager_id": 10,
+     "manager_id": 9,
      "value": 46
     },
     {
-     "manager_id": 9,
-     "value": 45
+     "manager_id": 10,
+     "value": 46
     },
     {
      "manager_id": 6,
@@ -15454,7 +15499,7 @@
     },
     {
      "manager_id": 11,
-     "value": 54,
+     "value": 56,
      "best": {
       "nhl_id": 8479987,
       "points": 20
