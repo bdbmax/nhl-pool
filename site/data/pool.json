@@ -6,7 +6,7 @@
   "CBS",
   "HockeyBangers"
  ],
- "generated": "2026-11-26T18:38+00:00",
+ "generated": "2026-11-26T19:08+00:00",
  "as_of": "2026-11-26",
  "season_start": "2026-09-29",
  "season_started": true,
@@ -44,7 +44,7 @@
     12.7,
     12.5,
     11.5,
-    11.2,
+    11.3,
     10.6,
     9.0,
     8.2,
@@ -91,8 +91,8 @@
    "rank": 3,
    "proj_rank": 5,
    "points": 295,
-   "proj_consensus": 896.0,
-   "expected_total": 931.0,
+   "proj_consensus": 897.0,
+   "expected_total": 930.0,
    "expected_finish": 5.16,
    "win_pct": 9.5,
    "finish_odds": [
@@ -104,9 +104,9 @@
     11.8,
     10.6,
     9.0,
-    7.3,
+    7.4,
     4.3,
-    1.5,
+    1.6,
     0.2
    ],
    "rank_change": 0,
@@ -130,7 +130,7 @@
     10.1,
     11.0,
     11.9,
-    11.9,
+    11.8,
     11.5,
     10.4,
     6.9,
@@ -178,13 +178,13 @@
    "proj_consensus": 931.0,
    "expected_total": 957.0,
    "expected_finish": 4.3,
-   "win_pct": 17.9,
+   "win_pct": 18.0,
    "finish_odds": [
-    17.9,
-    15.2,
+    18.0,
+    15.1,
     13.2,
     11.7,
-    10.0,
+    10.1,
     8.8,
     7.9,
     6.3,
@@ -194,7 +194,7 @@
     0.2
    ],
    "rank_change": 0,
-   "win_change": -0.1
+   "win_change": -0.0
   },
   {
    "id": 7,
@@ -209,7 +209,7 @@
    "win_pct": 19.0,
    "finish_odds": [
     19.0,
-    15.6,
+    15.7,
     13.5,
     11.6,
     10.2,
@@ -297,7 +297,7 @@
     1.4,
     1.9,
     3.0,
-    4.2,
+    4.3,
     6.3,
     9.2,
     14.9,
@@ -329,7 +329,7 @@
     3.2,
     4.9,
     9.5,
-    20.1,
+    20.2,
     35.7,
     22.3
    ],
@@ -1453,7 +1453,7 @@
    "number": 5,
    "photo": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8483485.png",
    "photo_fallback": "https://a.espncdn.com/i/headshots/nhl/players/full/5080156.png",
-   "injury": "Day-to-day",
+   "injury": "Out",
    "points": 11,
    "gp": 22,
    "stats": {
@@ -1462,15 +1462,15 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 36.8,
-   "proj_left": 25.8,
-   "games_left": 42.0,
-   "proj_gp": 64.0,
+   "proj": 35.6,
+   "proj_left": 24.6,
+   "games_left": 40.0,
+   "proj_gp": 62.0,
    "sources": {
     "ESPN": null,
-    "NHL.com": 43.7,
-    "CBS": 33.4,
-    "HockeyBangers": 33.3
+    "NHL.com": 42.1,
+    "CBS": 32.3,
+    "HockeyBangers": 32.3
    },
    "age": 22.4,
    "manager_id": 2,
@@ -1611,14 +1611,14 @@
     "GWG": 2,
     "HT": 1
    },
-   "proj": 114.5,
-   "proj_left": 77.5,
+   "proj": 114.6,
+   "proj_left": 77.6,
    "games_left": 60.0,
    "proj_gp": 84.0,
    "sources": {
     "ESPN": 111.2,
     "NHL.com": 118.3,
-    "CBS": 117.0,
+    "CBS": 117.1,
     "HockeyBangers": 111.6
    },
    "age": 19.2,
@@ -1841,7 +1841,7 @@
    "sources": {
     "ESPN": 82.5,
     "NHL.com": 83.0,
-    "CBS": 86.6,
+    "CBS": 86.7,
     "HockeyBangers": 78.8
    },
    "age": 36.8,
@@ -3578,8 +3578,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 79.1,
-   "proj_left": 56.1,
+   "proj": 79.0,
+   "proj_left": 56.0,
    "games_left": 56.0,
    "proj_gp": 80.0,
    "sources": {
@@ -4099,8 +4099,8 @@
     "GWG": 1,
     "HT": 0
    },
-   "proj": 93.9,
-   "proj_left": 72.9,
+   "proj": 93.8,
+   "proj_left": 72.8,
    "games_left": 62.0,
    "proj_gp": 80.0,
    "sources": {
@@ -4736,7 +4736,7 @@
    "sources": {
     "ESPN": 78.7,
     "NHL.com": 78.2,
-    "CBS": 78.4,
+    "CBS": 78.5,
     "HockeyBangers": 75.0
    },
    "age": 33.6,
@@ -5404,7 +5404,7 @@
    "sources": {
     "ESPN": 56.2,
     "NHL.com": 66.6,
-    "CBS": 58.0,
+    "CBS": 57.9,
     "HockeyBangers": 61.1
    },
    "age": 23.8,
@@ -5628,7 +5628,7 @@
    "sources": {
     "ESPN": 44.6,
     "NHL.com": null,
-    "CBS": 42.8,
+    "CBS": 42.9,
     "HockeyBangers": null
    },
    "age": 26.4,
@@ -6556,7 +6556,7 @@
    "sources": {
     "ESPN": 64.0,
     "NHL.com": null,
-    "CBS": 57.6,
+    "CBS": 57.7,
     "HockeyBangers": null
    },
    "age": 28.3,
@@ -6623,8 +6623,8 @@
     "GWG": 0,
     "HT": 0
    },
-   "proj": 73.4,
-   "proj_left": 52.4,
+   "proj": 73.5,
+   "proj_left": 52.5,
    "games_left": 59.0,
    "proj_gp": 83.0,
    "sources": {
@@ -11672,7 +11672,8 @@
  "compared_to": "2026-11-26",
  "since": "depuis ce matin",
  "headline": [
-  "D. Archambault garde la tête, 3 points devant B. Belanger."
+  "D. Archambault garde la tête, 3 points devant B. Belanger.",
+  "Denton Mateychuk (M. Bélanger) est maintenant absent."
  ],
  "week": {
   "start": "2026-11-23",
